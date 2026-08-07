@@ -2,9 +2,9 @@
 
 架构:
   MRI Volume
-    ├─ Axial plane   (3 相邻切片) → EfficientNet → feat_a  [B, D]
-    ├─ Coronal plane  (3 相邻切片) → EfficientNet → feat_c  [B, D]
-    └─ Sagittal plane (3 相邻切片) → EfficientNet → feat_s  [B, D]
+    ├─ Axial plane   (3 相邻切片) → Shared Backbone → feat_a  [B, D]
+    ├─ Coronal plane  (3 相邻切片) → Shared Backbone → feat_c  [B, D]
+    └─ Sagittal plane (3 相邻切片) → Shared Backbone → feat_s  [B, D]
                         ↓
               Fusion (Concat / Cross-Attention)
                         ↓
@@ -23,7 +23,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from .efficientnet import create_backbone, get_feature_dim
+from .backbone import create_backbone, get_feature_dim
 
 
 class TriplaneModel(nn.Module):
@@ -39,7 +39,7 @@ class TriplaneModel(nn.Module):
 
     def __init__(
         self,
-        arch: str = "tf_efficientnet_b0",
+        arch: str = "convnextv2_tiny",
         pretrained: bool = True,
         num_classes: int = 12,
         fusion: str = "concat",

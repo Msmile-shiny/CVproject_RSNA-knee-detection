@@ -1,8 +1,9 @@
-"""2.5D Triplane 推理管线.
+"""2D/2.5D 推理管线.
 
-- 加载所有 fold 的 checkpoint
-- Top-K 切片均值聚合 (每个 study 取分数最高的 K% 切片)
-- Fold ensemble: mean logits
+- 加载 fold checkpoints
+- 对每个 test study 的所有切片/triplet 推理
+- Top-K 聚合 (2D: 切片级 top-K, 2.5D: triplet 级 top-K)
+- Fold ensemble (mean logits)
 - 生成 Kaggle submission.csv
 """
 
@@ -15,51 +16,87 @@ import pandas as pd
 import torch
 from torch.utils.data import DataLoader
 
-from src.data.dataset import TriplaneDataset
-from src.models.triplane import TriplaneModel
+from src.data.dataset import KneeSliceDataset
+from src.models.classifier import KneeClassifier2D
+from src.evaluate import aggregate_to_study
 
 
-def predict_study(
-    model: TriplaneModel,
-    study_npy_dir: Path,
+def predict(
+    model: KneeClassifier2D,
+    loader: DataLoader,
     device: str = "cuda",
-    topk_fraction: float = 0.25,
-) -> np.ndarray:
-    """对单个 study 的所有切片推理, 返回 Top-K 均值 logits.
-
-    Args:
-        model: 训练好的 TriplaneModel
-        study_npy_dir: study 的 npy 目录
-        device: 推理设备
-        topk_fraction: 保留分数最高的切片比例
+) -> tuple[np.ndarray, np.ndarray]:
+    """对所有切片推理, 返回 (logits, study_uids).
 
     Returns:
-        np.ndarray: shape [12] 的 logits 均值
+        logits: [N_slices, 12]
+        study_uids: [N_slices]
     """
-    # TODO: 加载该 study 的所有切片
-    # 1. 遍历所有 series/slices
-    # 2. 每张切片走三平面 → logits
-    # 3. 按每个类别的置信度排序, 取 top K% 取平均
-    raise NotImplementedError
+    model.eval()
+    all_logits = []
+    all_study_uids = []
+
+    with torch.no_grad():
+        for batch in loader:
+            images = batch["image"].to(device)
+            logits = model(images).cpu().numpy()
+            all_logits.append(logits)
+            all_study_uids.extend(batch["study_uid"])
+
+    return np.concatenate(all_logits), np.array(all_study_uids)
 
 
 def generate_submission(
+    test_metadata_df: pd.DataFrame,
+    labels_df: pd.DataFrame,
+    checkpoint_paths: list[Path],
     config: dict,
-    test_csv: str | Path,
-    checkpoint_dir: str | Path,
-    output_path: str | Path = "submission.csv",
+    output_path: str = "submission.csv",
 ) -> None:
     """生成 Kaggle 提交文件.
 
     Args:
+        test_metadata_df: 测试集切片元数据
+        labels_df: 测试集标签 (用于关联 StudyInstanceUID, label 列可为空)
+        checkpoint_paths: 各 fold 的 .pt checkpoint 路径列表
         config: 模型/推理配置
-        test_csv: 测试集索引 CSV
-        checkpoint_dir: fold checkpoints 目录
         output_path: 输出 CSV 路径
     """
-    # TODO: 完整的推理 → 提交管线
-    # 1. 加载所有 fold 模型
-    # 2. 对每个 test study 预测
-    # 3. fold ensemble (mean logits)
-    # 4. sigmoid → 写入 submission.csv
-    raise NotImplementedError
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+
+    all_study_logits = []
+
+    for ckpt_path in checkpoint_paths:
+        model = KneeClassifier2D(
+            arch=config["model"]["arch"],
+            in_channels=config["model"]["in_channels"],
+            num_classes=config["model"]["num_classes"],
+        ).to(device)
+        ckpt = torch.load(ckpt_path, map_location=device)
+        model.load_state_dict(ckpt["model"])
+
+        ds = KneeSliceDataset(
+            test_metadata_df, labels_df,
+            npy_root=config["paths"]["npy_root"],
+            image_size=config["data"]["image_size"],
+            in_channels=config["data"].get("in_channels", 3),
+            is_train=False,
+        )
+        loader = DataLoader(ds, batch_size=config["train"]["batch_size"], shuffle=False,
+                            num_workers=2, pin_memory=True)
+
+        slice_logits, study_uids = predict(model, loader, device)
+        study_logits, study_ids = aggregate_to_study(
+            slice_logits, study_uids, config["inference"]["topk_fraction"]
+        )
+        all_study_logits.append(study_logits)
+
+    # Fold ensemble: mean logits
+    ensemble_logits = np.mean(all_study_logits, axis=0)               # [N_studies, 12]
+    probs = 1.0 / (1.0 + np.exp(-ensemble_logits))                   # sigmoid
+
+    # 写入 CSV
+    sub = pd.DataFrame(probs, columns=config["data"]["target_columns"])
+    sub.insert(0, "StudyInstanceUID", study_ids)
+    sub.to_csv(output_path, index=False)
+    print(f"Submission saved to {output_path}  ({len(sub)} studies)")

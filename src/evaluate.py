@@ -1,9 +1,9 @@
-"""2.5D Triplane OOF (Out-of-Fold) 评估.
+"""2D/2.5D 切片级 OOF (Out-of-Fold) 评估.
 
-- 5-fold 交叉验证
-- 每 fold 保存 logits
-- 最终聚合: fold ensemble (mean logits) + top-K 均值
-- 生成 per-class AUC 报告
+- 5-fold Patient-level StratifiedGroupKFold
+- 每 fold 保存 logits/triplet logits
+- Study-level 聚合: top-K 均值
+- Fold ensemble: mean logits
 """
 
 from __future__ import annotations
@@ -12,47 +12,34 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import torch
-from torch.utils.data import DataLoader
-from sklearn.model_selection import StratifiedGroupKFold
 
-from src.data.dataset import TriplaneDataset
-from src.models.triplane import TriplaneModel
 from src.metrics import compute_macro_auc, compute_per_class_auc
 
 
-def run_oof_evaluation(
-    index_df: pd.DataFrame,
-    config: dict,
-    target_columns: list[str],
-    npy_root: str = "data/mini/npy",
-    n_folds: int = 5,
-    device: str = "cuda",
-) -> dict:
-    """跑完整的 OOF 评估管线.
+def aggregate_to_study(
+    slice_logits: np.ndarray,
+    slice_study_ids: np.ndarray,
+    topk_fraction: float = 0.25,
+) -> tuple[np.ndarray, np.ndarray]:
+    """切片级 logits → study 级 logits (Top-K 均值).
+
+    Args:
+        slice_logits: [N_slices, 12]
+        slice_study_ids: [N_slices] study UID 数组
+        topk_fraction: 每个 study 保留的 top 切片比例
 
     Returns:
-        dict: {"macro_auc": float, "per_class_auc": dict, "oof_logits": np.ndarray}
+        study_logits: [N_studies, 12]
+        study_ids: [N_studies] 对应的 study UID
     """
-    skf = StratifiedGroupKFold(n_splits=n_folds, shuffle=True, random_state=config.get("seed", 2026))
+    unique_studies = np.unique(slice_study_ids)
+    study_logits = np.zeros((len(unique_studies), slice_logits.shape[1]), dtype=np.float32)
 
-    # 生成伪标签用于 StratifiedGroupKFold (多标签 → 取最常见标签)
-    labels = index_df[target_columns].values
-    pseudo_y = labels.argmax(axis=1)
+    for i, sid in enumerate(unique_studies):
+        mask = slice_study_ids == sid
+        sid_logits = slice_logits[mask]                          # [K, 12]
+        k = max(1, int(len(sid_logits) * topk_fraction))
+        top_vals = np.sort(sid_logits, axis=0)[-k:]              # per-class top-K
+        study_logits[i] = top_vals.mean(axis=0)
 
-    oof_logits = np.zeros((len(index_df), len(target_columns)), dtype=np.float32)
-
-    for fold_idx, (train_idx, valid_idx) in enumerate(
-        skf.split(index_df, pseudo_y, groups=index_df["patient_id"])
-    ):
-        print(f"Fold {fold_idx + 1}/{n_folds}")
-        # TODO: 训练一个 fold
-        # 1. 构建 train/valid dataset
-        # 2. 初始化 TriplaneModel
-        # 3. train_one_epoch × N epochs
-        # 4. validate → 保存 logits 到 oof_logits[valid_idx]
-
-    macro_auc = compute_macro_auc(labels, oof_logits)
-    per_class = compute_per_class_auc(labels, oof_logits)
-
-    return {"macro_auc": macro_auc, "per_class_auc": per_class, "oof_logits": oof_logits}
+    return study_logits, unique_studies

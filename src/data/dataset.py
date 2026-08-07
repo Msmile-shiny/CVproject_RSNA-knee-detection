@@ -1,17 +1,12 @@
-"""PyTorch Dataset — 2.5D 三平面采样.
+"""PyTorch Dataset — 2D 切片级 / 2.5D triplet.
 
-从预处理好的 .npy MRI volume (研究级) 中抽取:
-- Axial 面 3 个连续切片
-- Coronal 面 3 个连续切片
-- Sagittal 面 3 个连续切片
-
-每个面的 3 切片堆叠为 3 通道输入, 模拟 RGB 三通道给 ImageNet 预训练 backbone.
-
+从 data/mini/npy/ 加载 Sagittal 切片.
 数据层级:
-  npy_root/
-    study_uid/
-      series_uid/
-        sop_uid.npy    (H, W) 单切片
+  npy_root/StudyInstanceUID/SeriesInstanceUID/SOPInstanceUID.npy
+
+模式:
+- 2D:  每张切片独立作为样本,  [1, H, W] 灰度图
+- 2.5D: 3 张相邻切片堆叠,   [3, H, W] → 原生 ImageNet 预训练输入
 """
 
 from __future__ import annotations
@@ -24,82 +19,119 @@ import torch
 from torch.utils.data import Dataset
 
 
-class TriplaneDataset(Dataset):
-    """2.5D 三平面 MRI 数据集.
+class KneeSliceDataset(Dataset):
+    """Sagittal 切片数据集, 支持 2D 和 2.5D triplet 模式.
 
-    每个 sample 返回三个面的切片堆叠:
-      axial:   [3, H, W]
-      coronal: [3, H, W]
-      sagittal:[3, H, W]
+    2D 模式 (in_channels=1):
+      每张切片一个样本, 输出 [1, H, W]
+
+    2.5D 模式 (in_channels=3):
+      同一 series 内按 SOPInstanceUID 排序后, 取连续 3 张切片堆叠
+      输出 [3, H, W], 可直接用 ImageNet 预训练权重
 
     Args:
-        index_df: DataFrame, 至少包含:
-            - study_uid: str
-            - patient_id: str
-            - 12 个 label 列 (0/1)
-        npy_root: 预处理 npy 文件根目录
-        image_size: 输出图像尺寸 (默认 256)
-        slice_offset: 三切片偏移间距 (默认 ±1)
-        is_train: 是否训练模式 (做数据增强)
+        metadata_df: StudyInstanceUID + SeriesInstanceUID + SOPInstanceUID
+        labels_df: StudyInstanceUID + 12 个 label 列
+        npy_root: npy 文件根目录
+        image_size: 输出图像尺寸
+        in_channels: 1 = 2D 单切片, 3 = 2.5D triplet
+        slice_offset: triplet 的切片间距 (默认 1, 即相邻)
+        is_train: 是否训练模式
+        target_columns: 12 个标签列名
     """
 
     def __init__(
         self,
-        index_df: pd.DataFrame,
+        metadata_df: pd.DataFrame,
+        labels_df: pd.DataFrame,
         npy_root: str | Path = "data/mini/npy",
-        image_size: int = 256,
+        image_size: int = 224,
+        in_channels: int = 3,
         slice_offset: int = 1,
-        target_columns: list[str] | None = None,
         is_train: bool = True,
+        target_columns: list[str] | None = None,
     ):
-        self.df = index_df.reset_index(drop=True)
         self.npy_root = Path(npy_root)
         self.image_size = image_size
+        self.in_channels = in_channels
         self.slice_offset = slice_offset
         self.is_train = is_train
 
-        if target_columns is None:
-            # 自动检测 12 个目标列
-            self.target_columns = [c for c in self.df.columns if c not in (
-                "study_uid", "patient_id", "series_uid", "sop_uid",
-                "filepath", "split",
-            )]
-        else:
-            self.target_columns = list(target_columns)
+        self.target_columns = target_columns or [
+            "ACL", "MCL", "Medial Meniscus", "Lateral Meniscus",
+            "Medial OA", "Lateral OA", "PF OA",
+            "Effusion", "Synovitis", "Baker's",
+            "Contusion", "Fracture",
+        ]
+
+        # 标签: StudyInstanceUID → label vector
+        label_map = labels_df.set_index("StudyInstanceUID")[self.target_columns]
+
+        # --- 构建样本索引 ---
+        # 按 (study, series) 分组, 组内按 SOPInstanceUID 排序
+        self.records = []
+        skipped = 0
+
+        groups = metadata_df.groupby(["StudyInstanceUID", "SeriesInstanceUID"])
+
+        for (sid, series_uid), group in groups:
+            if sid not in label_map.index:
+                skipped += 1
+                continue
+
+            # 按文件名排序 (SOPInstanceUID 字典序对应切片顺序)
+            group = group.sort_values("SOPInstanceUID")
+            sop_uids = group["SOPInstanceUID"].tolist()
+            labels = label_map.loc[sid].values.astype(np.float32)
+            n_slices = len(sop_uids)
+
+            if in_channels == 1:
+                # 2D 模式: 每张切片一个样本
+                for sop in sop_uids:
+                    self.records.append({
+                        "study_uid": sid,
+                        "series_uid": series_uid,
+                        "sop_uids": [sop],
+                        "labels": labels,
+                    })
+            else:
+                # 2.5D 模式: 取连续 3 张 (offset=1 即 [z-1, z, z+1])
+                step = slice_offset
+                for z in range(step, n_slices - step):
+                    self.records.append({
+                        "study_uid": sid,
+                        "series_uid": series_uid,
+                        "sop_uids": [sop_uids[z - step], sop_uids[z], sop_uids[z + step]],
+                        "labels": labels,
+                    })
+
+        if skipped:
+            print(f"警告: {skipped} 个 study 在 labels_df 中找不到, 已跳过")
 
     def __len__(self) -> int:
-        return len(self.df)
+        return len(self.records)
 
     def __getitem__(self, idx: int) -> dict:
-        row = self.df.iloc[idx]
-        study_uid = row["study_uid"]
+        rec = self.records[idx]
 
-        # 加载三平面切片
-        axial = self._load_plane(study_uid, plane="axial")
-        coronal = self._load_plane(study_uid, plane="coronal")
-        sagittal = self._load_plane(study_uid, plane="sagittal")
+        # 加载切片 → [in_channels, H, W]
+        slices = []
+        for sop in rec["sop_uids"]:
+            npy_path = (
+                self.npy_root / rec["study_uid"] / rec["series_uid"] / f"{sop}.npy"
+            )
+            img = np.load(npy_path).astype(np.float32)           # [H, W]
 
-        # 标签
-        labels = torch.tensor(
-            row[self.target_columns].values.astype(np.float32),
-            dtype=torch.float32,
-        )
+            if img.shape[0] != self.image_size or img.shape[1] != self.image_size:
+                import cv2
+                img = cv2.resize(img, (self.image_size, self.image_size))
+
+            slices.append(img)
+
+        image = np.stack(slices, axis=0)                         # [C, H, W]
 
         return {
-            "axial": axial,
-            "coronal": coronal,
-            "sagittal": sagittal,
-            "labels": labels,
-            "study_uid": study_uid,
-            "patient_id": str(row.get("patient_id", study_uid)),
+            "image": torch.from_numpy(image),
+            "labels": torch.from_numpy(rec["labels"]),
+            "study_uid": rec["study_uid"],
         }
-
-    def _load_plane(self, study_uid: str, plane: str) -> torch.Tensor:
-        """加载一个平面的 3 个相邻切片 → [3, H, W].
-
-        TODO: 实际实现需要根据 volume 坐标选择对应平面的切片.
-        当前为占位, 返回随机张量以便管线联调.
-        """
-        # TODO: 从 npy_root/study_uid/ 加载对应平面的切片
-        volume = torch.randn(3, self.image_size, self.image_size)
-        return volume
