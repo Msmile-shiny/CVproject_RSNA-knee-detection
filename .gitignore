@@ -1,0 +1,38 @@
+# === Large data files ===
+*.tar.gz
+data/processed/npy/
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# === Virtual environments ===
+.venv/
+venv/
+env/
+*.conda/
+
+# === Model weights & outputs ===
+*.pth
+*.pt
+*.onnx
+outputs/weights/
+outputs/logs/
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# === Jupyter ===
+.ipynb_checkpoints/
+
+# === OS ===
+.DS_Store
+Thumbs.db
