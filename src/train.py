@@ -9,6 +9,18 @@
 
 from __future__ import annotations
 
+import sys
+import os
+from pathlib import Path
+
+# 静默 albumentations 版本更新检查
+os.environ.setdefault("NO_ALBUMENTATIONS_UPDATE", "1")
+
+# 允许 python src/train.py 直接运行（把项目根目录加入 Python 路径）
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(_PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROJECT_ROOT))
+
 import argparse
 import logging
 import sys
