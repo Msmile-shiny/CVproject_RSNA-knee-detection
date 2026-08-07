@@ -20,6 +20,7 @@ from torch.utils.data import DataLoader
 from sklearn.model_selection import StratifiedGroupKFold
 
 from src.data.dataset import KneeSliceDataset
+from src.data.transforms import build_transforms
 from src.models.classifier import KneeClassifier2D
 from src.losses import build_loss
 from src.metrics import compute_macro_auc, compute_per_class_auc
@@ -128,22 +129,30 @@ def run_fold(
     # 加载标签
     labels_df = pd.read_csv(Path(config["paths"]["train_csv"]))
 
+    # 构建数据增强管道
+    aug_cfg = config.get("augmentation", {})
+    image_size = data_cfg["image_size"]
+    train_transform = build_transforms(aug_cfg, image_size, is_train=True)
+    valid_transform = build_transforms(aug_cfg, image_size, is_train=False)
+
     # 构建 dataset / loader
     train_ds = KneeSliceDataset(
         train_df, labels_df,
         npy_root=config["paths"]["npy_root"],
-        image_size=data_cfg["image_size"],
+        image_size=image_size,
         in_channels=data_cfg.get("in_channels", 3),
         slice_offset=data_cfg.get("slice_offset", 1),
         is_train=True,
+        transform=train_transform,
     )
     valid_ds = KneeSliceDataset(
         valid_df, labels_df,
         npy_root=config["paths"]["npy_root"],
-        image_size=data_cfg["image_size"],
+        image_size=image_size,
         in_channels=data_cfg.get("in_channels", 3),
         slice_offset=data_cfg.get("slice_offset", 1),
         is_train=False,
+        transform=valid_transform,
     )
 
     train_loader = DataLoader(

@@ -18,6 +18,8 @@ import pandas as pd
 import torch
 from torch.utils.data import Dataset
 
+from src.data.transforms import apply_transform
+
 
 class KneeSliceDataset(Dataset):
     """Sagittal 切片数据集, 支持 2D 和 2.5D triplet 模式.
@@ -50,12 +52,14 @@ class KneeSliceDataset(Dataset):
         slice_offset: int = 1,
         is_train: bool = True,
         target_columns: list[str] | None = None,
+        transform: "A.Compose | None" = None,
     ):
         self.npy_root = Path(npy_root)
         self.image_size = image_size
         self.in_channels = in_channels
         self.slice_offset = slice_offset
         self.is_train = is_train
+        self.transform = transform
 
         self.target_columns = target_columns or [
             "ACL", "MCL", "Medial Meniscus", "Lateral Meniscus",
@@ -130,8 +134,12 @@ class KneeSliceDataset(Dataset):
 
         image = np.stack(slices, axis=0)                         # [C, H, W]
 
+        # 应用数据增强 (训练时: 空间+像素变换; 验证时: 仅 resize)
+        if self.transform is not None:
+            image = apply_transform(image, self.transform)
+
         return {
-            "image": torch.from_numpy(image),
+            "image": torch.from_numpy(image.copy()),
             "labels": torch.from_numpy(rec["labels"]),
             "study_uid": rec["study_uid"],
         }
