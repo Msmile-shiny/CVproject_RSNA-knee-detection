@@ -1,0 +1,155 @@
+# RSNA Knee Abnormality Detection
+# Preferred mini-batch baseline: 2.5D EfficientNet-B0
+
+experiment:
+  name: efficientnet_b0_2p5d_mini
+  seed: 2026
+  stage: mini_baseline
+  description: "2.5D EfficientNet-B0 baseline for pipeline validation and OOF scoring"
+
+paths:
+  data_root: data
+  npy_root: data/mini/npy
+  image_index_csv: data/metadata/mini_npy_index.csv
+  original_archive: data/raw/archives/mini_set_npy.tar.gz
+  metadata_dir: data/metadata
+  cache_dir: data/cache/efficientnet_b0_2p5d_256
+  output_dir: outputs/efficientnet_b0_2p5d_mini
+  checkpoint_dir: outputs/efficientnet_b0_2p5d_mini/checkpoints
+  oof_dir: outputs/efficientnet_b0_2p5d_mini/oof
+
+data:
+  # Replace these after auditing the official Kaggle files.
+  train_csv: null
+  test_csv: null
+  sample_submission_csv: null
+  patient_id_column: null
+  study_id_column: null
+  series_id_column: null
+  target_columns: null
+
+  image_format: npy
+  hierarchy: study_uid/series_uid/sop_uid.npy
+  image_size: 256
+  in_channels: 3
+  slices_per_sample: 3
+  slice_offsets: [-1, 0, 1]
+  slice_sort_priority:
+    - ImagePositionPatient
+    - InstanceNumber
+
+  normalization:
+    method: percentile_zscore
+    lower_percentile: 0.5
+    upper_percentile: 99.5
+    epsilon: 1.0e-6
+
+  sampling:
+    unit: study
+    mini_studies: 500
+    preserve_patient_groups: true
+    preserve_target_distribution: true
+    positive_oversampling: false
+
+  loader:
+    train_workers: 4
+    valid_workers: 2
+    pin_memory: true
+    persistent_workers: true
+    prefetch_factor: 2
+
+validation:
+  strategy: stratified_group_kfold
+  folds: 5
+  group_column: patient_id
+  shuffle: true
+  random_state: 2026
+  metric: macro_roc_auc
+  save_oof_logits: true
+  report_per_target_auc: true
+  leakage_checks:
+    patient_overlap: error
+    study_overlap: error
+
+model:
+  architecture: tf_efficientnet_b0
+  library: timm
+  pretrained: true
+  pretrained_source: imagenet
+  in_channels: 3
+  num_classes: auto
+  global_pool: avg
+  dropout: 0.2
+  drop_path_rate: 0.1
+
+train:
+  device: cuda
+  epochs: 15
+  batch_size: 4
+  gradient_accumulation_steps: 4
+  effective_batch_size: 16
+  mixed_precision: true
+  precision: fp16
+  channels_last: true
+  gradient_clip_norm: 1.0
+  early_stopping:
+    enabled: true
+    monitor: val_macro_auc
+    mode: max
+    patience: 5
+    min_delta: 0.0005
+
+optimizer:
+  name: adamw
+  backbone_lr: 2.0e-5
+  head_lr: 1.0e-4
+  weight_decay: 1.0e-4
+  betas: [0.9, 0.999]
+
+scheduler:
+  name: cosine
+  warmup_epochs: 2
+  min_lr: 1.0e-6
+
+loss:
+  name: bce_with_logits
+  label_smoothing: 0.0
+  pos_weight: null
+  # Add ASL or class weights only after an OOF ablation proves an improvement.
+
+augmentation:
+  train:
+    horizontal_flip_probability: 0.0
+    rotate_limit_degrees: 8
+    shift_limit: 0.05
+    scale_limit: 0.08
+    brightness_contrast_probability: 0.25
+    gamma_probability: 0.20
+    coarse_dropout_probability: 0.10
+  valid:
+    resize_only: true
+
+inference:
+  aggregation: topk_mean
+  topk_fraction: 0.25
+  fold_ensemble: mean_logits
+  tta:
+    enabled: false
+  prediction_range_check: true
+  validate_sample_submission: true
+
+logging:
+  log_every_n_steps: 20
+  save_best_only: true
+  save_config_copy: true
+  track_gpu_memory: true
+  wandb:
+    enabled: false
+    project: rsna-knee-abnormality-detection
+
+acceptance:
+  # Mini-stage success means a trustworthy pipeline, not a medal score.
+  require_all_targets_in_each_validation_fold: true
+  require_zero_patient_leakage: true
+  require_finite_oof_predictions: true
+  minimum_macro_auc: 0.55

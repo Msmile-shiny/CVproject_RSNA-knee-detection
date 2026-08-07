@@ -1,0 +1,139 @@
+# RSNA Knee Abnormality Detection
+# 2.5D 三平面模型 (推荐起步配置)
+# Axial + Coronal + Sagittal 三个面共享 backbone → 融合 → 12-class head
+
+experiment:
+  name: triplane_convnext_tiny_mini
+  seed: 2026
+  stage: 2.5d_triplane
+  description: "2.5D Triplane with shared ConvNeXtV2-Tiny backbone, concat fusion"
+
+paths:
+  data_root: data
+  npy_root: data/mini/npy
+  image_index_csv: data/metadata/mini_npy_index.csv
+  metadata_dir: data/metadata
+  cache_dir: data/cache/triplane_convnext_tiny
+  output_dir: outputs/triplane_convnext_tiny_mini
+  checkpoint_dir: outputs/triplane_convnext_tiny_mini/checkpoints
+  oof_dir: outputs/triplane_convnext_tiny_mini/oof
+
+data:
+  image_format: npy
+  hierarchy: study_uid/series_uid/sop_uid.npy
+  image_size: 224
+  in_channels: 3       # 三切片 → RGB-like 通道
+  slices_per_plane: 3
+  slice_offset: 1       # 相邻切片间距
+  target_count: 12
+
+  # 三平面采样配置
+  planes:
+    - axial
+    - coronal
+    - sagittal
+
+  normalization:
+    method: percentile_zscore
+    lower_percentile: 0.5
+    upper_percentile: 99.5
+    epsilon: 1.0e-6
+
+  loader:
+    train_workers: 2
+    valid_workers: 2
+    pin_memory: true
+    persistent_workers: true
+    prefetch_factor: 2
+
+validation:
+  strategy: stratified_group_kfold
+  folds: 5
+  group_column: patient_id
+  shuffle: true
+  random_state: 2026
+  metric: macro_roc_auc
+  save_oof_logits: true
+  report_per_target_auc: true
+  leakage_checks:
+    patient_overlap: error
+    study_overlap: error
+
+model:
+  arch: convnextv2_tiny    # 现代 CNN, 医学迁移效果优异
+  library: timm
+  pretrained: true
+  pretrained_source: imagenet22k
+  backbone_shared: true    # 三个面共享权重
+  fusion: concat           # 起步用 concat, 后续可升级 cross_attn
+  num_classes: 12
+  dropout: 0.3
+  drop_path_rate: 0.1
+
+train:
+  device: cuda
+  epochs: 30
+  batch_size: 4
+  gradient_accumulation_steps: 4
+  effective_batch_size: 16
+  mixed_precision: true
+  precision: fp16
+  channels_last: true
+  gradient_clip_norm: 1.0
+  early_stopping:
+    enabled: true
+    monitor: val_macro_auc
+    mode: max
+    patience: 8
+    min_delta: 0.0005
+
+optimizer:
+  name: adamw
+  backbone_lr: 2.0e-5
+  head_lr: 1.0e-4
+  weight_decay: 0.05
+  betas: [0.9, 0.999]
+
+scheduler:
+  name: cosine
+  warmup_epochs: 3
+  min_lr: 1.0e-6
+
+loss:
+  name: bce_with_logits
+  label_smoothing: 0.05
+  pos_weight: auto         # 从训练集统计自动计算
+
+augmentation:
+  train:
+    horizontal_flip_probability: 0.5     # MRI 左右翻转有意义
+    rotate_limit_degrees: 10
+    shift_limit: 0.05
+    scale_limit: 0.1
+    brightness_contrast_probability: 0.3
+    gamma_probability: 0.2
+    coarse_dropout_probability: 0.15     # 模拟局部缺失
+  valid:
+    resize_only: true
+
+inference:
+  aggregation: topk_mean
+  topk_fraction: 0.25
+  fold_ensemble: mean_logits
+  tta:
+    enabled: false
+  prediction_range_check: true
+
+logging:
+  log_every_n_steps: 10
+  save_best_only: true
+  save_config_copy: true
+  track_gpu_memory: true
+  wandb:
+    enabled: false
+
+acceptance:
+  require_all_targets_in_each_validation_fold: true
+  require_zero_patient_leakage: true
+  require_finite_oof_predictions: true
+  minimum_macro_auc: 0.55
