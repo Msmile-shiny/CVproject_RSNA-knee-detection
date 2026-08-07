@@ -1,5 +1,6 @@
 # === Large data files ===
 *.tar.gz
+data/mini/
 data/processed/npy/
 
 # === Python ===
