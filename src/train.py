@@ -51,7 +51,7 @@ def train_one_epoch(
     loader: DataLoader,
     optimizer: torch.optim.Optimizer,
     criterion: nn.Module,
-    scaler: torch.cuda.amp.GradScaler | None,
+    scaler: torch.amp.GradScaler | None,
     grad_clip_norm: float = 1.0,
     device: str = "cuda",
 ) -> float:
@@ -64,7 +64,7 @@ def train_one_epoch(
         images = batch["image"].to(device, memory_format=torch.channels_last)
         labels = batch["labels"].to(device)
 
-        with torch.cuda.amp.autocast(enabled=scaler is not None):
+        with torch.amp.autocast("cuda", enabled=scaler is not None):
             logits = model(images)
             loss = criterion(logits, labels)
 
@@ -155,6 +155,15 @@ def run_fold(
     for col in target_cols:
         labels_df[col] = pd.to_numeric(labels_df[col], errors="coerce").fillna(0).astype(int)
 
+    # 类别短名映射 (用于紧凑日志)
+    _CLASS_ABBR = {
+        "ACL": "ACL", "MCL": "MCL",
+        "Medial Meniscus": "MMen", "Lateral Meniscus": "LMen",
+        "Medial OA": "MOA", "Lateral OA": "LOA", "PF OA": "PFOA",
+        "Effusion": "Eff", "Synovitis": "Syn", "Baker's": "Bak",
+        "Contusion": "Con", "Fracture": "Frx",
+    }
+
     # 构建数据增强管道
     aug_cfg = config.get("augmentation", {})
     image_size = data_cfg["image_size"]
@@ -212,7 +221,7 @@ def run_fold(
         {"params": model.head.parameters(), "lr": config["optimizer"]["head_lr"]},
     ], weight_decay=config["optimizer"]["weight_decay"])
 
-    scaler = torch.cuda.amp.GradScaler() if train_cfg["mixed_precision"] else None
+    scaler = torch.amp.GradScaler("cuda") if train_cfg["mixed_precision"] else None
 
     # 学习率调度器: warmup → cosine decay
     sched_cfg = config.get("scheduler", {})
@@ -258,6 +267,15 @@ def run_fold(
             f"⏱ {elapsed:.0f}s/epoch  ETA {eta_str}  "
             f"VRAM peak={gpu_alloc:.1f}/{gpu_reserved:.1f}GB"
         )
+        # Per-class AUC
+        per_class = val_metrics.get("per_class_auc", {})
+        if per_class:
+            parts = []
+            for col in target_cols:
+                abbr = _CLASS_ABBR.get(col, col[:4])
+                auc_val = per_class.get(target_cols.index(col), 0.5)
+                parts.append(f"{abbr}:{auc_val:.2f}")
+            logger.info(f"Fold {fold_idx}          per-class → {'  '.join(parts)}")
 
         scheduler.step()
 
