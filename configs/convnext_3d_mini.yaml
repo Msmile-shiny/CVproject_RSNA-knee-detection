@@ -1,0 +1,160 @@
+# =============================================================================
+# RSNA 2026 膝关节异常检测 — 三平面模型配置 (暂不可用)
+# =============================================================================
+#
+# ⚠️ 警告: 此配置需要 Axial + Coronal + Sagittal 三个解剖面的数据
+#          当前 mini 集只有 Sagittal 面, 无法使用此配置
+#          保留此文件供后续阶段参考, 当 mini 集扩容为多平面后启用
+#
+# 方案: 同一个 MRI volume 沿 Axial / Coronal / Sagittal 三个面各取 3 张切片
+#       → 3 个独立 backbone (共享权重) → 特征融合 → 12-class head
+#
+# 为什么暂时不跑:
+#   - Kaggle 预处理时只下载了 Sagittal 序列 (Tier 1/2 降级策略)
+#   - 需要在 Kaggle 重新预处理: 对每个 exam 下载全部可用序列 (Axial + Coronal + Sagittal)
+#   - 即使全下载, 多数 exam 可能仍缺少 Axial/Coronal (数据以 Sagittal 为主)
+#   - 且不同面的序列是分开的扫描, 不是同一 3D volume, 三平面采样逻辑会很复杂
+#
+# 启用条件:
+#   1. 在 Kaggle 上重新跑预处理, 扩展下载范围到所有解剖面
+#   2. 确认至少有一定比例的 exam 有 Axial + Coronal 序列
+#   3. 实现多序列匹配和三平面采样逻辑
+#
+# 预计时间: 2.5D triplet 跑通出分后, 视 macro AUC 决定是否需要
+# =============================================================================
+
+experiment:
+  name: triplane_convnext_tiny_mini
+  seed: 2026
+  stage: 2.5d_triplane                   # 标记为三平面, 区别于 triplet
+  description: "2.5D Triplane with shared backbone, concat fusion — ⚠️ 需多平面数据"
+
+paths:
+  data_root: data
+  npy_root: data/mini/npy
+  image_index_csv: data/metadata/mini_npy_index.csv
+  metadata_dir: data/metadata
+  cache_dir: data/cache/triplane_convnext_tiny
+  output_dir: outputs/triplane_convnext_tiny_mini
+  checkpoint_dir: outputs/triplane_convnext_tiny_mini/checkpoints
+  oof_dir: outputs/triplane_convnext_tiny_mini/oof
+
+data:
+  image_format: npy
+  hierarchy: study_uid/series_uid/sop_uid.npy
+  image_size: 224
+  in_channels: 3                        # 每面 3 切片堆叠
+  slices_per_plane: 3
+  slice_offset: 1
+  target_count: 12
+
+  planes:                               # ★ 三个解剖面 (当前数据只有 Sagittal)
+    - axial
+    - coronal
+    - sagittal
+
+  normalization:
+    method: percentile_zscore
+    lower_percentile: 0.5
+    upper_percentile: 99.5
+    epsilon: 1.0e-6
+
+  loader:
+    train_workers: 2                    # 三平面数据加载更重, worker 少开
+    valid_workers: 2
+    pin_memory: true
+    persistent_workers: true
+    prefetch_factor: 2
+
+validation:
+  strategy: stratified_group_kfold
+  folds: 5
+  group_column: patient_id
+  shuffle: true
+  random_state: 2026
+  metric: macro_roc_auc
+  save_oof_logits: true
+  report_per_target_auc: true
+  leakage_checks:
+    patient_overlap: error
+    study_overlap: error
+
+model:
+  arch: convnextv2_tiny
+  library: timm
+  pretrained: true
+  pretrained_source: imagenet22k
+  backbone_shared: true                 # ★ 三个面共享同一个 backbone 权重
+                                        #   如果显存够, 可以设 false 让三个面各自学习
+  fusion: concat                        # 融合方式: concat (拼接三面特征) → 后续可升级 cross_attn
+  num_classes: 12
+  dropout: 0.3
+  drop_path_rate: 0.1
+
+train:
+  device: cuda
+  epochs: 30
+  batch_size: 4                         # ★ 三平面: 每样本 3 次 backbone 前向 → 显存是 2.5D 的 ~3 倍
+  gradient_accumulation_steps: 4        # 有效 batch = 4×4 = 16
+  effective_batch_size: 16
+  mixed_precision: true
+  precision: fp16
+  channels_last: true
+  gradient_clip_norm: 1.0
+  early_stopping:
+    enabled: true
+    monitor: val_macro_auc
+    mode: max
+    patience: 8
+    min_delta: 0.0005
+
+optimizer:
+  name: adamw
+  backbone_lr: 2.0e-5
+  head_lr: 1.0e-4
+  weight_decay: 0.05
+  betas: [0.9, 0.999]
+
+scheduler:
+  name: cosine
+  warmup_epochs: 3
+  min_lr: 1.0e-6
+
+loss:
+  name: bce_with_logits
+  label_smoothing: 0.05
+  pos_weight: auto
+
+augmentation:
+  train:
+    horizontal_flip_probability: 0.5
+    rotate_limit_degrees: 10
+    shift_limit: 0.05
+    scale_limit: 0.1
+    brightness_contrast_probability: 0.3
+    gamma_probability: 0.2
+    coarse_dropout_probability: 0.15
+  valid:
+    resize_only: true
+
+inference:
+  aggregation: topk_mean
+  topk_fraction: 0.25
+  fold_ensemble: mean_logits
+  tta:
+    enabled: false
+  prediction_range_check: true
+
+logging:
+  log_every_n_steps: 10
+  save_best_only: true
+  save_config_copy: true
+  track_gpu_memory: true
+  wandb:
+    enabled: false
+
+acceptance:
+  require_all_targets_in_each_validation_fold: true
+  require_zero_patient_leakage: true
+  require_finite_oof_predictions: true
+  minimum_macro_auc: 0.55
