@@ -37,6 +37,15 @@ reference_code/
 # === Jupyter ===
 .ipynb_checkpoints/
 
+# === Project-specific exclusions ===
+configs/a_*
+configs/b_*
+configs/c_*
+data/metadata/mini_npy_index.csv
+info/*.jpeg
+info/requirements.txt
+notebooks/kaggle_preprocess.ipynb
+
 # === OS ===
 .DS_Store
 Thumbs.db
