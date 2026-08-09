@@ -66,9 +66,11 @@ class EfficientNetV2S25D(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """x: [B, 5, H, W] → logits: [B, 12]."""
-        features = self.backbone.forward_features(x)   # [B, 1280]
+        features = self.backbone.forward_features(x)   # [B, 1280, H', W']
+        features = features.mean(dim=[2, 3])            # [B, 1280] global avg pool
         return self.head(features)
 
     def extract_features(self, x: torch.Tensor) -> torch.Tensor:
-        """提取特征 (不做分类), 用于 slice attention 等下游."""
-        return self.backbone.forward_features(x)        # [B, 1280]
+        """提取池化后特征 (不做分类), 用于 slice attention 等下游."""
+        features = self.backbone.forward_features(x)    # [B, 1280, H', W']
+        return features.mean(dim=[2, 3])                 # [B, 1280]

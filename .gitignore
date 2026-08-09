@@ -1,6 +1,6 @@
 # === Large data files ===
 *.tar.gz
-data/mini/
+dataset/
 data/processed/
 data/cache/
 data/raw/
