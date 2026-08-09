@@ -1,0 +1,119 @@
+# =============================================================================
+# RSNA 2026 Knee — EfficientNetV2-S 2.5D Baseline (Phase 1)
+# =============================================================================
+
+experiment:
+  name: efficientnetv2s_25d_baseline
+  seed: 2026
+  stage: phase1
+  description: "EfficientNetV2-S 2.5D 5-slice, Sagittal plane, Focal BCE"
+
+# ---------------------------------------------------------------------------
+# 路径
+# ---------------------------------------------------------------------------
+paths:
+  data_root: dataset
+  dicom_root: dataset/train_series          # StudyInstanceUID/SeriesInstanceUID/*.dcm
+  train_csv: data/metadata/train.csv        # StudyInstanceUID + 12 labels + Report
+  series_csv: data/metadata/train_series.csv
+  output_dir: outputs/efficientnetv2s_25d_baseline
+  checkpoint_dir: outputs/efficientnetv2s_25d_baseline/checkpoints
+
+# ---------------------------------------------------------------------------
+# 数据
+# ---------------------------------------------------------------------------
+data:
+  image_size: 384
+  slice_count: 5                            # 5 张相邻切片堆叠
+  slice_half_window: 2                      # [z-2, z-1, z, z+1, z+2]
+  planes:                                   # Phase 1: 仅 Sagittal
+    - Sagittal
+  fluid_sensitive_only: true                # 只选 T2/PD 加权序列
+  fat_suppression_only: true               # 只选压脂序列
+  target_columns:
+    - ACL
+    - MCL
+    - Medial Meniscus
+    - Lateral Meniscus
+    - Medial OA
+    - Lateral OA
+    - PF OA
+    - Effusion
+    - Synovitis
+    - Baker's
+    - Contusion
+    - Fracture
+  loader:
+    train_workers: 4
+    valid_workers: 2
+    pin_memory: true
+
+# ---------------------------------------------------------------------------
+# 模型
+# ---------------------------------------------------------------------------
+model:
+  arch: efficientnetv2_s
+  in_channels: 5                            # 5-slice stack → 5 通道
+  num_classes: 12
+  pretrained: true
+  dropout: 0.3
+  feature_dim: 1280
+
+# ---------------------------------------------------------------------------
+# 训练
+# ---------------------------------------------------------------------------
+train:
+  device: cuda
+  epochs: 50
+  batch_size: 8                             # 384×384 更大, batch 相应减小
+  gradient_accumulation_steps: 2            # effective batch = 8 × 2 = 16
+  mixed_precision: true
+  gradient_clip_norm: 1.0
+  early_stopping:
+    enabled: true
+    monitor: val_macro_auc
+    mode: max
+    patience: 10
+    min_delta: 0.001
+
+# ---------------------------------------------------------------------------
+# 优化器
+# ---------------------------------------------------------------------------
+optimizer:
+  name: adamw
+  lr: 2.0e-4
+  weight_decay: 1.0e-4
+  betas: [0.9, 0.999]
+
+# ---------------------------------------------------------------------------
+# 调度器
+# ---------------------------------------------------------------------------
+scheduler:
+  name: cosine_warm_restart
+  T_0: 10                                  # 首次 restart 周期
+  T_mult: 2                                # 每轮周期翻倍
+  eta_min: 1.0e-6
+
+# ---------------------------------------------------------------------------
+# 损失
+# ---------------------------------------------------------------------------
+loss:
+  name: focal_bce
+  gamma: 2.0
+  alpha: 0.25
+
+# ---------------------------------------------------------------------------
+# 验证
+# ---------------------------------------------------------------------------
+validation:
+  strategy: stratified_group_kfold
+  folds: 5
+  group_column: StudyInstanceUID
+  metric: macro_roc_auc
+
+# ---------------------------------------------------------------------------
+# 推理
+# ---------------------------------------------------------------------------
+inference:
+  aggregation: topk_mean
+  topk_fraction: 0.25
