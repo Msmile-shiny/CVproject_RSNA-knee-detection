@@ -1,0 +1,232 @@
+Total errors: 40
+
+=== ACL: 4 FP, 0 FN ===
+  [FP] study=3040089882701935
+  Report:  In the medial compartment, the meniscus is not torn and there is no focal chondrosis or chondral injury. 
+  
+ The lateral compartment, there is complex tear (main radial and longitudinal vertical com
+
+  [FP] study=4773408583976756
+  Report: MRI of Knee with 
+-Locator, SG PD FatSat, SG T2W FS, SG T1W, CO T2W FS, AX T2W FS
+
+
+
+* High signal in the soft tissue medial to the medial collateral ligament with mild increased signal intensity of p
+
+  [FP] study=1517053322874891
+  Report: > MRI of knee was performed in sagittal, axial and coronal sections.
+> Spin echo sequence were used.
+
+> Split fractures at tibial plateau with depression of the lateral articular surface and extending
+
+  [FP] study=4060466120253309
+  Report: Antecedentes Clínicos:
+Gonalgia izquierda.
+Hallazgos:
+No hay alteraciones de señal significativas de la médula ósea.
+Transformación quística parcial del tercio proximal del LCA. LCP y ligamentos colat
+
+=== MCL: 1 FP, 0 FN ===
+  [FP] study=4209606907169581
+  Report: FINDINGS:
+
+Fluid:
+Small joint effusion with synovial thickening compatible with synovitis. There is popliteal cyst measuring 21 x 17 x 35 mm. Small amount of edema along the inferior margin of the pop
+
+=== Medial Meniscus: 2 FP, 1 FN ===
+  [FP] study=5328931488770819
+  Report: Técnica: RMN de la rodilla. Resultados: Rotura del LCA. Rotura parcial del LCM. Rotura de menisco interno y lateral. Derrame. Contusiones óseas femorotibiales. Impresión: Rotura del LCA. Rotura parcia
+
+  [FN] study=1002627729200903
+  Report: [DATE]: MR Knie Rechts 15ch AA: Klinische inlichtingen: Zie gescande aanvraag Diagnostische vraagstelling: Zie gescande aanvraag Bevindingen: Gevorderd lateraal femorotibiaal kraakbeenlijden met volle
+
+  [FP] study=4060466120253309
+  Report: Antecedentes Clínicos:
+Gonalgia izquierda.
+Hallazgos:
+No hay alteraciones de señal significativas de la médula ósea.
+Transformación quística parcial del tercio proximal del LCA. LCP y ligamentos colat
+
+=== Lateral Meniscus: 2 FP, 1 FN ===
+  [FP] study=0538520594649149
+  Report: Antecedentes Clínicos:
+Esguince rodilla. [DATE].
+Hallazgos:
+No hay alteraciones de señal significativas de la médula ósea.
+Ligamentos cruzados y colaterales dentro de límites normales.
+Amputación marg
+
+  [FP] study=3040089882701935
+  Report:  In the medial compartment, the meniscus is not torn and there is no focal chondrosis or chondral injury. 
+  
+ The lateral compartment, there is complex tear (main radial and longitudinal vertical com
+
+  [FN] study=4447633432197492
+  Report: ΤΕΧΝΙΚΗ Η εξέταση έγινε µε ακολουθίες παλµών Τ1, πυκνότητας πρωτονίων µε καταστολή του σήµατος του λίπους και Τ2 βαθµιδωτής ηχούς. ΕΥΡΗΜΑΤΑ - Στο έσω διαµέρισµα παρατηρείται εκφυλιστική ρήξη στο οπίσθ
+
+=== Medial OA: 1 FP, 0 FN ===
+  [FP] study=4209606907169581
+  Report: FINDINGS:
+
+Fluid:
+Small joint effusion with synovial thickening compatible with synovitis. There is popliteal cyst measuring 21 x 17 x 35 mm. Small amount of edema along the inferior margin of the pop
+
+=== Lateral OA: 3 FP, 0 FN ===
+  [FP] study=6505248839028269
+  Report:  The study reveals normal knee joint alignment.   No fracture is seen.  
+   ACL is intact.   PCL is preserved.  
+  The MCL is intact.    Medial meniscus is not torn.  
+  The FCL, popliteus and biceps 
+
+  [FP] study=3788080836752052
+  Report: Exam Type: MRI KNEE RIGHT WO CONTRAST
+Exam Date and Time: [DATE] [TIME]
+Indication: 2 years of pain with walking up and down the stairs twisting and squatting.
+Comparison: No relevant prior studies av
+
+  [FP] study=1698015974810604
+  Report: Exam Type: MRI KNEE RIGHT WO CONTRAST
+Exam Date and Time: [DATE] [TIME]
+Indication: Pain
+Comparison: No relevant prior studies available for comparison.
+
+TECHNIQUE:
+MRI of the right knee was performed
+
+=== Effusion: 6 FP, 0 FN ===
+  [FP] study=6505248839028269
+  Report:  The study reveals normal knee joint alignment.   No fracture is seen.  
+   ACL is intact.   PCL is preserved.  
+  The MCL is intact.    Medial meniscus is not torn.  
+  The FCL, popliteus and biceps 
+
+  [FP] study=3788080836752052
+  Report: Exam Type: MRI KNEE RIGHT WO CONTRAST
+Exam Date and Time: [DATE] [TIME]
+Indication: 2 years of pain with walking up and down the stairs twisting and squatting.
+Comparison: No relevant prior studies av
+
+  [FP] study=4773408583976756
+  Report: MRI of Knee with 
+-Locator, SG PD FatSat, SG T2W FS, SG T1W, CO T2W FS, AX T2W FS
+
+
+
+* High signal in the soft tissue medial to the medial collateral ligament with mild increased signal intensity of p
+
+  [FP] study=6899910529174803
+  Report: МР находка: МР данни за фрактура на тибията в областта на интеркондиларните еминенции. Фрактурата е без данни за значима дислокация. Визуализира се контузионен костномозъчен едем в тибията срединно и 
+
+  [FP] study=1517053322874891
+  Report: > MRI of knee was performed in sagittal, axial and coronal sections.
+> Spin echo sequence were used.
+
+> Split fractures at tibial plateau with depression of the lateral articular surface and extending
+
+  [FP] study=4060466120253309
+  Report: Antecedentes Clínicos:
+Gonalgia izquierda.
+Hallazgos:
+No hay alteraciones de señal significativas de la médula ósea.
+Transformación quística parcial del tercio proximal del LCA. LCP y ligamentos colat
+
+=== Synovitis: 2 FP, 4 FN ===
+  [FN] study=3788080836752052
+  Report: Exam Type: MRI KNEE RIGHT WO CONTRAST
+Exam Date and Time: [DATE] [TIME]
+Indication: 2 years of pain with walking up and down the stairs twisting and squatting.
+Comparison: No relevant prior studies av
+
+  [FP] study=8087439102017580
+  Report: MRI of left Knee with 
+-3-Plane Loc R'T, Sag PD FS, AX T2 FS, Sag T2 FS, Sag T1, CORT2 FS
+
+> There is no abnormal intensity or articular surface disrupt in the medial meniscus, It appears to be normal
+
+  [FN] study=3040089882701935
+  Report:  In the medial compartment, the meniscus is not torn and there is no focal chondrosis or chondral injury. 
+  
+ The lateral compartment, there is complex tear (main radial and longitudinal vertical com
+
+  [FP] study=4773408583976756
+  Report: MRI of Knee with 
+-Locator, SG PD FatSat, SG T2W FS, SG T1W, CO T2W FS, AX T2W FS
+
+
+
+* High signal in the soft tissue medial to the medial collateral ligament with mild increased signal intensity of p
+
+  [FN] study=1208258836556945
+  Report: Técnica: RMN de la rodilla. Resultados: Fricción de la banda iliotibial. Síndrome de pinzamiento de la almohadilla grasa de Hoffa. Condropatía rotuliana. Impresión: Fricción de la banda iliotibial. Sí
+
+  [FN] study=1217718921482192
+  Report: Technique: MRI of the knee. ACL normal. MCL normal. Medial meniscus tear. Lateral meniscus tear. Incipient OA of all three compartmens.  Baker's cyst present. Large effusion. Insufficient fracture of 
+
+=== Baker's: 1 FP, 0 FN ===
+  [FP] study=1698015974810604
+  Report: Exam Type: MRI KNEE RIGHT WO CONTRAST
+Exam Date and Time: [DATE] [TIME]
+Indication: Pain
+Comparison: No relevant prior studies available for comparison.
+
+TECHNIQUE:
+MRI of the right knee was performed
+
+=== Contusion: 9 FP, 0 FN ===
+  [FP] study=6505248839028269
+  Report:  The study reveals normal knee joint alignment.   No fracture is seen.  
+   ACL is intact.   PCL is preserved.  
+  The MCL is intact.    Medial meniscus is not torn.  
+  The FCL, popliteus and biceps 
+
+  [FP] study=3788080836752052
+  Report: Exam Type: MRI KNEE RIGHT WO CONTRAST
+Exam Date and Time: [DATE] [TIME]
+Indication: 2 years of pain with walking up and down the stairs twisting and squatting.
+Comparison: No relevant prior studies av
+
+  [FP] study=0827959098335840
+  Report: Antecedentes Clínicos:
+Rodilla traumática aguda.
+Hallazgos:
+Rotura espesor y ancho total de la unión del tercio medio del tercio proximal del LCA asociado a
+discreto edema óseo del aspecto posterior d
+
+  [FP] study=4209606907169581
+  Report: FINDINGS:
+
+Fluid:
+Small joint effusion with synovial thickening compatible with synovitis. There is popliteal cyst measuring 21 x 17 x 35 mm. Small amount of edema along the inferior margin of the pop
+
+  [FP] study=5328931488770819
+  Report: Técnica: RMN de la rodilla. Resultados: Rotura del LCA. Rotura parcial del LCM. Rotura de menisco interno y lateral. Derrame. Contusiones óseas femorotibiales. Impresión: Rotura del LCA. Rotura parcia
+
+  [FP] study=6899910529174803
+  Report: МР находка: МР данни за фрактура на тибията в областта на интеркондиларните еминенции. Фрактурата е без данни за значима дислокация. Визуализира се контузионен костномозъчен едем в тибията срединно и 
+
+  [FP] study=1517053322874891
+  Report: > MRI of knee was performed in sagittal, axial and coronal sections.
+> Spin echo sequence were used.
+
+> Split fractures at tibial plateau with depression of the lateral articular surface and extending
+
+  [FP] study=1217718921482192
+  Report: Technique: MRI of the knee. ACL normal. MCL normal. Medial meniscus tear. Lateral meniscus tear. Incipient OA of all three compartmens.  Baker's cyst present. Large effusion. Insufficient fracture of 
+
+  [FP] study=7094867791102711
+  Report: Diz eklemi içi sıvı miktarı hafif derecede artmış. Lateral femoral kondilin ağırlık taşıyan yüzeyinin anteriyor yarısındaki subkondral kırığı kemik iliği ödemi çevreliyor. Tibyal plato posterolateral 
+
+=== Fracture: 2 FP, 1 FN ===
+  [FP] study=6505248839028269
+  Report:  The study reveals normal knee joint alignment.   No fracture is seen.  
+   ACL is intact.   PCL is preserved.  
+  The MCL is intact.    Medial meniscus is not torn.  
+  The FCL, popliteus and biceps 
+
+  [FN] study=5328931488770819
+  Report: Técnica: RMN de la rodilla. Resultados: Rotura del LCA. Rotura parcial del LCM. Rotura de menisco interno y lateral. Derrame. Contusiones óseas femorotibiales. Impresión: Rotura del LCA. Rotura parcia
+
+  [FP] study=4447633432197492
+  Report: ΤΕΧΝΙΚΗ Η εξέταση έγινε µε ακολουθίες παλµών Τ1, πυκνότητας πρωτονίων µε καταστολή του σήµατος του λίπους και Τ2 βαθµιδωτής ηχούς. ΕΥΡΗΜΑΤΑ - Στο έσω διαµέρισµα παρατηρείται εκφυλιστική ρήξη στο οπίσθ
+
