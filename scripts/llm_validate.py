@@ -3,33 +3,28 @@
 在 58 个有标签的放射报告上测试 LLM 提取 12 类膝关节异常的能力。
 支持任何 OpenAI-compatible API (DeepSeek, GPT-4, Claude via proxy, 本地 vLLM 等).
 
-用法:
-    # 默认用 DeepSeek
-    python scripts/llm_validate.py
-
-    # 自定义 API
-    python scripts/llm_validate.py \
-        --api-base https://api.deepseek.com/v1 \
-        --api-key sk-xxx \
-        --model deepseek-chat
-
-    # 只跑前 10 个, 快速看效果
-    python scripts/llm_validate.py --limit 10
-
 输出:
     data/pseudo_labels_valid.csv     逐样本对比 (预测 vs 真值)
-    reports/nlp_validation_report.md 验证报告 (per-class metrics)
+    data/nlp_validation_report.csv   Per-class 指标
 """
 
 from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
 import sys
 import time
 from pathlib import Path
+
+# ══════════════════════════════════════════════════════════════
+# 配置 — 在这里改
+# ══════════════════════════════════════════════════════════════
+
+API_KEY = "sk-YOUR_DEEPSEEK_API_KEY_HERE"   # ← 填你的 API key
+API_BASE = "https://api.deepseek.com/v1"
+MODEL = "deepseek-chat"
+LIMIT = 20           # 跑前 N 个样本 (0 = 全部 58 个)
 
 import numpy as np
 import pandas as pd
@@ -187,23 +182,23 @@ def main():
     parser = argparse.ArgumentParser(description="NLP 伪标签 — 第一阶段验证")
     parser.add_argument(
         "--api-base",
-        default=os.environ.get("DEEPSEEK_API_BASE", "https://api.deepseek.com/v1"),
+        default=API_BASE,
         help="LLM API base URL",
     )
     parser.add_argument(
         "--api-key",
-        default=os.environ.get("DEEPSEEK_API_KEY", ""),
-        help="LLM API key (or set DEEPSEEK_API_KEY env var)",
+        default=API_KEY,
+        help="LLM API key (或直接在脚本顶部 API_KEY 处填写)",
     )
     parser.add_argument(
         "--model",
-        default="deepseek-chat",
+        default=MODEL,
         help="Model name",
     )
     parser.add_argument(
         "--limit",
         type=int,
-        default=0,
+        default=LIMIT,
         help="只跑前 N 个样本 (0=全部)",
     )
     parser.add_argument(
@@ -242,9 +237,9 @@ def main():
     print(f"输出: {output_dir}")
     print()
 
-    if not args.api_key:
-        print("[WARN] 未设置 API key. 设置 DEEPSEEK_API_KEY 环境变量或传 --api-key")
-        print("      示例: export DEEPSEEK_API_KEY=sk-xxx")
+    if not args.api_key or "YOUR_" in args.api_key:
+        print("[ERROR] 请先在脚本顶部 API_KEY 处填写你的 DeepSeek API key")
+        print("        获取: https://platform.deepseek.com/api_keys")
         sys.exit(1)
 
     # ── 逐样本调用 LLM ──────────────────────────────────────
