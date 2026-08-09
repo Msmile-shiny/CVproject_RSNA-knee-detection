@@ -12,7 +12,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import sys
 import time
 from pathlib import Path
@@ -105,36 +104,46 @@ Output ONLY a valid JSON object with exactly these 12 keys, no extra text:
 
 
 def parse_llm_response(text: str) -> dict[str, int] | None:
-    """从 LLM 回复中提取 JSON 标签.
-
-    容忍 markdown code fences 和其他多余文字.
-    """
-    # 尝试直接解析
+    """从 LLM 回复中提取 JSON 标签. 容忍各种格式."""
     text = text.strip()
 
-    # 去掉 markdown ```json ... ``` 包裹
-    m = re.search(r"\{[^{}]*\"ACL\"[^{}]*\}", text, re.DOTALL)
-    if m:
-        text = m.group(0)
+    # 策略 1: 找第一个完整 JSON 对象
+    # 允许嵌套但只匹配外层
+    depth = 0
+    start = -1
+    for i, ch in enumerate(text):
+        if ch == "{":
+            if depth == 0:
+                start = i
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0 and start >= 0:
+                candidate = text[start : i + 1]
+                try:
+                    result = json.loads(candidate)
+                except json.JSONDecodeError:
+                    continue
+                # 检查是否包含所有 12 个 key
+                if all(col in result for col in LABEL_COLS):
+                    parsed = {}
+                    for col in LABEL_COLS:
+                        v = result.get(col)
+                        if v is None:
+                            break
+                        parsed[col] = int(v)
+                    else:
+                        return parsed
 
+    # 策略 2: 用单引号
     try:
-        result = json.loads(text)
+        result = json.loads(text.replace("'", '"'))
+        if all(col in result for col in LABEL_COLS):
+            return {col: int(result[col]) for col in LABEL_COLS}
     except json.JSONDecodeError:
-        # 尝试修复单引号等问题
-        try:
-            text = text.replace("'", '"')
-            result = json.loads(text)
-        except json.JSONDecodeError:
-            return None
+        pass
 
-    # 验证所有 12 个 key 都存在且值为 0/1
-    parsed = {}
-    for col in LABEL_COLS:
-        v = result.get(col)
-        if v is None:
-            return None
-        parsed[col] = int(v)
-    return parsed
+    return None
 
 
 def call_llm(
@@ -158,28 +167,36 @@ def call_llm(
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": report},
         ],
-        "temperature": 0.0,          # 确定性输出
-        "max_tokens": 500,           # 12 个数字, 200 就够了
-        "response_format": {"type": "json_object"},  # OpenAI 兼容的 JSON mode
+        "temperature": 0.0,
+        "max_tokens": 500,
     }
 
     for attempt in range(max_retries + 1):
         try:
             resp = requests.post(url, headers=headers, json=payload, timeout=60)
-            resp.raise_for_status()
+
+            if resp.status_code != 200:
+                if attempt < max_retries:
+                    time.sleep(2 ** attempt)
+                    continue
+                print(f"  [HTTP {resp.status_code}] {resp.text[:200]}")
+                return None
+
             data = resp.json()
             content = data["choices"][0]["message"]["content"]
             parsed = parse_llm_response(content)
             if parsed is not None:
                 return parsed
-            # JSON 解析失败, 重试
-            if attempt < max_retries:
+            # JSON 解析失败, 打印原始返回方便排查
+            if attempt >= max_retries:
+                print(f"  [PARSE] {content[:200]}")
+            else:
                 time.sleep(1)
         except Exception as e:
             if attempt < max_retries:
                 time.sleep(2 ** attempt)
             else:
-                print(f"  [ERROR] API call failed: {e}")
+                print(f"  [ERROR] {e}")
                 return None
     return None
 
