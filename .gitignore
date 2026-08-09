@@ -37,6 +37,9 @@ reference_code/
 # === Jupyter ===
 .ipynb_checkpoints/
 
+# === Secrets ===
+scripts/api_config.py
+
 # === Project-specific exclusions ===
 configs/a_*
 configs/b_*

@@ -17,13 +17,19 @@ import sys
 import time
 from pathlib import Path
 
-# ══════════════════════════════════════════════════════════════
-# 配置 — 在这里改
-# ══════════════════════════════════════════════════════════════
+# 从同级目录的 api_config.py 读取 API 配置
+# 首次使用: cp scripts/api_config.example.py scripts/api_config.py 然后填入 key
+_SCRIPT_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPT_DIR))
 
-API_KEY = "sk-YOUR_DEEPSEEK_API_KEY_HERE"   # ← 填你的 API key
-API_BASE = "https://api.deepseek.com/v1"
-MODEL = "deepseek-chat"
+try:
+    from api_config import API_KEY, API_BASE, MODEL as DEFAULT_MODEL
+except ImportError:
+    print("[ERROR] 找不到 scripts/api_config.py")
+    print("  1. cp scripts/api_config.example.py scripts/api_config.py")
+    print("  2. 编辑 api_config.py, 填入你的 API key")
+    sys.exit(1)
+
 LIMIT = 20           # 跑前 N 个样本 (0 = 全部 58 个)
 
 import numpy as np
@@ -188,11 +194,11 @@ def main():
     parser.add_argument(
         "--api-key",
         default=API_KEY,
-        help="LLM API key (或直接在脚本顶部 API_KEY 处填写)",
+        help="LLM API key",
     )
     parser.add_argument(
         "--model",
-        default=MODEL,
+        default=DEFAULT_MODEL,
         help="Model name",
     )
     parser.add_argument(
