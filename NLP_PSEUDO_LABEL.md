@@ -207,10 +207,77 @@ python scripts/llm_batch_label.py
 总计:            ~$2.03
 ```
 
+## CSV 字段结构
+
+### `data/pseudo_labels.csv` — 批量标注输出（4,349 行）
+
+```
+列名                         类型    说明
+──────────────────────────────────────────────────────
+StudyInstanceUID             str     研究实例 UID（主键）
+pred_ACL                     int     预测标签: 0=正常, 1=异常, -1=失败
+pred_MCL                     int
+pred_Medial Meniscus         int
+pred_Lateral Meniscus        int
+pred_Medial OA               int
+pred_Lateral OA              int
+pred_PF OA                   int
+pred_Effusion                int
+pred_Synovitis               int
+pred_Baker's                 int
+pred_Contusion               int
+pred_Fracture                int
+conf_ACL                     str     置信度: HIGH / MEDIUM / LOW / REVIEW / FAIL
+conf_MCL                     str
+conf_Medial Meniscus         str
+conf_Lateral Meniscus        str
+conf_Medial OA               str
+conf_Lateral OA              str
+conf_PF OA                   str
+conf_Effusion                str
+conf_Synovitis               str
+conf_Baker's                 str
+conf_Contusion               str
+conf_Fracture                str
+```
+
+### `data/pseudo_labels_valid.csv` — 验证输出（58 行）
+
+```
+除上述 pred_* 和 conf_* 列外, 额外包含:
+  Report_snippet             str     报告前 200 字符
+  true_ACL                   int     竞赛官方标签 (0/1)
+  true_MCL                   int
+  ... (12 个 true_* 列)
+  n_corrected                int     该样本被规则修正层翻转的预测数
+```
+
+### `data/nlp_validation_report.csv` — Per-class 指标（12 行）
+
+```
+  class                      str     类名
+  precision                  float   精确率
+  recall                     float   召回率
+  f1                         float   F1 分数
+  accuracy                   float   准确率
+  n_positive                 int     真值中阳性样本数
+```
+
+### `data/pseudo_labels_stats.csv` — 置信度分布（5 行）
+
+```
+  confidence                 str     HIGH / MEDIUM / LOW / REVIEW / FAIL
+  count                      int     预测数量
+  pct                        float   百分比
+```
+
 ## 分支协作
 
 ```
-main                       ← 干净基线代码
-nlp-pseudo-label           ← 本分支 (NLP + 数据预处理)
-feature/multi-seq-2.5d     ← 合作伙伴 (多序列 2.5D 模型)
+main                              ← 干净基线代码（35 文件）
+nlp-pseudo-label（当前分支）        ← NLP 伪标签 + 数据预处理
+archive/contaminated-baseline     ← 归档: 旧实验历史（NaN→0 bug 等）
+origin/Ensemble                   ← 远程: 集成/实验分支
 ```
+
+> 合作伙伴的多序列 2.5D 模型分支尚未创建，建议从 `main` 拉出新分支，命名如 `feature/multi-seq-2p5d`。
