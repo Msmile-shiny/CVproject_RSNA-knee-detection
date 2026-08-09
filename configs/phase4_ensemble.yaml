@@ -1,14 +1,27 @@
 # =============================================================================
-# RSNA 2026 Knee — Tri-Plane 2.5D (Phase 2)
+# RSNA 2026 Knee — Multi-Model Ensemble (Phase 4)
 # =============================================================================
-# Sagittal + Coronal + Axial 三平面独立编码 + 融合 + 分类
+# 策略:
+#   1. 独立训练 N 个不同 backbone
+#   2. 推理时加权平均各模型 sigmoid 概率
+#   3. 最终 submission 可选与 TriPlane + 3D 结果合并
+#
+# Backbone 阵容:
+#   - EfficientNetV2-S  (Phase 1, 特征维度 1280)
+#   - ConvNeXt-S        (特征维度 768)
+#   - Swin-T            (特征维度 768)
+#   - TriPlaneModel     (Phase 2, 三平面融合, 输出 12 logits)
+#   - ResNet3D-18       (Phase 3, 3D volume)
+#
+# 训练: 各 backbone 独立训练 (本 config 控制单个 backbone)
+# 推理: 使用 EnsembleInference 加载所有 checkpoint 加权平均
 # =============================================================================
 
 experiment:
-  name: triplane_efficientnetv2s
+  name: ensemble_backbone
   seed: 2026
-  stage: phase2
-  description: "Tri-Plane EfficientNetV2-S 2.5D, shared backbone, concat fusion"
+  stage: phase4
+  description: "Phase 4 Ensemble — multi-backbone training + weighted average inference"
 
 # ---------------------------------------------------------------------------
 # 路径
@@ -21,8 +34,8 @@ paths:
   series_csv: data/metadata/train_series.csv
   test_series_csv: data/metadata/test_series.csv
   pseudo_csv: data/pseudo_labels.csv
-  output_dir: outputs/triplane_efficientnetv2s
-  checkpoint_dir: outputs/triplane_efficientnetv2s/checkpoints
+  output_dir: outputs/ensemble
+  checkpoint_dir: outputs/ensemble/checkpoints
 
 # ---------------------------------------------------------------------------
 # 数据
@@ -30,11 +43,8 @@ paths:
 data:
   image_size: 384
   slice_count: 5
-  planes:                                     # 三平面
-    - Sagittal
-    - Coronal
-    - Axial
-  fluid_sensitive_only: false                 # tri-plane 需要所有序列
+  planes: [Sagittal]                              # 单平面训练 (每个 backbone 独立)
+  fluid_sensitive_only: false
   fat_suppression_only: false
   loader:
     train_workers: 4
@@ -42,20 +52,23 @@ data:
     pin_memory: true
 
 # ---------------------------------------------------------------------------
-# 模型
+# 模型 — 指定要训练的 backbone
 # ---------------------------------------------------------------------------
 model:
-  arch: triplane_efficientnetv2s
+  # 选择: "efficientnetv2_s" | "convnext_small" | "swin_tiny"
+  arch: convnext_small
+
+  # 通用参数
   in_channels: 5
   num_classes: 12
-  feature_dim: 1280
   pretrained: true
   dropout: 0.3
-  shared_backbone: true                       # 三平面共享一个 backbone (节省 VRAM)
-  fusion: concat                              # "concat" | "transformer"
-  fusion_heads: 8                             # transformer 头数
-  fusion_layers: 2                            # transformer 层数
-  use_slice_attention: false                  # 暂不启用 (extract_features 已做 GAP)
+
+  # EfficientNetV2-S 特有
+  feature_dim: 1280
+
+  # ConvNeXt/Swin 共享 (EfficientNet 忽略)
+  # feature_dim 会自动从 backbone 读取
 
 # ---------------------------------------------------------------------------
 # 训练
@@ -63,8 +76,8 @@ model:
 train:
   device: cuda
   epochs: 50
-  batch_size: 4                               # 三平面更吃显存 (batch 减半)
-  gradient_accumulation_steps: 4              # effective batch = 4 × 4 = 16
+  batch_size: 8
+  gradient_accumulation_steps: 2                  # effective = 16
   mixed_precision: true
   gradient_clip_norm: 1.0
   early_stopping:
@@ -104,7 +117,7 @@ loss:
 # 伪标签
 # ---------------------------------------------------------------------------
 pseudo_label:
-  enabled: true                                # tri-plane 模式默认用作标签训练
+  enabled: true
   pseudo_csv: data/pseudo_labels.csv
   gold_csv: data/metadata/train.csv
   confidence: HIGH
@@ -113,7 +126,7 @@ pseudo_label:
 # 验证
 # ---------------------------------------------------------------------------
 validation:
-  strategy: fixed_split                         # train=pseudo, val=gold
+  strategy: fixed_split
   metric: macro_roc_auc
 
 # ---------------------------------------------------------------------------
@@ -122,5 +135,32 @@ validation:
 inference:
   aggregation: topk_mean
   topk_fraction: 0.25
-  tta: false                                    # Test-time augmentation (horizontal flip)
-  batch_size: 16                                # 推理时 batch 可以更大 (不存梯度)
+  tta: false
+  batch_size: 16
+
+# ---------------------------------------------------------------------------
+# 集成配置 (最终提交用 — 此 section 仅供文档/脚本参考)
+# ---------------------------------------------------------------------------
+ensemble:
+  # 模型阵容
+  models:
+    - name: efficientnetv2_s
+      checkpoint: outputs/efficientnetv2_s/checkpoints/best_model.pt
+      weight: 0.25
+    - name: convnext_small
+      checkpoint: outputs/ensemble/checkpoints/convnext_small_best.pt
+      weight: 0.20
+    - name: swin_tiny
+      checkpoint: outputs/ensemble/checkpoints/swin_tiny_best.pt
+      weight: 0.15
+    - name: triplane_efficientnetv2s
+      checkpoint: outputs/triplane_efficientnetv2s/checkpoints/best_model.pt
+      weight: 0.25
+    - name: resnet3d_18
+      checkpoint: outputs/resnet3d_18/checkpoints/best_model.pt
+      weight: 0.15
+
+  # 后处理: 合并多个 submission CSV
+  submission_merge:
+    enabled: true
+    # 直接用每个 backbone 的 submission CSV 做加权平均

@@ -1,14 +1,15 @@
 # =============================================================================
-# RSNA 2026 Knee — Tri-Plane 2.5D (Phase 2)
+# RSNA 2026 Knee — 3D Volumetric Model (Phase 3)
 # =============================================================================
-# Sagittal + Coronal + Axial 三平面独立编码 + 融合 + 分类
+# ResNet3D-18: 轻量 3D CNN, 验证 3D 管线在 8GB VRAM 上可跑通
+# 为云端全量 3D 训练做准备
 # =============================================================================
 
 experiment:
-  name: triplane_efficientnetv2s
+  name: resnet3d_18
   seed: 2026
-  stage: phase2
-  description: "Tri-Plane EfficientNetV2-S 2.5D, shared backbone, concat fusion"
+  stage: phase3
+  description: "Lightweight ResNet3D-18, 128×128×32 volume, gradient checkpointing"
 
 # ---------------------------------------------------------------------------
 # 路径
@@ -21,57 +22,48 @@ paths:
   series_csv: data/metadata/train_series.csv
   test_series_csv: data/metadata/test_series.csv
   pseudo_csv: data/pseudo_labels.csv
-  output_dir: outputs/triplane_efficientnetv2s
-  checkpoint_dir: outputs/triplane_efficientnetv2s/checkpoints
+  output_dir: outputs/resnet3d_18
+  checkpoint_dir: outputs/resnet3d_18/checkpoints
 
 # ---------------------------------------------------------------------------
 # 数据
 # ---------------------------------------------------------------------------
 data:
-  image_size: 384
-  slice_count: 5
-  planes:                                     # 三平面
-    - Sagittal
-    - Coronal
-    - Axial
-  fluid_sensitive_only: false                 # tri-plane 需要所有序列
-  fat_suppression_only: false
+  volume_depth: 32                              # 32 层连续切片
+  volume_size: 128                              # 每层 resize 到 128×128
+  plane: Sagittal                               # 仅 Sagittal (节省 VRAM)
   loader:
-    train_workers: 4
-    valid_workers: 2
+    train_workers: 2                            # 3D I/O 重, worker 不宜多
+    valid_workers: 1
     pin_memory: true
 
 # ---------------------------------------------------------------------------
 # 模型
 # ---------------------------------------------------------------------------
 model:
-  arch: triplane_efficientnetv2s
-  in_channels: 5
+  arch: resnet3d_18
+  in_channels: 1                                # 灰度 MRI
   num_classes: 12
-  feature_dim: 1280
+  feature_dim: 512                              # ResNet3D-18 输出
   pretrained: true
   dropout: 0.3
-  shared_backbone: true                       # 三平面共享一个 backbone (节省 VRAM)
-  fusion: concat                              # "concat" | "transformer"
-  fusion_heads: 8                             # transformer 头数
-  fusion_layers: 2                            # transformer 层数
-  use_slice_attention: false                  # 暂不启用 (extract_features 已做 GAP)
+  use_grad_checkpoint: true                     # 必须! 省 VRAM 关键
 
 # ---------------------------------------------------------------------------
 # 训练
 # ---------------------------------------------------------------------------
 train:
   device: cuda
-  epochs: 50
-  batch_size: 4                               # 三平面更吃显存 (batch 减半)
-  gradient_accumulation_steps: 4              # effective batch = 4 × 4 = 16
-  mixed_precision: true
+  epochs: 40
+  batch_size: 1                                 # 3D 显存紧, 只能 bs=1
+  gradient_accumulation_steps: 8                # effective batch = 1 × 8 = 8
+  mixed_precision: true                         # AMP fp16 必须
   gradient_clip_norm: 1.0
   early_stopping:
     enabled: true
     monitor: val_macro_auc
     mode: max
-    patience: 10
+    patience: 8
     min_delta: 0.001
 
 # ---------------------------------------------------------------------------
@@ -79,7 +71,7 @@ train:
 # ---------------------------------------------------------------------------
 optimizer:
   name: adamw
-  lr: 2.0e-4
+  lr: 1.0e-4                                    # 3D 模型用更低 LR
   weight_decay: 1.0e-4
   betas: [0.9, 0.999]
 
@@ -104,7 +96,7 @@ loss:
 # 伪标签
 # ---------------------------------------------------------------------------
 pseudo_label:
-  enabled: true                                # tri-plane 模式默认用作标签训练
+  enabled: true
   pseudo_csv: data/pseudo_labels.csv
   gold_csv: data/metadata/train.csv
   confidence: HIGH
@@ -113,14 +105,14 @@ pseudo_label:
 # 验证
 # ---------------------------------------------------------------------------
 validation:
-  strategy: fixed_split                         # train=pseudo, val=gold
+  strategy: fixed_split                           # train=pseudo, val=gold
   metric: macro_roc_auc
 
 # ---------------------------------------------------------------------------
 # 推理
 # ---------------------------------------------------------------------------
 inference:
-  aggregation: topk_mean
-  topk_fraction: 0.25
-  tta: false                                    # Test-time augmentation (horizontal flip)
-  batch_size: 16                                # 推理时 batch 可以更大 (不存梯度)
+  aggregation: mean                               # 3D 每 study 就 1 个 volume, 直接 mean
+  topk_fraction: 1.0                              # (等同于取所有切片)
+  tta: false
+  batch_size: 1                                   # 3D 推理也只能 bs=1
