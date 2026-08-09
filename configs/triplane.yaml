@@ -1,0 +1,122 @@
+# =============================================================================
+# RSNA 2026 Knee — Tri-Plane 2.5D (Phase 2)
+# =============================================================================
+# Sagittal + Coronal + Axial 三平面独立编码 + 融合 + 分类
+# =============================================================================
+
+experiment:
+  name: triplane_efficientnetv2s
+  seed: 2026
+  stage: phase2
+  description: "Tri-Plane EfficientNetV2-S 2.5D, shared backbone, concat fusion"
+
+# ---------------------------------------------------------------------------
+# 路径
+# ---------------------------------------------------------------------------
+paths:
+  data_root: dataset
+  dicom_root: dataset/train_series
+  train_csv: data/metadata/train.csv
+  series_csv: data/metadata/train_series.csv
+  pseudo_csv: data/pseudo_labels.csv
+  output_dir: outputs/triplane_efficientnetv2s
+  checkpoint_dir: outputs/triplane_efficientnetv2s/checkpoints
+
+# ---------------------------------------------------------------------------
+# 数据
+# ---------------------------------------------------------------------------
+data:
+  image_size: 384
+  slice_count: 5
+  planes:                                     # 三平面
+    - Sagittal
+    - Coronal
+    - Axial
+  fluid_sensitive_only: false                 # tri-plane 需要所有序列
+  fat_suppression_only: false
+  loader:
+    train_workers: 4
+    valid_workers: 2
+    pin_memory: true
+
+# ---------------------------------------------------------------------------
+# 模型
+# ---------------------------------------------------------------------------
+model:
+  arch: triplane_efficientnetv2s
+  in_channels: 5
+  num_classes: 12
+  feature_dim: 1280
+  pretrained: true
+  dropout: 0.3
+  shared_backbone: true                       # 三平面共享一个 backbone (节省 VRAM)
+  fusion: concat                              # "concat" | "transformer"
+  fusion_heads: 8                             # transformer 头数
+  fusion_layers: 2                            # transformer 层数
+  use_slice_attention: false                  # 暂不启用 (extract_features 已做 GAP)
+
+# ---------------------------------------------------------------------------
+# 训练
+# ---------------------------------------------------------------------------
+train:
+  device: cuda
+  epochs: 50
+  batch_size: 4                               # 三平面更吃显存 (batch 减半)
+  gradient_accumulation_steps: 4              # effective batch = 4 × 4 = 16
+  mixed_precision: true
+  gradient_clip_norm: 1.0
+  early_stopping:
+    enabled: true
+    monitor: val_macro_auc
+    mode: max
+    patience: 10
+    min_delta: 0.001
+
+# ---------------------------------------------------------------------------
+# 优化器
+# ---------------------------------------------------------------------------
+optimizer:
+  name: adamw
+  lr: 2.0e-4
+  weight_decay: 1.0e-4
+  betas: [0.9, 0.999]
+
+# ---------------------------------------------------------------------------
+# 调度器
+# ---------------------------------------------------------------------------
+scheduler:
+  name: cosine_warm_restart
+  T_0: 10
+  T_mult: 2
+  eta_min: 1.0e-6
+
+# ---------------------------------------------------------------------------
+# 损失
+# ---------------------------------------------------------------------------
+loss:
+  name: focal_bce
+  gamma: 2.0
+  alpha: 0.25
+
+# ---------------------------------------------------------------------------
+# 伪标签
+# ---------------------------------------------------------------------------
+pseudo_label:
+  enabled: true                                # tri-plane 模式默认用作标签训练
+  pseudo_csv: data/pseudo_labels.csv
+  gold_csv: data/metadata/train.csv
+  confidence: HIGH
+
+# ---------------------------------------------------------------------------
+# 验证
+# ---------------------------------------------------------------------------
+validation:
+  strategy: fixed_split                         # train=pseudo, val=gold
+  metric: macro_roc_auc
+
+# ---------------------------------------------------------------------------
+# 推理
+# ---------------------------------------------------------------------------
+inference:
+  aggregation: topk_mean
+  topk_fraction: 0.25
