@@ -280,4 +280,3 @@ archive/contaminated-baseline     ← 归档: 旧实验历史（NaN→0 bug 等�
 origin/Ensemble                   ← 远程: 集成/实验分支
 ```
 
-> 合作伙伴的多序列 2.5D 模型分支尚未创建，建议从 `main` 拉出新分支，命名如 `feature/multi-seq-2p5d`。
