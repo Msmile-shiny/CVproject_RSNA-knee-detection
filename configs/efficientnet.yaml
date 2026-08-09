@@ -103,6 +103,18 @@ loss:
   alpha: 0.25
 
 # ---------------------------------------------------------------------------
+# 伪标签 (Phase 2+ 使用 NLP 生成的伪标签训练)
+# ---------------------------------------------------------------------------
+pseudo_label:
+  enabled: false                              # true → 伪标签训练模式
+  pseudo_csv: data/pseudo_labels.csv          # NLP 生成的伪标签
+  gold_csv: data/metadata/train.csv           # gold label (58 个标注样本)
+  confidence: HIGH                            # 置信度过滤: HIGH | HIGH_PLUS_MEDIUM | ALL
+  # HIGH:             只保留所有 12 类置信度都为 HIGH 的 study (~87%)
+  # HIGH_PLUS_MEDIUM: 允许 MEDIUM 置信度 (~97%)
+  # ALL:              不做过滤, 全部用于训练
+
+# ---------------------------------------------------------------------------
 # 验证
 # ---------------------------------------------------------------------------
 validation:
@@ -110,6 +122,7 @@ validation:
   folds: 5
   group_column: StudyInstanceUID
   metric: macro_roc_auc
+  # 伪标签模式下, 验证集固定为 gold labels (58 studies), 不使用 KFold
 
 # ---------------------------------------------------------------------------
 # 推理
