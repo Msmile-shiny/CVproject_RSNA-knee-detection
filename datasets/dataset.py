@@ -144,7 +144,7 @@ class Knee25DPseudoDataset(Dataset):
         self,
         series_df: pd.DataFrame,
         labels_df: pd.DataFrame,
-        dicom_root: str | Path = "/kaggle/input/rsna-2026-knee-abnormality-detection/train_images",
+        dicom_root: str | Path = "/kaggle/input/rsna-2026-knee-abnormality-detection/train_series",
         image_size: int = 384,
         slice_count: int = 5,
         is_train: bool = True,

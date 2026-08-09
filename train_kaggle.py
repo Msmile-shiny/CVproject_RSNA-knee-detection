@@ -39,7 +39,7 @@ KAGGLE_OUTPUT = Path("/kaggle/working")
 
 TRAIN_CSV = KAGGLE_INPUT / "train.csv"
 SERIES_CSV = KAGGLE_INPUT / "train_series.csv"
-DICOM_ROOT = KAGGLE_INPUT / "train_images"
+DICOM_ROOT = KAGGLE_INPUT / "train_series"
 PSEUDO_CSV = PSEUDO_INPUT / "pseudo_labels.csv"
 
 # --- Training Config ---
