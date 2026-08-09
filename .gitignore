@@ -1,7 +1,9 @@
 # === Large data files ===
 *.tar.gz
 data/mini/
-data/processed/npy/
+data/processed/
+data/cache/
+data/raw/
 
 # === Python ===
 __pycache__/
@@ -23,6 +25,7 @@ env/
 *.pt
 *.onnx
 outputs/
+reports/
 
 # === IDE ===
 .vscode/
