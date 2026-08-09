@@ -40,6 +40,9 @@ reference_code/
 # === Secrets ===
 scripts/api_config.py
 
+# === NLP pipeline artifacts ===
+data/pseudo_labels_checkpoint.csv
+
 # === Project-specific exclusions ===
 configs/a_*
 configs/b_*
