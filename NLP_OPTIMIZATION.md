@@ -58,6 +58,27 @@ loss = (raw * target_weights * target_mask).sum() / target_mask.sum().clamp_min(
 Gold 标签始终使用 target=0/1、weight=1、mask=1。伪标签建议先让 soft-label loss
 占总 loss 的 0.3–0.5，再逐步增加；不要把校准后的伪标签等同于 gold。
 
+## 三源监督（已实现）
+
+| 来源 | 标签形式 | 基础权重 |
+|---|---|---:|
+| Official | 医生 0/1 标签 | 1.0 |
+| NLP weak label | 校准后的 `prob_*` 软标签 | 0.5 |
+| Model pseudo label | `prob_*` 或 `pred_*` | 0.4（允许 0.3–0.5） |
+
+`MultiSourceLabelBuilder` 按 StudyInstanceUID 和类别融合。Official 与弱标签重叠时
+始终由 Official 覆盖。NLP 与模型标签同时存在时按可靠性加权平均；如果两个来源
+不一致，会降低该类别的有效权重。弱监督组合权重封顶 0.7，防止其等同医生标签。
+
+模型伪标签文件约定为 `model_pseudo_labels.csv`，至少包含：
+
+```text
+StudyInstanceUID, prob_ACL, ..., prob_Fracture
+```
+
+也兼容 `pred_*` 和可选的 `conf_*` / `weight_*`。训练 Notebook 未发现该文件时会
+自动使用 Official + NLP 两源训练，之后加入模型伪标签无需修改代码。
+
 ## 进一步提升 NLP 标签质量
 
 1. 对 58 条 gold 做分层 bootstrap，观察每类 precision/recall 的不确定区间。

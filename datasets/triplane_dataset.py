@@ -110,6 +110,14 @@ class TriPlaneDataset(Dataset):
             .fillna(0)
             .astype(np.float32)
         )
+        self.weight_map = pd.DataFrame(index=self.label_map.index)
+        for target in TARGET_COLUMNS:
+            column = f"weight_{target}"
+            self.weight_map[target] = (
+                pd.to_numeric(label_df_indexed[column], errors="coerce").fillna(0.0)
+                if column in label_df_indexed.columns else 1.0
+            )
+        self.weight_map = self.weight_map.astype(np.float32)
 
         # ── 按 Study × Plane 索引最佳 series ────────────────────
         # 每个 (study_uid, plane) 选取一个最佳 series
@@ -172,12 +180,14 @@ class TriPlaneDataset(Dataset):
                 continue
 
             labels = self.label_map.loc[sid].values.astype(np.float32)
+            label_weights = self.weight_map.loc[sid].values.astype(np.float32)
 
             # 每个 Sagittal slice 位置生成一个 sample
             for center_idx in range(n_sag):
                 sample = {
                     "study_uid": sid,
                     "labels": labels,
+                    "label_weights": label_weights,
                 }
                 # 每个平面的信息
                 for plane in self.planes:
@@ -255,6 +265,7 @@ class TriPlaneDataset(Dataset):
             "cor": cor,
             "ax": ax,
             "labels": torch.from_numpy(sample["labels"]),
+            "label_weights": torch.from_numpy(sample["label_weights"]),
             "study_uid": sample["study_uid"],
             "series_uids": {
                 "sag": sample.get("Sagittal_series_uid", ""),

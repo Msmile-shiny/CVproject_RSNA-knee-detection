@@ -38,13 +38,15 @@ class FocalBCELoss(nn.Module):
     def forward(
         self,
         logits: torch.Tensor,   # [B, C] raw logits
-        targets: torch.Tensor,  # [B, C] binary labels (0/1)
+        targets: torch.Tensor,  # [B, C] binary or soft labels in [0, 1]
+        weights: torch.Tensor | None = None,  # [B, C] supervision reliability
     ) -> torch.Tensor:
         """计算 focal BCE loss.
 
         Args:
             logits: 模型原始输出 (未经过 sigmoid)
-            targets: 二值标签
+            targets: 二值或软标签
+            weights: Official/NLP/model pseudo 逐目标权重. None 表示全 1.
 
         Returns:
             scalar loss (reduction="mean" 时)
@@ -66,8 +68,18 @@ class FocalBCELoss(nn.Module):
 
         loss = alpha_weight * focal_weight * bce_loss  # [B, C]
 
+        if weights is not None:
+            if weights.shape != loss.shape:
+                raise ValueError(
+                    f"weights shape {tuple(weights.shape)} != loss shape {tuple(loss.shape)}"
+                )
+            weights = weights.to(device=loss.device, dtype=loss.dtype).clamp_min(0)
+            loss = loss * weights
+
         if self.reduction == "mean":
-            return loss.mean()
+            if weights is None:
+                return loss.mean()
+            return loss.sum() / weights.sum().clamp_min(1.0)
         elif self.reduction == "sum":
             return loss.sum()
         return loss  # [B, C]

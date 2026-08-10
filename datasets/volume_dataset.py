@@ -85,6 +85,14 @@ class VolumeDataset(Dataset):
             .fillna(0)
             .astype(np.float32)
         )
+        self.weight_map = pd.DataFrame(index=self.label_map.index)
+        for target in TARGET_COLUMNS:
+            column = f"weight_{target}"
+            self.weight_map[target] = (
+                pd.to_numeric(label_df_indexed[column], errors="coerce").fillna(0.0)
+                if column in label_df_indexed.columns else 1.0
+            )
+        self.weight_map = self.weight_map.astype(np.float32)
 
         # ── 选取每个 study 的最佳 series ────────────────────────
         df = series_df.copy()
@@ -135,6 +143,7 @@ class VolumeDataset(Dataset):
             end = min(n_slices, center + self.half_depth + 1)
 
             labels = self.label_map.loc[sid].values.astype(np.float32)
+            label_weights = self.weight_map.loc[sid].values.astype(np.float32)
 
             self.samples.append({
                 "study_uid": sid,
@@ -144,6 +153,7 @@ class VolumeDataset(Dataset):
                 "slice_start": start,
                 "slice_end": end,
                 "labels": labels,
+                "label_weights": label_weights,
             })
 
         if skipped_no_label or skipped_no_dicom:
@@ -171,6 +181,7 @@ class VolumeDataset(Dataset):
             return {
                 "volume": torch.zeros(1, self.volume_depth, self.volume_size, self.volume_size),
                 "labels": torch.from_numpy(sample["labels"]),
+                "label_weights": torch.from_numpy(sample["label_weights"]),
                 "study_uid": sample["study_uid"],
             }
 
@@ -202,5 +213,6 @@ class VolumeDataset(Dataset):
         return {
             "volume": volume_tensor,
             "labels": torch.from_numpy(sample["labels"]),
+            "label_weights": torch.from_numpy(sample["label_weights"]),
             "study_uid": sample["study_uid"],
         }

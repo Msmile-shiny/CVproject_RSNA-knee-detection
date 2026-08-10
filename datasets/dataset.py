@@ -94,6 +94,15 @@ class Knee25DDataset(Dataset):
             .fillna(0)
             .astype(np.float32)
         )
+        indexed_labels = labels_df.set_index("StudyInstanceUID")
+        weight_cols = [f"weight_{c}" for c in TARGET_COLUMNS]
+        self.weight_map = pd.DataFrame(index=self.label_map.index)
+        for target, weight_col in zip(TARGET_COLUMNS, weight_cols):
+            self.weight_map[target] = (
+                pd.to_numeric(indexed_labels[weight_col], errors="coerce").fillna(0.0)
+                if weight_col in indexed_labels.columns else 1.0
+            )
+        self.weight_map = self.weight_map.astype(np.float32)
 
         # ── 构建样本索引: 一个 sample = 一个 5-slice 堆叠 ──────
         self.samples = []
@@ -125,6 +134,7 @@ class Knee25DDataset(Dataset):
                 continue
 
             labels = self.label_map.loc[study_uid].values.astype(np.float32)
+            label_weights = self.weight_map.loc[study_uid].values.astype(np.float32)
 
             # 为每张中心切片创建一个样本
             for center_idx in range(n_slices):
@@ -136,6 +146,7 @@ class Knee25DDataset(Dataset):
                     "center_idx": center_idx,
                     "n_slices": n_slices,
                     "labels": labels,
+                    "label_weights": label_weights,
                 })
 
         if skipped:
@@ -160,6 +171,7 @@ class Knee25DDataset(Dataset):
             return {
                 "image": torch.zeros(self.slice_count, self.image_size, self.image_size),
                 "labels": torch.from_numpy(sample["labels"]),
+                "label_weights": torch.from_numpy(sample["label_weights"]),
                 "study_uid": sample["study_uid"],
                 "plane": sample["plane"],
             }
@@ -185,6 +197,7 @@ class Knee25DDataset(Dataset):
         return {
             "image": torch.from_numpy(stack.copy()),
             "labels": torch.from_numpy(sample["labels"]),
+            "label_weights": torch.from_numpy(sample["label_weights"]),
             "study_uid": sample["study_uid"],
             "plane": sample["plane"],
         }
