@@ -67,7 +67,7 @@ def detect_laterality(headers_df):
     coverage = float(np.mean([v is not None for v in resolved.values()]))
 
     if IS_MAIN:
-        print(f'Laterality: tag_coverage={len([v for v in tagged.values() if v])\max(len(tagged),1):.1%}, '
+        print(f'Laterality: tag_coverage={len([v for v in tagged.values() if v])/max(len(tagged),1):.1%}, '
               f'agreement={agreement:.1%} on {len(comparable)} studies, '
               f'final_coverage={coverage:.1%}')
     return resolved
