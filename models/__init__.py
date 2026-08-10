@@ -15,3 +15,4 @@ from .resnet3d import ResNet3DModel
 from .convnext import ConvNeXt25D
 from .swin import Swin25D
 from .ensemble import EnsembleModel, EnsembleInference, ensemble_submissions
+from .teacher import ImageTeacher, PerClassFusion

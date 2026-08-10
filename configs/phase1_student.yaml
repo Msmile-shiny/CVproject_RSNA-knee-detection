@@ -1,0 +1,42 @@
+# =============================================================================
+# RSNA 2026 Knee — Student Distillation Training (Phase 1 Student)
+# =============================================================================
+# 使用 PerClassFusion 融合后的 Teacher 软标签训练 Student.
+# 损失: L_gold + L_nlp + λ × L_distill
+# 采样: GoldPseudoSampler (1 gold : 7 pseudo per batch)
+# =============================================================================
+
+experiment:
+  name: phase1_student_distill
+  seed: 2026
+  stage: student
+  description: "Student distillation with Confidence×Agreement weighted loss"
+
+student:
+  batch_size: 8
+  gold_ratio: 0.125          # 每 batch 1 gold : 7 pseudo
+  epochs: 50
+  lr: 2.0e-4
+  patience: 10
+  amp: true
+
+model:
+  arch: efficientnetv2_s
+  in_channels: 5
+  num_classes: 12
+  pretrained: true
+  dropout: 0.3
+
+loss:
+  name: composite_distillation
+  distill_weight: 0.3
+  gold_weight: 3.0
+  nlp_weight: 1.0
+  focal_gamma: 2.0
+  focal_alpha: 0.25
+  use_kl: true
+  kl_weight: 0.15
+  temperature: 2.0
+
+fusion:
+  temperature: 5.0            # PerClassFusion softmax temperature

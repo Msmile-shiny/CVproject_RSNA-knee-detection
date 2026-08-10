@@ -1,0 +1,33 @@
+# =============================================================================
+# RSNA 2026 Knee — Image Teacher 5-Fold CV (Phase 1 Teacher)
+# =============================================================================
+# 在 NLP 校准标签上训练图像模型, 5-fold CV 产生 OOF 预测.
+# OOF logits 用作 PerClassFusion 的图像视角输入.
+# =============================================================================
+
+experiment:
+  name: phase1_image_teacher
+  seed: 2026
+  stage: teacher
+  description: "5-Fold CV image teacher → OOF logits for NLP+Image fusion"
+
+teacher:
+  n_folds: 5
+  epochs: 30
+  batch_size: 8
+  lr: 2.0e-4
+  patience: 5
+  amp: true
+  save_dir: /kaggle/working/teacher_oof
+
+model:
+  arch: efficientnetv2_s
+  in_channels: 5
+  num_classes: 12
+  pretrained: true
+  dropout: 0.3
+
+loss:
+  name: focal_bce
+  gamma: 2.0
+  alpha: 0.25
