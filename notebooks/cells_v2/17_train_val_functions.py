@@ -12,11 +12,15 @@ def train_epoch(model, loader, optimizer, criterion, scaler, epoch):
 
     The loss re-weights uncertain pseudo-labels so the model focuses on
     reliable signals rather than memorizing LLM mistakes.
+
+    Supports gradient accumulation (CFG['grad_accum_steps']) for larger
+    effective batch sizes without extra VRAM.
     """
     model.train()
     total_loss = 0.0
     optimizer.zero_grad()
     use_amp = scaler is not None
+    grad_accum = CFG.get('grad_accum_steps', 1)
 
     for bi, batch in enumerate(loader):
         images = batch['image'].to(DEVICE, non_blocking=True)
@@ -24,38 +28,52 @@ def train_epoch(model, loader, optimizer, criterion, scaler, epoch):
         weights = batch['weights'].to(DEVICE, non_blocking=True)
         masks = batch['masks'].to(DEVICE, non_blocking=True)
 
+        # channels_last conversion for CNN speedup
+        if CFG.get('channels_last', False):
+            images = images.to(memory_format=torch.channels_last)
+
         with torch.amp.autocast('cuda', enabled=use_amp):
             logits = model(images)
             loss = criterion(logits, prob_targets, weights, masks)
+            loss = loss / grad_accum  # normalize for gradient accumulation
 
         if use_amp:
             scaler.scale(loss).backward()
-            scaler.unscale_(optimizer)
-            torch.nn.utils.clip_grad_norm_(model.parameters(), CFG['grad_clip'])
-            scaler.step(optimizer)
-            scaler.update()
         else:
             loss.backward()
-            torch.nn.utils.clip_grad_norm_(model.parameters(), CFG['grad_clip'])
-            optimizer.step()
-        optimizer.zero_grad()
-        total_loss += loss.item()
+
+        # Step only after accumulating enough gradients
+        if (bi + 1) % grad_accum == 0:
+            if use_amp:
+                scaler.unscale_(optimizer)
+                torch.nn.utils.clip_grad_norm_(model.parameters(), CFG['grad_clip'])
+                scaler.step(optimizer)
+                scaler.update()
+            else:
+                torch.nn.utils.clip_grad_norm_(model.parameters(), CFG['grad_clip'])
+                optimizer.step()
+            optimizer.zero_grad()
+
+        total_loss += loss.item() * grad_accum  # report un-normalized loss
 
         if IS_MAIN and bi % 20 == 0:
             # Show active mask ratio for monitoring
             active_pct = masks.sum().item() / masks.numel() * 100
-            print(f'  Epoch {epoch:3d} [{bi:4d}/{len(loader):4d}] loss={loss.item():.4f} '
+            print(f'  Epoch {epoch:3d} [{bi:4d}/{len(loader):4d}] loss={loss.item()*grad_accum:.4f} '
                   f'| active_mask={active_pct:.0f}%', flush=True)
 
     return total_loss / len(loader)
 
 
 @torch.no_grad()
-def validate_epoch(model, loader, criterion):
+def validate_epoch(model, loader, criterion, val_batch_size=None):
     """Study-level validation on gold labels.
 
     Uses standard BCE loss (hard labels) for comparability with v1.
     Aggregates slice-level predictions to study-level via mean pooling.
+
+    val_batch_size: if set, chunks each loader batch into smaller sub-batches
+    to reduce peak GPU memory during validation forward pass.
     """
     model.eval()
 
@@ -69,7 +87,19 @@ def validate_epoch(model, loader, criterion):
         labels = batch['labels'].to(DEVICE, non_blocking=True)
         uids = batch['study_uid']
 
-        logits = model(images)
+        # Chunked forward pass to limit peak VRAM during validation
+        if val_batch_size and images.size(0) > val_batch_size:
+            all_logits = []
+            for start in range(0, images.size(0), val_batch_size):
+                chunk = images[start:start + val_batch_size]
+                all_logits.append(model(chunk))
+                # Free intermediates immediately
+                if start + val_batch_size < images.size(0):
+                    torch.cuda.empty_cache()
+            logits = torch.cat(all_logits, dim=0)
+        else:
+            logits = model(images)
+
         total_loss += F.binary_cross_entropy_with_logits(logits, labels).item()
         n_batches += 1
 

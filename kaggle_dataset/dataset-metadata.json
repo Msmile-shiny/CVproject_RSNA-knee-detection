@@ -1,0 +1,6 @@
+{
+  "title": "RSNA Knee V3 MultiView Checkpoint",
+  "id": "easoncyy/rsna-knee-v3-checkpoint",
+  "licenses": [{ "name": "CC0-1.0" }],
+  "description": "Trained v3 MultiViewModel checkpoint (epoch 17) for RSNA knee abnormality detection. Contains DINOv2 ViT-S backbone + SlotHead weights."
+}

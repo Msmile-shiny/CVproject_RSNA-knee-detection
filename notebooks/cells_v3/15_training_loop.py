@@ -1,13 +1,14 @@
+# ============================================================
+# v3: Training Loop
+# ============================================================
 if IS_MAIN:
     steps_per_epoch = len(train_loader)
-    eff_batch = CFG['batch_size'] * N_GPUS * CFG.get('grad_accum_steps', 1)
+    eff_batch = CFG['batch_size'] * max(N_GPUS, 1) * CFG['grad_accum_steps']
     print(f'\n{"="*60}')
-    print(f'v2 Training -- Soft Labels + Unfreeze {CFG["unfreeze_layers"]} DINOv2 layers')
-    print(f'Batch={CFG["batch_size"]} × {N_GPUS} GPUs × {CFG.get("grad_accum_steps",1)} accum = {eff_batch} eff')
-    print(f'Image={CFG["image_size"]}² | Patches={(CFG["image_size"]//14)**2} | '
-          f'Train samples={len(train_ds):,} | Steps={steps_per_epoch:,}')
-    print(f'Train studies: {len(set(s["study_uid"] for s in train_ds.samples)):,}')
-    print(f'Val studies:   {len(val_ds):,}')
+    print(f'v3 Training — Multi-View 6-Slot + SlotHead')
+    print(f'Batch={CFG["batch_size"]} × {max(N_GPUS,1)} GPUs × {CFG["grad_accum_steps"]} accum = {eff_batch} eff')
+    print(f'Image={CFG["image_size"]}² | Slots={N_SLOT} | Feature dim={CFG["feature_dim"]}')
+    print(f'Train studies={len(train_ds):,} ({steps_per_epoch} steps) | Val studies={len(val_ds):,}')
     print(f'{"="*60}\n')
 
 best_auc = 0.0
@@ -24,11 +25,11 @@ for epoch in range(1, CFG['epochs'] + 1):
 
     train_loss = train_epoch(model, train_loader, optimizer, criterion, scaler, epoch)
 
-    # Free GPU memory before validation (training fragments VRAM over 1h+ runs)
+    # Free GPU memory before validation
     torch.cuda.empty_cache()
     gc.collect()
 
-    val_metrics = validate_epoch(model, val_loader, criterion, val_batch_size=CFG['batch_size'] // 2)
+    val_metrics = validate_epoch(model, val_loader, criterion_val)
 
     torch.cuda.empty_cache()
     scheduler.step()
@@ -43,20 +44,16 @@ for epoch in range(1, CFG['epochs'] + 1):
         print(f'\n-- Epoch {epoch:3d}/{CFG["epochs"]} --')
         print(f'  Train Loss: {train_loss:.4f}  |  Val Loss: {val_metrics["loss"]:.4f}')
         print(f'  Val Macro AUC: {val_metrics["macro_auc"]:.4f}  |  LR: {lr_now:.2e}')
-        print(f'  Time: {epoch_time:.0f}s epoch | {elapsed/60:.0f}min total | VRAM: {vram:.1f}GB')
+        print(f'  Time: {epoch_time:.0f}s | {elapsed/60:.0f}min total | VRAM: {vram:.1f}GB')
 
         print_validation_summary(val_metrics)
-
-        # v2: Per-class threshold check every 5 epochs
-        if epoch % 5 == 0 or epoch == 1:
-            threshold_table = analyze_thresholds(val_metrics)
 
         history.append({
             'epoch': epoch, 'train_loss': train_loss,
             'val_loss': val_metrics['loss'], 'macro_auc': val_metrics['macro_auc'],
         })
 
-        # -- Checkpoint on improvement --
+        # Checkpoint on improvement
         current_auc = val_metrics['macro_auc']
 
         if current_auc > best_auc + 0.0005:
@@ -65,27 +62,27 @@ for epoch in range(1, CFG['epochs'] + 1):
             patience = 0
             state = model.module.state_dict() if N_GPUS > 1 else model.state_dict()
             ckpt_path = ckpt_dir / 'best_model.pt'
-            torch.save({'epoch': epoch, 'model': state, 'auc': best_auc, 'config': CFG}, ckpt_path)
+            torch.save(
+                {'epoch': epoch, 'model': state, 'auc': best_auc,
+                 'config': CFG, 'slots': SLOTS, 'targets': TARGET_COLUMNS},
+                ckpt_path,
+            )
             print(f'  >> Best model saved (AUC={best_auc:.4f})')
-
-            # Full threshold analysis on best model
-            threshold_table = analyze_thresholds(val_metrics)
-            save_validation_report(val_metrics, CFG['output_dir'], epoch=epoch, is_best=True,
-                                   thresholds=threshold_table)
+            save_validation_report(val_metrics, CFG['output_dir'], epoch=epoch, is_best=True)
         else:
             patience += 1
             if patience >= CFG['early_stop_patience']:
                 print(f'\n  Early stopping triggered at epoch {epoch}')
                 break
 
-# -- Final Report --
+# Final Report
 if IS_MAIN:
     total_time = time.time() - t_start
     print(f'\n{"="*60}')
-    print(f'v2 Training Complete')
-    print(f'  Soft Labels + Unfreeze {CFG["unfreeze_layers"]} DINOv2 layers')
+    print(f'v3 Training Complete')
+    print(f'  Multi-View 6-Slot + SlotHead')
     print(f'  Best Val Macro AUC: {best_auc:.4f} (epoch {best_epoch})')
-    print(f'  Total Time:         {total_time/3600:.1f} hours')
+    print(f'  Total Time: {total_time/3600:.1f} hours')
     print(f'{"="*60}')
 
     history_df = pd.DataFrame(history)

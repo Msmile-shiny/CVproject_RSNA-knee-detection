@@ -1,3 +1,7 @@
+# ============================================================
+# v3: Build model, optimizer, scheduler
+# ============================================================
+
 if IS_MAIN: print('Loading DINOv2 backbone...')
 
 dinov2_backbone = timm.create_model(
@@ -5,38 +9,23 @@ dinov2_backbone = timm.create_model(
     img_size=CFG['image_size'],
 )
 
-model = DINOv2Refiner(
+model = MultiViewModel(
     dinov2_model=dinov2_backbone,
-    spa_channels=CFG['spa_channels'],
+    n_slots=N_SLOT,
     cls_dim=CFG['cls_dim'],
-    num_slices=CFG['slice_count'],
-    num_classes=CFG['num_classes'],
-    num_heads=4, st_layers=2,
+    n_classes=CFG['num_classes'],
+    slot_hidden=CFG['slot_hidden'],
     dropout=CFG['dropout'],
-    unfreeze_layers=CFG['unfreeze_layers'],  # v2: partial unfreeze
+    unfreeze_layers=CFG['unfreeze_layers'],
 ).to(DEVICE)
 
 if N_GPUS > 1:
     model = nn.DataParallel(model)
     print(f'[Model] DataParallel across {N_GPUS} GPUs')
 
-# torch.compile: graph-level optimization, ~20-30% speedup (PyTorch >= 2.0)
-if CFG.get('use_torch_compile', False):
-    try:
-        if hasattr(model, 'module'):
-            model.module.dinov2 = torch.compile(model.module.dinov2, mode='reduce-overhead')
-        else:
-            model.dinov2 = torch.compile(model.dinov2, mode='reduce-overhead')
-        print('[Model] torch.compile enabled on DINOv2 backbone')
-    except Exception as e:
-        print(f'[Model] torch.compile skipped: {e}')
-
-# -- v2: Separate LR for backbone vs head ------------------------
-# Unfrozen DINOv2 layers need lower LR (pretrained weights, fine-tuning)
-# SPA/Fusion/SliceTransformer/Head need higher LR (random init)
+# Separate LR for backbone vs head
 backbone_params = []
 head_params = []
-
 for name, p in model.named_parameters():
     if not p.requires_grad:
         continue
@@ -57,6 +46,7 @@ if IS_MAIN:
     print(f'           head     {n_head/1e6:.1f}M params @ lr={CFG["lr"]}')
 
 criterion = WeightedSoftBCELoss()
+criterion_val = HardBCELoss()
 
 scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
     optimizer, T_0=CFG['lr_t0'], T_mult=CFG['lr_t_mult'], eta_min=CFG['lr_eta_min'])

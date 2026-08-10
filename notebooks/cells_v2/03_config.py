@@ -23,7 +23,7 @@ CFG = {
     'output_dir':   '/kaggle/working',
 
     # --- Data ---
-    'image_size': 392,
+    'image_size': 392,          # RESTORED: 280 loses detail for small lesions
     'slice_count': 5,
     'center_stride': 3,
 
@@ -34,23 +34,30 @@ CFG = {
     'num_classes': 12,
 
     # --- v2: Unfreeze strategy ---
-    'unfreeze_layers': 6,       # Number of last DINOv2 layers to unfreeze (0=all frozen)
+    # Start conservative (2), verify no overfitting, then increase to 4→6.
+    # Soft labels slow down memorization but don't prevent it.
+    # More layers = more capacity to memorize the ~22% wrong pseudo-labels.
+    'unfreeze_layers': 2,
 
     # --- Training ---
-    'batch_size': 16,           # reduced: unfrozen backbone uses more VRAM
+    'batch_size': 8,            # reduced for 392 image_size + VRAM safety
+    'grad_accum_steps': 2,      # effective batch = 8 * 2 GPUs * 2 accum = 32
+    'grad_accum_steps': 1,      # set >1 for larger effective batch without more VRAM
     'epochs': 50,
     'lr': 2e-4,
     'backbone_lr': 1e-5,        # v2: lower LR for unfrozen backbone layers
     'weight_decay': 1e-4,
-    'lr_t0': 15,                # increased: more steps between restarts
+    'lr_t0': 15,
     'lr_t_mult': 2,
     'lr_eta_min': 1e-6,
-    'dropout': 0.2,             # increased slight regularization
+    'dropout': 0.2,
     'head_dropout': 0.3,
     'grad_clip': 1.0,
     'early_stop_patience': 10,
     'mixed_precision': True,
-    'num_workers': 4,
+    'num_workers': 2,           # fewer workers = less CPU RAM pressure
+    'channels_last': False,     # DISABLED: not worth risk with DINOv2 ViT
+    'use_torch_compile': False,  # DISABLED: conflicts with DataParallel (attr lookup fails)
 }
 
 # Device setup
