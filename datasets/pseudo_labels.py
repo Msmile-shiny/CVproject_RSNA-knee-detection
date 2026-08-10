@@ -197,8 +197,14 @@ class PseudoLabelLoader:
     ) -> pd.DataFrame:
         """将伪标签转换为标准标签 DataFrame.
 
+        If all ``prob_*`` columns are present, calibrated probabilities are
+        used as soft targets and row-level confidence filtering is skipped.
+        This preserves reliable labels from a study even when one of its
+        other 11 targets is uncertain.
+
         Returns:
-            DataFrame: index=StudyInstanceUID, columns=12 target classes, values=0/1
+            DataFrame: index=StudyInstanceUID, columns=12 target classes,
+            values=0/1 or calibrated probabilities in [0, 1]
             可直接作为 Knee25DDataset 的 labels_df 参数.
 
         Example:
@@ -207,24 +213,36 @@ class PseudoLabelLoader:
             ds = Knee25DDataset(series_df, labels_df, ...)
         """
         df = self.load()
-        filtered = self.filter_by_confidence(df, level=confidence)
+        calibrated = all(f"prob_{name}" in df.columns for name in TARGET_COLUMNS)
+        if calibrated:
+            filtered = df.copy()
+            logger.info(
+                "检测到 prob_* 校准软标签: 保留全部 %d studies，跳过全行置信度过滤",
+                len(filtered),
+            )
+        else:
+            filtered = self.filter_by_confidence(df, level=confidence)
 
         labels_df = filtered[["StudyInstanceUID"]].copy()
         for col_name in TARGET_COLUMNS:
-            pred_col = f"pred_{col_name}"
-            if pred_col in filtered.columns:
+            value_col = f"prob_{col_name}" if calibrated else f"pred_{col_name}"
+            if value_col in filtered.columns:
                 labels_df[col_name] = (
-                    pd.to_numeric(filtered[pred_col], errors="coerce").fillna(0).astype(int)
+                    pd.to_numeric(filtered[value_col], errors="coerce")
+                    .fillna(0.5 if calibrated else 0.0)
+                    .clip(0.0, 1.0)
                 )
             else:
-                labels_df[col_name] = 0
+                labels_df[col_name] = 0.5 if calibrated else 0.0
 
         labels_df = labels_df.set_index("StudyInstanceUID")
-        labels_df = labels_df.apply(pd.to_numeric, errors="coerce").fillna(0).astype(int)
+        labels_df = labels_df.apply(pd.to_numeric, errors="coerce")
+        labels_df = labels_df.fillna(0.5 if calibrated else 0.0).astype("float32")
 
         logger.info(
-            "伪标签 → labels_df: %d studies, class balance:\n%s",
+            "伪标签 → labels_df: %d studies, calibrated=%s, target sums:\n%s",
             len(labels_df),
+            calibrated,
             labels_df.sum().to_string(),
         )
         return labels_df
