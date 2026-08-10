@@ -1,0 +1,107 @@
+# =============================================================================
+# RSNA 2026 Knee — Multi-Architecture Image Teacher (Phase 1 Teacher)
+# =============================================================================
+# 用 4 种不同归纳偏置的 backbone 分别做 5-fold CV,
+# 将其 OOF logits 加权融合为更强的 Image Teacher 信号.
+#
+# 架构阵容:
+#   EfficientNetV2-S (1280d) — 多尺度卷积, 中等尺寸病灶
+#   ConvNeXt-S      (768d)  — 大 kernel depthwise conv, 纹理/边缘
+#   Swin-T          (768d)  — shifted-window attention, 全局 OA 模式
+#   DenseNet-121     (1024d) — 密集特征复用, 细微异常
+#
+# 融合策略:
+#   fixed:  按配置权重加权平均 sigmoid 概率
+#   per_class_auc: 在 58 gold 上逐类评估每个架构 AUC, temperature-softmax 融合
+# =============================================================================
+
+experiment:
+  name: phase1_image_teacher_multi
+  seed: 2026
+  stage: teacher_multi
+  description: "Multi-architecture 5-fold CV → fused Image Teacher OOF for distillation"
+
+# ---------------------------------------------------------------------------
+# 路径
+# ---------------------------------------------------------------------------
+paths:
+  data_root: dataset
+  dicom_root: dataset/train_series
+  train_csv: data/metadata/train.csv
+  series_csv: data/metadata/train_series.csv
+  pseudo_csv: data/pseudo_labels_calibrated.csv
+  output_dir: outputs/teacher_multi
+  checkpoint_dir: outputs/teacher_multi/checkpoints
+
+# ---------------------------------------------------------------------------
+# 数据
+# ---------------------------------------------------------------------------
+data:
+  image_size: 384
+  slice_count: 5
+  planes: [Sagittal]
+  fluid_sensitive_only: true
+  fat_suppression_only: true
+  loader:
+    train_workers: 4
+    valid_workers: 2
+    pin_memory: true
+
+# ---------------------------------------------------------------------------
+# Multi-Teacher 配置
+# ---------------------------------------------------------------------------
+teacher:
+  n_folds: 5
+  epochs: 30
+  batch_size: 8
+  lr: 2.0e-4
+  patience: 5
+  amp: true
+  fusion_mode: fixed             # "fixed" | "per_class_auc"
+  save_dir: /kaggle/working/teacher_oof
+
+  architectures:
+    efficientnet:
+      arch: efficientnetv2_s
+      weight: 0.30               # 最高权重 — Phase 1 baseline, 已验证
+    convnext:
+      arch: convnext_small
+      weight: 0.25               # CNN 多样性补充
+    swin:
+      arch: swin_tiny
+      weight: 0.25               # ViT 全局注意力
+    densenet:
+      arch: densenet121
+      weight: 0.20               # 密集连接, 细微异常敏感
+
+# ---------------------------------------------------------------------------
+# 模型通用参数
+# ---------------------------------------------------------------------------
+model:
+  in_channels: 5
+  num_classes: 12
+  pretrained: true
+  dropout: 0.3
+
+# ---------------------------------------------------------------------------
+# 损失
+# ---------------------------------------------------------------------------
+loss:
+  name: focal_bce
+  gamma: 2.0
+  alpha: 0.25
+
+# ---------------------------------------------------------------------------
+# 伪标签
+# ---------------------------------------------------------------------------
+pseudo_label:
+  enabled: true
+  pseudo_csv: data/pseudo_labels_calibrated.csv
+  gold_csv: data/metadata/train.csv
+  confidence: HIGH
+
+# ---------------------------------------------------------------------------
+# 融合 (用于后续 PerClassFusion)
+# ---------------------------------------------------------------------------
+fusion:
+  temperature: 5.0

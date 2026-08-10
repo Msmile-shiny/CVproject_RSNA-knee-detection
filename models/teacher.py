@@ -377,6 +377,252 @@ class PerClassFusion:
 
 
 # ═══════════════════════════════════════════════════════════════════
+# MultiArchImageTeacher
+# ═══════════════════════════════════════════════════════════════════
+
+
+class MultiArchImageTeacher:
+    """Multi-architecture Image Teacher with weighted OOF fusion.
+
+    Trains N different backbone architectures independently via 5-fold CV,
+    then fuses their OOF logits into a stronger teacher signal.
+    Different architectures contribute complementary inductive biases:
+
+      - EfficientNetV2-S: multi-scale conv, strong on medium-sized findings
+      - ConvNeXt-S: large-kernel depthwise conv, strong on texture/edges
+      - Swin-T: shifted-window self-attention, strong on global OA patterns
+      - DenseNet-121: dense feature reuse, sensitive to subtle abnormalities
+
+    Usage::
+
+        architectures = {
+            "efficientnet": {"factory": lambda: EfficientNetV2S25D(...), "weight": 0.30},
+            "convnext":     {"factory": lambda: ConvNeXt25D(...),      "weight": 0.25},
+            "swin":         {"factory": lambda: Swin25D(...),          "weight": 0.25},
+            "densenet":     {"factory": lambda: DenseNet25D(...),      "weight": 0.20},
+        }
+        teacher = MultiArchImageTeacher(architectures=architectures)
+        fused_oof, per_arch_oof, fold_info = teacher.fit(train_dataset, ...)
+
+    Args:
+        architectures: {name: {"factory": callable, "weight": float}}
+        device: training device
+        amp: use AMP mixed precision
+        fusion_mode: "fixed" (config weights) | "per_class_auc" (gold-calibrated)
+    """
+
+    def __init__(
+        self,
+        architectures: dict[str, dict],
+        device: torch.device | str = "cuda",
+        amp: bool = True,
+        fusion_mode: str = "fixed",
+    ):
+        if not architectures:
+            raise ValueError("至少需要一个架构")
+        if fusion_mode not in ("fixed", "per_class_auc"):
+            raise ValueError(f"Unknown fusion_mode: {fusion_mode}")
+
+        self.architectures = architectures
+        self.device = torch.device(device)
+        self.amp = amp and self.device.type == "cuda"
+        self.fusion_mode = fusion_mode
+
+        # Validate weights sum
+        if fusion_mode == "fixed":
+            total_w = sum(cfg.get("weight", 1.0) for cfg in architectures.values())
+            if abs(total_w - 1.0) > 0.05:
+                logger.warning("Architecture weights sum to %.3f (expected 1.0)", total_w)
+
+    def fit(
+        self,
+        train_dataset,
+        gold_mask: np.ndarray,
+        gold_labels: np.ndarray,
+        n_folds: int = 5,
+        epochs: int = 30,
+        batch_size: int = 8,
+        lr: float = 2e-4,
+        patience: int = 5,
+        criterion: nn.Module | None = None,
+        save_dir: str | Path = "/kaggle/working/teacher_oof",
+    ) -> tuple[np.ndarray, dict[str, np.ndarray], dict[str, list[dict]]]:
+        """Run N-architecture K-fold CV and fuse OOF logits.
+
+        Returns:
+            fused_oof_logits:  [N_total, 12] — weighted-fusion OOF logits
+            per_arch_oof:      {arch_name: [N_total, 12]} — individual OOFs
+            per_arch_fold_info: {arch_name: [fold_info]} — per-fold AUCs
+        """
+        save_dir = Path(save_dir)
+        save_dir.mkdir(parents=True, exist_ok=True)
+        oof_dir = save_dir / "oof"
+        oof_dir.mkdir(parents=True, exist_ok=True)
+
+        per_arch_oof: dict[str, np.ndarray] = {}
+        per_arch_fold_info: dict[str, list[dict]] = {}
+        arch_weights: dict[str, float] = {}
+
+        n_archs = len(self.architectures)
+
+        for i, (name, arch_cfg) in enumerate(self.architectures.items()):
+            logger.info("=" * 60)
+            logger.info("[%d/%d] Multi-Arch Teacher: %s", i + 1, n_archs, name)
+            logger.info("=" * 60)
+
+            factory = arch_cfg["factory"]
+            weight = float(arch_cfg.get("weight", 1.0 / n_archs))
+            arch_weights[name] = weight
+
+            single_teacher = ImageTeacher(
+                model_factory=factory,
+                device=self.device,
+                amp=self.amp,
+            )
+            arch_save_dir = oof_dir / name
+            arch_save_dir.mkdir(parents=True, exist_ok=True)
+
+            oof_logits, fold_info = single_teacher.fit(
+                train_dataset=train_dataset,
+                gold_mask=gold_mask,
+                gold_labels=gold_labels,
+                n_folds=n_folds,
+                epochs=epochs,
+                batch_size=batch_size,
+                lr=lr,
+                patience=patience,
+                criterion=criterion,
+                save_dir=str(arch_save_dir),
+            )
+            per_arch_oof[name] = oof_logits
+            per_arch_fold_info[name] = fold_info
+
+            # Report per-architecture AUC on gold subset
+            gold_idx = np.where(gold_mask)[0]
+            if len(gold_idx) >= 10:
+                arch_auc = _compute_macro_auc(
+                    gold_labels[gold_idx], oof_logits[gold_idx],
+                )
+                mean_fold = np.mean([f["val_auc"] for f in fold_info]) if fold_info else float("nan")
+                logger.info(
+                    "%s: gold macro AUC=%.4f, mean fold val AUC=%.4f",
+                    name, arch_auc, mean_fold,
+                )
+
+            del single_teacher
+            gc.collect()
+            if self.device.type == "cuda":
+                torch.cuda.empty_cache()
+
+        # ── Fusion ──────────────────────────────────────────────────
+        N = len(train_dataset)
+        fused_oof_logits = np.zeros((N, 12), dtype=np.float32)
+
+        if self.fusion_mode == "fixed":
+            # Weighted average in probability space, then inverse sigmoid
+            fused_probs = np.zeros((N, 12), dtype=np.float32)
+            for name, oof in per_arch_oof.items():
+                probs = 1.0 / (1.0 + np.exp(-np.clip(oof, -50, 50)))
+                fused_probs += arch_weights[name] * probs.astype(np.float32)
+            # Inverse sigmoid: logit = log(p / (1-p)), clipped
+            eps = 1e-7
+            fused_probs = np.clip(fused_probs, eps, 1.0 - eps)
+            fused_oof_logits = np.log(fused_probs / (1.0 - fused_probs)).astype(np.float32)
+
+            logger.info(
+                "Fusion (fixed weights): %s",
+                ", ".join(f"{n}={w:.2f}" for n, w in arch_weights.items()),
+            )
+
+        elif self.fusion_mode == "per_class_auc":
+            # Compute per-class AUC for each architecture on gold subset
+            gold_idx = np.where(gold_mask)[0]
+            if len(gold_idx) < 10:
+                logger.warning("gold 样本不足 (%d), 回退到等权融合", len(gold_idx))
+                fused_probs = np.zeros((N, 12), dtype=np.float32)
+                for oof in per_arch_oof.values():
+                    fused_probs += (1.0 / n_archs) * (1.0 / (1.0 + np.exp(-np.clip(oof, -50, 50))))
+                eps = 1e-7
+                fused_probs = np.clip(fused_probs, eps, 1.0 - eps)
+                fused_oof_logits = np.log(fused_probs / (1.0 - fused_probs)).astype(np.float32)
+            else:
+                T = 5.0  # temperature
+                arch_names = list(per_arch_oof.keys())
+                per_class_weights: dict[str, np.ndarray] = {}
+
+                for cls_i, cls_name in enumerate(TARGET_COLUMNS):
+                    y_true = gold_labels[gold_idx, cls_i]
+                    unique_vals = np.unique(y_true)
+                    aucs = []
+                    for name in arch_names:
+                        oof = per_arch_oof[name][gold_idx, cls_i]
+                        if len(unique_vals) >= 2:
+                            aucs.append(_binary_auc(y_true, oof))
+                        else:
+                            aucs.append(0.5)
+
+                    # Temperature-scaled softmax
+                    aucs_arr = np.array(aucs)
+                    e = np.exp(np.clip(aucs_arr * T, -50, 50))
+                    w = e / e.sum()
+                    per_class_weights[cls_name] = w.astype(np.float32)
+
+                # Fuse per-class
+                fused_probs = np.zeros((N, 12), dtype=np.float32)
+                for j, name in enumerate(arch_names):
+                    probs = 1.0 / (1.0 + np.exp(-np.clip(per_arch_oof[name], -50, 50)))
+                    for cls_i in range(12):
+                        fused_probs[:, cls_i] += per_class_weights[TARGET_COLUMNS[cls_i]][j] * probs[:, cls_i]
+                eps = 1e-7
+                fused_probs = np.clip(fused_probs, eps, 1.0 - eps)
+                fused_oof_logits = np.log(fused_probs / (1.0 - fused_probs)).astype(np.float32)
+
+                # Log per-class dominant architecture
+                for cls_i, cls_name in enumerate(TARGET_COLUMNS):
+                    w = per_class_weights[cls_name]
+                    dominant = arch_names[int(np.argmax(w))]
+                    logger.info(
+                        "  %s: %s → %s (w=%.2f)",
+                        cls_name,
+                        ", ".join(f"{n}={v:.2f}" for n, v in zip(arch_names, w)),
+                        dominant, w.max(),
+                    )
+
+        # ── Save ────────────────────────────────────────────────────
+        np.save(save_dir / "fused_oof_logits.npy", fused_oof_logits)
+        # Save per-architecture OOFs for debugging
+        for name, oof in per_arch_oof.items():
+            np.save(oof_dir / f"{name}_oof_logits.npy", oof)
+
+        # Save metadata
+        import json
+        meta = {
+            "architectures": list(self.architectures.keys()),
+            "fusion_mode": self.fusion_mode,
+            "fusion_weights": arch_weights,
+            "per_arch_fold_auc": {
+                name: [f["val_auc"] for f in info]
+                for name, info in per_arch_fold_info.items()
+            },
+        }
+        with open(save_dir / "multi_teacher_meta.json", "w") as f:
+            json.dump(meta, f, indent=2)
+
+        logger.info("Fused OOF logits saved: %s", save_dir / "fused_oof_logits.npy")
+        logger.info("Per-architecture OOFs saved: %s", oof_dir)
+
+        # Report per-architecture AUC summary
+        logger.info("Architecture AUC summary (on gold subset):")
+        gold_idx = np.where(gold_mask)[0]
+        for name in self.architectures:
+            if len(gold_idx) >= 10:
+                auc = _compute_macro_auc(gold_labels[gold_idx], per_arch_oof[name][gold_idx])
+                logger.info("  %-20s macro AUC = %.4f", name, auc)
+
+        return fused_oof_logits, per_arch_oof, per_arch_fold_info
+
+
+# ═══════════════════════════════════════════════════════════════════
 # Helpers
 # ═══════════════════════════════════════════════════════════════════
 

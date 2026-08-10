@@ -29,7 +29,7 @@ from torch.utils.data import DataLoader
 from sklearn.model_selection import StratifiedGroupKFold
 
 from datasets import Knee25DDataset, TriPlaneDataset, VolumeDataset, PseudoLabelLoader
-from models import EfficientNetV2S25D, TriPlaneModel, ResNet3DModel, ConvNeXt25D, Swin25D
+from models import EfficientNetV2S25D, TriPlaneModel, ResNet3DModel, ConvNeXt25D, Swin25D, DenseNet25D
 from losses import FocalBCELoss
 from utils import (
     aggregate_to_study,
@@ -1363,6 +1363,11 @@ def _main_ensemble_backbone(
         ).to(device)
     elif arch == "swin_tiny":
         model = Swin25D(
+            in_channels=model_cfg["in_channels"], num_classes=model_cfg["num_classes"],
+            pretrained=model_cfg["pretrained"], dropout=model_cfg["dropout"],
+        ).to(device)
+    elif arch == "densenet121":
+        model = DenseNet25D(
             in_channels=model_cfg["in_channels"], num_classes=model_cfg["num_classes"],
             pretrained=model_cfg["pretrained"], dropout=model_cfg["dropout"],
         ).to(device)
