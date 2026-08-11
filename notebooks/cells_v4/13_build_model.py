@@ -5,9 +5,18 @@
 if IS_MAIN: print('Loading DINOv2 backbone...')
 
 dinov2_backbone = timm.create_model(
-    CFG['dinov2_variant'], pretrained=True, num_classes=0,
+    CFG['dinov2_variant'], pretrained=False, num_classes=0,
     img_size=CFG['image_size'],
 )
+
+# ★ 竞赛禁网，从本地 Kaggle Dataset 加载预训练权重
+weights_path = Path(CFG.get('dinov2_weights', ''))
+if weights_path.exists():
+    state_dict = torch.load(weights_path, map_location='cpu', weights_only=True)
+    dinov2_backbone.load_state_dict(state_dict, strict=True)
+    if IS_MAIN: print(f'  DINOv2 pretrained weights loaded: {weights_path}')
+elif IS_MAIN:
+    print(f'  WARNING: DINOv2 weights not found at {weights_path} — using random init!')
 
 model = MultiViewModel(
     dinov2_model=dinov2_backbone,

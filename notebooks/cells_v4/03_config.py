@@ -61,6 +61,7 @@ CFG = {
 
     # --- Model ---
     'dinov2_variant': 'vit_small_patch14_dinov2.lvd142m',
+    'dinov2_weights': '/kaggle/input/rsna-dinov2-weights/dinov2_vits14.pth',  # ★ 竞赛禁网，权重打包为 Dataset
     'cls_dim': 384,
     'feature_dim': 1152,
     'slot_hidden': 256,
