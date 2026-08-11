@@ -215,8 +215,9 @@ def _scan_test_dicoms(dicom_root):
     return rows
 
 
+# ★ 重写逻辑：CSV 结果不会被 DICOM scan 失败覆盖
+test_slot_map = {}
 test_series_path = comp_input / 'test_series.csv'
-test_series_loaded = False
 
 if test_series_path.exists():
     test_series = pd.read_csv(test_series_path)
@@ -236,24 +237,21 @@ if test_series_path.exists():
         dicom_rows = _scan_test_dicoms(test_dicom_root)
         if dicom_rows:
             test_series = pd.DataFrame(dicom_rows)
+            test_slot_map, _ = build_study_slot_map(test_series, test_dicom_root)
             print(f'DICOM scan: {len(test_series)} series, '
-                  f'{test_series["StudyInstanceUID"].nunique()} studies')
-            test_series_loaded = True
-    else:
-        test_series_loaded = True
+                  f'{test_series["StudyInstanceUID"].nunique()} studies → '
+                  f'{len(test_slot_map)} studies matched')
+        else:
+            print(f'DICOM scan returned 0 rows, keeping CSV results ({csv_studies} studies)')
+    # else: CSV 覆盖率够了，直接用
 else:
     print('test_series.csv not found, scanning DICOM headers...')
     dicom_rows = _scan_test_dicoms(test_dicom_root)
     if dicom_rows:
         test_series = pd.DataFrame(dicom_rows)
+        test_slot_map, _ = build_study_slot_map(test_series, test_dicom_root)
         print(f'DICOM scan: {len(test_series)} series, '
-              f'{test_series["StudyInstanceUID"].nunique()} studies')
-        test_series_loaded = True
-
-if test_series_loaded:
-    test_slot_map, _ = build_study_slot_map(test_series, test_dicom_root)
-else:
-    test_slot_map = {}
+              f'{len(test_slot_map)} studies matched')
 
 test_studies = sorted(test_slot_map.keys())
 print(f'Test studies with slot match: {len(test_studies)}/{len(test_df)}')
