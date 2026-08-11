@@ -1,5 +1,6 @@
 # ============================================================
 # v4: Environment Setup
 # ============================================================
-!pip install -q timm pydicom opencv-python scikit-learn 2>/dev/null
+# ★ 竞赛环境已预装 timm / pydicom / opencv / sklearn，无需 pip install
+# 如果缺少包，将其打包为 Kaggle Dataset 挂载即可
 print('Setup complete.')
