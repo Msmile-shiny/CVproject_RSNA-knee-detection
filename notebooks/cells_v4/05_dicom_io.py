@@ -5,12 +5,21 @@
 # ---- 空间切片排序 (Ref2: dominant_axis) ----
 PLANE_AXIS = {"Sagittal": 0, "Coronal": 1, "Axial": 2}
 
+def _list_dcm_files(series_dir):
+    """列出 DICOM 文件（不依赖 .dcm 扩展名，竞赛 test 集无后缀）。"""
+    sd = Path(series_dir)
+    if not sd.is_dir():
+        return []
+    all_files = sorted(f.name for f in sd.iterdir() if f.is_file())
+    dcm = [f for f in all_files if f.endswith('.dcm')]
+    return dcm if dcm else [f for f in all_files if not f.startswith('.')]
+
 def spatially_sorted_files(series_dir, plane=None):
     """按 ImagePositionPatient 在切片法线方向上的投影排序。
     文件名排序的 Spearman 相关系数仅 0.009——完全随机。
     """
     series_dir = Path(series_dir)
-    files = sorted(f.name for f in series_dir.iterdir() if f.name.endswith('.dcm'))
+    files = _list_dcm_files(series_dir)
     if not files:
         return []
 

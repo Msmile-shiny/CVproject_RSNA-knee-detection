@@ -145,6 +145,14 @@ test_df['StudyInstanceUID'] = test_df['StudyInstanceUID'].astype(str)
 # 优先使用 test_series.csv；如果不足，扫描 DICOM 目录构建元数据
 test_dicom_root = comp_input / 'test_series'
 
+def _find_dicom_files(series_dir):
+    """列出目录中的 DICOM 文件（不依赖扩展名，竞赛 test 集 DICOM 无 .dcm 后缀）。"""
+    all_files = sorted([f for f in series_dir.iterdir() if f.is_file()])
+    # 优先 .dcm 后缀；若无，取所有文件（跳过隐藏文件）
+    dcm = [f for f in all_files if f.suffix == '.dcm']
+    return dcm if dcm else [f for f in all_files if not f.name.startswith('.')]
+
+
 def _scan_test_dicoms(dicom_root):
     """扫描测试集 DICOM 目录，从 header 推断 plane / fluid / fatsat。"""
     rows = []
@@ -159,7 +167,7 @@ def _scan_test_dicoms(dicom_root):
             if not series_dir.is_dir():
                 continue
             series_uid = series_dir.name
-            dcm_files = sorted([f for f in series_dir.iterdir() if f.name.endswith('.dcm')])
+            dcm_files = _find_dicom_files(series_dir)
             if not dcm_files:
                 continue
             try:

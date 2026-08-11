@@ -146,7 +146,11 @@ def build_study_slot_map(series_meta, dicom_root):
         d = str(dicom_root / row['StudyInstanceUID'] / row['SeriesInstanceUID'])
         dirs.append(d)
         if os.path.isdir(d):
-            n_slices_list.append(len([f for f in os.listdir(d) if f.endswith('.dcm')]))
+            files = [f for f in os.listdir(d) if os.path.isfile(os.path.join(d, f))]
+            n_dcm = len([f for f in files if f.endswith('.dcm')])
+            if n_dcm == 0:
+                n_dcm = len([f for f in files if not f.startswith('.')])
+            n_slices_list.append(n_dcm)
         else:
             n_slices_list.append(0)
     df['dir'] = dirs

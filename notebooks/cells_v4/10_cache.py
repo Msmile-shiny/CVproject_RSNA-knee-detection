@@ -27,12 +27,12 @@ def _detect_laterality_fast(needed_slot_map):
             series_dir = Path(slot_info['dir']) if 'dir' in slot_info else None
             if series_dir is None or not series_dir.exists():
                 continue
-            dcm_files = sorted([f for f in series_dir.iterdir() if f.name.endswith('.dcm')])
+            dcm_files = _list_dcm_files(series_dir)
             if not dcm_files:
                 continue
             try:
                 ds = pydicom.dcmread(
-                    str(dcm_files[0]), stop_before_pixels=True, force=True,
+                    str(series_dir / dcm_files[0]), stop_before_pixels=True, force=True,
                     specific_tags=['Laterality', 'ImageLaterality', 'ImagePositionPatient'])
                 # 优先 DICOM Laterality 标签
                 for tag_name in ['Laterality', 'ImageLaterality']:

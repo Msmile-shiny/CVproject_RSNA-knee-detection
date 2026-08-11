@@ -13,6 +13,29 @@ dinov2_backbone = timm.create_model(
 weights_path = Path(CFG.get('dinov2_weights', ''))
 if weights_path.exists():
     state_dict = torch.load(weights_path, map_location='cpu', weights_only=True)
+
+    # ★ DINOv2 原生 img_size=518 → pos_embed [1, 1370, 384]
+    # 但模型用 img_size=224 → pos_embed [1, 257, 384]，需要插值
+    if 'pos_embed' in state_dict:
+        pos_ckpt = state_dict['pos_embed']          # [1, N_ckpt, dim]
+        pos_model = dinov2_backbone.pos_embed.data   # [1, N_model, dim]
+        if pos_ckpt.shape != pos_model.shape:
+            cls_ckpt = pos_ckpt[:, :1, :]             # CLS token 保留
+            patch_ckpt = pos_ckpt[:, 1:, :]           # patch tokens
+
+            grid_ckpt = int(math.isqrt(patch_ckpt.shape[1]))
+            grid_model = int(math.isqrt(pos_model.shape[1] - 1))
+
+            patch_ckpt = patch_ckpt.reshape(1, grid_ckpt, grid_ckpt, -1).permute(0, 3, 1, 2)
+            # bicubic 插值 → 目标 grid
+            patch_interp = F.interpolate(
+                patch_ckpt, size=(grid_model, grid_model), mode='bicubic',
+                antialias=True)
+            patch_interp = patch_interp.permute(0, 2, 3, 1).reshape(1, -1, pos_model.shape[-1])
+            state_dict['pos_embed'] = torch.cat([cls_ckpt, patch_interp], dim=1)
+            if IS_MAIN:
+                print(f'  pos_embed interpolated: [{grid_ckpt}×{grid_ckpt}] → [{grid_model}×{grid_model}]')
+
     dinov2_backbone.load_state_dict(state_dict, strict=True)
     if IS_MAIN: print(f'  DINOv2 pretrained weights loaded: {weights_path}')
 elif IS_MAIN:
