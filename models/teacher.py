@@ -474,6 +474,20 @@ class MultiArchImageTeacher:
             weight = float(arch_cfg.get("weight", 1.0 / n_archs))
             arch_weights[name] = weight
 
+            # ── Per-architecture 超参覆盖 ─────────────────
+            # 支持每个架构独立设置 lr/epochs/batch_size/patience
+            arch_lr = float(arch_cfg.get("lr", lr))
+            arch_epochs = int(arch_cfg.get("epochs", epochs))
+            arch_batch_size = int(arch_cfg.get("batch_size", batch_size))
+            arch_patience = int(arch_cfg.get("patience", patience))
+            arch_n_folds = int(arch_cfg.get("n_folds", n_folds))
+
+            if arch_lr != lr or arch_epochs != epochs:
+                logger.info(
+                    "  %s 专属参数: lr=%.1e epochs=%d batch=%d patience=%d",
+                    name, arch_lr, arch_epochs, arch_batch_size, arch_patience,
+                )
+
             single_teacher = ImageTeacher(
                 model_factory=factory,
                 device=self.device,
@@ -486,11 +500,11 @@ class MultiArchImageTeacher:
                 train_dataset=train_dataset,
                 gold_mask=gold_mask,
                 gold_labels=gold_labels,
-                n_folds=n_folds,
-                epochs=epochs,
-                batch_size=batch_size,
-                lr=lr,
-                patience=patience,
+                n_folds=arch_n_folds,
+                epochs=arch_epochs,
+                batch_size=arch_batch_size,
+                lr=arch_lr,
+                patience=arch_patience,
                 criterion=criterion,
                 save_dir=str(arch_save_dir),
             )

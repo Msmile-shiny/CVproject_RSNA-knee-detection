@@ -190,3 +190,134 @@ class CompositeDistillationLoss(nn.Module):
         )
 
         return loss_gold + loss_nlp + self.distill_weight * loss_distill
+
+
+# ═══════════════════════════════════════════════════════════════════
+# ConfidenceWeightedDistillationLoss — ASL + Confidence-weighted BCE
+# ═══════════════════════════════════════════════════════════════════
+
+
+class ConfidenceWeightedDistillationLoss(nn.Module):
+    """ASL + Confidence-weighted 组合蒸馏损失 (v2 升级版).
+
+    替代 CompositeDistillationLoss, 核心改进::
+
+        L = ASL(gold) + λ_t * Confidence × SoftBCE(teacher)
+                      + λ_n * Confidence × SoftBCE(nlp)
+
+    与 v1 的区别:
+      - Gold: FocalBCE → ASL (asymmetric focusing + probability shifting)
+      - Confidence: PerClassFusion 预计算 → 直接传入 (不再动态算)
+      - NLP weight: 从 FocalBCE weight → confidence 加权 soft BCE
+      - 移除: KL divergence, hard-coded gold/nlp weight 常数
+      - 简化: 所有项统一用 confidence 加权, ASL 处理正负不平衡
+
+    使用::
+
+        criterion = ConfidenceWeightedDistillationLoss(
+            gamma_pos=[1,0,1,0,1,1,1,1,1,1,0,0],   # per-class
+            gamma_neg=[4]*12,
+            teacher_weight=0.3,
+            nlp_weight=0.5,
+        )
+        loss = criterion(logits, targets)
+        # targets 需包含: gold_labels, gold_mask,
+        #                teacher_prob, nlp_prob, confidence
+
+    Args:
+        gamma_pos: ASL 正样本 γ, 标量或 per-class 列表
+        gamma_neg: ASL 负样本 γ
+        asl_clip: ASL 概率偏移 m
+        teacher_weight: Teacher 蒸馏项权重 (default 0.3)
+        nlp_weight: NLP 软标签项权重 (default 0.5)
+        teacher_temperature: Teacher soft BCE 温度 (default 1.0)
+    """
+
+    def __init__(
+        self,
+        gamma_pos: float | list[float] = 1.0,
+        gamma_neg: float | list[float] = 4.0,
+        asl_clip: float = 0.05,
+        teacher_weight: float = 0.3,
+        nlp_weight: float = 0.5,
+        teacher_temperature: float = 1.0,
+    ):
+        super().__init__()
+        from losses.asl import AsymmetricLoss
+
+        self.asl = AsymmetricLoss(
+            gamma_pos=gamma_pos,
+            gamma_neg=gamma_neg,
+            clip=asl_clip,
+            reduction="mean",
+        )
+        self.teacher_weight = float(teacher_weight)
+        self.nlp_weight = float(nlp_weight)
+        self.teacher_temperature = float(teacher_temperature)
+
+    def forward(
+        self,
+        logits: torch.Tensor,           # [B, 12]
+        targets: dict[str, torch.Tensor],
+    ) -> torch.Tensor:
+        """组合损失.
+
+        Args:
+            logits: Student 模型原始 logits [B, 12]
+            targets: dict, 需包含::
+
+                "gold_labels":   [B, 12]  gold hard labels (0/1)
+                "gold_mask":     [B] bool  True = gold 样本
+                "teacher_prob":  [B, 12]  Teacher 融合软标签
+                "nlp_prob":      [B, 12]  NLP 校准软标签
+                "confidence":    [B, 12]  PerClassFusion 预计算 confidence
+
+        Returns:
+            scalar loss
+        """
+        gold_mask = targets["gold_mask"]  # [B] bool
+        B = logits.shape[0]
+
+        # ── L_gold: ASL on gold hard labels ──────────────────
+        loss_gold = torch.tensor(0.0, device=logits.device)
+        if gold_mask.any():
+            gold_logits = logits[gold_mask]
+            gold_labels = targets["gold_labels"][gold_mask]
+            # Gold 样本 confidence = 1.0 (完全可信)
+            gold_conf = torch.ones_like(gold_labels)
+            loss_gold = self.asl(gold_logits, gold_labels, gold_conf)
+
+        # ── L_teacher: confidence-weighted soft BCE ──────────
+        teacher_prob = targets["teacher_prob"]           # [B, 12]
+        confidence = targets["confidence"]               # [B, 12]
+
+        # Temperature scaling (可选)
+        if self.teacher_temperature != 1.0:
+            T = self.teacher_temperature
+            teacher_prob_t = teacher_prob.pow(1.0 / T) / (
+                teacher_prob.pow(1.0 / T) + (1.0 - teacher_prob).pow(1.0 / T)
+            )
+        else:
+            teacher_prob_t = teacher_prob
+
+        # Soft BCE weighted by confidence
+        teacher_bce = F.binary_cross_entropy_with_logits(
+            logits, teacher_prob_t, reduction="none",
+        )  # [B, 12]
+
+        loss_teacher = (teacher_bce * confidence).sum() / confidence.sum().clamp_min(1.0)
+
+        # ── L_nlp: confidence-weighted soft BCE on NLP ───────
+        nlp_prob = targets["nlp_prob"]                   # [B, 12]
+        nlp_bce = F.binary_cross_entropy_with_logits(
+            logits, nlp_prob, reduction="none",
+        )  # [B, 12]
+
+        loss_nlp = (nlp_bce * confidence).sum() / confidence.sum().clamp_min(1.0)
+
+        # ── 组合 ──────────────────────────────────────────────
+        return (
+            loss_gold
+            + self.teacher_weight * loss_teacher
+            + self.nlp_weight * loss_nlp
+        )

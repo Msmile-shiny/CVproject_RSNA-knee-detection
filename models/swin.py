@@ -96,3 +96,77 @@ class Swin25D(nn.Module):
         elif features.dim() == 3:
             return features.mean(dim=1)
         return features
+
+
+class SwinBase25D(nn.Module):
+    """Swin-Base 2.5D 模型 — 用于 Multi-Arch Teacher Ensemble.
+
+    Swin-B 相比 Swin-T 的升级:
+      - 更多层/头: {2,2,18,2} stages, heads {4,8,16,32}
+      - 参数量: 88M (Swin-B) vs 28M (Swin-T)
+      - feature_dim = 1024
+
+    Args:
+        in_channels: 输入通道数 (默认 5)
+        num_classes: 输出类别数 (默认 12)
+        pretrained: 是否加载 ImageNet-22K 预训练权重
+        dropout: 分类头 dropout
+        img_size: 输入图像尺寸 (默认 384)
+        window_size: Swin window size (默认 7)
+    """
+
+    def __init__(
+        self,
+        in_channels: int = 5,
+        num_classes: int = 12,
+        pretrained: bool = True,
+        dropout: float = 0.3,
+        img_size: int = 384,
+        window_size: int = 7,
+    ):
+        super().__init__()
+
+        if not HAS_TIMM:
+            raise ImportError("timm 未安装. pip install timm")
+
+        # Swin-B: 层次化 Transformer, ~88M params
+        self.backbone = timm.create_model(
+            "swin_base_patch4_window7_224",
+            pretrained=pretrained,
+            in_chans=in_channels,
+            num_classes=0,
+            img_size=img_size,
+            features_only=False,
+        )
+
+        if hasattr(self.backbone, "num_features"):
+            self.feature_dim = self.backbone.num_features
+        else:
+            self.feature_dim = 1024  # Swin-Base
+
+        self.head = ClassificationHead(
+            in_features=self.feature_dim,
+            hidden_features=self.feature_dim // 2,
+            num_classes=num_classes,
+            dropout=dropout,
+        )
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """x: [B, 5, H, W] → logits: [B, 12]."""
+        features = self.backbone.forward_features(x)
+
+        if features.dim() == 4:
+            features = features.mean(dim=[2, 3])
+        elif features.dim() == 3:
+            features = features.mean(dim=1)
+
+        return self.head(features)
+
+    def extract_features(self, x: torch.Tensor) -> torch.Tensor:
+        """提取池化后特征 (不含分类头)."""
+        features = self.backbone.forward_features(x)
+        if features.dim() == 4:
+            return features.mean(dim=[2, 3])
+        elif features.dim() == 3:
+            return features.mean(dim=1)
+        return features
