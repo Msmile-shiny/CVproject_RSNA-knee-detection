@@ -95,6 +95,50 @@ class MultiViewModel(nn.Module):
         return self
 
 
+# ---- ★ Jitter TTA 增广视图 (0.91 notebook augment() 移植) ----
+def tta_jitter(imgs, seed=AUG_SEED):
+    """每窗口生成一个确定性增广视图。
+
+    几何（旋转 ±AUG_ROT_DEG° / 缩放 +[0, AUG_SCALE] / 平移 ±AUG_SHIFT）+
+    强度 ±AUG_INTENSITY，border 填充（0.91 同款）。
+    固定种子 → 同一批输入每次生成相同增广，验证/测试/提交全程可复现。
+    输入 [..., 3, H, W] uint8 → 输出同形状同 dtype。
+    """
+    lead = imgs.shape[:-3]
+    x = imgs.reshape(-1, *imgs.shape[-3:]).float()
+    n, dev = (x.shape[0], x.device)
+    gen = torch.Generator(device=dev).manual_seed(int(seed) % (2 ** 63 - 1))
+
+    rot = (torch.rand(n, device=dev, generator=gen) - 0.5) * 2 * (AUG_ROT_DEG * np.pi / 180)
+    sc = 1.0 + torch.rand(n, device=dev, generator=gen) * AUG_SCALE
+    tx = (torch.rand(n, device=dev, generator=gen) - 0.5) * 2 * AUG_SHIFT
+    ty = (torch.rand(n, device=dev, generator=gen) - 0.5) * 2 * AUG_SHIFT
+    cos, sin = (torch.cos(rot) / sc, torch.sin(rot) / sc)
+
+    theta = torch.zeros(n, 2, 3, device=dev, dtype=torch.float32)
+    theta[:, 0, 0], theta[:, 0, 1], theta[:, 0, 2] = (cos, -sin, tx)
+    theta[:, 1, 0], theta[:, 1, 1], theta[:, 1, 2] = (sin, cos, ty)
+
+    grid = F.affine_grid(theta, x.shape, align_corners=False)
+    x = F.grid_sample(x, grid, mode='bilinear', padding_mode='border', align_corners=False)
+
+    scale = 1.0 + (torch.rand(n, 1, 1, 1, device=dev, generator=gen) - 0.5) * 2 * AUG_INTENSITY
+    x = (x * scale).clamp(0, 255)
+    return x.reshape(*lead, *x.shape[-3:]).to(imgs.dtype)
+
+
+def stack_views(logits_flat, B, W, n_orig):
+    """TTA 视图分组: [V*B*W, C]（B-major：每研究 W 行连续，原始块在前）→ [B, V*W, C]。
+
+    V=2（jitter 开启）时输出每研究 [前 W 行原始视图, 后 W 行增广视图]；
+    n_orig=None（无 jitter）时即 [B, W, C]。
+    ★ 不可用 reshape(B, -1, C) 直接切——行序是研究大循环，会跨研究串位。
+    """
+    if n_orig is None:
+        return logits_flat.reshape(B, W, -1)
+    return logits_flat.view(2, B, W, -1).permute(1, 0, 2, 3).reshape(B, 2 * W, -1)
+
+
 # ---- ★ 诊断特异性 TTA 池化 ----
 DIAG_POOL_IDX = {}
 for target_name, mode in DIAG_POOL.items():
@@ -102,18 +146,29 @@ for target_name, mode in DIAG_POOL.items():
         DIAG_POOL_IDX[TARGET_COLUMNS.index(target_name)] = mode
 
 
-def diagnostic_pool(logits_windows, pool_idx=None):
-    """对 [B, W, C] logits 应用诊断特异性池化。
+def diagnostic_pool(logits_views, pool_idx=None, n_orig=None):
+    """对 [B, V, C] logits 应用诊断特异性池化。
 
-    - max:  局部病灶保留最强信号窗口
-    - top2: ACL/MCL 取前2强窗口平均
-    - mean: 弥漫性病变取全窗口平均（默认）
+    - max:           局部病灶保留最强信号窗口
+    - top2:          ACL/MCL 取前2强窗口平均
+    - mean:          弥漫性病变取全窗口平均（默认）
+    - original_mean: 仅无 jitter 原始视图平均（Synovitis, 0.91 同款）
+
+    jitter TTA 模式（n_orig 给定）: 前 n_orig 个视图为原始视图、其余为增广视图；
+    先按窗口做视图平均（0.91 的 win_probs），再做 per-target 窗口池化。
+    n_orig=None 时全部视图视为原始视图（original_mean ≡ mean，与旧版行为一致）。
     """
     if pool_idx is None:
         pool_idx = DIAG_POOL_IDX
 
-    B, W, C = logits_windows.shape
-    probs = torch.sigmoid(logits_windows)               # [B, W, C]
+    B, V, C = logits_views.shape
+    if n_orig is not None:
+        orig_probs = torch.sigmoid(logits_views[:, :n_orig])             # [B, W, C]
+        probs = (orig_probs + torch.sigmoid(logits_views[:, n_orig:])) / 2  # 视图平均
+    else:
+        probs = torch.sigmoid(logits_views)
+        orig_probs = probs
+
     result = probs.mean(dim=1)                          # [B, C] — 默认 mean
 
     for j, mode in pool_idx.items():
@@ -121,7 +176,9 @@ def diagnostic_pool(logits_windows, pool_idx=None):
         if mode == 'max':
             result[:, j] = x.max(dim=1).values
         elif mode == 'top2':
-            result[:, j] = x.topk(min(2, W), dim=1).values.mean(dim=1)
+            result[:, j] = x.topk(min(2, x.shape[1]), dim=1).values.mean(dim=1)
+        elif mode == 'original_mean':
+            result[:, j] = orig_probs[:, :, j].mean(dim=1)
 
     return result  # [B, C]
 
@@ -130,4 +187,7 @@ if IS_MAIN:
     n_total = sum(p.numel() for p in SlotHead(1152, 6, 12).parameters())
     print(f'SlotHead params: {n_total/1e6:.3f}M')
     print(f'Diag pool targets: {list(DIAG_POOL_IDX.keys())}')
+    print(f'Jitter TTA: {"ON" if CFG.get("tta_jitter", False) else "OFF"} '
+          f'(rot ±{AUG_ROT_DEG:.0f}°, scale +{AUG_SCALE:.0%}, '
+          f'shift ±{AUG_SHIFT:.0%}, intensity ±{AUG_INTENSITY:.0%})')
     print('Model v4 ready.')

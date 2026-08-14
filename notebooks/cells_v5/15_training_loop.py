@@ -18,6 +18,7 @@ print(f'  Effective batch = {CFG["batch_size"]} × {N_GPUS} GPU × {CFG["grad_ac
 print(f'  WeightedSoftBCE (confidence-weighted) | EMA({CFG["ema_decay"]})')
 print(f'  ★ 288px / Physical crop: {CFG["crop_mm"]}mm | Laterality norm | Spatial ordering')
 print(f'  ★ Wall-clock budget: {CFG["max_train_minutes"]}min (Kaggle 9h 会话上限)')
+print(f'  ★ Seed: {CFG["seed"]} → checkpoint {CKPT_NAME} (换 seed 重跑 = 新集成成员)')
 print()
 
 t_start = time.time()
@@ -72,7 +73,7 @@ for epoch in range(1, CFG['epochs'] + 1):
             'targets': TARGET_COLUMNS,
             'slots': SLOTS,
         }
-        torch.save(ckpt, output_dir / 'checkpoints' / 'best_model.pt')
+        torch.save(ckpt, output_dir / 'checkpoints' / CKPT_NAME)
 
         save_validation_report(val_metrics, output_dir, epoch=epoch, is_best=True)
         print(f'  ★ Best model saved (epoch={epoch}, AUC={best_auc:.4f})')
@@ -95,7 +96,7 @@ for epoch in range(1, CFG['epochs'] + 1):
         print(f'Early stopping at epoch {epoch} (patience={CFG["early_stop_patience"]})')
         break
 
-    # ★ 墙钟保护: 训练超过预算即优雅停止 (best_model.pt 已在上面保存)
+    # ★ 墙钟保护: 训练超过预算即优雅停止 (best checkpoint 已在上面保存)
     elapsed_min = (time.time() - t_start) / 60
     if elapsed_min > CFG['max_train_minutes']:
         print(f'Wall-clock budget reached ({elapsed_min:.0f}min > '
@@ -109,5 +110,5 @@ hist_df.to_csv(output_dir / 'training_history.csv', index=False)
 total_time = time.time() - t_start
 print(f'\n{"="*60}')
 print(f'Training complete: {total_time/60:.0f}min | Best AUC={best_auc:.4f} @ epoch {best_epoch}')
-print(f'Best model: {output_dir / "checkpoints" / "best_model.pt"}')
+print(f'Best model: {output_dir / "checkpoints" / CKPT_NAME}')
 print(f'{"="*60}')

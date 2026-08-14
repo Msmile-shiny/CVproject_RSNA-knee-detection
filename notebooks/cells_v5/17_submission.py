@@ -11,15 +11,19 @@ print('GOLD VALIDATION + TEST INFERENCE')
 print('=' * 60)
 
 # ---- 加载最佳 checkpoint ----
-best_ckpt_path = output_dir / 'checkpoints' / 'best_model.pt'
+best_ckpt_path = output_dir / 'checkpoints' / CKPT_NAME
 if not best_ckpt_path.exists():
     raise FileNotFoundError(
         f'Best model checkpoint not found: {best_ckpt_path}\n'
-        'Training must produce best_model.pt (best validation AUC). '
+        f'Training must produce {CKPT_NAME} (best validation AUC). '
         'Check that at least one epoch completed and saved a best model.')
 
 print(f'Loading checkpoint: {best_ckpt_path}')
 ckpt = torch.load(best_ckpt_path, map_location='cpu', weights_only=False)
+
+# ★ seed 交叉验证: 防止下载归档时混用不同会话的产物
+ckpt_seed = (ckpt.get('config') or {}).get('seed', '?')
+print(f'  Checkpoint seed: s{ckpt_seed} | 本会话 seed: s{CFG["seed"]}')
 
 # ---- Build inference model ----
 infer_backbone = timm.create_model(
@@ -79,14 +83,20 @@ gold_probs_list, gold_uids_list = [], []
 
 @torch.no_grad()
 def infer_gold_batch(windows_batch, mask_batch, model):
-    """TTA + 诊断池化"""
+    """TTA + 诊断池化（jitter 视图平均 → per-target 窗口池化）"""
     B = windows_batch.shape[0]
     W = N_WINDOWS
-    flat = windows_batch.reshape(B * W, *windows_batch.shape[2:]).to(DEVICE)
+    flat = windows_batch.reshape(B * W, *windows_batch.shape[2:]).to(DEVICE)  # B-major
     flat_mask = mask_batch.unsqueeze(1).expand(B, W, -1).reshape(B * W, -1).to(DEVICE)
-    logits = model(flat, flat_mask)  # [B*W, 12]
-    logits_w = logits.reshape(B, W, -1)  # [B, W, 12]
-    return diagnostic_pool(logits_w.cpu())  # [B, 12]
+    if CFG.get('tta_jitter', False):
+        flat = torch.cat([flat, tta_jitter(flat)], dim=0)   # [2*B*W, ...] 原始块在前
+        flat_mask = flat_mask.repeat(2, 1)
+        n_orig = W
+    else:
+        n_orig = None
+    logits = model(flat, flat_mask)  # [V*B*W, 12]
+    logits_v = stack_views(logits, B, W, n_orig)  # [B, V*W, 12]
+    return diagnostic_pool(logits_v.cpu(), n_orig=n_orig)  # [B, 12]
 
 for start in range(0, len(gold_rows), 8):
     batch = gold_rows[start:start+8]
@@ -123,7 +133,8 @@ for i, c in enumerate(TARGET_COLUMNS):
 valid_aucs = [v for v in gold_aucs.values() if not math.isnan(v)]
 gold_macro = float(np.mean(valid_aucs)) if valid_aucs else float('nan')
 
-print(f'\nGold Validation ({len(gold_uids_list)} studies, {N_WINDOWS}-window TTA + diag pool):')
+print(f'\nGold Validation ({len(gold_uids_list)} studies, '
+      f'{N_WINDOWS}-window TTA{"+jitter" if CFG.get("tta_jitter", False) else ""} + diag pool):')
 print(f'  {"Class":<20s} {"AUC":>7s} {"Pos":>5s}')
 for i, c in enumerate(TARGET_COLUMNS):
     a = gold_aucs[c]
@@ -312,10 +323,17 @@ if len(test_studies) > 0:
         mask_batch = torch.stack(masks_list)
 
         B, W = windows_batch.shape[0], N_WINDOWS
-        flat = windows_batch.reshape(B * W, *windows_batch.shape[2:]).to(DEVICE)
+        flat = windows_batch.reshape(B * W, *windows_batch.shape[2:]).to(DEVICE)  # B-major
         flat_mask = mask_batch.unsqueeze(1).expand(B, W, -1).reshape(B * W, -1).to(DEVICE)
+        if CFG.get('tta_jitter', False):
+            flat = torch.cat([flat, tta_jitter(flat)], dim=0)   # [2*B*W, ...] 原始块在前
+            flat_mask = flat_mask.repeat(2, 1)
+            n_orig = W
+        else:
+            n_orig = None
         logits = model(flat, flat_mask)
-        probs = diagnostic_pool(logits.reshape(B, W, -1).cpu())  # [B, C]
+        probs = diagnostic_pool(
+            stack_views(logits, B, W, n_orig).cpu(), n_orig=n_orig)  # [B, C]
 
         # Studies with no slots → fill 0.5
         for i, is_empty in enumerate(empty_mask):
@@ -371,12 +389,13 @@ for i, uid in enumerate(gold_uids_list):
         row[f'true_{c}'] = int(gold_labels_arr[i, j])
         row[f'prob_{c}'] = float(gold_probs_all[i, j])
     gold_rows_out.append(row)
-pd.DataFrame(gold_rows_out).to_csv(output_dir / 'gold_validation_predictions.csv', index=False)
+pd.DataFrame(gold_rows_out).to_csv(
+    output_dir / f'gold_validation_predictions_{SEED_TAG}.csv', index=False)
 
 auc_rows = [{'class': c, 'auc': gold_aucs[c], 'n_pos': int(gold_labels_arr[:, i].sum())}
             for i, c in enumerate(TARGET_COLUMNS)]
 pd.DataFrame(auc_rows + [{'class': 'macro_avg', 'auc': gold_macro, 'n_pos': 0}]
-            ).to_csv(output_dir / 'gold_validation_auc.csv', index=False)
+            ).to_csv(output_dir / f'gold_validation_auc_{SEED_TAG}.csv', index=False)
 
 print(f'\nDone!')
 print(f'  Gold AUC: {gold_macro:.4f}')

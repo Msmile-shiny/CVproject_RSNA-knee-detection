@@ -127,12 +127,21 @@ def validate_epoch(model, loader, criterion_hard):
         n_batches += 1
 
         # ★ 7窗口 TTA + 诊断池化：单次批量前向传播
-        window_list = [slots_full[:, :, w:w + CFG['group_size']] for w in range(n_windows)]
-        slots_flat = torch.cat(window_list, dim=0)     # [B*7, 6, 3, H, W]
-        mask_flat = mask.repeat(n_windows, 1)           # [B*7, 6]
-        logits_flat = model(slots_flat, mask_flat)      # [B*7, C]
-        logits_windows = logits_flat.reshape(B, n_windows, -1)  # [B, 7, C]
-        probs_tta = diagnostic_pool(logits_windows)     # [B, C]
+        #   B-major 布局（每研究 7 窗口连续），stack_views 分组——防止跨研究串位
+        #   jitter TTA (0.91 移植): 每窗口额外 1 个确定性增广视图 → 视图平均 → per-target 窗口池化
+        windows = torch.stack(
+            [slots_full[:, :, w:w + CFG['group_size']] for w in range(n_windows)], dim=1)  # [B, 7, 6, 3, H, W]
+        slots_flat = windows.reshape(B * n_windows, *windows.shape[2:])  # [B*7, ...] B-major
+        mask_flat = mask.unsqueeze(1).expand(B, n_windows, -1).reshape(B * n_windows, -1)
+        if CFG.get('tta_jitter', False):
+            slots_flat = torch.cat([slots_flat, tta_jitter(slots_flat)], dim=0)  # [2*B*7, ...] 原始块在前
+            mask_flat = mask_flat.repeat(2, 1)
+            n_orig = n_windows
+        else:
+            n_orig = None
+        logits_flat = model(slots_flat, mask_flat)      # [V*B*7, C]
+        logits_views = stack_views(logits_flat, B, n_windows, n_orig)  # [B, V*7, C]
+        probs_tta = diagnostic_pool(logits_views, n_orig=n_orig)  # [B, C]
 
         all_probs.append(probs_tta.cpu())
         all_labels.append(labels.cpu())

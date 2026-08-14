@@ -37,13 +37,24 @@ SLOT_PRIORS = {
 
 # ---- Diagnostic-specific TTA pooling ----
 # 局部病灶用 max（保留最强信号），ACL/MCL 用 top2，弥漫性病变用 mean
+# 与 0.91 notebook 的 TTA_TARGET_POOL 逐项一致
 DIAG_POOL = {
     "Fracture": "max", "Contusion": "max",
     "Medial Meniscus": "max", "Lateral Meniscus": "max",
     "Baker's": "max",
     "ACL": "top2", "MCL": "top2",
-    # 其余（OA, Effusion, Synovitis）默认 mean
+    # ★ 0.91 同款: 仅用无 jitter 原始视图平均
+    #   (jitter TTA 开启时生效; 关闭时所有视图皆原始, 等价于 mean)
+    "Synovitis": "original_mean",
+    # 其余（OA, Effusion）默认 mean
 }
+
+# ---- Jitter TTA 增广 (0.91 notebook augment() 移植) ----
+AUG_ROT_DEG = 8.0          # 旋转 ±8°
+AUG_SCALE = 0.08           # 缩放 +[0, 8%]
+AUG_SHIFT = 0.05           # 平移 ±5%
+AUG_INTENSITY = 0.1        # 强度 ±10%
+AUG_SEED = 42              # 增广视图固定种子（确定性, 跨验证/测试/提交可复现）
 
 CFG = {
     # --- Paths ---
@@ -77,6 +88,7 @@ CFG = {
     'batch_size': 6,
     'grad_accum_steps': 2,
     'epochs': 30,                  # ★ v5: 40→30 (288px 计算量 1.65×, 靠标签质量补偿)
+    'seed': 42,                    # ★ seed 自集成: 每换一个 seed 跑一个会话 (42/142/242 → v5s1/s2/s3)
     'lr': 2e-4,
     'backbone_lr': 1e-5,
     'weight_decay': 1e-4,
@@ -92,9 +104,23 @@ CFG = {
     'ema_decay': 0.999,            # EMA 权重平均 (v4 沿用)
     'max_train_minutes': 420,      # ★ 训练墙钟保护 (Kaggle 9h 会话上限内留出推理时间)
     'diag_pool_train': True,       # 训练时也做诊断池化
+    'tta_jitter': True,            # ★ jitter TTA (0.91 移植): 每窗口额外 1 个确定性增广视图,
+                                   #   视图平均后再窗口池化; 验证/推理成本 ×2 (训练不变)
     'hdr_threads': 8,              # DICOM 并行读取线程数
     'pix_threads': 4,              # 像素解码并行线程数
 }
+
+# ---- 全局随机种子 — seed 自集成的成员独立性来源 ----
+#   换 CFG['seed'] = 新成员: 训练顺序/头初始化/优化路径全部不同 → 半独立
+import random
+random.seed(CFG['seed'])
+np.random.seed(CFG['seed'])
+torch.manual_seed(CFG['seed'])
+if torch.cuda.is_available():
+    torch.cuda.manual_seed_all(CFG['seed'])
+
+SEED_TAG = f's{CFG["seed"]}'              # 产物文件名后缀 (s42/s142/s242)
+CKPT_NAME = f'best_model_{SEED_TAG}.pt'   # 15 保存 / 17 加载共用
 
 # Device
 N_GPUS = torch.cuda.device_count()
