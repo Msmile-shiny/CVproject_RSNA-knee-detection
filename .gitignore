@@ -63,3 +63,6 @@ notebooks/kaggle_preprocess.ipynb
 # === OS ===
 .DS_Store
 Thumbs.db
+
+# === Misc ===
+*.lnk
