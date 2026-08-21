@@ -64,7 +64,7 @@ _master_arr = _parent_alpha*_parent_rank + _legacy_alpha*_legacy_rank + _b3_alph
 
 ## 4. 组装脚本（本机跑，产出注入版 notebook）
 
-依赖队友本机的 `reference_code/`（`gold_emission_cell.py` 未入 git），脚本本身可放 `notebooks/build_super_ours.py`：
+脚本已落地 [notebooks/build_super_ours.py](notebooks/build_super_ours.py)（依赖队友本机 `reference_code/gold_emission_cell.py`，缺了会自动跳过 emission 并告警；`--ckpt` / `--no-emission` / `--out` 可选，已实测跑通产出 8 cells）。核心拼装逻辑如下：
 
 ```python
 import json, uuid
