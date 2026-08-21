@@ -1,7 +1,7 @@
 # PLAN STAGE 2 — 0.914 之后的一阶段计划 (2026-08-17 起)
 
-> 状态快照 (2026-08-19 更新): v47 诊断**已结案** — 作者本人成绩就是 0.914, 我们的复刻是忠实的, 不存在部署缺陷。
-> 阶段 1 目标已升级为 **super-ensemble 复刻 (LB 0.92)**, 复刻包已备好并 push 到 git, 等你自己提交 Kaggle。
+> 状态快照 (2026-08-21 更新): v47 诊断**已结案** — 作者本人成绩就是 0.914, 我们的复刻是忠实的, 不存在部署缺陷。
+> 阶段 1 **已完成**: super-ensemble 复刻已提交并命中 **LB 0.92**, v47 复刻 **0.914** 亦确认 → 基线正式 0.92, 转阶段 2。
 > 每步标注 **[SOLO]** (可独立完成) / **[CLAUDE]** (等我回归)。
 > 竞赛截止日: ____ (自行查 Kaggle 填); 每日提交上限: ____ (查 Submissions 页, 通常 5/天)。
 > 铁律不变: 本地永远 CPU (BSOD 禁令) / GPU 只用于 Kaggle 云端 / 评分提交不耗周配额 / 结论必须落本文件或 memory。
@@ -41,6 +41,7 @@ v47 线 (含第 21 成员注入) 归档弃用 — 其注入模板 (member cell e
 
 > 复刻包已备好并 push 到 git: `notebooks/kernel_push_super/`
 > (notebook 与 `amanatar/rsna-knee-super-ensemble` 原文逐字一致, sha256 校验过; README 含两条路线)。
+> ✅ **已提交并命中 LB 0.92** (2026-08-21), v47 复刻 0.914 亦确认 → 基线升到 0.92, 决策门通过, 转阶段 2。
 
 1. **[SOLO] 路线 A (推荐)**: 打开 https://www.kaggle.com/code/amanatar/rsna-knee-super-ensemble → **Copy & Edit**
    (数据集/模型/加速器版本 pin 全部继承) → Settings: Accelerator **GPU T4 x2** → **Save Version** →
@@ -65,6 +66,8 @@ master rank blend 在 cell 5 (0.94/0.06/0.05 权重, env 可调), 注入面比 v
 1. 移植 member cell: 复用 `build_fork_v47.py` 的 exec 隔离模式; 核对该 notebook 的 globals (ASSET/ROOT/DINO/CKPT + rank-blend 输出变量名)。
 2. 移植 gold emission → 交互跑 (3 行占位 test) → 下载 gold_members/ → α 扫描 → **只用全局 macro 裁决 α** (≥+0.003 标准, lateral-swap 教训: 单类决策勿做)。
 3. α>0 → ACTIVE=True 提交; α=0 → 保持纯复刻, 把精力转阶段 3。
+
+> 📋 具体注入改法已落文档: [PLAN_STAGE2_INJECT.md](./PLAN_STAGE2_INJECT.md) — master blend 定位 (cell 4 的 `_master_arr`)、三 cell 插入位置、复用 `build_fork_v47.py` 的 member/emission builder + 唯一新写 blend cell (`notebooks/cells_super/ours_blend_cell.py`)、两档 α 扫描流程。
 
 ---
 
@@ -102,5 +105,5 @@ master rank blend 在 cell 5 (0.94/0.06/0.05 权重, env 可调), 注入面比 v
 | 日期 | notebook | 设置 | 运行时长 | LB | 备注 |
 |---|---|---|---|---|---|
 | 2026-08-17 | easoncyy/rsna-knee-fork-v47-ours (CLI push v4) | 默认镜像 + 默认加速器 | __ | **0.914** | 结案: 作者本尊就是 0.914, 忠实复刻 ✓ |
-| 2026-08-19 | super-ensemble 复刻包 (`kernel_push_super/`) | — (未提交) | — | — | 包已备好 + verify 全过 + push git; 等用户按阶段 1 提交 |
+| 2026-08-21 | super-ensemble 复刻 (`amanatar/rsna-knee-super-ensemble`) | GPU | __ | **0.92** | ✅ 精确命中目标 → 基线 0.92, 转阶段 2 |
 | | | | | | |
