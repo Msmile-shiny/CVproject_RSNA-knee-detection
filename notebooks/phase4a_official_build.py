@@ -1,4 +1,6 @@
 # Phase 4A: exact official DINOv3-L architecture, loaded entirely offline.
+import json
+
 WEIGHT_SHA256 = '385a775822107b68eaa486336feb982e1ce7bd6d4e8c03ceb482a0bf546f2ff9'
 
 def _find_one(pattern, description):

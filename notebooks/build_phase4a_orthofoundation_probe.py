@@ -114,7 +114,13 @@ Independent member screen: knee-MRI-specific DINOv3-L initialization, historical
 
 This is a screening experiment. Dense 64–96-slice MIL is Phase 4B only if this backbone adds signal.
 ''')]
-    for path in sorted((ROOT / 'cells_v5').iterdir()):
+    # Load and validate the large foundation model before the ~80-minute DICOM cache.
+    # Definitions in cells 12/13 do not depend on the cache or dataloaders.
+    def phase4_order(path):
+        number = int(path.name[:2])
+        return {12: 10, 13: 11, 10: 12, 11: 13}.get(number, number)
+
+    for path in sorted((ROOT / 'cells_v5').iterdir(), key=phase4_order):
         if path.suffix not in ('.py', '.md'):
             continue
         source = path.read_text(encoding='utf-8')
