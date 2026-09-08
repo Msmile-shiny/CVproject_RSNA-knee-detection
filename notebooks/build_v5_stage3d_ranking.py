@@ -1,6 +1,7 @@
 """Generate matched 130-mm old-v5 controls and auxiliary ranking experiment."""
 import hashlib
 import json
+import base64
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -17,20 +18,30 @@ def build(rank_lambda):
     trust_dir = ROOT.parent / 'data/processed/stage3d_trust'
     trust_manifest = json.loads((trust_dir / 'manifest.json').read_text())
     asset_sha = hashlib.sha256((trust_dir / 'stage3d_trust.npz').read_bytes()).hexdigest()
+    asset_b64 = base64.b64encode((trust_dir / 'stage3d_trust.npz').read_bytes()).decode('ascii')
     assert asset_sha == trust_manifest['asset_sha256']
     assert hashlib.sha256((ROOT.parent / 'data/processed/v5_labels.csv').read_bytes()).hexdigest() == LABEL_SHA
     tag = 'stage3d_rank' if rank_lambda else 'stage3d_control'
     cells = [{'cell_type': 'markdown', 'metadata': {}, 'source': [
         f'# {tag}\n130mm / historical v5 labels / seed42. Auxiliary ranking lambda={rank_lambda}.\n',
-        'Mount competition, rsna-dinov2-weights, rsna-knee-v5-labels and rsna-knee-stage3d-trust.\n',
+        'Mount competition, rsna-dinov2-weights and rsna-knee-v5-labels. The small trust asset is embedded.\n',
         'Rule-selected candidates are not clinical ground truth. Gold is a reused development set.\n']}]
     for path in sorted((ROOT / 'cells_v5').iterdir()):
         if path.suffix not in ('.py', '.md'):
             continue
         s = path.read_text(encoding='utf-8')
         if path.name == '03_config.py':
-            s += f"\nCFG.update(experiment_name={tag!r}, rank_lambda={rank_lambda}, rank_margin=0.1, rank_min_cases=20, trust_input='/kaggle/input/datasets/easoncyy/rsna-knee-stage3d-trust')\n"
-            s += """
+            s += f"\nCFG.update(experiment_name={tag!r}, rank_lambda={rank_lambda}, rank_margin=0.1, rank_min_cases=20, trust_input='/kaggle/working/stage3d_embedded')\n"
+            s += f"""
+# The 122-KB immutable eligibility table is embedded to remove a fragile Kaggle mount.
+import base64 as _stage3d_base64
+import hashlib
+_embedded_dir = Path(CFG['trust_input'])
+_embedded_dir.mkdir(parents=True, exist_ok=True)
+_embedded_bytes = _stage3d_base64.b64decode({asset_b64!r})
+assert hashlib.sha256(_embedded_bytes).hexdigest() == {asset_sha!r}
+(_embedded_dir / 'stage3d_trust.npz').write_bytes(_embedded_bytes)
+
 # Resolve documented old/new Kaggle mount layouts; missing weights must stop.
 def resolve_asset(config_key, filename, dataset_slug):
     configured = Path(CFG[config_key])
@@ -39,10 +50,9 @@ def resolve_asset(config_key, filename, dataset_slug):
                   Path('/kaggle/input/datasets/easoncyy') / dataset_slug / filename]
     found = next((p for p in candidates if p.is_file()), None)
     if found is None:
-        raise FileNotFoundError(f'Mount {dataset_slug}/{filename}; checked {candidates}')
+        raise FileNotFoundError(f'Mount {{dataset_slug}}/{{filename}}; checked {{candidates}}')
     CFG[config_key] = str(found if config_key == 'dinov2_weights' else found.parent)
 resolve_asset('label_input', 'v5_labels.csv', 'rsna-knee-v5-labels')
-resolve_asset('trust_input', 'stage3d_trust.npz', 'rsna-knee-stage3d-trust')
 resolve_asset('dinov2_weights', 'dinov2_vits14.pth', 'rsna-dinov2-weights')
 print('Stage 3D configuration:', CFG)
 """

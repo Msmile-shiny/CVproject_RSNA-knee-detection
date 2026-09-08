@@ -6,13 +6,14 @@ Kaggle **RSNA 2026 Knee Abnormality Detection** competition project.  The task i
 
 | Item | Current result / decision |
 |---|---|
-| Best reproducible public baseline | **LB 0.920** — replica of `amanatar/rsna-knee-super-ensemble` |
-| Earlier reference replica | **LB 0.914** — faithful v47 replica |
+| Best reproduced public solution | **LB 0.936** — community ensemble reproduced on Kaggle |
+| Earlier reproducible baseline | **LB 0.920** — replica of `amanatar/rsna-knee-super-ensemble` |
 | In-house v5 ensemble | Gold macro-AUC **0.8959** / LB **0.886** (3-seed rank mean) |
-| Current work | Evaluate v5 as an extra member of the 0.920 super-ensemble |
-| Admission rule | Enable an added member only if its 58-study gold macro-AUC gain is **>= 0.003** |
+| Failed supervision experiments | Stage 3A **0.818**, Stage 3C **0.807** public LB |
+| Current work | Stage 3D trusted-ranking control, then Phase 4A OrthoFoundation independent-member probe |
+| Admission rule | Add a member only after measuring both accuracy and ranking diversity against the 0.936 parent |
 
-The authoritative experiment log and next actions are in [PLAN_STAGE2.md](PLAN_STAGE2.md); the member-injection design is in [PLAN_STAGE2_INJECT.md](PLAN_STAGE2_INJECT.md).
+The current plan is [Phase 4 independent member](docs/plans/phase4_independent_member.md). See the [documentation index](docs/README.md) for earlier plans, research and experiment reports.
 
 ## Approach
 
@@ -37,7 +38,7 @@ The active pipeline is an ensemble-oriented 2.5D MRI workflow:
 | `scripts/` | Validation, checkpoint conversion, label building, fusion scans, and smoke tests |
 | `datasets/`, `models/`, `losses/` | Reusable local dataset/model/loss implementations |
 | `data/` | Metadata and pseudo-label artifacts (large raw/cache data is ignored) |
-| `reports/` | Historical run reports and technical analysis |
+| `docs/` | Indexed plans, experiment reports, research notes, and archived early designs |
 | `reference_code/` | Downloaded public references and extracted source cells |
 
 Notebook assembly scripts (for example `notebooks/build_v5.py`, `build_v6a.py`, and `build_super_ours.py`) generate the corresponding `.ipynb` artifacts from the cell directories.
@@ -71,4 +72,4 @@ The 58 gold studies are for validation only.  Do not use them to train weights o
 - Preserve the 0.920 package as a fail-closed baseline.
 - Prefer independent architectural diversity over more highly correlated random seeds.
 - Validate additions with emitted gold predictions and a global blend scan before a leaderboard submission.
-- Record material outcomes in `PLAN_STAGE2.md` or a report so the next experiment has an audit trail.
+- Record material outcomes under `docs/experiments/` and update `docs/README.md` so the next experiment has an audit trail.

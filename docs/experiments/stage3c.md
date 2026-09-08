@@ -97,11 +97,10 @@ OOF 源文件缺少逐病例训练折记录，尚不能独立证明教师没见�
 
 ## Kaggle 执行
 
-1. 新建数据集 `rsna-knee-stage3d-trust`，上传 `data/processed/stage3d_trust/stage3d_trust.npz` 和同目录 `manifest.json`，放在数据集根目录。
-2. 导入 `notebooks/kaggle_train_v5_stage3d_rank.ipynb`，选择 T4×2。
-3. 挂载比赛数据、`rsna-dinov2-weights`、**历史 `rsna-knee-v5-labels`（v5_labels.csv）**、新建的 `rsna-knee-stage3d-trust`。不用 Stage 3A/3C 的新报告融合标签。
-4. 开始时检查 preflight 输出的 8 个排序类别与旧标签哈希。路径解析兼容旧式和 datasets/easoncyy 挂载位置；文件缺失或哈希不匹配会在缓存/训练之前停止。
-5. 完成后下载到 `results/v5s3d`，提供 Public 分数。重点保留 `phase3d_preflight.json`、`phase3d_manifest.json`、`ranking_history.jsonl`、gold 逐例预测、训练历史和 checkpoint。
+1. 导入 `notebooks/kaggle_train_v5_stage3d_rank.ipynb`，选择 T4×2。可信候选资产仅 122 KB，现已直接嵌入 Notebook，不再需要单独创建或挂载数据集。
+2. 挂载比赛数据、`rsna-dinov2-weights`、**历史 `rsna-knee-v5-labels`（v5_labels.csv）**。不用 Stage 3A/3C 的新报告融合标签。
+3. 开始时检查 preflight 输出的 8 个排序类别与旧标签哈希。路径解析兼容旧式和 datasets/easoncyy 挂载位置；文件缺失或哈希不匹配会在缓存/训练之前停止。
+4. 完成后下载到 `results/v5s3d`，提供 Public 分数。重点保留 `phase3d_preflight.json`、`phase3d_manifest.json`、`ranking_history.jsonl`、gold 逐例预测、训练历史和 checkpoint。
 
 另提供 `notebooks/kaggle_train_v5_stage3d_control.ipynb`，同一生成器、同一资产，只有实验名和 rank_lambda=0 不同。算力紧张可先跑 rank，用历史 v5s1 做筛查；若看见小幅收益，再运行此匹配对照。未跑对照前不能精确归因给排序。
 

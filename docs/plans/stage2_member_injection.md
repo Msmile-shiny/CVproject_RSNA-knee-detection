@@ -18,7 +18,7 @@ super-ensemble 复刻 notebook（`notebooks/kernel_push_super/kaggle_super_ensem
 | **4** | **master rank blend** | **`submission_master.csv`** |
 | 5 | rename `submission_master.csv` → `submission.csv` | 最终提交 |
 
-**master blend 就在 cell 4**（PLAN_STAGE2 里说的「cell 5」是 1-indexed），核心公式：
+**master blend 就在 cell 4**（[stage2.md](stage2.md) 里说的「cell 5」是 1-indexed），核心公式：
 
 ```python
 _parent_rank = _parent[TARGETS].rank(pct=True)          # parent = 20DINOv2+5DINOv3+rad
@@ -113,7 +113,7 @@ print(f'written {OUT} ({len(cells)} cells)')
 2. 改 `OUR_MEMBER_ACTIVE=True` + 初始 `OUR_ALPHA=0.05~0.10`，**交互跑 3 行占位 test**（分钟级）→ 下载 `gold_members/` + `submission_ours_only.csv`。
 3. 本地 58 gold 上做 **α 扫描**（`OUR_ALPHA` 从 0.02~0.15 网格）→ **只看全局 macro AUC**。
 4. `Δ macro ≥ +0.003` → 用该 α `ACTIVE=True` 提交，记 LB；`< +0.003` → `ACTIVE=False` 保持纯复刻，转阶段 3。
-5. 每次提交记录到 PLAN_STAGE2.md「结果记录」。
+5. 每次提交记录到 [stage2.md](stage2.md)「结果记录」。
 
 **fail-closed 保证**：任何异常（schema drift / 非有限值 / 越界）→ `submission_master_pure920.csv` 回填 `submission_master.csv`，最终提交仍是纯 0.92，不会因为注入出错而掉分。
 
@@ -125,4 +125,4 @@ print(f'written {OUT} ({len(cells)} cells)')
 - [ ] 确认 v5 3-seed 权重数据集已上传并挂到该 notebook（cell 08 会打印找到的 seeds）
 - [ ] `OUR_MEMBER_ACTIVE=False` 交互冒烟 → 确认 `submission_master.csv` 原样、`ours_only` 正常产出
 - [ ] `ACTIVE=True` + α 扫描 → 58 gold 全局 macro 裁决
-- [ ] 通过 → 提交；记录 LB 到 PLAN_STAGE2.md
+- [ ] 通过 → 提交；记录 LB 到 [stage2.md](stage2.md)

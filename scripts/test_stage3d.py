@@ -50,7 +50,7 @@ class Stage3DTests(unittest.TestCase):
                'torch': torch, 'random': __import__('random'), 'os': __import__('os')}
         # Constants are defined by the checked-in config, with logging globals.
         env.update(N_GPUS=0, DEVICE='cpu')
-        exec(config_source.split('# Resolve documented')[0], env)
+        exec(config_source.split('# The 122-KB immutable')[0], env)
         with tempfile.TemporaryDirectory() as tmp:
             env['CFG'].update(comp_input=str(ROOT / 'data/metadata'),
                               label_input=str(ROOT / 'data/processed'),
@@ -64,6 +64,29 @@ class Stage3DTests(unittest.TestCase):
             np.testing.assert_allclose(train[cols], old.loc[train.index, cols], rtol=1e-6)
             self.assertEqual(len(env['_active_classes']), 8)
             self.assertTrue((train['rank_Synovitis'] == 0).all())
+
+    def test_full_config_extracts_embedded_trust_without_prior_hashlib_import(self):
+        config_source = next(s for s in self.sources if 'TARGET_COLUMNS =' in s)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            def kaggle_path(value):
+                value = str(value)
+                return root / value.lstrip('/') if value.startswith('/kaggle/') else Path(value)
+            for slug, filename in [('rsna-knee-v5-labels', 'v5_labels.csv'),
+                                   ('rsna-dinov2-weights', 'dinov2_vits14.pth')]:
+                fixture = kaggle_path('/kaggle/input/datasets/easoncyy') / slug / filename
+                fixture.parent.mkdir(parents=True, exist_ok=True)
+                fixture.touch()  # Config checks existence, not model/label contents.
+            env = {'Path': kaggle_path, 'pd': pd, 'np': np, 'IS_MAIN': False,
+                   'torch': torch, 'random': __import__('random'), 'os': __import__('os'),
+                   'N_GPUS': 0, 'DEVICE': 'cpu'}
+            self.assertNotIn('hashlib', env)
+            exec(config_source, env)
+            extracted = kaggle_path(env['CFG']['trust_input']) / 'stage3d_trust.npz'
+            self.assertEqual(extracted.read_bytes(),
+                             (ROOT / 'data/processed/stage3d_trust/stage3d_trust.npz').read_bytes())
+            self.assertTrue((Path(env['CFG']['label_input']) / 'v5_labels.csv').is_file())
+            self.assertTrue(Path(env['CFG']['dinov2_weights']).is_file())
 
     def test_training_cpu_and_zero_lambda_gradient(self):
         env = dict(self.env, np=np, json=json, Path=Path, DEVICE='cpu', TARGET_COLUMNS=['a', 'b'])

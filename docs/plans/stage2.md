@@ -67,7 +67,7 @@ master rank blend 在 cell 5 (0.94/0.06/0.05 权重, env 可调), 注入面比 v
 2. 移植 gold emission → 交互跑 (3 行占位 test) → 下载 gold_members/ → α 扫描 → **只用全局 macro 裁决 α** (≥+0.003 标准, lateral-swap 教训: 单类决策勿做)。
 3. α>0 → ACTIVE=True 提交; α=0 → 保持纯复刻, 把精力转阶段 3。
 
-> 📋 具体注入改法已落文档: [PLAN_STAGE2_INJECT.md](./PLAN_STAGE2_INJECT.md) — master blend 定位 (cell 4 的 `_master_arr`)、三 cell 插入位置、复用 `build_fork_v47.py` 的 member/emission builder + 唯一新写 blend cell (`notebooks/cells_super/ours_blend_cell.py`)、两档 α 扫描流程。
+> 📋 具体注入改法已落文档: [stage2_member_injection.md](stage2_member_injection.md) — master blend 定位 (cell 4 的 `_master_arr`)、三 cell 插入位置、复用 `build_fork_v47.py` 的 member/emission builder + 唯一新写 blend cell (`notebooks/cells_super/ours_blend_cell.py`)、两档 α 扫描流程。
 
 ---
 

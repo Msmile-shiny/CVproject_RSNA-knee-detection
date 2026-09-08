@@ -48,7 +48,7 @@ Data 里**加挂 `prvsiyan/rsna-knee-b3-v47-public-deployment`** (自定义挂�
 - [ ] Accelerator = GPU T4 x2 且已 Save Version
 - [ ] Data 面板: 12 个数据集 + 2 个 dinov2 模型 + 竞赛数据
 - [ ] 交互冒烟无 Traceback, submission.csv 存在 (3 行 test)
-- [ ] 评分运行时长记录到 PLAN_STAGE2.md 结果表
+- [ ] 评分运行时长记录到 `docs/plans/stage2.md` 结果表
 
 ## 风险
 
