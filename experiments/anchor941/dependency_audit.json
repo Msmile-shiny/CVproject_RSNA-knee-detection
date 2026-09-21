@@ -1,0 +1,569 @@
+[
+  {
+    "kind": "dataset",
+    "ref": "dreaddevelopment/raptor-knee-maxspan",
+    "version": 1,
+    "files": [
+      {
+        "name": "raptor_ft_coatnet_v5_full_swa.pt",
+        "creationDate": "2026-08-22T20:14:56.069Z",
+        "totalBytes": 292831426
+      }
+    ],
+    "accessible": true
+  },
+  {
+    "kind": "dataset",
+    "ref": "dreaddevelopment/raptor-knee-native384",
+    "version": 1,
+    "files": [
+      {
+        "name": "raptor_ft_coatnet_v8_full_swa.pt",
+        "creationDate": "2026-08-23T00:35:43.480Z",
+        "totalBytes": 292831426
+      }
+    ],
+    "accessible": true
+  },
+  {
+    "kind": "dataset",
+    "ref": "dreaddevelopment/raptor-knee-native384dense",
+    "version": 1,
+    "files": [
+      {
+        "name": "raptor_ft_coatnet_v10_full.pt",
+        "creationDate": "2026-08-23T13:17:32.423Z",
+        "totalBytes": 292829892
+      }
+    ],
+    "accessible": true
+  },
+  {
+    "kind": "dataset",
+    "ref": "mattiaangeli/knee-mri-fold-weights",
+    "version": 2,
+    "files": [
+      {
+        "name": "m_f0.pt",
+        "creationDate": "2026-08-15T16:02:25.730Z",
+        "totalBytes": 94000039
+      },
+      {
+        "name": "m_f1.pt",
+        "creationDate": "2026-08-15T16:02:25.598Z",
+        "totalBytes": 94000039
+      },
+      {
+        "name": "m_f2.pt",
+        "creationDate": "2026-08-15T16:02:25.941Z",
+        "totalBytes": 94000039
+      },
+      {
+        "name": "m_f3.pt",
+        "creationDate": "2026-08-15T16:02:26.055Z",
+        "totalBytes": 94000039
+      },
+      {
+        "name": "m_f4.pt",
+        "creationDate": "2026-08-15T16:02:26.006Z",
+        "totalBytes": 94000039
+      },
+      {
+        "name": "timm-1.0.22-py3-none-any.whl",
+        "creationDate": "2026-08-15T16:02:24.067Z",
+        "totalBytes": 2530238
+      }
+    ],
+    "accessible": true
+  },
+  {
+    "kind": "dataset",
+    "ref": "mattiaangeli/opencv-python-headless-4120088-x86",
+    "version": 1,
+    "files": [
+      {
+        "name": "opencv_python_headless-4.12.0.88-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+        "creationDate": "2026-09-03T15:09:50.337Z",
+        "totalBytes": 54023419
+      }
+    ],
+    "accessible": true
+  },
+  {
+    "kind": "dataset",
+    "ref": "marwanmath/resnet-50-radimagenet-marwan",
+    "version": 1,
+    "files": [
+      {
+        "name": "ResNet50.pt",
+        "creationDate": "2026-07-21T14:27:12.770Z",
+        "totalBytes": 94345733
+      }
+    ],
+    "accessible": true
+  },
+  {
+    "kind": "dataset",
+    "ref": "mattiaangeli/rsna-knee-coat-resgated-ep10-top3",
+    "version": 3,
+    "files": [
+      {
+        "name": "cnx_dicom_geometry.py",
+        "creationDate": "2026-09-03T15:47:05.416Z",
+        "totalBytes": 42634
+      },
+      {
+        "name": "coat_resgated_ep10_gold58_geometry_contract.json",
+        "creationDate": "2026-09-03T15:47:05.640Z",
+        "totalBytes": 27508
+      },
+      {
+        "name": "coat_resgated_ep10_t4_gold58_rank_portability.json",
+        "creationDate": "2026-09-03T15:47:05.502Z",
+        "totalBytes": 7890
+      },
+      {
+        "name": "coat_resgated_ep10_t4_gold58_rank_portability_predictions.npz",
+        "creationDate": "2026-09-03T15:47:05.542Z",
+        "totalBytes": 26635
+      },
+      {
+        "name": "coat_resgated_ep10_top3_manifest.json",
+        "creationDate": "2026-09-03T15:47:05.542Z",
+        "totalBytes": 7409
+      },
+      {
+        "name": "coat_resgated_gold_e04.pt",
+        "creationDate": "2026-09-03T15:47:10.918Z",
+        "totalBytes": 293989431
+      },
+      {
+        "name": "coat_resgated_gold_e06.pt",
+        "creationDate": "2026-09-03T15:47:10.708Z",
+        "totalBytes": 293989431
+      },
+      {
+        "name": "coat_resgated_gold_e08.pt",
+        "creationDate": "2026-09-03T15:47:11.140Z",
+        "totalBytes": 293989367
+      },
+      {
+        "name": "coatnet_q2l_bagmatch.py",
+        "creationDate": "2026-09-03T15:47:05.583Z",
+        "totalBytes": 21977
+      },
+      {
+        "name": "coatnet_resgated_ep10_top3_inference.py",
+        "creationDate": "2026-09-03T15:47:05.639Z",
+        "totalBytes": 49679
+      },
+      {
+        "name": "coatnet_residual_gated_k32.py",
+        "creationDate": "2026-09-03T15:47:05.511Z",
+        "totalBytes": 16639
+      },
+      {
+        "name": "gold58_top3_predictions.npz",
+        "creationDate": "2026-09-03T15:47:05.452Z",
+        "totalBytes": 19046
+      },
+      {
+        "name": "package_receipt.json",
+        "creationDate": "2026-09-03T15:47:05.668Z",
+        "totalBytes": 1191
+      },
+      {
+        "name": "raptor_k6_surgical.py",
+        "creationDate": "2026-09-03T15:47:05.640Z",
+        "totalBytes": 29665
+      },
+      {
+        "name": "raptor_light224.py",
+        "creationDate": "2026-09-03T15:47:05.659Z",
+        "totalBytes": 43176
+      },
+      {
+        "name": "raptor_light_inference.py",
+        "creationDate": "2026-09-03T15:47:05.802Z",
+        "totalBytes": 112310
+      },
+      {
+        "name": "smart_crop224.py",
+        "creationDate": "2026-09-03T15:47:05.732Z",
+        "totalBytes": 14344
+      },
+      {
+        "name": "trainer_a6000_epochs01_06.py",
+        "creationDate": "2026-09-03T15:47:05.692Z",
+        "totalBytes": 58679
+      },
+      {
+        "name": "trainer_h100_epochs07_10.py",
+        "creationDate": "2026-09-03T15:47:05.699Z",
+        "totalBytes": 61532
+      },
+      {
+        "name": "training_history_through_epoch10.json",
+        "creationDate": "2026-09-03T15:47:05.743Z",
+        "totalBytes": 46434
+      },
+      {
+        "name": "triplet_physical_crop.py",
+        "creationDate": "2026-09-03T15:47:05.710Z",
+        "totalBytes": 7784
+      }
+    ],
+    "accessible": true
+  },
+  {
+    "kind": "dataset",
+    "ref": "antoinegg1/rsna-knee-e11-diverse-heads-v20",
+    "version": 1,
+    "files": [
+      {
+        "name": "README.md",
+        "creationDate": "2026-08-11T17:20:19.085Z",
+        "totalBytes": 1472
+      },
+      {
+        "name": "e11_contract.json",
+        "creationDate": "2026-08-11T17:20:19.093Z",
+        "totalBytes": 21305
+      },
+      {
+        "name": "kernel.log",
+        "creationDate": "2026-08-11T17:20:19.165Z",
+        "totalBytes": 23611
+      },
+      {
+        "name": "rad_e11_audit.json",
+        "creationDate": "2026-08-11T17:20:19.290Z",
+        "totalBytes": 4780
+      },
+      {
+        "name": "radimagenet_arm_v20.py",
+        "creationDate": "2026-08-11T17:20:19.065Z",
+        "totalBytes": 76541
+      },
+      {
+        "name": "submission-e2-visible.csv",
+        "creationDate": "2026-08-11T17:20:19.177Z",
+        "totalBytes": 830
+      },
+      {
+        "name": "submission-visible.csv",
+        "creationDate": "2026-08-11T17:20:19.176Z",
+        "totalBytes": 830
+      },
+      {
+        "name": "v52_e11_heads.pt",
+        "creationDate": "2026-08-11T17:20:20.259Z",
+        "totalBytes": 63534726
+      },
+      {
+        "name": "v52_e11_oof.csv",
+        "creationDate": "2026-08-11T17:20:19.226Z",
+        "totalBytes": 875054
+      }
+    ],
+    "accessible": true
+  },
+  {
+    "kind": "dataset",
+    "ref": "antoinegg1/rsna-knee-e9-radimagenet-heads-v15",
+    "version": 3,
+    "files": [
+      {
+        "name": "README.md",
+        "creationDate": "2026-08-11T15:14:11.928Z",
+        "totalBytes": 2951
+      },
+      {
+        "name": "alpha_ladder_diagnostic.py",
+        "creationDate": "2026-08-11T15:14:11.852Z",
+        "totalBytes": 18166
+      },
+      {
+        "name": "e10_contract.json",
+        "creationDate": "2026-08-11T15:14:11.924Z",
+        "totalBytes": 15221
+      },
+      {
+        "name": "e9b_contract.json",
+        "creationDate": "2026-08-11T15:14:11.940Z",
+        "totalBytes": 1413
+      },
+      {
+        "name": "public_oof_diagnostic.json",
+        "creationDate": "2026-08-11T15:14:11.868Z",
+        "totalBytes": 4318
+      },
+      {
+        "name": "rad_e9_audit.json",
+        "creationDate": "2026-08-11T15:14:11.963Z",
+        "totalBytes": 5598
+      },
+      {
+        "name": "radimagenet_arm_v15.py",
+        "creationDate": "2026-08-11T15:14:12.139Z",
+        "totalBytes": 31200
+      },
+      {
+        "name": "v52_oof.csv",
+        "creationDate": "2026-08-11T15:14:11.987Z",
+        "totalBytes": 874712
+      },
+      {
+        "name": "v52_radimagenet_heads.pt",
+        "creationDate": "2026-08-11T15:14:12.893Z",
+        "totalBytes": 63525150
+      }
+    ],
+    "accessible": true
+  },
+  {
+    "kind": "dataset",
+    "ref": "pilkwang/rsna-knee-llm-labels",
+    "version": 1,
+    "files": [
+      {
+        "name": "api_labeler.py",
+        "creationDate": "2026-08-06T10:31:35.457Z",
+        "totalBytes": 12976
+      },
+      {
+        "name": "report_labels_v2.csv",
+        "creationDate": "2026-08-06T10:31:35.662Z",
+        "totalBytes": 1004839
+      }
+    ],
+    "accessible": true
+  },
+  {
+    "kind": "dataset",
+    "ref": "prvsiyan/rsna-knee-v52-radimagenet-heads-20260812",
+    "version": 1,
+    "files": [
+      {
+        "name": "README.md",
+        "creationDate": "2026-08-12T20:46:26.732Z",
+        "totalBytes": 1432
+      },
+      {
+        "name": "v52_radimagenet_heads.pt",
+        "creationDate": "2026-08-12T20:46:27.788Z",
+        "totalBytes": 63525150
+      }
+    ],
+    "accessible": true
+  },
+  {
+    "kind": "dataset",
+    "ref": "pilkwang/rsna-knee-weights",
+    "version": 1,
+    "files": [
+      {
+        "name": "m_013dc75703.pt",
+        "creationDate": "2026-08-08T02:50:00.609Z",
+        "totalBytes": 89293562
+      },
+      {
+        "name": "m_1e553ba481.pt",
+        "creationDate": "2026-08-08T02:50:00.527Z",
+        "totalBytes": 89286714
+      },
+      {
+        "name": "m_2dce50ebd9.pt",
+        "creationDate": "2026-08-08T02:50:01.021Z",
+        "totalBytes": 89295866
+      },
+      {
+        "name": "m_2f7e785e82.pt",
+        "creationDate": "2026-08-08T02:50:01.552Z",
+        "totalBytes": 89293818
+      },
+      {
+        "name": "m_3d1f4c48fc.pt",
+        "creationDate": "2026-08-08T02:50:01.476Z",
+        "totalBytes": 89293818
+      },
+      {
+        "name": "m_44128e3ff3.pt",
+        "creationDate": "2026-08-08T02:50:01.356Z",
+        "totalBytes": 89295866
+      },
+      {
+        "name": "m_44bc3c6f14.pt",
+        "creationDate": "2026-08-08T02:50:01.255Z",
+        "totalBytes": 89295866
+      },
+      {
+        "name": "m_5f8ba4c5ea.pt",
+        "creationDate": "2026-08-08T02:50:00.931Z",
+        "totalBytes": 89306554
+      },
+      {
+        "name": "m_72081758ce.pt",
+        "creationDate": "2026-08-08T02:50:01.379Z",
+        "totalBytes": 89296634
+      },
+      {
+        "name": "m_7f8321affc.pt",
+        "creationDate": "2026-08-08T02:50:01.521Z",
+        "totalBytes": 89296634
+      },
+      {
+        "name": "m_84079fe8cb.pt",
+        "creationDate": "2026-08-08T02:50:00.750Z",
+        "totalBytes": 89296634
+      },
+      {
+        "name": "m_8476b29285.pt",
+        "creationDate": "2026-08-08T02:50:00.955Z",
+        "totalBytes": 89286970
+      },
+      {
+        "name": "m_8baecb9d1b.pt",
+        "creationDate": "2026-08-08T02:50:00.528Z",
+        "totalBytes": 89293818
+      },
+      {
+        "name": "m_91f171fe6f.pt",
+        "creationDate": "2026-08-08T02:50:01.060Z",
+        "totalBytes": 89286970
+      },
+      {
+        "name": "m_b7c37cc80e.pt",
+        "creationDate": "2026-08-08T02:50:00.838Z",
+        "totalBytes": 89296634
+      },
+      {
+        "name": "m_d47313baef.pt",
+        "creationDate": "2026-08-08T02:50:00.765Z",
+        "totalBytes": 89306554
+      },
+      {
+        "name": "m_e5427d6c21.pt",
+        "creationDate": "2026-08-08T02:50:01.261Z",
+        "totalBytes": 89306234
+      },
+      {
+        "name": "m_ea3fbf6edf.pt",
+        "creationDate": "2026-08-08T02:50:00.946Z",
+        "totalBytes": 89306554
+      },
+      {
+        "name": "m_ed427aa10a.pt",
+        "creationDate": "2026-08-08T02:50:00.729Z",
+        "totalBytes": 89295866
+      },
+      {
+        "name": "m_f335c812fe.pt",
+        "creationDate": "2026-08-08T02:50:01.026Z",
+        "totalBytes": 89286970
+      },
+      {
+        "name": "manifest.json",
+        "creationDate": "2026-08-08T02:49:59.529Z",
+        "totalBytes": 42477
+      },
+      {
+        "name": "merge_gain.npz",
+        "creationDate": "2026-08-08T02:49:59.869Z",
+        "totalBytes": 505960
+      },
+      {
+        "name": "oof.npz",
+        "creationDate": "2026-08-08T02:49:59.799Z",
+        "totalBytes": 367945
+      }
+    ],
+    "accessible": true
+  },
+  {
+    "kind": "kernel",
+    "ref": "sofiaanjenje/rsna-knee-e11-train",
+    "version": null,
+    "files": [
+      {
+        "name": "rad_e11_audit.json",
+        "size": 865,
+        "creationDate": "2:28 am, Sunday 16 August 2026 UTC"
+      },
+      {
+        "name": "v52_e11_heads.pt",
+        "size": 885,
+        "creationDate": "2:28 am, Sunday 16 August 2026 UTC"
+      },
+      {
+        "name": "v52_e11_oof.csv",
+        "size": 882,
+        "creationDate": "2:28 am, Sunday 16 August 2026 UTC"
+      },
+      {
+        "name": "submission.csv",
+        "size": 852,
+        "creationDate": "2:28 am, Sunday 16 August 2026 UTC"
+      },
+      {
+        "name": "submission_e2_preserved.csv",
+        "size": 891,
+        "creationDate": "2:28 am, Sunday 16 August 2026 UTC"
+      },
+      {
+        "name": "submission_native_v38.csv",
+        "size": 885,
+        "creationDate": "2:28 am, Sunday 16 August 2026 UTC"
+      },
+      {
+        "name": "submission_public_0899.csv",
+        "size": 888,
+        "creationDate": "2:28 am, Sunday 16 August 2026 UTC"
+      }
+    ],
+    "accessible": true
+  },
+  {
+    "kind": "kernel",
+    "ref": "sofiaanjenje/rsna-knee-e13-train",
+    "version": null,
+    "files": [
+      {
+        "name": "rad_e11_audit.json",
+        "size": 865,
+        "creationDate": "8:58 pm, Sunday 16 August 2026 UTC"
+      },
+      {
+        "name": "v52_e11_heads.pt",
+        "size": 885,
+        "creationDate": "8:58 pm, Sunday 16 August 2026 UTC"
+      },
+      {
+        "name": "v52_e11_oof.csv",
+        "size": 882,
+        "creationDate": "8:58 pm, Sunday 16 August 2026 UTC"
+      },
+      {
+        "name": "submission.csv",
+        "size": 852,
+        "creationDate": "8:58 pm, Sunday 16 August 2026 UTC"
+      },
+      {
+        "name": "submission_e2_preserved.csv",
+        "size": 891,
+        "creationDate": "8:58 pm, Sunday 16 August 2026 UTC"
+      },
+      {
+        "name": "submission_native_v38.csv",
+        "size": 885,
+        "creationDate": "8:58 pm, Sunday 16 August 2026 UTC"
+      },
+      {
+        "name": "submission_public_0899.csv",
+        "size": 888,
+        "creationDate": "8:58 pm, Sunday 16 August 2026 UTC"
+      }
+    ],
+    "accessible": true
+  }
+]

@@ -106,13 +106,16 @@ print(f'Phase 4A model ready: frozen OrthoFoundation-L, trainable head={sum(p.nu
 '''
 
 
-def main():
+def build(out=OUT, experiment_name='phase4a_orthofoundation_probe', center_repeat=False):
+    cell.counter = 0
     assert hashlib.sha256((ROOT.parent / 'data/processed/v5_labels.csv').read_bytes()).hexdigest() == LABEL_SHA
-    cells = [cell('markdown', '''# Phase 4A — OrthoFoundation-L controlled probe
+    channel_description = ('center MRI slice repeated to RGB (official-pretraining aligned)'
+                           if center_repeat else 'three adjacent MRI slices as pseudo-RGB')
+    cells = [cell('markdown', f'''# {experiment_name} — OrthoFoundation-L controlled probe
 
 Independent member screen: knee-MRI-specific DINOv3-L initialization, historical v5 supervision, frozen backbone. The 9-slice/130-mm input remains fixed so this run isolates representation transfer. Mount competition data, `rsna-knee-v5-labels`, the public OrthoFoundation weight dataset, and an offline copy of the official `facebookresearch/dinov3` source tree. T4 x2.
 
-This is a screening experiment. Dense 64–96-slice MIL is Phase 4B only if this backbone adds signal.
+Channel mode: {channel_description}. This is a screening experiment. Dense 64–96-slice MIL is considered only if this backbone adds signal.
 ''')]
     # Load and validate the large foundation model before the ~80-minute DICOM cache.
     # Definitions in cells 12/13 do not depend on the cache or dataloaders.
@@ -133,7 +136,7 @@ This is a screening experiment. Dense 64–96-slice MIL is Phase 4B only if this
             source = source.replace("'batch_size': 6,", "'batch_size': 2,")
             source = source.replace("'grad_accum_steps': 2,", "'grad_accum_steps': 6,")
             source = source.replace("'epochs': 30,", "'epochs': 20,")
-            source += "\nCFG.update(experiment_name='phase4a_orthofoundation_probe', tta_jitter=False)\n"
+            source += f"\nCFG.update(experiment_name={experiment_name!r}, tta_jitter=False, channel_mode={('center_repeat' if center_repeat else 'adjacent_2p5d')!r})\n"
         elif path.name == '06_model.py':
             source = source.replace(
                 "        n_blocks = len(self.dinov2.blocks)\n        if unfreeze_layers > 0:\n            for p in self.dinov2.parameters():\n                p.requires_grad = False",
@@ -142,6 +145,10 @@ This is a screening experiment. Dense 64–96-slice MIL is Phase 4B only if this
                 "        patches = features[:, 1:, :]",
                 "        if isinstance(features, dict):\n            cls = features['x_norm_clstoken']\n            patches = features['x_norm_patchtokens']\n        else:\n            cls = features[:, 0, :]\n            n_prefix = int(getattr(self.dinov2, 'num_prefix_tokens', 1))\n            patches = features[:, n_prefix:, :]\n        if patches.shape[1] == 0:\n            raise RuntimeError('Backbone returned no image patch tokens')")
             source = source.replace("        cls = features[:, 0, :]\n        if isinstance(features, dict):", "        if isinstance(features, dict):")
+            if center_repeat:
+                source = source.replace(
+                    "        x = images.reshape(B * S, 3, images.shape[-2], images.shape[-1])\n        x = x.float().div_(255.0)",
+                    "        x = images.reshape(B * S, 3, images.shape[-2], images.shape[-1])\n        # OrthoFoundation pretraining converts one 2D MRI slice to RGB.\n        # Repeat before channel-wise ImageNet normalization.\n        x = x[:, 1:2].expand(-1, 3, -1, -1)\n        x = x.float().div_(255.0)")
         elif path.name == '09_load_data.py':
             marker = 'fused_df = pd.read_csv(v5_label_file)'
             guard = f"import hashlib\nassert hashlib.sha256(v5_label_file.read_bytes()).hexdigest() == {LABEL_SHA!r}, 'Wrong historical v5 labels'\n"
@@ -154,13 +161,18 @@ This is a screening experiment. Dense 64–96-slice MIL is Phase 4B only if this
             source = source.replace(
                 "infer_backbone = timm.create_model(\n    CFG['dinov2_variant'], pretrained=False, num_classes=0, img_size=CFG['image_size'])",
                 "infer_backbone = build_official_dinov3_backbone(load_medical_weights=False)")
-            source += "\n_phase4a = {'experiment': CFG['experiment_name'], 'gold_macro_auc': gold_macro, 'best_epoch': best_epoch, 'weight_audit': audit, 'label_sha256': '" + LABEL_SHA + "'}\n(output_dir / 'phase4a_manifest.json').write_text(json.dumps(_phase4a, indent=2))\n"
+            manifest_name = 'phase4a2_manifest.json' if center_repeat else 'phase4a_manifest.json'
+            source += "\n_phase4a = {'experiment': CFG['experiment_name'], 'gold_macro_auc': gold_macro, 'best_epoch': best_epoch, 'weight_audit': audit, 'label_sha256': '" + LABEL_SHA + "'}\n(output_dir / '" + manifest_name + "').write_text(json.dumps(_phase4a, indent=2))\n"
         cells.append(cell('code' if path.suffix == '.py' else 'markdown', source))
     notebook = {'nbformat': 4, 'nbformat_minor': 5,
                 'metadata': {'kernelspec': {'display_name': 'Python 3', 'language': 'python', 'name': 'python3'}},
                 'cells': cells}
-    OUT.write_text(json.dumps(notebook, ensure_ascii=False, indent=1), encoding='utf-8')
-    print(OUT)
+    out.write_text(json.dumps(notebook, ensure_ascii=False, indent=1), encoding='utf-8')
+    print(out)
+
+
+def main():
+    build()
 
 
 if __name__ == '__main__':

@@ -1,0 +1,13 @@
+{
+  "competition": "rsna-knee-abnormality-detection",
+  "kernel": "easoncyy/rsna-anchor941-audited",
+  "kernel_version": 1,
+  "submission_id": 56290048,
+  "submitted_at_utc": "2026-09-17T00:33:31.197Z",
+  "status_at_last_query": "COMPLETE",
+  "public_score": 0.941,
+  "visible_test_studies": 3,
+  "visible_test_core_elapsed_seconds": 204.66549849510193,
+  "all_required_branches_passed": true,
+  "submissions_remaining_today_after_submit": 4
+}

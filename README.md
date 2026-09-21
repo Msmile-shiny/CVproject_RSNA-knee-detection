@@ -6,14 +6,18 @@ Kaggle **RSNA 2026 Knee Abnormality Detection** competition project.  The task i
 
 | Item | Current result / decision |
 |---|---|
-| Best reproduced public solution | **LB 0.936** — community ensemble reproduced on Kaggle |
+| Best reproduced public solution | **LB 0.941** — audited Fast 2xT4 v5 community ensemble; submission 56290048 |
+| Native64 density ablation | **LB 0.940** — below baseline; retain original 0.941 configuration |
 | Earlier reproducible baseline | **LB 0.920** — replica of `amanatar/rsna-knee-super-ensemble` |
 | In-house v5 ensemble | Gold macro-AUC **0.8959** / LB **0.886** (3-seed rank mean) |
 | Failed supervision experiments | Stage 3A **0.818**, Stage 3C **0.807** public LB |
-| Current work | Stage 3D trusted-ranking control, then Phase 4A OrthoFoundation independent-member probe |
-| Admission rule | Add a member only after measuring both accuracy and ranking diversity against the 0.936 parent |
+| Stage 3D trusted ranking | Gold **0.8971** / Public **0.880** — small local gain did not transfer |
+| Phase 4A frozen OrthoFoundation | Gold **0.7906** — independent but too inaccurate to blend |
+| Phase 4A2 | Public **0.808** (user-reported); OrthoFoundation work paused |
+| Current work | Retain Anchor941; Native64 and Stage 5A expansion paused |
+| Admission rule | Require net improvement over the strong baseline; ranking diversity alone is insufficient |
 
-The current plan is [Phase 4 independent member](docs/plans/phase4_independent_member.md). See the [documentation index](docs/README.md) for earlier plans, research and experiment reports.
+The current decision record is [Project status, 2026-09-21](docs/experiments/project_status_20260921.md). Stage 5A completed without convincing blend gains; public-recipe replication achieved 0.941. Reproducible inference artifacts are in `experiments/anchor941/`. See the [documentation index](docs/README.md) for historical plans and reports.
 
 ## Approach
 
@@ -21,7 +25,7 @@ The active pipeline is an ensemble-oriented 2.5D MRI workflow:
 
 - DICOM header parsing, physical-mm centre crops, ordering, laterality normalization, and anatomical slot matching;
 - DINOv2 and RadImageNet feature/model branches, with 5-slice stacks or multi-slot views;
-- LLM/report-derived calibrated soft pseudo-labels for 4,349 non-gold studies; the 58 gold studies remain held out for evaluation;
+- LLM/report-derived calibrated soft pseudo-labels for 4,349 non-gold studies; the 58 gold studies are a reused development set, not an independent validation set for the current ensemble;
 - weighted soft BCE, EMA, TTA, and study-level diagnostic pooling;
 - percentile-rank fusion, which is appropriate for the competition's ranking-based ROC-AUC metric.
 
