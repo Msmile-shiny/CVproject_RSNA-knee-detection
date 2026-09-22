@@ -17,3 +17,7 @@ Files:
 - `run-receipts/`: small execution receipts; no model weights or hidden predictions.
 
 `build_fracture_ablation.py` prepares the next controlled experiment, but its promotion gate is strict: run it only if submission `56446116` reproduces at least 0.942. It changes one line—Fracture is re-admitted to the RadImageNet blend while Baker's cyst remains excluded—so its leaderboard delta is interpretable.
+
+Submission `56446116` later failed during Kaggle's larger hidden rerun. The visible run itself was complete, and Kaggle intentionally withholds the hidden traceback. The most likely failure source is the strict audit patch: it turned the upstream recipe's recoverable per-study/child fallbacks into fatal exceptions. `build_anchor942_hidden_robust.py` therefore starts again from the untouched upstream recipe, preserves all original fallback behavior, and adds only non-invasive final schema and degradation receipts.
+
+The hidden-robust public run completed without degradation and was submitted as `56454576` from Kaggle Notebook version 1. This submission, rather than the failed strict run, is the valid Anchor942 reproduction attempt.

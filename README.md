@@ -8,7 +8,7 @@ Kaggle **RSNA 2026 Knee Abnormality Detection** competition project.  The task i
 |---|---|
 | Best reproduced public solution | **LB 0.941** — audited Fast 2xT4 v5 community ensemble; submission 56290048 |
 | Native64 density ablation | **LB 0.940** — below baseline; retain original 0.941 configuration |
-| Anchor942 candidate | Public 0.942 community Speedy/D4 recipe reproduced with strict runtime checks; submission 56446116 is scoring |
+| Anchor942 candidate | Strict audit `56446116` failed hidden rerun; exact-recipe hidden-robust submission `56454576` is scoring |
 | Earlier reproducible baseline | **LB 0.920** — replica of `amanatar/rsna-knee-super-ensemble` |
 | In-house v5 ensemble | Gold macro-AUC **0.8959** / LB **0.886** (3-seed rank mean) |
 | Failed supervision experiments | Stage 3A **0.818**, Stage 3C **0.807** public LB |
