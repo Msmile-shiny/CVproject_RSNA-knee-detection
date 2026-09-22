@@ -31,6 +31,8 @@ v2 的执行回执显示：3 个可见测试病例均完成，CoAt family 同时
 - 实际 0.941：保留原锚点，说明当前公开源码/资产未在本账户复现显示增益。
 - 低于 0.941：检查版本、D4 输出与融合回执，不追随标题继续叠加启发式规则。
 
+为缩短确认后的周转时间，仓库已经生成 Fracture 单变量消融构建器，但尚未上传或运行。它只把 RadImageNet 排除列表从 `Baker's + Fracture` 改为只排除 `Baker's`；只有 submission `56446116` 达到 0.942 后才放行。
+
 来源：
 
 - https://www.kaggle.com/code/maverickss26/rsna-knee-0942-restructured

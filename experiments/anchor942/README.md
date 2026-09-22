@@ -15,3 +15,5 @@ Files:
 - `anchor942_build_receipt.json`: source and patched-cell hashes;
 - `notebook/`: uploadable notebook and its input configuration;
 - `run-receipts/`: small execution receipts; no model weights or hidden predictions.
+
+`build_fracture_ablation.py` prepares the next controlled experiment, but its promotion gate is strict: run it only if submission `56446116` reproduces at least 0.942. It changes one line—Fracture is re-admitted to the RadImageNet blend while Baker's cyst remains excluded—so its leaderboard delta is interpretable.
