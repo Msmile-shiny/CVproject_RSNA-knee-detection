@@ -1,0 +1,12 @@
+{
+  "complete": true,
+  "source_sha256": "b1d9a8aab7603d6b35e5bd7514bcccabf61d26698b70dec28297e0bac88cf8bd",
+  "preset": "speedy",
+  "studies": 3,
+  "coat_family_members": [
+    "resgated_top3",
+    "d4_swa3"
+  ],
+  "residual_fallback_studies": 0,
+  "limitation": "Public recipe reproduction; visible test is a runtime gate, not validation."
+}

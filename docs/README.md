@@ -5,6 +5,7 @@
 ## 当前入口
 
 - [项目状态（2026-09-21）](experiments/project_status_20260921.md)：当前入口；复现 0.941、Native64 0.940 回退与后续决策。
+- [社区更新（2026-09-21）](research/community_update_20260921.md)：公开 0.942 Speedy/D4 路线、标称 0.943 方案的证据分级和 Anchor942 决策。
 - [Stage 5A 计划与运行说明](plans/stage5a.md)：历史路线，已完成筛选，暂停扩大训练。
 - [Stage 5A 超时恢复](experiments/stage5a_timeout_recovery.md)：420分钟主动中断的根因、旧特征续跑与阶段性结果导出。
 - [Phase 4 独立成员计划](plans/phase4_independent_member.md)：已暂停路线、Phase 4A/4B 门槛和 Kaggle 离线资产。
@@ -22,6 +23,8 @@
 
 - [Stage 3B](experiments/stage3b.md)
 - [Stage 3C](experiments/stage3c.md)
+
+可复现推理构建位于 `experiments/anchor941/` 和 `experiments/anchor942/`。
 
 ## 归档
 
