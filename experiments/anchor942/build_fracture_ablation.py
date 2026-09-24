@@ -1,6 +1,6 @@
 """Build the single-variable RadImageNet Fracture re-admission ablation.
 
-Run only after the audited Anchor942 submission reproduces at least 0.942.
+Parent: the hidden-robust Anchor942 notebook that scored 0.942.
 """
 import ast
 import hashlib
@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-SOURCE = ROOT / "notebook" / "anchor942.ipynb"
+SOURCE = ROOT / "hidden-robust-notebook" / "anchor942-hidden-robust.ipynb"
 OUT = ROOT / "fracture-notebook"
 
 OLD = "_RAD_EXCLUDE = (\"Baker's\", 'Fracture')"
@@ -16,6 +16,9 @@ NEW = "_RAD_EXCLUDE = (\"Baker's\",)"
 
 
 def build():
+    baseline = json.loads((ROOT / "anchor942_submission_receipt.json").read_text(encoding="utf-8"))
+    assert baseline["submission_id"] == 56454576
+    assert baseline["status"] == "COMPLETE" and baseline["public_score"] >= 0.942
     raw = SOURCE.read_bytes()
     nb = json.loads(raw)
     matches = []
@@ -34,11 +37,11 @@ def build():
     receipt_cell = '''import json as _fx_json
 from pathlib import Path as _FxPath
 _fx_root = _FxPath('/kaggle/working')
-_fx_parent = _fx_json.loads((_fx_root/'anchor942_run_receipt.json').read_text())
+_fx_parent = _fx_json.loads((_fx_root/'anchor942_hidden_robust_receipt.json').read_text())
 assert _fx_parent['complete'] is True
 (_fx_root/'anchor942_fracture_ablation_receipt.json').write_text(_fx_json.dumps({
   'complete': True,
-  'parent': 'audited Anchor942 Speedy recipe',
+  'parent': 'hidden-robust Anchor942 Speedy recipe; submission 56454576; public 0.942',
   'only_recipe_change': "_RAD_EXCLUDE: (Baker's, Fracture) -> (Baker's,)",
   'interpretation': 'Fracture is re-admitted to the RadImageNet blend; Baker remains excluded.'
 }, indent=2))
@@ -58,7 +61,7 @@ print('[anchor942-fracture] COMPLETE: one-variable Rad Fracture re-admission')
     notebook = OUT / "anchor942-fracture.ipynb"
     notebook.write_text(json.dumps(nb, ensure_ascii=False, indent=1), encoding="utf-8")
 
-    metadata = json.loads((ROOT / "notebook" / "kernel-metadata.json").read_text())
+    metadata = json.loads((ROOT / "hidden-robust-notebook" / "kernel-metadata.json").read_text())
     metadata.update(
         id="easoncyy/rsna-anchor942-fracture-ablation",
         title="RSNA Anchor942 Fracture Ablation",
@@ -72,7 +75,7 @@ print('[anchor942-fracture] COMPLETE: one-variable Rad Fracture re-admission')
         "notebook_sha256": hashlib.sha256(notebook.read_bytes()).hexdigest(),
         "changed_cell": matches[0],
         "only_recipe_change": OLD + " -> " + NEW,
-        "promotion_gate": "Run only if submission 56446116 scores >= 0.942",
+        "promotion_gate": "Met: hidden-robust submission 56454576 scored public 0.942",
     }, indent=2), encoding="utf-8")
     print(f"Built Fracture ablation; changed cell: {matches[0]}")
 

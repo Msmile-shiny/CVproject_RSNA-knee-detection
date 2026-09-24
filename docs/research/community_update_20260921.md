@@ -35,6 +35,8 @@ submission `56446116` 在公开三病例运行中完整通过，但 Kaggle 的�
 
 hidden-robust 版本已从未修改的公开源码重新构建，32 个推理代码单元逐字节一致；只在最终输出之后检查 CSV 并记录是否降级。公开运行完整且未降级，已作为 submission `56454576` 提交隐藏评分。Fracture 单变量消融继续冻结；只有该提交真正获得至少 0.942 后才放行。
 
+**2026-09-24 后续：** `56454576` 已得到 Public **0.942**，Fracture 对照放行。当前决策和后续评分见 [项目复盘与路线](../experiments/project_review_20260924.md)；上文保留了当时的实验前判断。
+
 来源：
 
 - https://www.kaggle.com/code/maverickss26/rsna-knee-0942-restructured

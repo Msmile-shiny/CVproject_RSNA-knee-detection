@@ -1,7 +1,7 @@
 {
-  "parent_sha256": "c2e8a7020787d46e60fd3faa9e0033fb8a8107660388aefcbf69b35a281f3651",
-  "notebook_sha256": "b55e43a5b345b1fd3035fef76a78acc9c442e0811b2d152dff204fa4431c2e71",
+  "parent_sha256": "19260b517972764e1c285cfeacdb2d2efe923236fa6df967587b20c795b76288",
+  "notebook_sha256": "1ed657527f51dd215184a444d08cc029cec03886677cf54a7295ab358d8abf91",
   "changed_cell": 43,
   "only_recipe_change": "_RAD_EXCLUDE = (\"Baker's\", 'Fracture') -> _RAD_EXCLUDE = (\"Baker's\",)",
-  "promotion_gate": "Run only if submission 56446116 scores >= 0.942"
+  "promotion_gate": "Met: hidden-robust submission 56454576 scored public 0.942"
 }

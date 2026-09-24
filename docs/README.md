@@ -4,7 +4,8 @@
 
 ## 当前入口
 
-- [项目状态（2026-09-21）](experiments/project_status_20260921.md)：当前入口；复现 0.941、Native64 0.940 回退与后续决策。
+- [项目复盘与路线（2026-09-24）](experiments/project_review_20260924.md)：0.942 实分、当前社区和论文证据、Fracture 对照及独立模型的进入门槛。
+- [项目状态（2026-09-21）](experiments/project_status_20260921.md)：历史阶段记录；复现 0.941 与 Native64 0.940 回退。
 - [社区更新（2026-09-21）](research/community_update_20260921.md)：公开 0.942 Speedy/D4 路线、标称 0.943 方案的证据分级和 Anchor942 决策。
 - [Stage 5A 计划与运行说明](plans/stage5a.md)：历史路线，已完成筛选，暂停扩大训练。
 - [Stage 5A 超时恢复](experiments/stage5a_timeout_recovery.md)：420分钟主动中断的根因、旧特征续跑与阶段性结果导出。

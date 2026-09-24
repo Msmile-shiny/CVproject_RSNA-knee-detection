@@ -6,19 +6,19 @@ Kaggle **RSNA 2026 Knee Abnormality Detection** competition project.  The task i
 
 | Item | Current result / decision |
 |---|---|
-| Best reproduced public solution | **LB 0.941** — audited Fast 2xT4 v5 community ensemble; submission 56290048 |
+| Best reproduced public solution | **LB 0.942** — community Speedy/D4 recipe, hidden-robust reproduction; submission 56454576 |
 | Native64 density ablation | **LB 0.940** — below baseline; retain original 0.941 configuration |
-| Anchor942 candidate | Strict audit `56446116` failed hidden rerun; exact-recipe hidden-robust submission `56454576` is scoring |
+| Anchor942 lineage | Strict audit `56446116` failed hidden rerun; exact-recipe version `56454576` scored **0.942** |
 | Earlier reproducible baseline | **LB 0.920** — replica of `amanatar/rsna-knee-super-ensemble` |
 | In-house v5 ensemble | Gold macro-AUC **0.8959** / LB **0.886** (3-seed rank mean) |
 | Failed supervision experiments | Stage 3A **0.818**, Stage 3C **0.807** public LB |
 | Stage 3D trusted ranking | Gold **0.8971** / Public **0.880** — small local gain did not transfer |
 | Phase 4A frozen OrthoFoundation | Gold **0.7906** — independent but too inaccurate to blend |
 | Phase 4A2 | Public **0.808** (user-reported); OrthoFoundation work paused |
-| Current work | Retain Anchor941; Native64 and Stage 5A expansion paused |
+| Current work | Anchor942 is the baseline; test Fracture-only RadImageNet change, then assess independent anatomy-focused model |
 | Admission rule | Require net improvement over the strong baseline; ranking diversity alone is insufficient |
 
-The current decision record is [Project status, 2026-09-21](docs/experiments/project_status_20260921.md), followed by the [latest community update](docs/research/community_update_20260921.md). Stage 5A completed without convincing blend gains; public-recipe replication achieved 0.941, and the newer 0.942 Speedy/D4 recipe is undergoing score verification. Reproducible inference artifacts are in `experiments/anchor941/` and `experiments/anchor942/`.
+The current decision record is [Project review, 2026-09-24](docs/experiments/project_review_20260924.md). Earlier records include [project status, 2026-09-21](docs/experiments/project_status_20260921.md) and the [community update](docs/research/community_update_20260921.md). Stage 5A completed without convincing blend gains; public-recipe replication now reaches 0.942. Reproducible inference artifacts are in `experiments/anchor941/` and `experiments/anchor942/`.
 
 ## Approach
 
@@ -74,7 +74,7 @@ The 58 gold studies are for validation only.  Do not use them to train weights o
 
 ## Project conventions
 
-- Preserve the 0.920 package as a fail-closed baseline.
+- Preserve the 0.920 package as a historical baseline; use the verified 0.942 submission as the current leaderboard reference.
 - Prefer independent architectural diversity over more highly correlated random seeds.
 - Validate additions with emitted gold predictions and a global blend scan before a leaderboard submission.
 - Record material outcomes under `docs/experiments/` and update `docs/README.md` so the next experiment has an audit trail.
