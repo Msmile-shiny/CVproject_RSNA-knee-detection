@@ -1,0 +1,32 @@
+{
+  "id": "easoncyy/rsna-knee-fork-v47-ours",
+  "title": "RSNA Knee Fork V47 Ours",
+  "code_file": "kaggle_fork_v47_ours.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": true,
+  "enable_internet": false,
+  "dataset_sources": [
+    "easoncyy/dinov5-multi-weights",
+    "mattiaangeli/knee-mri-fold-weights",
+    "marwanmath/resnet-50-radimagenet-marwan",
+    "antoinegg1/rsna-knee-e9-radimagenet-heads-v15",
+    "stevenleehans/rsna-knee-llm-report-labels",
+    "lixin73/rsna-knee-llm-report-labels-sol56",
+    "pilkwang/rsna-knee-llm-labels",
+    "mattiaangeli/rsna-knee-radimagenet-foldsv1-heads",
+    "pilkwang/rsna-knee-weights",
+    "tonylica/rsna2026-models"
+  ],
+  "kernel_sources": [
+    "sofiaanjenje/rsna-knee-e11-train"
+  ],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "model_sources": [
+    "metaresearch/dinov2/PyTorch/small/1",
+    "metaresearch/dinov2/PyTorch/base/1"
+  ]
+}

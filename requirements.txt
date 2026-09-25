@@ -1,11 +1,12 @@
 # =============================================================================
-# RSNA 2026 Knee Abnormality Detection — 环境依赖
+# RSNA 2026 Knee — DINOv2 + CNN Refiner 训练环境
 # =============================================================================
-# 安装方式:
+# 安装:
 #   pip install -r requirements.txt
-#
-# PyTorch 建议用 conda/pip 预装 CUDA 版本:
+# PyTorch (CUDA):
 #   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
+# Kaggle notebook 额外:
+#   !pip install -q timm pydicom opencv-python scikit-learn
 # =============================================================================
 
 # ── 核心深度学习 ──────────────────────────────────────────────

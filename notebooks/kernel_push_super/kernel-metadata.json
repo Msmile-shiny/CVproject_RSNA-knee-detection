@@ -1,0 +1,32 @@
+{
+  "id": "easoncyy/rsna-knee-super-ensemble-replica",
+  "title": "RSNA Knee Super Ensemble Replica (LB 0.92)",
+  "code_file": "kaggle_super_ensemble_replica.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": true,
+  "enable_internet": false,
+  "dataset_sources": [
+    "mattiaangeli/knee-mri-fold-weights",
+    "sohaibanwaar1203/kneemridataset",
+    "pilkwang/pilkwang-public-dataset-for-notebooks-figures",
+    "marwanmath/resnet-50-radimagenet-marwan",
+    "tonylica/rsna-knee-bend-dinov3-0917-repro-assets",
+    "antoinegg1/rsna-knee-e9-radimagenet-heads-v15",
+    "stevenleehans/rsna-knee-llm-report-labels",
+    "lixin73/rsna-knee-llm-report-labels-sol56",
+    "pilkwang/rsna-knee-llm-labels",
+    "mattiaangeli/rsna-knee-radimagenet-foldsv1-heads",
+    "pilkwang/rsna-knee-weights",
+    "tonylica/rsna2026-models"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "model_sources": [
+    "metaresearch/dinov2/PyTorch/small/1",
+    "metaresearch/dinov2/PyTorch/base/1"
+  ]
+}

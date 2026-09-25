@@ -1,0 +1,343 @@
+{
+  "baseline_submission": 56290048,
+  "baseline_public": 0.941,
+  "baseline_sha256": "7bc866a59f2674838c6f79a71eb69be4360b81178d6d88a8fa6b778ae0010ca6",
+  "candidate_sha256": "f2d013865ff17494c2835bc56aca978568fb9a98fa70d2d38ad9389228bda0a5",
+  "hypothesis": "Denser sampling in native384-v8 may recover small findings; no guaranteed gain.",
+  "contract": {
+    "before": [
+      {
+        "name": "maxspan-v5",
+        "file": "raptor_ft_coatnet_v5_full_swa.pt",
+        "arch": "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k",
+        "res": 384,
+        "img": 336,
+        "slots": [
+          [
+            "Sagittal",
+            1,
+            18
+          ],
+          [
+            "Sagittal",
+            0,
+            14
+          ],
+          [
+            "Coronal",
+            1,
+            12
+          ],
+          [
+            "Coronal",
+            0,
+            8
+          ],
+          [
+            "Axial",
+            -1,
+            12
+          ]
+        ],
+        "span": [
+          0.02,
+          0.98
+        ],
+        "k_eval": 62,
+        "reverse": false,
+        "w": 0.6
+      },
+      {
+        "name": "native384dense-v10",
+        "file": "raptor_ft_coatnet_v10_full.pt",
+        "arch": "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k",
+        "res": 384,
+        "img": 384,
+        "slots": [
+          [
+            "Sagittal",
+            1,
+            18
+          ],
+          [
+            "Sagittal",
+            0,
+            14
+          ],
+          [
+            "Coronal",
+            1,
+            12
+          ],
+          [
+            "Coronal",
+            0,
+            8
+          ],
+          [
+            "Axial",
+            -1,
+            12
+          ]
+        ],
+        "span": [
+          0.02,
+          0.98
+        ],
+        "k_eval": 62,
+        "reverse": false,
+        "w": 0.1
+      },
+      {
+        "name": "maxspan-v5-reverse",
+        "file": "raptor_ft_coatnet_v5_full_swa.pt",
+        "arch": "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k",
+        "res": 384,
+        "img": 336,
+        "slots": [
+          [
+            "Sagittal",
+            1,
+            18
+          ],
+          [
+            "Sagittal",
+            0,
+            14
+          ],
+          [
+            "Coronal",
+            1,
+            12
+          ],
+          [
+            "Coronal",
+            0,
+            8
+          ],
+          [
+            "Axial",
+            -1,
+            12
+          ]
+        ],
+        "span": [
+          0.02,
+          0.98
+        ],
+        "k_eval": 62,
+        "reverse": true,
+        "w": 0.1
+      },
+      {
+        "name": "native384-v8",
+        "file": "raptor_ft_coatnet_v8_full_swa.pt",
+        "arch": "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k",
+        "res": 384,
+        "img": 384,
+        "slots": [
+          [
+            "Sagittal",
+            1,
+            12
+          ],
+          [
+            "Sagittal",
+            0,
+            10
+          ],
+          [
+            "Coronal",
+            1,
+            8
+          ],
+          [
+            "Coronal",
+            0,
+            6
+          ],
+          [
+            "Axial",
+            -1,
+            8
+          ]
+        ],
+        "span": [
+          0.06,
+          0.94
+        ],
+        "k_eval": 42,
+        "reverse": false,
+        "w": 0.2
+      }
+    ],
+    "after": [
+      {
+        "name": "maxspan-v5",
+        "file": "raptor_ft_coatnet_v5_full_swa.pt",
+        "arch": "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k",
+        "res": 384,
+        "img": 336,
+        "slots": [
+          [
+            "Sagittal",
+            1,
+            18
+          ],
+          [
+            "Sagittal",
+            0,
+            14
+          ],
+          [
+            "Coronal",
+            1,
+            12
+          ],
+          [
+            "Coronal",
+            0,
+            8
+          ],
+          [
+            "Axial",
+            -1,
+            12
+          ]
+        ],
+        "span": [
+          0.02,
+          0.98
+        ],
+        "k_eval": 62,
+        "reverse": false,
+        "w": 0.6
+      },
+      {
+        "name": "native384dense-v10",
+        "file": "raptor_ft_coatnet_v10_full.pt",
+        "arch": "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k",
+        "res": 384,
+        "img": 384,
+        "slots": [
+          [
+            "Sagittal",
+            1,
+            18
+          ],
+          [
+            "Sagittal",
+            0,
+            14
+          ],
+          [
+            "Coronal",
+            1,
+            12
+          ],
+          [
+            "Coronal",
+            0,
+            8
+          ],
+          [
+            "Axial",
+            -1,
+            12
+          ]
+        ],
+        "span": [
+          0.02,
+          0.98
+        ],
+        "k_eval": 62,
+        "reverse": false,
+        "w": 0.1
+      },
+      {
+        "name": "maxspan-v5-reverse",
+        "file": "raptor_ft_coatnet_v5_full_swa.pt",
+        "arch": "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k",
+        "res": 384,
+        "img": 336,
+        "slots": [
+          [
+            "Sagittal",
+            1,
+            18
+          ],
+          [
+            "Sagittal",
+            0,
+            14
+          ],
+          [
+            "Coronal",
+            1,
+            12
+          ],
+          [
+            "Coronal",
+            0,
+            8
+          ],
+          [
+            "Axial",
+            -1,
+            12
+          ]
+        ],
+        "span": [
+          0.02,
+          0.98
+        ],
+        "k_eval": 62,
+        "reverse": true,
+        "w": 0.1
+      },
+      {
+        "name": "native384-v8",
+        "file": "raptor_ft_coatnet_v8_full_swa.pt",
+        "arch": "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k",
+        "res": 384,
+        "img": 384,
+        "slots": [
+          [
+            "Sagittal",
+            1,
+            18
+          ],
+          [
+            "Sagittal",
+            0,
+            14
+          ],
+          [
+            "Coronal",
+            1,
+            12
+          ],
+          [
+            "Coronal",
+            0,
+            8
+          ],
+          [
+            "Axial",
+            -1,
+            12
+          ]
+        ],
+        "span": [
+          0.06,
+          0.94
+        ],
+        "k_eval": 62,
+        "reverse": false,
+        "w": 0.2
+      }
+    ],
+    "old_unique_windows": 42,
+    "new_unique_windows": 62
+  }
+}

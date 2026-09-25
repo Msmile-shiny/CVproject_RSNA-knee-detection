@@ -1,0 +1,7 @@
+{
+  "parent_sha256": "19260b517972764e1c285cfeacdb2d2efe923236fa6df967587b20c795b76288",
+  "notebook_sha256": "1ed657527f51dd215184a444d08cc029cec03886677cf54a7295ab358d8abf91",
+  "changed_cell": 43,
+  "only_recipe_change": "_RAD_EXCLUDE = (\"Baker's\", 'Fracture') -> _RAD_EXCLUDE = (\"Baker's\",)",
+  "promotion_gate": "Met: hidden-robust submission 56454576 scored public 0.942"
+}

@@ -1,0 +1,12 @@
+{
+  "competition": "rsna-knee-abnormality-detection",
+  "submission_id": 56454576,
+  "status": "COMPLETE",
+  "public_score": 0.942,
+  "private_score": null,
+  "kaggle_notebook": "easoncyy/rsna-anchor942-hidden-robust",
+  "notebook_version": 1,
+  "model_origin": "maverickss26/rsna-knee-0942-restructured",
+  "verification": "Kaggle competition submissions API, 2026-09-24",
+  "failed_strict_predecessor_submission_id": 56446116
+}

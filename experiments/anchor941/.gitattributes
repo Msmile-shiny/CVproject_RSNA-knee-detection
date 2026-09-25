@@ -1,0 +1,2 @@
+# Preserve byte-level provenance hashes across Windows/Linux checkouts.
+*.ipynb -text whitespace=cr-at-eol

@@ -1,0 +1,1 @@
+{"repos": [{"repoId": "timm/vit_small_patch14_dinov2.lvd142m", "repoType": "model", "commitHash": "4610ca143709d58a633b6397a74412c2c3842454", "filePaths": ["model.safetensors"]}]}

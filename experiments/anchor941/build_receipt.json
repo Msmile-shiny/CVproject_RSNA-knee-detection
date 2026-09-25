@@ -1,0 +1,43 @@
+{
+  "upstream_sha256": "b02169d71b873985d5f4272beb191dbce73377150605ed111f87830c4d571c86",
+  "upstream_version": 5,
+  "changes": [
+    {
+      "upstream_cell": 24,
+      "original_sha256": "6d37bc2fc80b9bf68f5efad32b984154bb1f4e365fa9b1816102b461806d77f0",
+      "patched_sha256": "b7330573b9fb7de3659eb4ebec018a07e22211f97282185b30a65392c75cd474"
+    },
+    {
+      "upstream_cell": 28,
+      "original_sha256": "75b11348d7b876d8020423013e4f4be34d07f99de87c0a4945ddc9e66afffe4c",
+      "patched_sha256": "7b84ed0ab27f18442bb6b53f4e29ad23eeec6e446022587be63c5ab65542eed2"
+    },
+    {
+      "upstream_cell": 29,
+      "original_sha256": "0eb54bcb830fa2568d2dd59a350baaeede666929db5597c062505c6c21986893",
+      "patched_sha256": "5d3ca114e9d173d95ab8a8fa42e9a2a1962cc623fb5f12918d148b5e40dc9ea2"
+    },
+    {
+      "upstream_cell": 34,
+      "original_sha256": "8e94c0dc3fc50d924d5703cd8e8f0455154cf7ca606d6a8fedf0dc0a0a4e7999",
+      "patched_sha256": "e61c3c7378f10d87b044d1d0c4aa8f4f9ddd07cf22e12eb313f82dfe576c14b0"
+    },
+    {
+      "upstream_cell": 35,
+      "original_sha256": "4397eb4e5aed6990a2afec7af29ae5342b47dc853851c59d0bd3659aa8ed9502",
+      "patched_sha256": "9fd4ef86ffafc545c0ccf7c1ec843308f44aa1309ce751d704c3a7b27cd33361"
+    },
+    {
+      "upstream_cell": 37,
+      "original_sha256": "89d6a4dcd8738bb349b48de95d572a2153cbbdd6e245e8c56a7dd747c1835226",
+      "patched_sha256": "0140be60d3a37a5a1ba4e418de2d1c743874b2739f0ce76f4b9186ce48c82dce"
+    },
+    {
+      "upstream_cell": 39,
+      "original_sha256": "0faafe9f0446bcfdc6b17e3a5ab29c8cda6273d42d824891dc5d0ff580168661",
+      "patched_sha256": "6a5a62a5eb977107b9e96782b78544b57456da417772c08e7c555cd06b5d6425"
+    }
+  ],
+  "notebook_sha256": "7bc866a59f2674838c6f79a71eb69be4360b81178d6d88a8fa6b778ae0010ca6",
+  "note": "Guards and diagnostic exports only; preset, models, preprocessing and fusion unchanged."
+}

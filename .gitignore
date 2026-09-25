@@ -1,9 +1,19 @@
 # === Large data files ===
 *.tar.gz
 dataset/
+data/mini/
 data/processed/
 data/cache/
 data/raw/
+datasets/dinov2_hf_small.zip
+datasets/dinov2_hf_small/
+datasets/radimagenet_raw/
+weights_upload/
+kaggle_dataset/archive/
+
+# === Logs & temp debug scripts ===
+*.log
+scripts/_*
 
 # === Python ===
 __pycache__/
@@ -26,6 +36,8 @@ env/
 *.onnx
 outputs/
 reports/
+results/
+reference_code/
 
 # === IDE ===
 .vscode/
@@ -36,6 +48,24 @@ reports/
 # === Jupyter ===
 .ipynb_checkpoints/
 
+# === Secrets ===
+scripts/api_config.py
+
+# === NLP pipeline artifacts ===
+data/pseudo_labels_checkpoint.csv
+
+# === Project-specific exclusions ===
+configs/a_*
+configs/b_*
+configs/c_*
+data/metadata/mini_npy_index.csv
+info/*.jpeg
+info/requirements.txt
+notebooks/kaggle_preprocess.ipynb
+
 # === OS ===
 .DS_Store
 Thumbs.db
+
+# === Misc ===
+*.lnk

@@ -1,0 +1,12 @@
+{
+  "source_sha256": "b1d9a8aab7603d6b35e5bd7514bcccabf61d26698b70dec28297e0bac88cf8bd",
+  "changes": [
+    {
+      "cell": 45,
+      "before": "74d50146f3d2b8813b06ce42f339164a2234d3fef53c2e0c5d430a76523268d7",
+      "after": "ba94ab25359b68b1c98d8212380a6cf626bde57741167efe106f6ce7e8310a0e"
+    }
+  ],
+  "notebook_sha256": "c2e8a7020787d46e60fd3faa9e0033fb8a8107660388aefcbf69b35a281f3651",
+  "recipe_changes": "none; strict failure and final receipt checks only"
+}

@@ -1,0 +1,20 @@
+{
+  "competition": "rsna-knee-abnormality-detection",
+  "submission_id": 56514045,
+  "status": "COMPLETE",
+  "public_score": 0.942,
+  "verified_date": "2026-09-25",
+  "private_score": null,
+  "kaggle_notebook": "easoncyy/rsna-anchor942-fracture-ablation",
+  "notebook_version": 1,
+  "parent_submission_id": 56454576,
+  "parent_public_score": 0.942,
+  "visible_run": {
+    "complete": true,
+    "studies": 3,
+    "coat_family_members": ["resgated_top3", "d4_swa3"],
+    "residual_fallback_studies": 0,
+    "degraded": false
+  },
+  "only_recipe_change": "_RAD_EXCLUDE = (\"Baker's\", 'Fracture') -> _RAD_EXCLUDE = (\"Baker's\",)"
+}
