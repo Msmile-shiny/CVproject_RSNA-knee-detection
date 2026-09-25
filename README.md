@@ -15,10 +15,11 @@ Kaggle **RSNA 2026 Knee Abnormality Detection** competition project.  The task i
 | Stage 3D trusted ranking | Gold **0.8971** / Public **0.880** — small local gain did not transfer |
 | Phase 4A frozen OrthoFoundation | Gold **0.7906** — independent but too inaccurate to blend |
 | Phase 4A2 | Public **0.808** (user-reported); OrthoFoundation work paused |
-| Current work | Anchor942 is the baseline; test Fracture-only RadImageNet change, then assess independent anatomy-focused model |
+| Fracture ablation | Public **0.942** — equal at displayed precision, retain original parent |
+| Current work | Stage 6A GPU smoke passed; full fold0 ResNet34 pilot v3 launched (12 epochs / 480-minute session budget) |
 | Admission rule | Require net improvement over the strong baseline; ranking diversity alone is insufficient |
 
-The current decision record is [Project review, 2026-09-24](docs/experiments/project_review_20260924.md). Earlier records include [project status, 2026-09-21](docs/experiments/project_status_20260921.md) and the [community update](docs/research/community_update_20260921.md). Stage 5A completed without convincing blend gains; public-recipe replication now reaches 0.942. Reproducible inference artifacts are in `experiments/anchor941/` and `experiments/anchor942/`.
+The current training decision is [Stage 6 sustained training](docs/plans/stage6_sustained_training.md), superseding the immediate anatomy-specialist proposal. The [Project review, 2026-09-24](docs/experiments/project_review_20260924.md) records earlier decisions. Stage 5A completed without convincing blend gains; public-recipe replication now reaches 0.942. Reproducible inference artifacts are in `experiments/anchor941/` and `experiments/anchor942/`.
 
 ## Approach
 

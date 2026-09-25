@@ -4,6 +4,8 @@
 
 ## 当前入口
 
+- [Stage 6A 正式训练启动（2026-09-25）](experiments/stage6a_launch_20260925.md)：真实MRI冒烟通过、正式v3运行中、Fracture对照0.942。
+- [Stage 6 持续训练主线](plans/stage6_sustained_training.md)：失败归因、端到端ResNet34参考、固定验证和续跑；当前执行入口。
 - [项目复盘与路线（2026-09-24）](experiments/project_review_20260924.md)：0.942 实分、当前社区和论文证据、Fracture 对照及独立模型的进入门槛。
 - [项目状态（2026-09-21）](experiments/project_status_20260921.md)：历史阶段记录；复现 0.941 与 Native64 0.940 回退。
 - [社区更新（2026-09-21）](research/community_update_20260921.md)：公开 0.942 Speedy/D4 路线、标称 0.943 方案的证据分级和 Anchor942 决策。

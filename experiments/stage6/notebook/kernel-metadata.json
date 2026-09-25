@@ -1,0 +1,21 @@
+{
+  "id": "easoncyy/rsna-stage6a-resnet34-reference",
+  "title": "RSNA Stage6A ResNet34 Reference",
+  "code_file": "stage6a.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": false,
+  "enable_tpu": false,
+  "dataset_sources": [
+    "easoncyy/rsna-knee-v5-labels"
+  ],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "kernel_sources": [
+    "easoncyy/rsna-stage6-official-assets"
+  ],
+  "model_sources": []
+}
