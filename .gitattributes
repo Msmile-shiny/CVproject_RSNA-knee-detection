@@ -1,0 +1,5 @@
+# These cloud receipts are matched by raw SHA256 in generated offline notebooks.
+experiments/stage6/reference_v3/run_receipt.json -text whitespace=cr-at-eol
+experiments/stage6/continuation_v1/run_receipt.json -text whitespace=cr-at-eol
+experiments/stage6/attention/run_receipt.json -text whitespace=cr-at-eol
+experiments/stage6/supervision/stage6c_label_receipt.json -text whitespace=cr-at-eol

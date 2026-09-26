@@ -1,0 +1,104 @@
+{
+  "gold_cases": 58,
+  "gold_independent": false,
+  "classes": [
+    {
+      "target": "ACL",
+      "positives": 24,
+      "auc12": 0.7977941176470589,
+      "auc24": 0.8651960784313726,
+      "delta": 0.06740196078431371
+    },
+    {
+      "target": "MCL",
+      "positives": 9,
+      "auc12": 0.6167800453514739,
+      "auc24": 0.6621315192743764,
+      "delta": 0.04535147392290251
+    },
+    {
+      "target": "Medial Meniscus",
+      "positives": 26,
+      "auc12": 0.8641826923076923,
+      "auc24": 0.8641826923076923,
+      "delta": 0.0
+    },
+    {
+      "target": "Lateral Meniscus",
+      "positives": 23,
+      "auc12": 0.6298136645962733,
+      "auc24": 0.6322981366459627,
+      "delta": 0.002484472049689379
+    },
+    {
+      "target": "Medial OA",
+      "positives": 15,
+      "auc12": 0.9596899224806201,
+      "auc24": 0.9627906976744186,
+      "delta": 0.0031007751937984773
+    },
+    {
+      "target": "Lateral OA",
+      "positives": 11,
+      "auc12": 0.8491295938104448,
+      "auc24": 0.8239845261121856,
+      "delta": -0.025145067698259194
+    },
+    {
+      "target": "PF OA",
+      "positives": 21,
+      "auc12": 0.758043758043758,
+      "auc24": 0.7438867438867439,
+      "delta": -0.014157014157014092
+    },
+    {
+      "target": "Effusion",
+      "positives": 35,
+      "auc12": 0.9652173913043478,
+      "auc24": 0.9677018633540373,
+      "delta": 0.00248447204968949
+    },
+    {
+      "target": "Synovitis",
+      "positives": 27,
+      "auc12": 0.7694145758661888,
+      "auc24": 0.7634408602150538,
+      "delta": -0.005973715651135025
+    },
+    {
+      "target": "Baker's",
+      "positives": 12,
+      "auc12": 0.9257246376811594,
+      "auc24": 0.9239130434782609,
+      "delta": -0.0018115942028985588
+    },
+    {
+      "target": "Contusion",
+      "positives": 19,
+      "auc12": 0.766531713900135,
+      "auc24": 0.8205128205128205,
+      "delta": 0.053981106612685514
+    },
+    {
+      "target": "Fracture",
+      "positives": 18,
+      "auc12": 0.8847222222222222,
+      "auc24": 0.9055555555555556,
+      "delta": 0.02083333333333337
+    }
+  ],
+  "macro_auc12": 0.8155870279342813,
+  "macro_auc24": 0.82796621145404,
+  "descriptive_paired_bootstrap_delta_ci95": [
+    -0.0197780508756909,
+    0.048047639836328475
+  ],
+  "bootstrap_valid": 2000,
+  "bootstrap_seed": 42,
+  "loss12": 0.3892628767676513,
+  "loss24": 0.3555843460072372,
+  "mse12": 0.04032693195615182,
+  "mse24": 0.042292002361258296,
+  "seconds_continuation": 4595.86675355,
+  "decision": "No epoch-48 run or leaderboard blend; audit inputs and supervision next"
+}

@@ -1,0 +1,28 @@
+{
+  "status": "AUDIT_COMPLETE",
+  "series_count": 24371,
+  "expected_series_count": 24371,
+  "study_count": 4407,
+  "train_series_sha256": "573c1d80772bf41211c91b149c95677385a1c22d63f485c347f1b46c0177aef3",
+  "scope": "First/middle/last lexical files: header only, no pixel decode or exhaustive sorting check",
+  "flagged_series": 0,
+  "header_error_series": 0,
+  "flags": {
+    "uid_mismatch": 0,
+    "plane_conflict": 0,
+    "shape_varies": 0,
+    "spacing_varies": 0,
+    "orientation_varies": 0,
+    "duplicate_sample_position": 0
+  },
+  "seconds": 1512.040147966,
+  "slot_missing_counts": {
+    "AX_FLUID_FS": 0,
+    "COR_FLUID_FS": 159,
+    "COR_T1": 1001,
+    "SAG_FLUID_FS": 257,
+    "SAG_FLUID_NOFS": 4407,
+    "SAG_T1": 141
+  },
+  "modifies_training": false
+}

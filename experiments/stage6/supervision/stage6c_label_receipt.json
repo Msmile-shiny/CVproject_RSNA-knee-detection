@@ -1,0 +1,146 @@
+{
+  "source_v5_sha256": "c13adffaabf4f8e518abb038282bb1aa09baac7652a9165e030710c457d0be6a",
+  "report_sha256": "5ecb0bf45498da7f0cf0f9d0ff5f1bc4ec3e62613444892a05256cb9ae64b385",
+  "output_sha256": "18a13c2ccb78ad1381412cc98b9e882d40d34126e4ad693f5a6b3181315d0ac2",
+  "alpha": 0.3,
+  "gold_rows_preserved": 58,
+  "unchanged_columns": [
+    "StudyInstanceUID",
+    "weight_ACL",
+    "mask_ACL",
+    "weight_MCL",
+    "mask_MCL",
+    "weight_Medial Meniscus",
+    "mask_Medial Meniscus",
+    "weight_Lateral Meniscus",
+    "mask_Lateral Meniscus",
+    "weight_Medial OA",
+    "mask_Medial OA",
+    "weight_Lateral OA",
+    "mask_Lateral OA",
+    "weight_PF OA",
+    "mask_PF OA",
+    "weight_Effusion",
+    "mask_Effusion",
+    "weight_Synovitis",
+    "mask_Synovitis",
+    "weight_Baker's",
+    "mask_Baker's",
+    "weight_Contusion",
+    "mask_Contusion",
+    "weight_Fracture",
+    "mask_Fracture"
+  ],
+  "eligibility": "non-Gold and exactly one of npos/nneg > 0",
+  "targets": [
+    {
+      "target": "ACL",
+      "positive_only": 775,
+      "negative_only": 2426,
+      "no_mention": 862,
+      "conflicting": 286,
+      "changed": 3201,
+      "mean_absolute_change": 0.03374809050742
+    },
+    {
+      "target": "MCL",
+      "positive_only": 400,
+      "negative_only": 2821,
+      "no_mention": 904,
+      "conflicting": 224,
+      "changed": 3221,
+      "mean_absolute_change": 0.037729917380190596
+    },
+    {
+      "target": "Medial Meniscus",
+      "positive_only": 1980,
+      "negative_only": 1521,
+      "no_mention": 676,
+      "conflicting": 172,
+      "changed": 3501,
+      "mean_absolute_change": 0.04370716571089175
+    },
+    {
+      "target": "Lateral Meniscus",
+      "positive_only": 902,
+      "negative_only": 2441,
+      "no_mention": 901,
+      "conflicting": 105,
+      "changed": 3343,
+      "mean_absolute_change": 0.02489363366466983
+    },
+    {
+      "target": "Medial OA",
+      "positive_only": 1094,
+      "negative_only": 312,
+      "no_mention": 2923,
+      "conflicting": 20,
+      "changed": 1406,
+      "mean_absolute_change": 0.022719984992035393
+    },
+    {
+      "target": "Lateral OA",
+      "positive_only": 699,
+      "negative_only": 310,
+      "no_mention": 3327,
+      "conflicting": 13,
+      "changed": 1009,
+      "mean_absolute_change": 0.005123691825119132
+    },
+    {
+      "target": "PF OA",
+      "positive_only": 1526,
+      "negative_only": 249,
+      "no_mention": 2536,
+      "conflicting": 38,
+      "changed": 1775,
+      "mean_absolute_change": 0.020944490942750152
+    },
+    {
+      "target": "Effusion",
+      "positive_only": 2467,
+      "negative_only": 1191,
+      "no_mention": 627,
+      "conflicting": 64,
+      "changed": 3658,
+      "mean_absolute_change": 0.06221591540959835
+    },
+    {
+      "target": "Synovitis",
+      "positive_only": 525,
+      "negative_only": 20,
+      "no_mention": 3800,
+      "conflicting": 4,
+      "changed": 545,
+      "mean_absolute_change": 0.0065405516007488035
+    },
+    {
+      "target": "Baker's",
+      "positive_only": 1186,
+      "negative_only": 797,
+      "no_mention": 2357,
+      "conflicting": 9,
+      "changed": 1983,
+      "mean_absolute_change": 0.03200873360769229
+    },
+    {
+      "target": "Contusion",
+      "positive_only": 942,
+      "negative_only": 546,
+      "no_mention": 2750,
+      "conflicting": 111,
+      "changed": 1488,
+      "mean_absolute_change": 0.03244484504948944
+    },
+    {
+      "target": "Fracture",
+      "positive_only": 272,
+      "negative_only": 568,
+      "no_mention": 3490,
+      "conflicting": 19,
+      "changed": 840,
+      "mean_absolute_change": 0.009445125309870657
+    }
+  ],
+  "training_effect": "probabilities only; original weight/mask retained"
+}

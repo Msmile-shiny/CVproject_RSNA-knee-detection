@@ -4,6 +4,11 @@
 
 ## 当前入口
 
+- [Stage 6D细析与6C监督对照启动](experiments/stage6d_analysis_and_6c_launch_20260926.md)：注意力的类别收益/损失、逐例排序与经提及语义审核的新标签试验。
+- [序列审计完成与注意力对照](experiments/stage6_audit_and_attention_20260926.md)：头信息抽查无异常，6C监督暂缓，6D单变量训练已推送。
+- [Stage 6B结果与序列审计（2026-09-26）](experiments/stage6b_results_20260926.md)：24轮完成，Gold 0.8280；不再机械续训，进入输入和监督归因。
+- [社区最新代码复查（2026-09-26）](research/community_update_20260926.md)：DINOsaur今日版本、Master 4-Arm和监督对照的证据边界。
+- [Stage 6A结果与6B续训（2026-09-26）](experiments/stage6a_results_20260926.md)：12轮完成、Gold开发AUC 0.8156、固定续训至24轮；不是Public成绩。
 - [main 合并审计（2026-09-25）](experiments/main_merge_audit_20260925.md)：两边文件清单核对、冲突处理与历史入口保留。
 - [Stage 6A 正式训练启动（2026-09-25）](experiments/stage6a_launch_20260925.md)：真实MRI冒烟通过、正式v3运行中、Fracture对照0.942。
 - [Stage 6 持续训练主线](plans/stage6_sustained_training.md)：失败归因、端到端ResNet34参考、固定验证和续跑；当前执行入口。

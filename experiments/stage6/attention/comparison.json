@@ -1,0 +1,151 @@
+{
+  "cases": 58,
+  "class_count": 12,
+  "gold_independent": false,
+  "mean_macro_auc": 0.82796621145404,
+  "attention_macro_auc": 0.8238493011693575,
+  "descriptive_paired_bootstrap_delta_ci95": [
+    -0.03555475686946744,
+    0.02735958401013441
+  ],
+  "bootstrap_valid": 2998,
+  "bootstrap_seed": 42,
+  "mean_loss24": 0.3555843460072372,
+  "attention_loss24": 0.35368526103345194,
+  "mean_pseudo_mse": 0.042292002361258296,
+  "attention_pseudo_mse": 0.04627474537527858,
+  "classes": [
+    {
+      "target": "ACL",
+      "positives": 24,
+      "negatives": 34,
+      "mean_auc": 0.8651960784313726,
+      "attention_auc": 0.7879901960784313,
+      "delta": -0.07720588235294124,
+      "corrected_pairs": 51,
+      "spoiled_pairs": 114,
+      "rank_correlation": 0.6765818696361009
+    },
+    {
+      "target": "MCL",
+      "positives": 9,
+      "negatives": 49,
+      "mean_auc": 0.6621315192743764,
+      "attention_auc": 0.6054421768707483,
+      "delta": -0.05668934240362811,
+      "corrected_pairs": 54,
+      "spoiled_pairs": 79,
+      "rank_correlation": 0.6036174597803685
+    },
+    {
+      "target": "Medial Meniscus",
+      "positives": 26,
+      "negatives": 32,
+      "mean_auc": 0.8641826923076923,
+      "attention_auc": 0.8076923076923077,
+      "delta": -0.05649038461538458,
+      "corrected_pairs": 28,
+      "spoiled_pairs": 75,
+      "rank_correlation": 0.8427512381186749
+    },
+    {
+      "target": "Lateral Meniscus",
+      "positives": 23,
+      "negatives": 35,
+      "mean_auc": 0.6322981366459627,
+      "attention_auc": 0.7416149068322981,
+      "delta": 0.10931677018633545,
+      "corrected_pairs": 165,
+      "spoiled_pairs": 77,
+      "rank_correlation": 0.5545233627610816
+    },
+    {
+      "target": "Medial OA",
+      "positives": 15,
+      "negatives": 43,
+      "mean_auc": 0.9627906976744186,
+      "attention_auc": 0.9658914728682171,
+      "delta": 0.0031007751937984773,
+      "corrected_pairs": 13,
+      "spoiled_pairs": 11,
+      "rank_correlation": 0.8689593650988958
+    },
+    {
+      "target": "Lateral OA",
+      "positives": 11,
+      "negatives": 47,
+      "mean_auc": 0.8239845261121856,
+      "attention_auc": 0.8471953578336557,
+      "delta": 0.023210831721470093,
+      "corrected_pairs": 46,
+      "spoiled_pairs": 34,
+      "rank_correlation": 0.6722753698975669
+    },
+    {
+      "target": "PF OA",
+      "positives": 21,
+      "negatives": 37,
+      "mean_auc": 0.7438867438867439,
+      "attention_auc": 0.6808236808236808,
+      "delta": -0.06306306306306309,
+      "corrected_pairs": 40,
+      "spoiled_pairs": 89,
+      "rank_correlation": 0.8318619459226676
+    },
+    {
+      "target": "Effusion",
+      "positives": 35,
+      "negatives": 23,
+      "mean_auc": 0.9677018633540373,
+      "attention_auc": 0.9627329192546584,
+      "delta": -0.004968944099378869,
+      "corrected_pairs": 8,
+      "spoiled_pairs": 12,
+      "rank_correlation": 0.9090098126672614
+    },
+    {
+      "target": "Synovitis",
+      "positives": 27,
+      "negatives": 31,
+      "mean_auc": 0.7634408602150538,
+      "attention_auc": 0.7885304659498208,
+      "delta": 0.02508960573476704,
+      "corrected_pairs": 63,
+      "spoiled_pairs": 42,
+      "rank_correlation": 0.8876618782491004
+    },
+    {
+      "target": "Baker's",
+      "positives": 12,
+      "negatives": 46,
+      "mean_auc": 0.9239130434782609,
+      "attention_auc": 0.9456521739130435,
+      "delta": 0.021739130434782594,
+      "corrected_pairs": 27,
+      "spoiled_pairs": 15,
+      "rank_correlation": 0.6025100741333169
+    },
+    {
+      "target": "Contusion",
+      "positives": 19,
+      "negatives": 39,
+      "mean_auc": 0.8205128205128205,
+      "attention_auc": 0.8623481781376519,
+      "delta": 0.04183535762483137,
+      "corrected_pairs": 74,
+      "spoiled_pairs": 43,
+      "rank_correlation": 0.789043034236673
+    },
+    {
+      "target": "Fracture",
+      "positives": 18,
+      "negatives": 40,
+      "mean_auc": 0.9055555555555556,
+      "attention_auc": 0.8902777777777777,
+      "delta": -0.015277777777777835,
+      "corrected_pairs": 32,
+      "spoiled_pairs": 43,
+      "rank_correlation": 0.8348764957396414
+    }
+  ]
+}

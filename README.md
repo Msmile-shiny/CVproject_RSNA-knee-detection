@@ -16,7 +16,7 @@ Kaggle **RSNA 2026 Knee Abnormality Detection** competition project.  The task i
 | Phase 4A frozen OrthoFoundation | Gold **0.7906** — independent but too inaccurate to blend |
 | Phase 4A2 | Public **0.808** (user-reported); OrthoFoundation work paused |
 | Fracture ablation | Public **0.942** — equal at displayed precision, retain original parent |
-| Current work | Stage 6A GPU smoke passed; full fold0 ResNet34 pilot v3 launched (12 epochs / 480-minute session budget) |
+| Current work | Stage 6D attention completed: Gold **0.8238** vs mean **0.8280** (development only); Stage 6C report supervision control queued (2026-09-26) |
 | Admission rule | Require net improvement over the strong baseline; ranking diversity alone is insufficient |
 
 The current training decision is [Stage 6 sustained training](docs/plans/stage6_sustained_training.md), superseding the immediate anatomy-specialist proposal. The [Project review, 2026-09-24](docs/experiments/project_review_20260924.md) records earlier decisions. Stage 5A completed without convincing blend gains; public-recipe replication now reaches 0.942. Reproducible inference artifacts are in `experiments/anchor941/` and `experiments/anchor942/`.
