@@ -10,10 +10,13 @@ Kaggle **RSNA 2026 Knee Abnormality Detection** competition project.  The task i
 | Earlier reproducible baseline | **LB 0.920** — replica of `amanatar/rsna-knee-super-ensemble` |
 | In-house v5 ensemble | Gold macro-AUC **0.8959** / LB **0.886** (3-seed rank mean) |
 | Failed supervision experiments | Stage 3A **0.818**, Stage 3C **0.807** public LB |
-| Current work | Stage 3D trusted-ranking control, then Phase 4A OrthoFoundation independent-member probe |
+| Stage 3D trusted ranking | Gold **0.8971** / Public **0.880** — small local gain did not transfer |
+| Phase 4A frozen OrthoFoundation | Gold **0.7906** — independent but too inaccurate to blend |
+| Phase 4A2 | Public **0.808** (user-reported); OrthoFoundation work paused |
+| Current work | Stage 5A dense DINOv2 MIL, high-resolution revisit and parent Gold export |
 | Admission rule | Add a member only after measuring both accuracy and ranking diversity against the 0.936 parent |
 
-The current plan is [Phase 4 independent member](docs/plans/phase4_independent_member.md). See the [documentation index](docs/README.md) for earlier plans, research and experiment reports.
+The current plan is [Stage 5A](docs/plans/stage5a.md). Implementation is ready for Kaggle smoke testing; full training and score improvement have not been demonstrated. See the [documentation index](docs/README.md) for earlier plans, research and experiment reports.
 
 ## Approach
 

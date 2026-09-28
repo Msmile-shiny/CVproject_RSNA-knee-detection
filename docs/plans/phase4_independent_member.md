@@ -1,19 +1,21 @@
 # Phase 4 独立模型计划：OrthoFoundation → dense MIL
 
-日期：2026-09-08
+2026-09-10 更新：用户报告4A2 Public 0.808，暂停本路线的竞赛投入，当前执行 [Stage 5A](stage5a.md)。以下保留历史计划；原0.88门槛是Gold指标，不能直接与Public比较。
+
+日期：2026-09-09
 
 ## 当前决策
 
-Phase 4A 先做严格的低成本筛选：保持历史 `v5_labels.csv`、130 mm、9 张缓存切片和现有 SlotHead，只把 DINOv2-Small 换成冻结的 OrthoFoundation-L/DINOv3-L 特征，输入改为 256 px 以匹配 patch16。这样回答一个问题：膝关节 MRI 专用预训练本身，是否比当前自然图像 DINO 特征提供不同信号。
+Phase 4A 冻结探针已完成，Gold 0.790551，未达到 0.88 门槛；它不能融合，也不进入 dense MIL。审计发现 4A 把相邻三张切片当 RGB，而官方预训练把单张图像转换为 RGB。Phase 4A2 因此只把中心切片复制到三通道，补做一次输入对齐对照。
 
-Phase 4A 不使用 Stage 3D 排序损失。Stage 3D 尚未产生结果；同时改变骨干和损失会无法归因。也不直接上 64–96 张切片，因为 dense coverage 与骨干变化应分开验证。
+Phase 4A2 不使用 Stage 3D 排序损失。Stage 3D Gold 虽小幅提高，但 Public 仅 0.880；同时改变输入、骨干和损失会无法归因。也不直接上 64–96 张切片，因为 4A 尚未证明骨干值得扩展。
 
 ## Phase 4A 技术契约
 
-- Backbone：timm `vit_large_patch16_dinov3`，加载官方 `OrthoFoudation-L.pth`。
+- Backbone：官方 `facebookresearch/dinov3` 的 `dinov3_vitl16`，严格加载 `OrthoFoudation-L.pth`。
 - Backbone 全冻结，只训练每病变 slot attention 和分类头。
 - 旧 v5 标签固定 SHA256：`c13adffaabf4f8e518abb038282bb1aa09baac7652a9165e030710c457d0be6a`。
-- 130 mm、9 slices、3-slice RGB、6 slots；256 px；seed 42。
+- 130 mm、9 slices、6 slots、256 px、seed 42。4A 使用相邻 3-slice 伪 RGB；4A2 使用窗口中心切片复制 RGB。
 - batch 2、gradient accumulation 6，保持每次更新约 12 个检查，但单批显存更低。
 - 关闭 jitter TTA，先降低大模型推理成本并避免引入第二个变量。
 - checkpoint 加载按张量数量和参数量审计，必须 100% 匹配；不允许部分随机初始化继续训练。
@@ -27,15 +29,15 @@ Kaggle 已有可直接挂载的公开 Dataset：`leogamertetudo/knee-b01-orthofo
 
 ## 决策门槛
 
-Phase 4A 的目的不是单模型达到 0.936，而是快速判断该预训练是否值得做 dense MIL。
+Phase 4A2 的目的不是单模型达到 0.936，而是判断 4A 的失败是否来自输入分布错误。
 
-继续 Phase 4B 至少满足以下一项：
+继续 OrthoFoundation 微调至少满足以下条件：
 
 1. Gold macro AUC 明显高于同输入的 v5s1，参考门槛 `>=0.90`；或
 2. 总体接近 v5s1，但 ACL、MCL、半月板、OA 中至少三个类别改善；或
 3. 与 0.936 父集成的同病例排名相关性明显低于已有 DINO 成员，同时 5% rank blend 不降低 macro AUC。
 
-若低于 0.88，停止 OrthoFoundation 路线。若 0.88–0.90，先检查逐病例互补性，不直接花费算力做 96-slice 版本。
+Phase 4A2 若低于 0.88，或 5% rank blend 仍降低 Gold，停止 OrthoFoundation 路线。若达到 0.88–0.90 且有互补类别，只解冻最后两个 block 做小学习率验证，不直接花费算力做 96-slice 版本。
 
 ## Phase 4B：dense pathology-specific MIL
 

@@ -4,8 +4,11 @@
 
 ## 当前入口
 
-- [Phase 4 独立成员计划](plans/phase4_independent_member.md)：当前技术路线、Phase 4A/4B 门槛和 Kaggle 离线资产。
+- [Stage 5A 计划与运行说明](plans/stage5a.md)：当前路线，社区/论文复核，密集 MIL、精看对照、父模型 Gold 导出。
+- [Stage 5A 超时恢复](experiments/stage5a_timeout_recovery.md)：420分钟主动中断的根因、旧特征续跑与阶段性结果导出。
+- [Phase 4 独立成员计划](plans/phase4_independent_member.md)：已暂停路线、Phase 4A/4B 门槛和 Kaggle 离线资产。
 - [Stage 3C 实验报告](experiments/stage3c.md)：新融合伪标签退化的证据，以及 Stage 3D 的由来。
+- [Stage 3D 与 Phase 4A 实验报告](experiments/stage3d_phase4a.md)：可信排序的 Public 结果、OrthoFoundation 冻结探针和 Phase 4A2 决策。
 - [Stage 3B 文献与社区调研](research/phase3b_2026-09-06.md)：社区方案、论文与候选创新方向。
 
 ## 历史计划
