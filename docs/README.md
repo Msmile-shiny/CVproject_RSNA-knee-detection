@@ -4,6 +4,9 @@
 
 ## 当前入口
 
+- [Stage 6E预处理暂停与续跑（2026-09-28）](experiments/stage6e_preprocessing_pause_20260928.md)：3,793/4,407例已缓存，首轮未训练；已启动锁定来源的续跑。
+- [社区与论文复查（2026-09-27）](research/community_and_literature_20260927.md)：单模型、标签、输入几何与半月板定位的证据，以及6E/6F单变量冒烟。
+- [Stage 6C结果与6E覆盖冒烟（2026-09-27）](experiments/stage6c_results_and_6e_launch_20260927.md)：报告混合监督的同目标对照与8位置输入冒烟。
 - [Stage 6D细析与6C监督对照启动](experiments/stage6d_analysis_and_6c_launch_20260926.md)：注意力的类别收益/损失、逐例排序与经提及语义审核的新标签试验。
 - [序列审计完成与注意力对照](experiments/stage6_audit_and_attention_20260926.md)：头信息抽查无异常，6C监督暂缓，6D单变量训练已推送。
 - [Stage 6B结果与序列审计（2026-09-26）](experiments/stage6b_results_20260926.md)：24轮完成，Gold 0.8280；不再机械续训，进入输入和监督归因。

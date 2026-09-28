@@ -1,0 +1,57 @@
+{
+  "selected_series": 20477,
+  "image_size": 224,
+  "scope": "DICOM header sample only; no pixel image or pathology visibility audit",
+  "slots": {
+    "AX_FLUID_FS": {
+      "series": 4407,
+      "fov_mm_p10_p50_p90": [
+        149.9904,
+        160.0000038146944,
+        180.1324462890624
+      ],
+      "mm_per_pixel_median": 0.7142857313156,
+      "fraction_above_0_8_mm_per_pixel": 0.1933287950987066
+    },
+    "COR_FLUID_FS": {
+      "series": 4248,
+      "fov_mm_p10_p50_p90": [
+        150.0,
+        160.0,
+        180.0192
+      ],
+      "mm_per_pixel_median": 0.7142857142857143,
+      "fraction_above_0_8_mm_per_pixel": 0.1730225988700565
+    },
+    "COR_T1": {
+      "series": 3406,
+      "fov_mm_p10_p50_p90": [
+        150.000128,
+        160.00000476836993,
+        180.0
+      ],
+      "mm_per_pixel_median": 0.7142857355730801,
+      "fraction_above_0_8_mm_per_pixel": 0.15502055196711687
+    },
+    "SAG_FLUID_FS": {
+      "series": 4150,
+      "fov_mm_p10_p50_p90": [
+        150.0,
+        160.00012800000002,
+        180.0192
+      ],
+      "mm_per_pixel_median": 0.7142862857142858,
+      "fraction_above_0_8_mm_per_pixel": 0.2127710843373494
+    },
+    "SAG_T1": {
+      "series": 4266,
+      "fov_mm_p10_p50_p90": [
+        150.016,
+        160.0512,
+        180.0192
+      ],
+      "mm_per_pixel_median": 0.7145142857142857,
+      "fraction_above_0_8_mm_per_pixel": 0.24613220815752462
+    }
+  }
+}
