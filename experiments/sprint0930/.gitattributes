@@ -1,0 +1,2 @@
+# Preserve the source/provenance hashes across fresh Windows checkouts.
+*.ipynb -text whitespace=cr-at-eol

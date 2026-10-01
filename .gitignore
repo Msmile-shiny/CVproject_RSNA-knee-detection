@@ -2,7 +2,11 @@
 *.tar.gz
 dataset/
 data/mini/
-data/processed/
+data/processed/*
+!data/processed/v5_labels.csv
+!data/processed/v5_fusion_report.csv
+!data/processed/pseudo_labels_deepseek_gpt56sol_fused.csv
+!data/processed/pseudo_labels_deepseek_gpt56sol_fused_report.csv
 data/cache/
 data/raw/
 datasets/dinov2_hf_small.zip

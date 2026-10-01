@@ -1,0 +1,7 @@
+target,gold_mapping_for_gpt_0,gold_mapping_for_gpt_1,replaced_pseudo_rows,weight_policy
+ACL,0.12022367194780988,0.7711598746081504,4118,preserved_from_deepseek
+Lateral Meniscus,0.18700159489633172,0.7691228070175439,4215,preserved_from_deepseek
+Effusion,0.3288888888888889,0.7005847953216375,4251,preserved_from_deepseek
+Baker's,0.05787888926062229,0.5348360655737705,4323,preserved_from_deepseek
+Contusion,0.15044687189672293,0.5821104122990916,4100,preserved_from_deepseek
+Fracture,0.14312617702448213,0.5554106910039114,4267,preserved_from_deepseek

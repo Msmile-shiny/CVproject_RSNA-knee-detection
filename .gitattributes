@@ -3,3 +3,6 @@ experiments/stage6/reference_v3/run_receipt.json -text whitespace=cr-at-eol
 experiments/stage6/continuation_v1/run_receipt.json -text whitespace=cr-at-eol
 experiments/stage6/attention/run_receipt.json -text whitespace=cr-at-eol
 experiments/stage6/supervision/stage6c_label_receipt.json -text whitespace=cr-at-eol
+data/processed/*.csv -text whitespace=cr-at-eol
+# Historical report text is preserved exactly, including original whitespace.
+history/labels/**/*.csv -text -whitespace

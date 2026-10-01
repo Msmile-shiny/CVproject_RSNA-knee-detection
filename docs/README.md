@@ -4,6 +4,7 @@
 
 ## 当前入口
 
+- [main整理与合并（2026-10-01）](experiments/repository_cleanup_20261001.md)：0.943状态、标签资产、历史目录和分支合并。
 - [9月30日冲榜纠偏与实际候选](experiments/leaderboard_sprint_20260930.md)：四成员公开升级、固定10% ConvNeXt增量；暂停自动扩展Stage6消融。
 - [Stage 6F结果与24轮续训（2026-09-30）](experiments/stage6f_results_20260930.md)：288px小幅收益、逐类变化和完整缓存复用续训。
 - [Stage 6E24结果与6F启动（2026-09-29）](experiments/stage6e24_results_and_6f_launch_20260929.md)：覆盖收益保持，Gold 0.8469；启动288px单变量试验。
@@ -40,7 +41,7 @@
 - [Stage 3B](experiments/stage3b.md)
 - [Stage 3C](experiments/stage3c.md)
 
-可复现推理构建位于 `experiments/anchor941/` 和 `experiments/anchor942/`。
+当前推理在 `experiments/sprint0930/`，回退在 `experiments/anchor942/`；0.941旧方案迁入 `history/anchor941/`。
 
 ## 归档
 

@@ -1,81 +1,40 @@
 # RSNA 2026 Knee Abnormality Detection
 
-Kaggle **RSNA 2026 Knee Abnormality Detection** competition project.  The task is to predict 12 knee-MRI abnormalities from DICOM studies; evaluation is macro ROC-AUC.  This repository contains reproducible Kaggle inference/training notebooks, modular notebook cells, local validation utilities, and the experiment record.
+膝关节MRI的12类异常识别项目，Kaggle指标为宏平均ROC-AUC。**当前确认的最佳Public为0.943**；来源为社区公开模型的复现和融合。
 
-## Current status
+## 当前入口
 
-| Item | Current result / decision |
+| 用途 | 路径 / 结果 |
 |---|---|
-| Best reproduced public solution | **LB 0.942** — community Speedy/D4 recipe, hidden-robust reproduction; submission 56454576 |
-| Native64 density ablation | **LB 0.940** — below baseline; retain original 0.941 configuration |
-| Anchor942 lineage | Strict audit `56446116` failed hidden rerun; exact-recipe version `56454576` scored **0.942** |
-| Earlier reproducible baseline | **LB 0.920** — replica of `amanatar/rsna-knee-super-ensemble` |
-| In-house v5 ensemble | Gold macro-AUC **0.8959** / LB **0.886** (3-seed rank mean) |
-| Failed supervision experiments | Stage 3A **0.818**, Stage 3C **0.807** public LB |
-| Stage 3D trusted ranking | Gold **0.8971** / Public **0.880** — small local gain did not transfer |
-| Phase 4A frozen OrthoFoundation | Gold **0.7906** — independent but too inaccurate to blend |
-| Phase 4A2 | Public **0.808** (user-reported); OrthoFoundation work paused |
-| Fracture ablation | Public **0.942** — equal at displayed precision, retain original parent |
-| Current work | Leaderboard sprint: four-reader submission **56700487** and four-reader + 10% public ConvNeXt submission **56706632** are both PENDING. Stage6F24 Gold 0.84724, with no inference submission. GPU quota exhausted this week; no new GPU run started |
-| Admission rule | Require net improvement over the strong baseline; ranking diversity alone is insufficient |
+| 主方案 | [四成员构建器](experiments/sprint0930/build_public943.py)，[Kaggle Notebook](https://www.kaggle.com/code/easoncyy/rsna-sprint-public-fourway)；提交 **56700487：0.943** |
+| 独立成员对照 | [ConvNeXt 10%构建器](experiments/sprint0930/build_cnx10.py)；提交 **56706632：0.943**，显示精度下未见额外增益 |
+| 回退基线 | [Anchor942](experiments/anchor942/README.md)；提交 **56454576：0.942** |
+| 标签及来源 | [标签说明](data/README.md)：v5和DeepSeek/GPT融合标签已纳入版本控制 |
+| 实验记录 | [冲榜报告](docs/experiments/leaderboard_sprint_20260930.md) |
+| 仓库整理 | [main合并与整理记录](docs/experiments/repository_cleanup_20261001.md) |
+| 历史材料 | [history](history/README.md)、[文档索引](docs/README.md) |
 
-The immediate priority is the [September 30 leaderboard sprint](docs/experiments/leaderboard_sprint_20260930.md), superseding automatic expansion of [Stage 6 training](docs/plans/stage6_sustained_training.md). The [Project review, 2026-09-24](docs/experiments/project_review_20260924.md) records earlier decisions. Stage 5A completed without convincing blend gains; the best confirmed public-recipe replication remains 0.942. Reproducible inference artifacts are in `experiments/anchor941/`, `experiments/anchor942/`, and `experiments/sprint0930/`.
+Stage6F24已完成，Gold58 AUC为0.84724，6E24为0.84690；尚无改善0.943父模型的证据，继续扩展训练暂缓。Gold58已被多次用于开发，不能当作独立测试集。本周Kaggle GPU额度已耗尽，当前没有进行中的训练。
 
-## Approach
+## 重建与检查
 
-The active pipeline is an ensemble-oriented 2.5D MRI workflow:
+从仓库根目录运行：
 
-- DICOM header parsing, physical-mm centre crops, ordering, laterality normalization, and anatomical slot matching;
-- DINOv2 and RadImageNet feature/model branches, with 5-slice stacks or multi-slot views;
-- LLM/report-derived calibrated soft pseudo-labels for 4,349 non-gold studies; the 58 gold studies are a reused development set, not an independent validation set for the current ensemble;
-- weighted soft BCE, EMA, TTA, and study-level diagnostic pooling;
-- percentile-rank fusion, which is appropriate for the competition's ranking-based ROC-AUC metric.
-
-`reference_code/` is retained for audited public-notebook replication and comparison.  It is not an importable production dependency.
-
-## Repository map
-
-| Path | Purpose |
-|---|---|
-| `notebooks/cells_v5/` | Modular source cells for the active DINOv2 v5 training notebook |
-| `notebooks/cells_v6a/` | RadImageNet ResNet-50 diversity-member training cells |
-| `notebooks/kernel_push_super/` | Verified, submission-ready 0.920 super-ensemble package |
-| `notebooks/cells_super/` | Extra-member blend cell for stage 2 |
-| `scripts/` | Validation, checkpoint conversion, label building, fusion scans, and smoke tests |
-| `datasets/`, `models/`, `losses/` | Reusable local dataset/model/loss implementations |
-| `data/` | Metadata and pseudo-label artifacts (large raw/cache data is ignored) |
-| `docs/` | Indexed plans, experiment reports, research notes, and archived early designs |
-| `reference_code/` | Downloaded public references and extracted source cells |
-
-Notebook assembly scripts (for example `notebooks/build_v5.py`, `build_v6a.py`, and `build_super_ours.py`) generate the corresponding `.ipynb` artifacts from the cell directories.
-
-## Validation and submission
-
-Install the local Python dependencies (including a suitable PyTorch build) with:
-
-```bash
-pip install -r requirements.txt
+```powershell
+python experiments/sprint0930/build_public943.py
+python experiments/sprint0930/build_cnx10.py
+python experiments/sprint0930/test_rank_blend.py
 ```
 
-Useful checks:
+构建仅生成本地Notebook，不启动Kaggle GPU。挂载以对应目录的`kernel-metadata.json`为准。代码竞赛须提交已完成Notebook的具体版本，不能用三个可见测试病例的本地CSV替代隐藏运行。
 
-```bash
-python scripts/verify_super_ensemble_package.py
-python scripts/verify_checkpoints_local.py
-python scripts/validate_gold.py
-```
+## 目录约定
 
-The canonical 0.920 package is `notebooks/kernel_push_super/`.  Its README documents the Kaggle upload/push procedure.  Training and leaderboard submissions are intended for Kaggle GPU; local scripts should remain CPU-safe.
+- `experiments/sprint0930/`：当前0.943方案、候选及回执。
+- `experiments/anchor942/`：可靠回退；`experiments/stage6/`：自研实验记录。
+- `notebooks/`、`scripts/`：构建器与共享实现；仍被引用的旧阶段源码保留原路径。
+- `data/`：元数据、标签和来源；DICOM、缓存和权重不入Git。
+- `history/`：旧0.941方案、初期探索、旧计划、截图、失败日志和打包快照。
+- `docs/`：实验报告、研究和决策历史；文档中的“当前”仅指各自日期。
 
-## Data, weights, and reproducibility
-
-The repository deliberately excludes DICOM caches, downloaded datasets, checkpoints, generated results, and private API configuration.  See `.gitignore` for the exact rules.  A Kaggle run needs the competition data plus the datasets/models listed in the package metadata; do not assume local ignored assets are available on a fresh clone.
-
-The 58 gold studies are for validation only.  Do not use them to train weights or tune per-target blend coefficients.  Use the global macro-AUC decision rule documented in the stage-2 plan.
-
-## Project conventions
-
-- Preserve the 0.920 package as a historical baseline; use the verified 0.942 submission as the current leaderboard reference.
-- Prefer independent architectural diversity over more highly correlated random seeds.
-- Validate additions with emitted gold predictions and a global blend scan before a leaderboard submission.
-- Record material outcomes under `docs/experiments/` and update `docs/README.md` so the next experiment has an audit trail.
+后续默认在`main`工作。本次保留旧分支和Git历史；分支仍存在不代表尚未合并。提交时排除凭据、API配置和大型缓存。
