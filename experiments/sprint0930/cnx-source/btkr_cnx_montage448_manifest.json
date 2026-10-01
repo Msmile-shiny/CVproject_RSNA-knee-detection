@@ -1,0 +1,66 @@
+{
+  "contract": "btkr_optional_cnx_montage448_f0_v1",
+  "private_optional_member": false,
+  "public_fallback_member": true,
+  "entrypoint": "btkr_cnx_montage448_optional.py",
+  "checkpoint": {
+    "file": "cnx_montage448_f0.pt",
+    "bytes": 216432725,
+    "sha256": "3b7f50c7bd16d353b8d79bf6089530a376009b6c3480e1bd97b778aa1f4ecab8",
+    "fold": 0,
+    "selection_role": "primary_validation_selected",
+    "selected_epoch": 11,
+    "parameter_count": 54044968
+  },
+  "runtime_files": {
+    "btkr_cnx_montage448_optional.py": {
+      "bytes": 21408,
+      "sha256": "3744064035f7f81fca21707bacb0a5f7da36ac633fa81061b1e6395edf29749c"
+    },
+    "build_cnx_geometry_manifest.py": {
+      "bytes": 15449,
+      "sha256": "82918c7f3c6785ad5200921f6185ba66db357ce72c06b8409c79af8c3273f42e"
+    },
+    "cnx_dicom_geometry.py": {
+      "bytes": 41444,
+      "sha256": "2ca4351c3934308a56902138a99b67bc7ada9c360d05f35166865c9ce4478926"
+    },
+    "cnx_wide_geometry.py": {
+      "bytes": 6546,
+      "sha256": "418b72bf27453075486e27e49f75b74f5c2b096d2cc439690dc7cbe95f00e7d8"
+    },
+    "convnext_tokens.py": {
+      "bytes": 12152,
+      "sha256": "514cd6d5703c9281a7fb465f4f9c99e0fc75dd473b2748a03284e354d208e041"
+    },
+    "hierarchical_slot_mil.py": {
+      "bytes": 12050,
+      "sha256": "a57f37d04f29ec2dbfc697f15a26c20918374454dba41bcc4740ab7eeccf6978"
+    },
+    "ordered_montage448.py": {
+      "bytes": 30430,
+      "sha256": "43ff82f91ced0fd54aaad28519af57bb7d62e01f5e1445b21140a1958f2b50bd"
+    },
+    "slot_local2d.py": {
+      "bytes": 9094,
+      "sha256": "2e42ea7cbfac2d0be5a2aa8b8f39ba636ed9087c0b6f7e7a0ee8d82797a91b08"
+    }
+  },
+  "blend_contract": {
+    "base": "completed score-leading public parent rank prediction",
+    "member": "fold-0 M448 prediction rank",
+    "base_weight": 0.5,
+    "member_weight": 0.5,
+    "finding_weights": "uniform",
+    "fallback": "leave the base submission byte-identical"
+  },
+  "model_contract": {
+    "backbone": "convnext_small.dinov3_lvd1689m",
+    "pool": "hier_slot_mil",
+    "triplet": "montage4",
+    "img": 448,
+    "norm": "imagenet",
+    "montage_budget_profile": "anatomy_axfs"
+  },
+  "content_sha256": "ffb85e2e145e820cb0de99958a9956e0fd4076002074a73d6f69fe708be40497"
+}

@@ -1,0 +1,10 @@
+{
+  "upstream": "yamadan96/rsna-knee-d4-public0946",
+  "source_sha256": "35547f8a28ed09fc68acefa6d23f12fa0bfd6a959f54fdadfdfc3dc3c32768f8",
+  "notebook_sha256": "aaefed0f4e09fb4023e713c545d679feceb16ffc538c0172c60023be9af9d402",
+  "original_code_cells": 23,
+  "original_code_unchanged": true,
+  "upstream_claim": 0.943,
+  "own_score": null,
+  "private_dependencies": false
+}

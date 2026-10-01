@@ -1,0 +1,198 @@
+{
+  "arms": {
+    "b3_macro_auc": 0.7792484680871908,
+    "b3_per_target_auc": {
+      "ACL": 0.7058823529411764,
+      "Baker's": 0.9239130434782609,
+      "Contusion": 0.7422402159244263,
+      "Effusion": 0.9279503105590062,
+      "Fracture": 0.7486111111111112,
+      "Lateral Meniscus": 0.7701863354037266,
+      "Lateral OA": 0.7485493230174082,
+      "MCL": 0.6462585034013605,
+      "Medial Meniscus": 0.6706730769230769,
+      "Medial OA": 0.9426356589147287,
+      "PF OA": 0.8442728442728442,
+      "Synovitis": 0.6798088410991637
+    },
+    "exact_public_macro_auc": 0.8434849072528627,
+    "exact_public_per_target_auc": {
+      "ACL": 0.886029411764706,
+      "Baker's": 0.9528985507246377,
+      "Contusion": 0.8502024291497976,
+      "Effusion": 0.9440993788819876,
+      "Fracture": 0.9069444444444444,
+      "Lateral Meniscus": 0.6310559006211179,
+      "Lateral OA": 0.7214700193423598,
+      "MCL": 0.8934240362811792,
+      "Medial Meniscus": 0.8605769230769231,
+      "Medial OA": 0.9596899224806201,
+      "PF OA": 0.7902187902187903,
+      "Synovitis": 0.7252090800477897
+    }
+  },
+  "b3_minus_exact_public_per_target_auc": {
+    "ACL": -0.18014705882352955,
+    "Baker's": -0.02898550724637683,
+    "Contusion": -0.10796221322537125,
+    "Effusion": -0.016149068322981353,
+    "Fracture": -0.15833333333333321,
+    "Lateral Meniscus": 0.13913043478260867,
+    "Lateral OA": 0.027079303675048405,
+    "MCL": -0.24716553287981868,
+    "Medial Meniscus": -0.18990384615384626,
+    "Medial OA": -0.01705426356589146,
+    "PF OA": 0.054054054054053946,
+    "Synovitis": -0.04540023894862599
+  },
+  "evidence_boundary": "All values are local diagnostics on 58 expert OOF studies; they are not Kaggle competition scores.",
+  "fixed_blend_macro_auc": {
+    "0.00": 0.8434849072528627,
+    "0.05": 0.8446253701818254,
+    "0.10": 0.8473465265579451,
+    "0.15": 0.8471840407786879,
+    "0.20": 0.84754975764297,
+    "0.25": 0.846722663835176,
+    "0.35": 0.8446007508954897,
+    "0.50": 0.8379842272507423
+  },
+  "fold_counts": {
+    "0": 12,
+    "1": 11,
+    "2": 12,
+    "3": 11,
+    "4": 12
+  },
+  "package_y_vs_official_label_mismatches": {
+    "ACL": 10,
+    "Baker's": 6,
+    "Contusion": 23,
+    "Effusion": 17,
+    "Fracture": 11,
+    "Lateral Meniscus": 13,
+    "Lateral OA": 9,
+    "MCL": 9,
+    "Medial Meniscus": 8,
+    "Medial OA": 9,
+    "PF OA": 13,
+    "Synovitis": 17
+  },
+  "rows": 58,
+  "selection": {
+    "global_alpha": 0.1,
+    "global_alpha_uncapped": 0.1,
+    "global_final_weight_descriptive_macro_auc": 0.8473465265579451,
+    "global_foldwise_choices": [
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.2
+    ],
+    "global_nested_macro_auc": 0.8463056657160722,
+    "global_penalty": 0.01,
+    "target_alphas": {
+      "ACL": 0.0,
+      "Baker's": 0.35,
+      "Contusion": 0.0,
+      "Effusion": 0.25,
+      "Fracture": 0.0,
+      "Lateral Meniscus": 0.35,
+      "Lateral OA": 0.35,
+      "MCL": 0.1,
+      "Medial Meniscus": 0.0,
+      "Medial OA": 0.15,
+      "PF OA": 0.35,
+      "Synovitis": 0.35
+    },
+    "target_final_weight_descriptive_macro_auc": 0.8571525648512998,
+    "target_foldwise_choices": {
+      "ACL": [
+        0.0,
+        0.0,
+        0.05,
+        0.0,
+        0.0
+      ],
+      "Baker's": [
+        0.35,
+        0.0,
+        0.35,
+        0.35,
+        0.25
+      ],
+      "Contusion": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Effusion": [
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.35
+      ],
+      "Fracture": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Lateral Meniscus": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "Lateral OA": [
+        0.5,
+        0.5,
+        0.1,
+        0.5,
+        0.1
+      ],
+      "MCL": [
+        0.1,
+        0.1,
+        0.0,
+        0.1,
+        0.1
+      ],
+      "Medial Meniscus": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Medial OA": [
+        0.15,
+        0.15,
+        0.1,
+        0.0,
+        0.5
+      ],
+      "PF OA": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "Synovitis": [
+        0.5,
+        0.35,
+        0.5,
+        0.1,
+        0.1
+      ]
+    },
+    "target_nested_macro_auc": 0.8548132525326522,
+    "target_penalty": 0.02
+  }
+}

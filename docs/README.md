@@ -4,6 +4,10 @@
 
 ## 当前入口
 
+- [9月30日冲榜纠偏与实际候选](experiments/leaderboard_sprint_20260930.md)：四成员公开升级、固定10% ConvNeXt增量；暂停自动扩展Stage6消融。
+- [Stage 6F结果与24轮续训（2026-09-30）](experiments/stage6f_results_20260930.md)：288px小幅收益、逐类变化和完整缓存复用续训。
+- [Stage 6E24结果与6F启动（2026-09-29）](experiments/stage6e24_results_and_6f_launch_20260929.md)：覆盖收益保持，Gold 0.8469；启动288px单变量试验。
+- [Stage 6E结果与24轮续训（2026-09-29）](experiments/stage6e_results_20260929.md)：Gold 0.8347、配对不确定性、内侧半月板退步与双缓存续训。
 - [Stage 6E预处理暂停与续跑（2026-09-28）](experiments/stage6e_preprocessing_pause_20260928.md)：3,793/4,407例已缓存，首轮未训练；已启动锁定来源的续跑。
 - [社区与论文复查（2026-09-27）](research/community_and_literature_20260927.md)：单模型、标签、输入几何与半月板定位的证据，以及6E/6F单变量冒烟。
 - [Stage 6C结果与6E覆盖冒烟（2026-09-27）](experiments/stage6c_results_and_6e_launch_20260927.md)：报告混合监督的同目标对照与8位置输入冒烟。

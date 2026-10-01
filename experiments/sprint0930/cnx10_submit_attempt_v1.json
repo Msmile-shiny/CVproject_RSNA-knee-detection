@@ -1,0 +1,5 @@
+{
+  "kernel": "easoncyy/rsna-sprint-cnx10",
+  "version": 1,
+  "message": "Four-reader public base + fixed 10% public ConvNeXt DINOv3 M448 fold0; no per-class tuning"
+}

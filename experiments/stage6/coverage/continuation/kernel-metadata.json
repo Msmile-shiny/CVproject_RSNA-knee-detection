@@ -1,0 +1,23 @@
+{
+  "id": "easoncyy/rsna-stage6e-coverage-continuation",
+  "title": "RSNA Stage6E Coverage Continuation",
+  "code_file": "coverage.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": false,
+  "enable_tpu": false,
+  "dataset_sources": [
+    "easoncyy/rsna-knee-v5-labels"
+  ],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "kernel_sources": [
+    "easoncyy/rsna-stage6-official-assets",
+    "easoncyy/rsna-stage6e-coverage-pilot",
+    "easoncyy/rsna-stage6e-coverage-resume"
+  ],
+  "model_sources": []
+}

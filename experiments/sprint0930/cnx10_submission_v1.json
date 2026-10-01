@@ -1,0 +1,37 @@
+{
+  "kernel": "easoncyy/rsna-sprint-cnx10",
+  "version": 1,
+  "response": {
+    "ref": 56706632
+  },
+  "visible_receipt": {
+    "status": "COMPLETE",
+    "parent": {
+      "status": "COMPLETE",
+      "source_sha256": "35547f8a28ed09fc68acefa6d23f12fa0bfd6a959f54fdadfdfc3dc3c32768f8",
+      "inference_changes": "none; post-run audit only",
+      "upstream_reported_public_score": 0.943,
+      "own_public_score": null,
+      "family_members": [
+        "resgated_top3",
+        "global96_top3",
+        "d4_swa3",
+        "repairv1_top3"
+      ],
+      "family_reduction": "rank_of_member_probability_mean",
+      "all_four_readers_present": true,
+      "issues": [],
+      "ready_for_scoring": true,
+      "study_count": 3,
+      "submission_sha256": "8f0c5e7b2b561538dae55439a4d2e9173141096da3defd9bc0a4bac351eef37a",
+      "elapsed_seconds": 229.05478262901306
+    },
+    "member": "mattiaangeli/rsna-knee-cnx-m448-f0-public",
+    "member_checkpoint_sha256": "3b7f50c7bd16d353b8d79bf6089530a376009b6c3480e1bd97b778aa1f4ecab8",
+    "member_weight": 0.1,
+    "weight_selection": "fixed before any scoring; no per-class search",
+    "own_public_score": null,
+    "studies": 3,
+    "submission_sha256": "b171ff0f0d7e9f3f56b82b628b2187361438204f1c86946634f042b5f38a7b19"
+  }
+}

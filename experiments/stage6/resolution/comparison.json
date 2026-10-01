@@ -1,0 +1,121 @@
+{
+  "epochs": 12,
+  "changed_dimension": "size",
+  "reference_value": 224,
+  "candidate_value": 288,
+  "gold_cases": 58,
+  "validation_cases": 852,
+  "gold_independent": false,
+  "reference_macro_auc": 0.8155870279342813,
+  "candidate_macro_auc": 0.8206213657232339,
+  "descriptive_paired_bootstrap_delta_ci95": [
+    -0.019325197656005128,
+    0.029770782418718264
+  ],
+  "validation_mse": {
+    "reference": 0.04032693195615182,
+    "candidate": 0.039199605751629084
+  },
+  "final_training_loss": {
+    "reference": 0.3892628767676513,
+    "candidate": 0.39232941102241836
+  },
+  "classes": [
+    {
+      "target": "ACL",
+      "positives": 24,
+      "reference_auc": 0.7977941176470589,
+      "candidate_auc": 0.8174019607843137,
+      "delta": 0.019607843137254832,
+      "rank_correlation": 0.8644683010858534
+    },
+    {
+      "target": "MCL",
+      "positives": 9,
+      "reference_auc": 0.6167800453514739,
+      "candidate_auc": 0.6598639455782312,
+      "delta": 0.04308390022675734,
+      "rank_correlation": 0.753237564982005
+    },
+    {
+      "target": "Medial Meniscus",
+      "positives": 26,
+      "reference_auc": 0.8641826923076923,
+      "candidate_auc": 0.8425480769230769,
+      "delta": -0.02163461538461542,
+      "rank_correlation": 0.8728967362884125
+    },
+    {
+      "target": "Lateral Meniscus",
+      "positives": 23,
+      "reference_auc": 0.6298136645962733,
+      "candidate_auc": 0.6509316770186335,
+      "delta": 0.02111801242236022,
+      "rank_correlation": 0.7704020425113046
+    },
+    {
+      "target": "Medial OA",
+      "positives": 15,
+      "reference_auc": 0.9596899224806201,
+      "candidate_auc": 0.9457364341085271,
+      "delta": -0.013953488372092981,
+      "rank_correlation": 0.9245132117259837
+    },
+    {
+      "target": "Lateral OA",
+      "positives": 11,
+      "reference_auc": 0.8491295938104448,
+      "candidate_auc": 0.816247582205029,
+      "delta": -0.03288201160541582,
+      "rank_correlation": 0.848964902027131
+    },
+    {
+      "target": "PF OA",
+      "positives": 21,
+      "reference_auc": 0.758043758043758,
+      "candidate_auc": 0.7606177606177607,
+      "delta": 0.002574002574002643,
+      "rank_correlation": 0.9089482912424252
+    },
+    {
+      "target": "Effusion",
+      "positives": 35,
+      "reference_auc": 0.9652173913043478,
+      "candidate_auc": 0.9875776397515528,
+      "delta": 0.022360248447204967,
+      "rank_correlation": 0.9287581900396814
+    },
+    {
+      "target": "Synovitis",
+      "positives": 27,
+      "reference_auc": 0.7694145758661888,
+      "candidate_auc": 0.7741935483870968,
+      "delta": 0.004778972520907976,
+      "rank_correlation": 0.9532437171244886
+    },
+    {
+      "target": "Baker's",
+      "positives": 12,
+      "reference_auc": 0.9257246376811594,
+      "candidate_auc": 0.9202898550724637,
+      "delta": -0.005434782608695676,
+      "rank_correlation": 0.8447814451382695
+    },
+    {
+      "target": "Contusion",
+      "positives": 19,
+      "reference_auc": 0.766531713900135,
+      "candidate_auc": 0.7678812415654521,
+      "delta": 0.0013495276653171517,
+      "rank_correlation": 0.9162078193730967
+    },
+    {
+      "target": "Fracture",
+      "positives": 18,
+      "reference_auc": 0.8847222222222222,
+      "candidate_auc": 0.9041666666666667,
+      "delta": 0.019444444444444486,
+      "rank_correlation": 0.8815097357654804
+    }
+  ]
+}

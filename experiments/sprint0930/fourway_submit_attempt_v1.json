@@ -1,0 +1,5 @@
+{
+  "kernel": "easoncyy/rsna-sprint-public-fourway",
+  "version": 1,
+  "message": "Public four-reader upgrade: exact upstream inference, 4/4 CoAt, no degraded visible branches; upstream claim 0.943 not 0.946"
+}

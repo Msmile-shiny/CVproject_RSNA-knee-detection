@@ -16,10 +16,10 @@ Kaggle **RSNA 2026 Knee Abnormality Detection** competition project.  The task i
 | Phase 4A frozen OrthoFoundation | Gold **0.7906** — independent but too inaccurate to blend |
 | Phase 4A2 | Public **0.808** (user-reported); OrthoFoundation work paused |
 | Fracture ablation | Public **0.942** — equal at displayed precision, retain original parent |
-| Current work | Stage 6C completed: Gold **0.8214** vs 6B **0.8280** (development only); 6E full run paused during preprocessing after 3,793/4,407 studies; verified resume launched |
+| Current work | Leaderboard sprint: four-reader submission **56700487** and four-reader + 10% public ConvNeXt submission **56706632** are both PENDING. Stage6F24 Gold 0.84724, with no inference submission. GPU quota exhausted this week; no new GPU run started |
 | Admission rule | Require net improvement over the strong baseline; ranking diversity alone is insufficient |
 
-The current training decision is [Stage 6 sustained training](docs/plans/stage6_sustained_training.md), superseding the immediate anatomy-specialist proposal. The [Project review, 2026-09-24](docs/experiments/project_review_20260924.md) records earlier decisions. Stage 5A completed without convincing blend gains; public-recipe replication now reaches 0.942. Reproducible inference artifacts are in `experiments/anchor941/` and `experiments/anchor942/`.
+The immediate priority is the [September 30 leaderboard sprint](docs/experiments/leaderboard_sprint_20260930.md), superseding automatic expansion of [Stage 6 training](docs/plans/stage6_sustained_training.md). The [Project review, 2026-09-24](docs/experiments/project_review_20260924.md) records earlier decisions. Stage 5A completed without convincing blend gains; the best confirmed public-recipe replication remains 0.942. Reproducible inference artifacts are in `experiments/anchor941/`, `experiments/anchor942/`, and `experiments/sprint0930/`.
 
 ## Approach
 

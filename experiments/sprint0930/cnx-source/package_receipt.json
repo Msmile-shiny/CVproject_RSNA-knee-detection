@@ -1,0 +1,23 @@
+{
+  "dataset": "mattiaangeli/rsna-knee-cnx-m448-f0-public",
+  "visibility": "public",
+  "role": "one-fold fallback when the private five-fold M448 output is unavailable",
+  "stage": "/home/mangeli/kaggle/competitions/rsna/source/kaggle_ds_cnx_m448_f0_public",
+  "manifest": "btkr_cnx_montage448_manifest.json",
+  "manifest_sha256": "3fa478207ab2e20d3c51999ce307aae78e43c4f34760c0e1ef8fe4ccb513e9f2",
+  "checkpoint_sha256": "3b7f50c7bd16d353b8d79bf6089530a376009b6c3480e1bd97b778aa1f4ecab8",
+  "selected_epoch": 11,
+  "files": [
+    "btkr_cnx_montage448_manifest.json",
+    "btkr_cnx_montage448_optional.py",
+    "build_cnx_geometry_manifest.py",
+    "cnx_dicom_geometry.py",
+    "cnx_montage448_f0.pt",
+    "cnx_wide_geometry.py",
+    "convnext_tokens.py",
+    "dataset-metadata.json",
+    "hierarchical_slot_mil.py",
+    "ordered_montage448.py",
+    "slot_local2d.py"
+  ]
+}

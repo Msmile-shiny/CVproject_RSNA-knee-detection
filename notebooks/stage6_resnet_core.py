@@ -16,6 +16,19 @@ def centers(length, count):
     return np.unique(np.linspace(1, length - 2, min(count, length - 2)).round().astype(np.int64))
 
 
+def masked_top_half(logits, valid):
+    """Per-class mean of the strongest ceil(valid_count/2) window logits."""
+    valid = valid.bool()
+    if logits.ndim != 3 or valid.shape != logits.shape[:2]:
+        raise ValueError('Expected logits [B,N,C] and valid [B,N]')
+    counts = valid.sum(1)
+    if not (counts > 0).all():
+        raise ValueError('A study has no valid image windows')
+    scores = logits.masked_fill(~valid[..., None], -torch.inf).sort(dim=1, descending=True).values
+    keep = torch.arange(logits.shape[1], device=logits.device)[None, :] < ((counts + 1) // 2)[:, None]
+    return scores.masked_fill(~keep[..., None], 0).sum(1) / keep.sum(1)[:, None]
+
+
 class KneeResNet(nn.Module):
     def __init__(self, weights=None, slots=6, classes=12, pooling='mean'):
         super().__init__()
@@ -47,6 +60,12 @@ class KneeResNet(nn.Module):
         encoded = self.encoder(images.reshape(-1, c, h, w)[indices])
         features = encoded.new_zeros(b * n, 512).index_copy(0, indices, encoded).reshape(b, n, 512)
         features = features + self.slot_embedding(slots)
+        if self.pooling == 'top_half':
+            # Share one dropout mask across windows, as dropout on the pooled
+            # feature does; retain independent masks per study and class.
+            heads = self.dropout(self.head.new_ones(b, *self.head.shape)) * self.head
+            window_logits = torch.einsum('bnd,bcd->bnc', features, heads)
+            return masked_top_half(window_logits, valid) + self.bias
         scores = self.attention(features).transpose(1, 2)
         if self.pooling == 'mean':
             scores = torch.zeros_like(scores)

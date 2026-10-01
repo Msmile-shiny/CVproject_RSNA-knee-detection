@@ -1,4 +1,4 @@
-"""Paired 12-epoch Stage 6 input ablation; Gold is descriptive development only."""
+"""Paired equal-epoch Stage 6 input ablation; Gold is development only."""
 import argparse
 import hashlib
 import json
@@ -22,10 +22,11 @@ def read(path):
     return table
 
 
-def compare(reference, candidate, metadata, dimension):
+def compare(reference, candidate, metadata, dimension, epochs=12):
     a, b = [json.loads((folder / 'run_receipt.json').read_text()) for folder in (reference, candidate)]
     for receipt in (a, b):
-        assert receipt['status'] == 'PILOT_COMPLETE' and receipt['completed_epochs'] == 12
+        assert receipt['status'] == 'PILOT_COMPLETE' and receipt['completed_epochs'] == epochs
+        assert receipt['config']['epochs'] == epochs
         assert receipt['device'] == 'cuda' and receipt['first_backbone_gradient_norm'] > 0
         assert receipt['gold_independent'] is False
     for key in ('labels_sha256', 'weights_sha256', 'group_unit', 'train_metadata_sha256',
@@ -59,7 +60,7 @@ def compare(reference, candidate, metadata, dimension):
                      'candidate_auc': new, 'delta': new - old,
                      'rank_correlation': float(gold_a[col].rank().corr(gold_b[col].rank()))})
     histories = [json.loads((folder / 'history.json').read_text()) for folder in (reference, candidate)]
-    assert len(histories[0]) == len(histories[1]) == 12
+    assert len(histories[0]) == len(histories[1]) == epochs
     y, pa, pb = truth.to_numpy(float), gold_a.to_numpy(float), gold_b.to_numpy(float)
     rng = np.random.default_rng(42)
     deltas = []
@@ -68,14 +69,14 @@ def compare(reference, candidate, metadata, dimension):
         paired = [(auc(y[idx, j], pa[idx, j]), auc(y[idx, j], pb[idx, j])) for j in range(y.shape[1])]
         if all(x is not None and z is not None for x, z in paired):
             deltas.append(float(np.mean([z - x for x, z in paired])))
-    return {'changed_dimension': dimension, 'reference_value': a['config'][dimension],
+    return {'epochs': epochs, 'changed_dimension': dimension, 'reference_value': a['config'][dimension],
             'candidate_value': b['config'][dimension], 'gold_cases': 58, 'validation_cases': 852,
             'gold_independent': False,
             'reference_macro_auc': float(np.mean([row['reference_auc'] for row in rows])),
             'candidate_macro_auc': float(np.mean([row['candidate_auc'] for row in rows])),
             'descriptive_paired_bootstrap_delta_ci95': np.quantile(deltas, [.025, .975]).tolist(),
             'validation_mse': {'reference': a['pseudo_validation_mse'], 'candidate': b['pseudo_validation_mse']},
-            'loss12': {'reference': histories[0][-1]['loss'], 'candidate': histories[1][-1]['loss']},
+            'final_training_loss': {'reference': histories[0][-1]['loss'], 'candidate': histories[1][-1]['loss']},
             'classes': rows}
 
 
@@ -85,9 +86,10 @@ if __name__ == '__main__':
     parser.add_argument('candidate', type=Path)
     parser.add_argument('metadata', type=Path)
     parser.add_argument('--dimension', choices=('windows', 'size'), required=True)
+    parser.add_argument('--epochs', type=int, choices=(12, 24), default=12)
     parser.add_argument('--output', type=Path)
     args = parser.parse_args()
-    result = compare(args.reference, args.candidate, args.metadata, args.dimension)
+    result = compare(args.reference, args.candidate, args.metadata, args.dimension, args.epochs)
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(result, indent=2), encoding='utf-8')

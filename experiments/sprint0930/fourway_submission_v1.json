@@ -1,0 +1,27 @@
+{
+  "kernel": "easoncyy/rsna-sprint-public-fourway",
+  "version": 1,
+  "response": {
+    "ref": 56700487
+  },
+  "visible_receipt": {
+    "status": "COMPLETE",
+    "source_sha256": "35547f8a28ed09fc68acefa6d23f12fa0bfd6a959f54fdadfdfc3dc3c32768f8",
+    "inference_changes": "none; post-run audit only",
+    "upstream_reported_public_score": 0.943,
+    "own_public_score": null,
+    "family_members": [
+      "resgated_top3",
+      "global96_top3",
+      "d4_swa3",
+      "repairv1_top3"
+    ],
+    "family_reduction": "rank_of_member_probability_mean",
+    "all_four_readers_present": true,
+    "issues": [],
+    "ready_for_scoring": true,
+    "study_count": 3,
+    "submission_sha256": "8f0c5e7b2b561538dae55439a4d2e9173141096da3defd9bc0a4bac351eef37a",
+    "elapsed_seconds": 251.92742133140564
+  }
+}
