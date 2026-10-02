@@ -1,0 +1,189 @@
+{
+  "contract": "rsna_coatnet_global96_top3_probability_rank_package_v1",
+  "files": {
+    "cnx_dicom_geometry.py": "1e6e46ca40828aec8e68d93dea3676c68ee4803a10b349ad092861006e8301d4",
+    "coatnet_global96_baseline_top3_inference.py": "8beec87f648f298d348679e8812a0ca278e6c040cba9f797dbbc7efa0ed5d4b1",
+    "coatnet_global96_gold58_reference.npz": "05651c1ec0980f31fea95d95c116e8e7d7d86eeaf95e43cae80639e36fe40ddc",
+    "coatnet_global96_gold_e16.pt": "f824d16bd506f442cc5a37b054663963e5461a59a0c42ad480f3fe515dd9408f",
+    "coatnet_global96_gold_e18.pt": "629f0d10ebc1946a25577b8dc0fa1d83d65d8a607961d146b53b7a36dc2c5c2e",
+    "coatnet_global96_gold_e23.pt": "c177a8a9240c7d55465fea83bb27b1ab400274722095b2895b689092a804bfdb",
+    "coatnet_global96_inference_model.py": "d2ca34d5b1538ce42642efa0d34937f0d8a98719130dd76cc5bfa8944a2288ae",
+    "coatnet_global96_train_submission_parity_gold58.json": "c96290d0bea1511f7feb662b40c370fc21369747daef12748a24485db8e4c382",
+    "minimal_model_equivalence.json": "90bf1d03596af0696fbe95415c8909ac5f75a9852f3457975b27e04a6f3192e0",
+    "raptor_global_stack_smart336.py": "96d9f2475438771bcdd937a7747fb54b62ecb4ece74f9f0f0b5d6b71db99d7c0",
+    "raptor_light224.py": "d8f533df336f097910cd8c9ed7ae2248783554c9c797b661ee89406b5041cde5",
+    "raptor_light_inference.py": "3ce34aba32b44509bda7fe37a9b9b62c68028ea9a4d1364a5b4db3d97640b318",
+    "smart_crop224.py": "31b66d1a687fb9de3d01c10f31baf8b728903b6ed9e9effedec6fc8e77c4e424",
+    "timm-1.0.22-py3-none-any.whl": "888981753e65cbaacfc07494370138b1700a27b1f0af587f4f9b47bc024161d0",
+    "train_coatnet_global96_exact.py": "413e67c6ead41765a0662888fd9a40176df1e0a0eec02dd1c6200e5fe0dbaa1a",
+    "training_history_global96_e24.json": "3795b033ce2a26c11bad0bf655ec36f7076c32400c330999419dc0fba472970f",
+    "triplet_physical_crop.py": "b84826fede9fa4195774e208e829ad60f189cfee90dce8a2c9528349b18717cf"
+  },
+  "labels": [
+    "ACL",
+    "MCL",
+    "Medial Meniscus",
+    "Lateral Meniscus",
+    "Medial OA",
+    "Lateral OA",
+    "PF OA",
+    "Effusion",
+    "Synovitis",
+    "Baker's",
+    "Contusion",
+    "Fracture"
+  ],
+  "training_run": {
+    "status": "complete",
+    "completed_epochs": 24,
+    "all_report_studies": 4349,
+    "selector": "official Gold58 macro-AUC only",
+    "history": "training_history_global96_e24.json",
+    "history_sha256": "3795b033ce2a26c11bad0bf655ec36f7076c32400c330999419dc0fba472970f",
+    "trainer": "train_coatnet_global96_exact.py",
+    "trainer_sha256": "413e67c6ead41765a0662888fd9a40176df1e0a0eec02dd1c6200e5fe0dbaa1a",
+    "recorded_training_head_sha256": "d6505b30419d497905f3e326236e96562065055ccf7c4352a79e15ed178d34b0",
+    "global_stack_sampler_sha256": "96d9f2475438771bcdd937a7747fb54b62ecb4ece74f9f0f0b5d6b71db99d7c0",
+    "note": "the live experimental head file evolved after this run; the serving-only free-path model strict-loads all checkpoint state and is bit-exact to the retained free Global96 path"
+  },
+  "checkpoints": [
+    {
+      "rank": 1,
+      "source_name": "gold_rank1.pt",
+      "name": "coatnet_global96_gold_e16.pt",
+      "sha256": "f824d16bd506f442cc5a37b054663963e5461a59a0c42ad480f3fe515dd9408f",
+      "bytes": 300400663,
+      "epoch": 16,
+      "gold_auc": 0.9274041461096929,
+      "state_keys": 493,
+      "state_elements": 75048057
+    },
+    {
+      "rank": 2,
+      "source_name": "gold_rank2.pt",
+      "name": "coatnet_global96_gold_e23.pt",
+      "sha256": "c177a8a9240c7d55465fea83bb27b1ab400274722095b2895b689092a804bfdb",
+      "bytes": 300400663,
+      "epoch": 23,
+      "gold_auc": 0.9267289932102192,
+      "state_keys": 493,
+      "state_elements": 75048057
+    },
+    {
+      "rank": 3,
+      "source_name": "gold_rank3.pt",
+      "name": "coatnet_global96_gold_e18.pt",
+      "sha256": "629f0d10ebc1946a25577b8dc0fa1d83d65d8a607961d146b53b7a36dc2c5c2e",
+      "bytes": 300400663,
+      "epoch": 18,
+      "gold_auc": 0.9249550137927351,
+      "state_keys": 493,
+      "state_elements": 75048057
+    }
+  ],
+  "selection": {
+    "criterion": "top three official Gold58 macro-AUC epochs",
+    "epochs": [
+      16,
+      23,
+      18
+    ],
+    "individual_gold_auc": [
+      0.9274041461096929,
+      0.9267289932102192,
+      0.9249550137927351
+    ],
+    "gold58_probability_mean_auc": 0.9305011145436436,
+    "gold58_checkpoint_rank_mean_auc": 0.9289836804382087,
+    "submitted_reduction": "probability_mean_then_average_percentile_rank",
+    "gain_over_checkpoint_rank_mean": 0.0015174341054349227
+  },
+  "architecture": {
+    "backbone": "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k",
+    "timm": "1.0.22",
+    "model_class": "CoAtNetGlobal96FindingMIL",
+    "parameters": 75017952,
+    "state_elements": 75048057,
+    "state_keys": 493,
+    "minimal_model_source": "coatnet_global96_inference_model.py",
+    "minimal_model_source_sha256": "d2ca34d5b1538ce42642efa0d34937f0d8a98719130dd76cc5bfa8944a2288ae",
+    "minimal_model_equivalence": {
+      "logit_max_abs_delta": 0.0,
+      "logits_bit_exact": true,
+      "state_names_equal": true,
+      "status": "VALID_GLOBAL96_MINIMAL_MODEL_FREE_PATH_EQUIVALENCE",
+      "strict_state_load": true,
+      "value_max_abs_delta": 0.0
+    },
+    "spatial_reader": "12 free 1024d queries; bounded 85pct attention plus 15pct GAP",
+    "window_router": "full-width 1024d gated MIL",
+    "router_metadata": [
+      "depth",
+      "stride",
+      "A_slot",
+      "B_slot",
+      "C_slot"
+    ],
+    "slot_count_normalized": true
+  },
+  "preprocessing_parity": {
+    "status": "VALID_EXACT_COATNET_GLOBAL96_TRAIN_SUBMISSION_PARITY_GOLD58",
+    "receipt": "coatnet_global96_train_submission_parity_gold58.json",
+    "receipt_sha256": "c96290d0bea1511f7feb662b40c370fc21369747daef12748a24485db8e4c382",
+    "studies": 58,
+    "windows": 5452,
+    "images_byte_exact": true,
+    "nominal_slots_byte_exact": true,
+    "five_column_metadata_byte_exact": true,
+    "normalized_tensors_byte_exact": true,
+    "cross_slot_windows": 464,
+    "missing_position_windows": 279,
+    "host_architecture": "aarch64",
+    "opencv": "5.0.0",
+    "cross_platform_byte_exact_claim": false
+  },
+  "inference": {
+    "stack_layout": "inferred96",
+    "slot_widths": [
+      27,
+      21,
+      18,
+      12,
+      18
+    ],
+    "stack_slices": 96,
+    "maximum_eval_windows": 94,
+    "depth_band": [
+      0.02,
+      0.98
+    ],
+    "series_selection": "five nominal slots with unused same-plane fallback",
+    "missing_blocks": "fixed-width zero fill",
+    "triplet_frame_mode": "native_cached_slice_channels",
+    "common_physical_triplet_warp": false,
+    "cross_slot_boundary_triplets": true,
+    "canonical_sagittal": true,
+    "ordered_triplet_slot_metadata": true,
+    "resolution": 384,
+    "triplet_fov_mm": 130.0,
+    "parallel_gpus": 2,
+    "gpu_batch_studies": 2,
+    "backbone_micro_images": 8,
+    "models_resident_per_gpu": 3,
+    "dicom_preparations_per_study": 1,
+    "model_passes_per_study": 3,
+    "primary_reduction": "probability_mean_then_average_percentile_rank",
+    "cudnn_benchmark": false,
+    "torch_compile": false,
+    "serving_precision": "float16_autocast",
+    "opencv": "4.12.0",
+    "fallback_policy": "forbidden; any preparation or inference failure aborts"
+  },
+  "visible_kernel_gates": {
+    "microbatch_reference": "micro8 production versus micro4",
+    "single_gold_portability_smoke": true,
+    "full_gold58_t4x2_numerical_portability": true,
+    "full_gold58_expected_windows": 5452,
+    "full_gold58_status_before_execution": "pending"
+  }
+}

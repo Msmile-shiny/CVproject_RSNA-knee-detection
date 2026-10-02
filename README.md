@@ -11,6 +11,7 @@
 | 回退基线 | [Anchor942](experiments/anchor942/README.md)；提交 **56454576：0.942** |
 | 标签及来源 | [标签说明](data/README.md)：v5和DeepSeek/GPT融合标签已纳入版本控制 |
 | 实验记录 | [冲榜报告](docs/experiments/leaderboard_sprint_20260930.md) |
+| 下一项待运行 | [Outer70运行说明](experiments/sprint1002/README.md)：0.943父本的单项融合对照，本地检查通过，未上传或评分 |
 | 仓库整理 | [main合并与整理记录](docs/experiments/repository_cleanup_20261001.md) |
 | 历史材料 | [history](history/README.md)、[文档索引](docs/README.md) |
 

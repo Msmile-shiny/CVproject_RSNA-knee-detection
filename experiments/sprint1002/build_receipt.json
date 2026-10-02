@@ -1,0 +1,21 @@
+{
+  "status": "BUILT_NOT_RUN",
+  "gpu_launched": false,
+  "candidate_public_score": null,
+  "parent_sha256": "d0165cf3d144b6be4e05ece77f80b233c27393cdbae67cb06c0d03b96f178505",
+  "notebook_sha256": "7b92c8949538f788b1ae45b4f3f0fd4d9482ef5b4fe2b39a22aa2d6f03adfb3d",
+  "candidate_core_sha256": "eaac592eb79e75e507032fba66da918d3ca2d254d985dc0de52b40847d3f9212",
+  "parent_code_cells": 24,
+  "candidate_code_cells": 25,
+  "changed_labels": [
+    "MCL",
+    "Medial OA",
+    "PF OA",
+    "Effusion",
+    "Synovitis",
+    "Baker's",
+    "Contusion"
+  ],
+  "new_dependencies": [],
+  "dependency_audit": "remote_audit.json and asset_check_receipt.json contain separate timestamped evidence"
+}

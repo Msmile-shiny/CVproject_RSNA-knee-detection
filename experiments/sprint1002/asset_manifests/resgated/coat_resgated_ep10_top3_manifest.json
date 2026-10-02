@@ -1,0 +1,168 @@
+{
+  "contract": "rsna_coat_resgated_ep10_top3_gold_rank_package_v2",
+  "files": {
+    "cnx_dicom_geometry.py": "1e6e46ca40828aec8e68d93dea3676c68ee4803a10b349ad092861006e8301d4",
+    "coat_resgated_ep10_gold58_geometry_contract.json": "e4160563f96bdd7513605628294c23dc93aa03e47278f4f6668a951ede522796",
+    "coat_resgated_ep10_t4_gold58_rank_portability.json": "a11f5d37d877727f5d1d348ee2d5bfbcc144859c0459ced6b4a0d37eb76f2f21",
+    "coat_resgated_ep10_t4_gold58_rank_portability_predictions.npz": "a5ec6b5c56ea25efb850d3b2eab34462587850e4f28beb8345558be0aae5e4c4",
+    "coat_resgated_gold_e04.pt": "cefaf007415b5e45ce2a720d5e211a183a4e90f160710ba1f72b1ce7c46239a2",
+    "coat_resgated_gold_e06.pt": "56eca1f61651362ecfae8aecdd9327125713b95653344b8ad62ef8cff17d08f4",
+    "coat_resgated_gold_e08.pt": "8d3159102046c127dc0d084fb69c9304ffcbd4b98d1333f9811d4d613fea1b12",
+    "coatnet_q2l_bagmatch.py": "a3303a724e95cf3d9f13b67ef52529adf854b0cbe580b896ef42382cc740d932",
+    "coatnet_resgated_ep10_top3_inference.py": "b11e58f8d7cabe9e264ac70b01e811dc6a846aa01248ace1f0e6536d0d4094d9",
+    "coatnet_residual_gated_k32.py": "83735f535235bfd575767b9ac9b12ca0a77a6b11adf14343ca5c2466257f3374",
+    "gold58_top3_predictions.npz": "9b6541a643a5f9eccabc2b9414784ee3f82c3f0049c330ec237e2f0835ddeb32",
+    "raptor_k6_surgical.py": "cc525db3bb67f0fde9db8dcfbbd33ff5bf5200d0c3c92251b368101314ae647f",
+    "raptor_light224.py": "d8f533df336f097910cd8c9ed7ae2248783554c9c797b661ee89406b5041cde5",
+    "raptor_light_inference.py": "3ce34aba32b44509bda7fe37a9b9b62c68028ea9a4d1364a5b4db3d97640b318",
+    "smart_crop224.py": "31b66d1a687fb9de3d01c10f31baf8b728903b6ed9e9effedec6fc8e77c4e424",
+    "trainer_a6000_epochs01_06.py": "bc4bd65893b99214b06ebd19055cf0db85427ed1bbe6c901ba78aec82f037b9e",
+    "trainer_h100_epochs07_10.py": "88cdd6d343b43e94f3539bbcdeff0c77eed6359c3c95457aff8d2593c7b4e4a7",
+    "training_history_through_epoch10.json": "45fc2fd5983b434cce633d3f90e5c363bda267c02fa583ab7f04d29c7c45ca49",
+    "triplet_physical_crop.py": "b84826fede9fa4195774e208e829ad60f189cfee90dce8a2c9528349b18717cf"
+  },
+  "labels": [
+    "ACL",
+    "MCL",
+    "Medial Meniscus",
+    "Lateral Meniscus",
+    "Medial OA",
+    "Lateral OA",
+    "PF OA",
+    "Effusion",
+    "Synovitis",
+    "Baker's",
+    "Contusion",
+    "Fracture"
+  ],
+  "snapshot": {
+    "completed_epoch": 10,
+    "history": "training_history_through_epoch10.json",
+    "history_sha256": "45fc2fd5983b434cce633d3f90e5c363bda267c02fa583ab7f04d29c7c45ca49",
+    "remote_local_checkpoint_hash_match": true
+  },
+  "checkpoints": [
+    {
+      "rank": 1,
+      "checkpoint": "coat_resgated_gold_e04.pt",
+      "checkpoint_sha256": "cefaf007415b5e45ce2a720d5e211a183a4e90f160710ba1f72b1ce7c46239a2",
+      "epoch": 4,
+      "gold_auc": 0.9004583452460247,
+      "selection_metric": "official_gold58_macro_auc",
+      "trainer_sha256": "bc4bd65893b99214b06ebd19055cf0db85427ed1bbe6c901ba78aec82f037b9e",
+      "gpu": "NVIDIA RTX A6000"
+    },
+    {
+      "rank": 2,
+      "checkpoint": "coat_resgated_gold_e06.pt",
+      "checkpoint_sha256": "56eca1f61651362ecfae8aecdd9327125713b95653344b8ad62ef8cff17d08f4",
+      "epoch": 6,
+      "gold_auc": 0.8975532362766714,
+      "selection_metric": "official_gold58_macro_auc",
+      "trainer_sha256": "bc4bd65893b99214b06ebd19055cf0db85427ed1bbe6c901ba78aec82f037b9e",
+      "gpu": "NVIDIA RTX A6000"
+    },
+    {
+      "rank": 3,
+      "checkpoint": "coat_resgated_gold_e08.pt",
+      "checkpoint_sha256": "8d3159102046c127dc0d084fb69c9304ffcbd4b98d1333f9811d4d613fea1b12",
+      "epoch": 8,
+      "gold_auc": 0.8968762056250612,
+      "selection_metric": "official_gold58_macro_auc",
+      "trainer_sha256": "88cdd6d343b43e94f3539bbcdeff0c77eed6359c3c95457aff8d2593c7b4e4a7",
+      "gpu": "NVIDIA H100 80GB HBM3"
+    }
+  ],
+  "selection": {
+    "criterion": "top three official Gold58 macro-AUC by epoch 10",
+    "epochs": [
+      4,
+      6,
+      8
+    ],
+    "individual_gold_auc": [
+      0.9004583452460247,
+      0.8975532362766714,
+      0.8968762056250612
+    ],
+    "gold58_rank_ensemble_auc": 0.9094696373252056,
+    "gold58_probability_mean_diagnostic_auc": 0.9115587340639862,
+    "submitted_reduction": "equal mean of per-checkpoint per-finding average-percentile ranks"
+  },
+  "preprocessing": {
+    "cache_index_sha256": "ff78a79f1c086a667ffa14bd37389d1286e6a842d6341d2fac724db4efe5fa88",
+    "cache_payload_sha256": "28064dec974b025cb79f1de2676aa6cbccf065332e4e014371ef7a8fb6518d21",
+    "labels_sha256": "3b360a6a029ee1864324fba0e895dd84065351495ec6bcff109cd5d2888c888f",
+    "weights_sha256": "cc1f5012fe41e71f6ce3d86358862f5bfa65d3d16864ef84a49eeca9b4fac3cb"
+  },
+  "architecture": {
+    "backbone": "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k",
+    "head": "bounded gated spatial residual plus finding-specific slot/depth window attention",
+    "parameters": 73420000,
+    "state_elements": 73450105,
+    "component_sha256": "83735f535235bfd575767b9ac9b12ca0a77a6b11adf14343ca5c2466257f3374",
+    "sampler_component_sha256": "a3303a724e95cf3d9f13b67ef52529adf854b0cbe580b896ef42382cc740d932"
+  },
+  "gold58_geometry_contract": {
+    "status": "VALID_COAT_RESGATED_EP10_GOLD58_GEOMETRY_CONTRACT",
+    "receipt": "coat_resgated_ep10_gold58_geometry_contract.json",
+    "receipt_sha256": "e4160563f96bdd7513605628294c23dc93aa03e47278f4f6668a951ede522796",
+    "studies": 58,
+    "windows": 3816,
+    "exact_window_slot_metadata": true,
+    "final_image_byte_exact_claim": false,
+    "canonical_sagittal": true,
+    "sparse_native_grid": "off"
+  },
+  "t4_numerical_portability": {
+    "status": "VALID_COAT_EP10_FULL_GOLD58_T4_RANK_PROBE",
+    "receipt": "coat_resgated_ep10_t4_gold58_rank_portability.json",
+    "receipt_sha256": "a11f5d37d877727f5d1d348ee2d5bfbcc144859c0459ced6b4a0d37eb76f2f21",
+    "predictions": "coat_resgated_ep10_t4_gold58_rank_portability_predictions.npz",
+    "predictions_sha256": "a5ec6b5c56ea25efb850d3b2eab34462587850e4f28beb8345558be0aae5e4c4",
+    "selected_strategy": "fast_fp16_micro8",
+    "training_reference_precision": "bfloat16",
+    "serving_precision": "float16",
+    "opencv": "4.12.0",
+    "image_probe_studies": 3,
+    "image_probe_max_abs_pixel_delta": 1,
+    "image_probe_different_pixels": 1131,
+    "image_probe_pixels": 84934656,
+    "max_abs_probability_delta": 0.01461249589920044,
+    "mean_abs_probability_delta": 0.001363200294317756,
+    "max_abs_ensemble_rank_delta": 0.017241379310344862,
+    "mean_abs_ensemble_rank_delta": 0.0019652530056810673,
+    "saved_gold58_rank_ensemble_auc": 0.9094696373252056,
+    "t4_gold58_rank_ensemble_auc": 0.9093268412428666,
+    "gold58_auc_delta": -0.00014279608233902508
+  },
+  "inference": {
+    "resolution": 384,
+    "triplet_fov_mm": 130.0,
+    "eval_slot_budgets": [
+      20,
+      12,
+      12,
+      8,
+      16,
+      8
+    ],
+    "max_eval_windows": 76,
+    "eval_grid": "saved_training_gold_unique_center_slot_budgets",
+    "canonical_sagittal": true,
+    "parallel_gpus": 2,
+    "gpu_batch_studies": 2,
+    "backbone_micro_images": 8,
+    "models_resident_per_gpu": 3,
+    "dicom_preparations_per_study": 1,
+    "model_passes_per_study": 3,
+    "checkpoint_rank_method": "average_percentile_per_finding",
+    "checkpoint_rank_weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "rank_after_probability_average": false,
+    "cudnn_benchmark": false
+  }
+}

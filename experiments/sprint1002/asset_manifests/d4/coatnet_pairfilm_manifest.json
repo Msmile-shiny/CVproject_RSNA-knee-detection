@@ -1,0 +1,268 @@
+{
+  "contract": "rsna_coatnet_d4_selected_probability_package_v1",
+  "runtime_contract": "rsna_coatnet_d4_selected_t4x2_v1",
+  "submission_status": "VALID_COATNET_D4_DEPTHZONE_SWA3_T4X2_SUBMISSION",
+  "shard_status": "VALID_COATNET_D4_DEPTHZONE_SWA3_RAW_SHARD",
+  "worker_loader_contract": "d4_depthzone_swa3_v1",
+  "receipt_name": "coatnet_d4_depthzone_swa3_submission_receipt.json",
+  "predictions_name": "coatnet_d4_depthzone_swa3_predictions.npz",
+  "dataset_slug": "rsna-knee-coatnet-d4-depthzone-swa3-b2",
+  "architecture": "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k",
+  "timm_version": "1.0.22",
+  "files": {
+    "audit_coatnet_d4_serving_equivalence.py": "d1aa41f568f06691a368923eafb9067fe9f590deed1a03e8aa7de0798c8c4424",
+    "cnx_dicom_geometry.py": "1e6e46ca40828aec8e68d93dea3676c68ee4803a10b349ad092861006e8301d4",
+    "coatnet_d4_depthzone_swa3_adapter.pt": "b7c48b19997bc7ecb7e997f8dcf491ec5701ff917d1dac4b369eb85ac97ae89a",
+    "coatnet_d4_depthzone_swa_inference.py": "fedf2053d5cdd5ad6fb3793c33bdb226a42cf9eddfb3667f91b33e34670b7a1f",
+    "coatnet_d4_parent_rank8_swa2.pt": "5de38e333e3184d7b52fb068183f0cc198d6cbabb6ffbe36b26338622e82d297",
+    "coatnet_fsxfilm_inference_model.py": "290688a0b063e03a7c4f7eefebeb7923dfac795ef2c342498e6803b48f056bcf",
+    "coatnet_fsxfilm_swa_inference.py": "c05738825546649d69c8eefb17696bcc4881699d36d6a4ec59ddec566aa704fe",
+    "coatnet_global96_baseline_top3_inference.py": "7c6a8df50e269b9aa69077b64f7296acb4ad5bf3792ec2523b645b2a42778acb",
+    "coatnet_global96_inference_model.py": "d2ca34d5b1538ce42642efa0d34937f0d8a98719130dd76cc5bfa8944a2288ae",
+    "coatnet_pairfilm_swa_inference.py": "60d016489aaca485ea94a33048238cd37ab284174c118c2e668006ded3cd0dd9",
+    "coatnet_slice_depth_adapters.py": "fb24c03b7554f4acf02cfa40dfd7492e72bf1e9fde6ae8e19ff3868727cfa37c",
+    "d4_gold58_reference.npz": "ef4c66c212cec2ed7b8b3b9da44e2a0e7d8bcd1a85567563c32eef70dacce6d6",
+    "d4_train_serving_equivalence.json": "58c0e36e9dd530f11b2e8625c4a907be9762aa49791c02abc83432216e4840c6",
+    "executed_CODEX_SLICE_CENTER_DEPTH_5_ABLATIONS_20260909.md": "92a50ec523d4a183f043f7b286a680ea011ca6a86f69a02b33593393a60c9dc7",
+    "executed_anchored_adaptive_patch_pool.py": "0ae316a4c0b970bdb6386769eb47d25cd0cb4e765293cf1354e3dbfd9848ae11",
+    "executed_coatnet_finding_slot_cross_attention_lr.py": "69d197571af8e971c618bc004839f07162a27636761c2b22b6f2585bd4ea5a59",
+    "executed_coatnet_joint_slot_finding_mha.py": "b899e9e020305c963ebeabe905e79802a006806761fbb08da569ff88e70fbcc3",
+    "executed_coatnet_q2l_bagmatch.py": "a3303a724e95cf3d9f13b67ef52529adf854b0cbe580b896ef42382cc740d932",
+    "executed_coatnet_residual_gated_k32.py": "23bbf2625ae23a12c49bef8295d298aca1cff233bff7fe4bf34e540849e8f57a",
+    "executed_coatnet_slice_depth_adapters.py": "fb24c03b7554f4acf02cfa40dfd7492e72bf1e9fde6ae8e19ff3868727cfa37c",
+    "executed_convnext_cross_slot_finding_head.py": "a8dde3cb4df2158a73db5ace7faefbafe5b08b34ebabf8384842df4e43f78fcb",
+    "executed_convnext_head_ablation_k32.py": "ea59169fa4297b9e1760cc21a61335864843a98af55b11e933fd0349890dcaa1",
+    "executed_finding_slot_cross_attention_lr.py": "e0e609f6e268fdd8134b08ae93f433f25ecdb79b57699886f7ed1e7f24d5846e",
+    "executed_raptor_global_stack_slot_coverage.py": "2e00a97ed4b83f9a1dcf96a24d0fecf923468da5aea1ae10ef93474aa448de22",
+    "executed_raptor_global_stack_smart336.py": "c73d84cfb385215c6c987bf9dcde73d1fe47e25806538dee0da04c407466b802",
+    "executed_raptor_k6_surgical.py": "cc525db3bb67f0fde9db8dcfbbd33ff5bf5200d0c3c92251b368101314ae647f",
+    "executed_raptor_light224.py": "d8f533df336f097910cd8c9ed7ae2248783554c9c797b661ee89406b5041cde5",
+    "executed_test_coatnet_slice_depth_adapters.py": "e2d59850c36e2d80e9bc663f2f042a3b0d608902257cb6ed67af3181edd05b5e",
+    "executed_train_coatnet_adaptive_patch_guard.py": "19d8a52917c056b15567d1c1431e903860e919220e4efe2edafb3ad91e988fce",
+    "executed_train_coatnet_global96_joint_mha_k12_effb24_e24_full_gold_swa.py": "f3cbfb85e1824c5172ab53d2497559492b1d97ae0cbfabd96a84817d4539245d",
+    "executed_train_coatnet_slice_depth_ablation.py": "826aec545a22c708e08b6489615c9dc2664e5bee9795dcd2857b1747a43459ad",
+    "executed_triplet_physical_crop.py": "b84826fede9fa4195774e208e829ad60f189cfee90dce8a2c9528349b18717cf",
+    "finding_slot_cross_attention_lr.py": "e0e609f6e268fdd8134b08ae93f433f25ecdb79b57699886f7ed1e7f24d5846e",
+    "inherited_coatnet_fsxfilm_swa_train_submission_parity_gold58.json": "105dfb703bf29d0bcbfe6236589f582a91ef60ce336685ccd522315bbd996a5a",
+    "inherited_coatnet_fsxfilm_train36_cache_reference.json": "2b143a323d586840e5e852c3d18f550db27859df1e6ad44accaa1d21b929999d",
+    "inherited_coatnet_global96_train_submission_parity_gold58.json": "c96290d0bea1511f7feb662b40c370fc21369747daef12748a24485db8e4c382",
+    "raptor_global_stack_slot_coverage.py": "2e00a97ed4b83f9a1dcf96a24d0fecf923468da5aea1ae10ef93474aa448de22",
+    "raptor_global_stack_smart336.py": "c73d84cfb385215c6c987bf9dcde73d1fe47e25806538dee0da04c407466b802",
+    "raptor_light224.py": "d8f533df336f097910cd8c9ed7ae2248783554c9c797b661ee89406b5041cde5",
+    "raptor_light_inference.py": "2bd1f9f85d6895442825d6440ef9e2cffe6ad002f2f1bff484a35769443e4328",
+    "smart_crop224.py": "31b66d1a687fb9de3d01c10f31baf8b728903b6ed9e9effedec6fc8e77c4e424",
+    "timm-1.0.22-py3-none-any.whl": "888981753e65cbaacfc07494370138b1700a27b1f0af587f4f9b47bc024161d0",
+    "training_completion_d4.json": "fdb25f9e72fe2e8a76d3ec9b7d1c6d971ee3524f6c395a54f9273abca9ff9e9b",
+    "training_history_d4.json": "23b25b198ff79cd7e24e88e15d62622b74d85604451ffc20c1058b5b45529d50",
+    "triplet_physical_crop.py": "b84826fede9fa4195774e208e829ad60f189cfee90dce8a2c9528349b18717cf"
+  },
+  "labels": [
+    "ACL",
+    "MCL",
+    "Medial Meniscus",
+    "Lateral Meniscus",
+    "Medial OA",
+    "Lateral OA",
+    "PF OA",
+    "Effusion",
+    "Synovitis",
+    "Baker's",
+    "Contusion",
+    "Fracture"
+  ],
+  "checkpoint": {
+    "rank": 1,
+    "name": "coatnet_d4_parent_rank8_swa2.pt",
+    "sha256": "5de38e333e3184d7b52fb068183f0cc198d6cbabb6ffbe36b26338622e82d297",
+    "bytes": 303275707,
+    "epoch": null,
+    "gold_auc": 0.9287792492646774,
+    "selected_kind": "swa_top2_parent",
+    "selected_members": [
+      15,
+      16
+    ],
+    "selection_label": "swa_top2_parent",
+    "parameters": 75718524,
+    "state_elements": 75748634,
+    "state_keys": 522,
+    "batchnorm_recalibration": {
+      "modules": 25,
+      "backbone_calls": 544,
+      "images": 50253,
+      "seconds": 119.78464515204541,
+      "counter_min": 544,
+      "counter_max": 544
+    },
+    "payload_claims": {
+      "gold_auc": 0.9287792492646774,
+      "val_auc": 0.9287792492646774,
+      "selection_metric": "official_gold58_macro_auc",
+      "run_contract_sha256": "30e2d30b314607748acd02205aa07080a6f908d4b5d999b8e2bf88ad9c5faef4",
+      "swa_member_count": 2,
+      "swa_member_epochs": [
+        15,
+        16
+      ],
+      "swa_averaging": "uniform_parameters_only_then_BN_recalibration"
+    }
+  },
+  "checkpoints": [
+    {
+      "rank": 1,
+      "name": "coatnet_d4_parent_rank8_swa2.pt",
+      "sha256": "5de38e333e3184d7b52fb068183f0cc198d6cbabb6ffbe36b26338622e82d297",
+      "bytes": 303275707,
+      "epoch": null,
+      "gold_auc": 0.9287792492646774,
+      "selected_kind": "swa_top2_parent",
+      "selected_members": [
+        15,
+        16
+      ],
+      "selection_label": "swa_top2_parent",
+      "parameters": 75718524,
+      "state_elements": 75748634,
+      "state_keys": 522,
+      "batchnorm_recalibration": {
+        "modules": 25,
+        "backbone_calls": 544,
+        "images": 50253,
+        "seconds": 119.78464515204541,
+        "counter_min": 544,
+        "counter_max": 544
+      },
+      "payload_claims": {
+        "gold_auc": 0.9287792492646774,
+        "val_auc": 0.9287792492646774,
+        "selection_metric": "official_gold58_macro_auc",
+        "run_contract_sha256": "30e2d30b314607748acd02205aa07080a6f908d4b5d999b8e2bf88ad9c5faef4",
+        "swa_member_count": 2,
+        "swa_member_epochs": [
+          15,
+          16
+        ],
+        "swa_averaging": "uniform_parameters_only_then_BN_recalibration"
+      }
+    }
+  ],
+  "checkpoint_config_sha256": "30e2d30b314607748acd02205aa07080a6f908d4b5d999b8e2bf88ad9c5faef4",
+  "selection": {
+    "description": "d4_depthzone_swa3",
+    "selected_kind": "d4_depthzone_swa3",
+    "epochs": [
+      11,
+      9,
+      5
+    ],
+    "individual_gold_auc": [
+      0.930171388800367
+    ],
+    "gold58_probability_mean_auc": 0.930171388800367,
+    "gold58_checkpoint_rank_mean_auc": 0.930171388800367,
+    "submitted_reduction": "single_sigmoid_probability_then_single_percentile_rank",
+    "ensemble": "one selected model then one per-finding average-percentile rank"
+  },
+  "inference": {
+    "stack_layout": "inferred96",
+    "slot_widths": [
+      27,
+      21,
+      18,
+      12,
+      18
+    ],
+    "stack_slices": 96,
+    "maximum_eval_windows": 94,
+    "depth_band": [
+      0.02,
+      0.98
+    ],
+    "resolution": 384,
+    "triplet_fov_mm": 130.0,
+    "gpu_batch_studies": 2,
+    "backbone_micro_images": 8,
+    "reference_micro_images": 8,
+    "prep_workers": 2,
+    "prep_chunk": 16,
+    "cudnn_benchmark": false,
+    "fsx_attention_kind": "cosine-qkv-rank8",
+    "head": "rank8_swa2_plus_d4_three_zone_expanded_fsx"
+  },
+  "training": {
+    "status": "complete",
+    "history": "training_history_d4.json",
+    "completion": "training_completion_d4.json",
+    "selector": "official Gold58 macro-AUC",
+    "selected_gold_auc": 0.930171388800367,
+    "selected_members": [
+      11,
+      9,
+      5
+    ],
+    "source_provenance": {
+      "executed_coatnet_slice_depth_adapters.py": "fb24c03b7554f4acf02cfa40dfd7492e72bf1e9fde6ae8e19ff3868727cfa37c",
+      "executed_test_coatnet_slice_depth_adapters.py": "e2d59850c36e2d80e9bc663f2f042a3b0d608902257cb6ed67af3181edd05b5e",
+      "executed_train_coatnet_slice_depth_ablation.py": "826aec545a22c708e08b6489615c9dc2664e5bee9795dcd2857b1747a43459ad",
+      "executed_CODEX_SLICE_CENTER_DEPTH_5_ABLATIONS_20260909.md": "92a50ec523d4a183f043f7b286a680ea011ca6a86f69a02b33593393a60c9dc7",
+      "executed_anchored_adaptive_patch_pool.py": "0ae316a4c0b970bdb6386769eb47d25cd0cb4e765293cf1354e3dbfd9848ae11",
+      "executed_train_coatnet_adaptive_patch_guard.py": "19d8a52917c056b15567d1c1431e903860e919220e4efe2edafb3ad91e988fce",
+      "executed_train_coatnet_global96_joint_mha_k12_effb24_e24_full_gold_swa.py": "f3cbfb85e1824c5172ab53d2497559492b1d97ae0cbfabd96a84817d4539245d",
+      "executed_coatnet_finding_slot_cross_attention_lr.py": "69d197571af8e971c618bc004839f07162a27636761c2b22b6f2585bd4ea5a59",
+      "executed_finding_slot_cross_attention_lr.py": "e0e609f6e268fdd8134b08ae93f433f25ecdb79b57699886f7ed1e7f24d5846e",
+      "executed_convnext_cross_slot_finding_head.py": "a8dde3cb4df2158a73db5ace7faefbafe5b08b34ebabf8384842df4e43f78fcb",
+      "executed_coatnet_joint_slot_finding_mha.py": "b899e9e020305c963ebeabe905e79802a006806761fbb08da569ff88e70fbcc3",
+      "executed_convnext_head_ablation_k32.py": "ea59169fa4297b9e1760cc21a61335864843a98af55b11e933fd0349890dcaa1",
+      "executed_coatnet_residual_gated_k32.py": "23bbf2625ae23a12c49bef8295d298aca1cff233bff7fe4bf34e540849e8f57a",
+      "executed_coatnet_q2l_bagmatch.py": "a3303a724e95cf3d9f13b67ef52529adf854b0cbe580b896ef42382cc740d932",
+      "executed_raptor_global_stack_smart336.py": "c73d84cfb385215c6c987bf9dcde73d1fe47e25806538dee0da04c407466b802",
+      "executed_raptor_global_stack_slot_coverage.py": "2e00a97ed4b83f9a1dcf96a24d0fecf923468da5aea1ae10ef93474aa448de22",
+      "executed_raptor_k6_surgical.py": "cc525db3bb67f0fde9db8dcfbbd33ff5bf5200d0c3c92251b368101314ae647f",
+      "executed_raptor_light224.py": "d8f533df336f097910cd8c9ed7ae2248783554c9c797b661ee89406b5041cde5",
+      "executed_triplet_physical_crop.py": "b84826fede9fa4195774e208e829ad60f189cfee90dce8a2c9528349b18717cf"
+    }
+  },
+  "parity": {
+    "model_equivalence": "d4_train_serving_equivalence.json",
+    "same_input_threshold": 1e-06,
+    "mixed_and_missing_slot_scenarios": 2,
+    "decoded_values_max_abs": 0.0,
+    "prepared_scores_max_abs": 0.0,
+    "final_logits_max_abs": 0.0,
+    "preprocessing_runtime_relation": "critical preprocessing and orchestration files byte-identical to successful R1/R2 production packages",
+    "inherited_receipts": [
+      "inherited_coatnet_fsxfilm_swa_train_submission_parity_gold58.json",
+      "inherited_coatnet_global96_train_submission_parity_gold58.json",
+      "inherited_coatnet_fsxfilm_train36_cache_reference.json"
+    ],
+    "inherited_receipt_role": "preprocessing_and_Global96_bag_evidence_only; model/head equivalence is proved by the profile-specific synthetic receipt",
+    "inherited_receipt_sha256": {
+      "inherited_coatnet_fsxfilm_swa_train_submission_parity_gold58.json": "105dfb703bf29d0bcbfe6236589f582a91ef60ce336685ccd522315bbd996a5a",
+      "inherited_coatnet_global96_train_submission_parity_gold58.json": "c96290d0bea1511f7feb662b40c370fc21369747daef12748a24485db8e4c382",
+      "inherited_coatnet_fsxfilm_train36_cache_reference.json": "2b143a323d586840e5e852c3d18f550db27859df1e6ad44accaa1d21b929999d"
+    }
+  },
+  "slice_depth": {
+    "arm": "d4_zones",
+    "adapter_name": "coatnet_d4_depthzone_swa3_adapter.pt",
+    "adapter_sha256": "b7c48b19997bc7ecb7e997f8dcf491ec5701ff917d1dac4b369eb85ac97ae89a",
+    "adapter_config_sha256": "59842322fea6c72dc1f151c0e39e180a964aecb62ed488821a4b51b7e8630578",
+    "adapter_state_elements": 3255,
+    "gold_auc": 0.930171388800367,
+    "adapter_swa_member_epochs": [
+      11,
+      9,
+      5
+    ],
+    "parent_swa_member_epochs": [
+      15,
+      16
+    ],
+    "executed_adapter_source_sha256": "fb24c03b7554f4acf02cfa40dfd7492e72bf1e9fde6ae8e19ff3868727cfa37c",
+    "source_coordinate": "u=2*metadata[...,0], immutable source-normalized coordinate",
+    "zone_keys_per_slot": 3,
+    "zone_membership": "piecewise-linear low/centre/high",
+    "duplicated_key_count_correction": true,
+    "pure_triplet_policy": "D4 consumes only nonempty A=B=C triplets; mixed windows remain in unchanged parent finding stream"
+  }
+}

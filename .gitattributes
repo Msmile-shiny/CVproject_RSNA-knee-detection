@@ -6,3 +6,7 @@ experiments/stage6/supervision/stage6c_label_receipt.json -text whitespace=cr-at
 data/processed/*.csv -text whitespace=cr-at-eol
 # Historical report text is preserved exactly, including original whitespace.
 history/labels/**/*.csv -text -whitespace
+# Exact parent identity and downloaded public manifests used by the offline audit.
+experiments/sprint0930/fourway-public/sprint-fourway.ipynb -text
+experiments/sprint1002/outer70/*.ipynb -text
+experiments/sprint1002/asset_manifests/**/*.json -text

@@ -1,0 +1,38 @@
+{
+  "status": "MANIFEST_AND_NAMES_PASS",
+  "checked_at_utc": "2026-10-02T07:23:25.664292+00:00",
+  "families": [
+    {
+      "family": "d4",
+      "manifest_sha256": "7ada0605bca6b0530569c6454e988ace479606a3328ed591d090e5764fea661d",
+      "pinned_in_parent": true,
+      "listed_files": 45
+    },
+    {
+      "family": "repair",
+      "manifest_sha256": "99288a9a42f36ba544d7b0ad2fe645e3b1fc9c507c23802c16ca0d2e5085f684",
+      "pinned_in_parent": true,
+      "listed_files": 26
+    },
+    {
+      "family": "resgated",
+      "manifest_sha256": "98511a8fdeb9da0e6e70c78d013ff636e1476f31c80b5dc134d294b18c3f284e",
+      "pinned_in_parent": true,
+      "listed_files": 19
+    },
+    {
+      "family": "global96",
+      "manifest_sha256": "015f09030e76f86274cadae40777b3c3cf5c19f8c835d5ad88e15db41903779e",
+      "pinned_in_parent": true,
+      "listed_files": 17
+    }
+  ],
+  "dino_members": 20,
+  "a5_folds": 5,
+  "raptor_checkpoints": 3,
+  "dino_pixel_groups": [
+    "{\"band\": [0.2, 0.8], \"crop_mm\": 130.0, \"group\": 3, \"img\": 336, \"rules\": {\"decode_fill\": \"nearest\", \"lat\": \"centre\", \"order\": \"normal\", \"slot_fallback\": false}, \"slices\": 12, \"slots\": [\"SAG_FLUID_FS\", \"COR_FLUID_FS\", \"AX_FLUID_FS\", \"SAG_FLUID_NOFS\", \"COR_T1\", \"SAG_T1\"]}"
+  ],
+  "checkpoint_bytes_rehashed_locally": false,
+  "note": "Manifest bytes checked; checkpoint content checks remain in the mandatory runtime loaders."
+}

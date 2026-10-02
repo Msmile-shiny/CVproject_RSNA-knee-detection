@@ -1,0 +1,224 @@
+{
+  "contract": "rsna_coatnet_repairv1_e18_top3_probability_rank_package_v1",
+  "files": {
+    "COATNET_REPAIRV1_SUBMISSION_GATES_20260904.md": "f206514f349f49a74d7a3b092ee192c87845fdc1f21b42d402e6a24edfb3ec73",
+    "COATNET_REPAIRV1_T4_RENDERER_SELECTION_20260904.md": "7ae46fa0a90cb700b00b73cff7e0317549d7674ef6d0b311b06c29bf35a422f3",
+    "cnx_dicom_geometry.py": "1e6e46ca40828aec8e68d93dea3676c68ee4803a10b349ad092861006e8301d4",
+    "coatnet_q2l_bagmatch.py": "a3303a724e95cf3d9f13b67ef52529adf854b0cbe580b896ef42382cc740d932",
+    "coatnet_repairv1_full_gold58_t4_cv412_audit.json": "97359a7ad9dd8a8ee6a4499850b6e8aaf0fc440e7a40de38dba2b9a60470d752",
+    "coatnet_repairv1_full_gold58_t4_cv412_audit_source.py": "6f60df836df5ff7f0eb61f0747e6a7e25688cb1abd174c94b4ee0b6ec7b370a9",
+    "coatnet_repairv1_full_gold58_t4_cv412_predictions.npz": "3786c3f45cc86edbc4e46c37bd92ccd66bc84eed9cca32b404b10d05ae4fc39e",
+    "coatnet_repairv1_gold58_top3_predictions.npz": "d47364a441bcfa23fd9c1778f49432b33bb45713b34e2e4e3d0da04791d1671e",
+    "coatnet_repairv1_gold_e07.pt": "4f36e9aff09986fcf4f130203e3fbf391b95e0a466ed9c6f656dafd01c349cdf",
+    "coatnet_repairv1_gold_e11.pt": "2ec451b03e4c1da5048aee91d4358fa2efa2900619d9dfd5b75dadce659e2f21",
+    "coatnet_repairv1_gold_e12.pt": "45f34ec036a6b2dfb75239343f1dc33bc815bacd8c2d996235035d2602b5b2e7",
+    "coatnet_repairv1_top3_inference.py": "4f3e5cca50c048955fed1d6dcaf57bc3ccf7c45e143d75267550a3f53596aa69",
+    "coatnet_repairv1_train_submission_parity_gold58.json": "424ce4c85159e40aa11797aa8ef35ed4b84c3f6e0bdbbbd1a17fdf8bda9079de",
+    "coatnet_residual_gated_k32.py": "4bc148bf21420076678aaad3187b0b457b45f6cebd6f5374e404232ab6536f36",
+    "historical_k12_t4_microbatch36.json": "501bf6fb7b46b125b7c57df2a93bf832be9330f79cb0d6987f6d151bea6a9ff5",
+    "historical_k12_t4_precision_audit.json": "e4eb7ab5d98908818d78151f3664039e597542ec5ef30e235352a0724e555cd2",
+    "historical_k12_t4x2_receipt.json": "ac6d5cdef99a3859de32aa12eeee55d8b4fd3c387c43a8b5522fa3488c899833",
+    "historical_resgated_top3_t4x2_receipt.json": "41d163dc88fd685c02c0222bd10b4e29353911016bd16516bf2b6bd1b89a8f32",
+    "raptor_k6_surgical.py": "cc525db3bb67f0fde9db8dcfbbd33ff5bf5200d0c3c92251b368101314ae647f",
+    "raptor_light224.py": "d8f533df336f097910cd8c9ed7ae2248783554c9c797b661ee89406b5041cde5",
+    "raptor_light_inference.py": "3ce34aba32b44509bda7fe37a9b9b62c68028ea9a4d1364a5b4db3d97640b318",
+    "runpod_retrieval_receipt.json": "1982c9b86a955e37e433309f9640a2c53128c3d4c35c5d7ceaa351be4c11b3ff",
+    "smart_crop224.py": "31b66d1a687fb9de3d01c10f31baf8b728903b6ed9e9effedec6fc8e77c4e424",
+    "train_coatnet_repairv1_exact.py": "123f2eb49536fee60beb97c4dd6b12f90e28cb9a9d30ad2c1758a5ba444928c3",
+    "training_history_terminal_epoch18.json": "fb825bb22a5c0e7a10ef4561247a5c9fabb14c02059cf854b44d81b06ede1a43",
+    "triplet_physical_crop.py": "b84826fede9fa4195774e208e829ad60f189cfee90dce8a2c9528349b18717cf"
+  },
+  "labels": [
+    "ACL",
+    "MCL",
+    "Medial Meniscus",
+    "Lateral Meniscus",
+    "Medial OA",
+    "Lateral OA",
+    "PF OA",
+    "Effusion",
+    "Synovitis",
+    "Baker's",
+    "Contusion",
+    "Fracture"
+  ],
+  "terminal_run": {
+    "status": "early_stopped",
+    "completed_epoch": 18,
+    "planned_epochs": 24,
+    "best_epoch": 12,
+    "history": "training_history_terminal_epoch18.json",
+    "history_sha256": "fb825bb22a5c0e7a10ef4561247a5c9fabb14c02059cf854b44d81b06ede1a43",
+    "retrieval_receipt": "runpod_retrieval_receipt.json",
+    "retrieval_receipt_sha256": "1982c9b86a955e37e433309f9640a2c53128c3d4c35c5d7ceaa351be4c11b3ff",
+    "remote_local_bytes_and_sha256_verified": true,
+    "automatic_restarts": 0,
+    "compute_deleted": true
+  },
+  "checkpoints": [
+    {
+      "rank": 1,
+      "checkpoint": "coatnet_repairv1_gold_e12.pt",
+      "checkpoint_sha256": "45f34ec036a6b2dfb75239343f1dc33bc815bacd8c2d996235035d2602b5b2e7",
+      "epoch": 12,
+      "gold_auc": 0.9042195775738434,
+      "selection_metric": "official_gold58_macro_auc",
+      "trainer_sha256": "123f2eb49536fee60beb97c4dd6b12f90e28cb9a9d30ad2c1758a5ba444928c3",
+      "training_gpu": "NVIDIA H100 80GB HBM3"
+    },
+    {
+      "rank": 2,
+      "checkpoint": "coatnet_repairv1_gold_e07.pt",
+      "checkpoint_sha256": "4f36e9aff09986fcf4f130203e3fbf391b95e0a466ed9c6f656dafd01c349cdf",
+      "epoch": 7,
+      "gold_auc": 0.9016175724807871,
+      "selection_metric": "official_gold58_macro_auc",
+      "trainer_sha256": "f04258a2d221b3f55dd2f313d49755656e320b7e482d09a2a83805e300bde8d7",
+      "training_gpu": "NVIDIA H100 80GB HBM3"
+    },
+    {
+      "rank": 3,
+      "checkpoint": "coatnet_repairv1_gold_e11.pt",
+      "checkpoint_sha256": "2ec451b03e4c1da5048aee91d4358fa2efa2900619d9dfd5b75dadce659e2f21",
+      "epoch": 11,
+      "gold_auc": 0.8982895646060981,
+      "selection_metric": "official_gold58_macro_auc",
+      "trainer_sha256": "123f2eb49536fee60beb97c4dd6b12f90e28cb9a9d30ad2c1758a5ba444928c3",
+      "training_gpu": "NVIDIA H100 80GB HBM3"
+    }
+  ],
+  "selection": {
+    "criterion": "terminal top three official Gold58 macro-AUC",
+    "epochs": [
+      12,
+      7,
+      11
+    ],
+    "individual_gold_auc": [
+      0.9042195775738434,
+      0.9016175724807871,
+      0.8982895646060981
+    ],
+    "gold58_probability_mean_auc": 0.9103562853180026,
+    "gold58_checkpoint_rank_mean_auc": 0.9084529682919512,
+    "submitted_reduction": "probability_mean_then_average_percentile_rank",
+    "why": "probability mean exceeds independent checkpoint-rank mean by 0.0019033170 Gold AUC; final ranking preserves its ordering"
+  },
+  "preprocessing": {
+    "cache_contract": "rsna_knee_smart_slice_cache384_band0298_v1",
+    "cache_index_sha256": "ff78a79f1c086a667ffa14bd37389d1286e6a842d6341d2fac724db4efe5fa88",
+    "cache_payload_sha256": "28064dec974b025cb79f1de2676aa6cbccf065332e4e014371ef7a8fb6518d21",
+    "labels_sha256": "3b360a6a029ee1864324fba0e895dd84065351495ec6bcff109cd5d2888c888f",
+    "weights_sha256": "cc1f5012fe41e71f6ce3d86358862f5bfa65d3d16864ef84a49eeca9b4fac3cb",
+    "resolution": 384,
+    "render_directly_from_dicom": true,
+    "intermediate_336_resize": false,
+    "triplet_frame_mode": "common_physical",
+    "triplet_fov_mm": 130.0,
+    "normalization": "imagenet",
+    "canonical_sagittal": true,
+    "sagittal_slots": [
+      1,
+      2
+    ],
+    "sagittal_right_channel_reverse": true,
+    "sagittal_right_depth_negate": true,
+    "eval_slot_budgets": [
+      20,
+      12,
+      12,
+      8,
+      16,
+      8
+    ],
+    "sparse_native_grid": "off"
+  },
+  "architecture": {
+    "backbone": "coatnet_rmlp_2_rw_384.sw_in12k_ft_in1k",
+    "model_class": "CoAtRepairV1FindingMIL",
+    "head": "direct_12x1024_bounded_spatial_queries_plus_proven_window_router",
+    "parameters": 73157600,
+    "state_elements": 73187705,
+    "component_sha256": "4bc148bf21420076678aaad3187b0b457b45f6cebd6f5374e404232ab6536f36",
+    "imported_k32_sampler_sha256": "a3303a724e95cf3d9f13b67ef52529adf854b0cbe580b896ef42382cc740d932",
+    "trainer_sha256": "123f2eb49536fee60beb97c4dd6b12f90e28cb9a9d30ad2c1758a5ba444928c3",
+    "checkpoint_trainer_sha256": [
+      "123f2eb49536fee60beb97c4dd6b12f90e28cb9a9d30ad2c1758a5ba444928c3",
+      "f04258a2d221b3f55dd2f313d49755656e320b7e482d09a2a83805e300bde8d7",
+      "123f2eb49536fee60beb97c4dd6b12f90e28cb9a9d30ad2c1758a5ba444928c3"
+    ],
+    "trainer_source_note": "The post-migration e11/e12 trainer is packaged. Epoch 7 predates the early-stop-policy-only source migration; its recorded trainer hash is retained in checkpoint provenance."
+  },
+  "gold58_geometry_contract": {
+    "status": "VALID_EXACT_COATNET_REPAIRV1_TRAIN_SUBMISSION_PARITY_GOLD58",
+    "receipt": "coatnet_repairv1_train_submission_parity_gold58.json",
+    "receipt_sha256": "424ce4c85159e40aa11797aa8ef35ed4b84c3f6e0bdbbbd1a17fdf8bda9079de",
+    "studies": 58,
+    "windows": 3816,
+    "exact_window_slot_metadata": true,
+    "local_arm_final_images_byte_exact": true,
+    "local_host_architecture": "aarch64",
+    "local_opencv": "5.0.0",
+    "cross_platform_final_images_byte_exact_claim": false,
+    "canonical_sagittal": true,
+    "sparse_native_grid": "off"
+  },
+  "t4_numerical_portability": {
+    "status": "VALID_REPAIRV1_FULL_GOLD58_T4_NUMERICAL_PORTABILITY_WITH_NONIDENTICAL_X86_RENDER",
+    "receipt": "coatnet_repairv1_full_gold58_t4_cv412_audit.json",
+    "receipt_sha256": "97359a7ad9dd8a8ee6a4499850b6e8aaf0fc440e7a40de38dba2b9a60470d752",
+    "arrays": "coatnet_repairv1_full_gold58_t4_cv412_predictions.npz",
+    "arrays_sha256": "3786c3f45cc86edbc4e46c37bd92ccd66bc84eed9cca32b404b10d05ae4fc39e",
+    "executed_audit_source": "coatnet_repairv1_full_gold58_t4_cv412_audit_source.py",
+    "executed_audit_source_sha256": "6f60df836df5ff7f0eb61f0747e6a7e25688cb1abd174c94b4ee0b6ec7b370a9",
+    "studies": 58,
+    "windows": 3816,
+    "opencv": "4.12.0",
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ],
+    "fallback_studies": 0,
+    "cross_platform_geometry_byte_exact": false,
+    "saved_h100_probability_mean_gold_auc": 0.9103562853180026,
+    "t4_probability_mean_gold_auc": 0.9103118043846036,
+    "t4_minus_h100_gold_auc": -4.4480933399038136e-05,
+    "ensemble_max_abs_probability_delta": 0.01748979091644287,
+    "ensemble_mean_abs_probability_delta": 0.0015705112600699067,
+    "honest_claim": "all 58 Gold studies passed T4 numerical-portability and zero-fallback gates; x86 rendered pixels are explicitly not claimed byte-identical to the ARM training cache",
+    "renderer_selection": "OpenCV 4.12 x86 beat OpenCV 5.0 x86 on full Gold58"
+  },
+  "inference": {
+    "resolution": 384,
+    "triplet_fov_mm": 130.0,
+    "eval_slot_budgets": [
+      20,
+      12,
+      12,
+      8,
+      16,
+      8
+    ],
+    "max_eval_windows": 76,
+    "eval_grid": "saved_training_gold_unique_center_slot_budgets",
+    "canonical_sagittal": true,
+    "parallel_gpus": 2,
+    "gpu_batch_studies": 2,
+    "backbone_micro_images": 8,
+    "models_resident_per_gpu": 3,
+    "dicom_preparations_per_study": 1,
+    "model_passes_per_study": 3,
+    "raw_checkpoint_probability_weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "primary_reduction": "probability_mean_then_average_percentile_rank",
+    "final_rank_method": "average_percentile_per_finding",
+    "rank_after_probability_average": true,
+    "cudnn_benchmark": false,
+    "torch_compile": false,
+    "serving_precision": "float16",
+    "opencv": "4.12.0"
+  }
+}

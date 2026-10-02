@@ -4,6 +4,8 @@
 
 ## 当前入口
 
+- [0.943完整审计及提交策略（2026-10-02）](experiments/strong_pipeline_audit_20261002.md)：在线资产及manifest核验、各分支输入、Outer70结果检查器、保护版本和最终选择标准。
+- [无GPU准备与Outer70（2026-10-02）](experiments/no_gpu_preparation_20261002.md)：父本融合审计、单项对照Notebook、CPU验证和额度恢复后的运行顺序。
 - [main整理与合并（2026-10-01）](experiments/repository_cleanup_20261001.md)：0.943状态、标签资产、历史目录和分支合并。
 - [9月30日冲榜纠偏与实际候选](experiments/leaderboard_sprint_20260930.md)：四成员公开升级、固定10% ConvNeXt增量；暂停自动扩展Stage6消融。
 - [Stage 6F结果与24轮续训（2026-09-30）](experiments/stage6f_results_20260930.md)：288px小幅收益、逐类变化和完整缓存复用续训。
