@@ -4,6 +4,7 @@
 
 ## 当前入口
 
+- [半月板增量执行计划（2026-10-05）](plans/meniscus_increment_20261005.md)：找回原作者公开入口，已启动CPU输入/权重门槛检查，保护0.943父本。
 - [社区与论文复核（2026-10-04）](research/community_and_literature_20261004.md)：半月板bag资产审计、缓存兼容性阻碍及下一轮启动门槛，尚未启动新GPU任务。
 - [Outer70执行与评分（2026-10-04）](experiments/outer70_execution_20261004.md)：提交56817443已COMPLETE、Public0.943持平；停止该权重方向，保留父本。
 - [0.943完整审计及提交策略（2026-10-02）](experiments/strong_pipeline_audit_20261002.md)：在线资产及manifest核验、各分支输入、Outer70结果检查器、保护版本和最终选择标准。

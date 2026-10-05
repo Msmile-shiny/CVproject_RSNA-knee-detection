@@ -1,0 +1,19 @@
+{
+  "id": "easoncyy/rsna-meniscus-cpu-gate",
+  "title": "RSNA Meniscus CPU Gate",
+  "code_file": "probe.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "dataset_sources": [
+    "renta0426/rsna-knee-public0033-meniscus-bag-v1"
+  ],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "kernel_sources": [],
+  "model_sources": []
+}
