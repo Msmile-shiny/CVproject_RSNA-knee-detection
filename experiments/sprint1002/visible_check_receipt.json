@@ -1,0 +1,8 @@
+{
+  "status": "VISIBLE_OUTPUT_CHECK_PASS",
+  "studies": 3,
+  "elapsed_seconds": 221.9585030078888,
+  "hidden_runtime_verified": false,
+  "score_verified": false,
+  "note": "Use the matching completed Notebook version; do not upload visible CSV as the competition submission."
+}

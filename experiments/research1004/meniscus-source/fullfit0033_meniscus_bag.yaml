@@ -1,0 +1,134 @@
+schema_version: fullfit0033_meniscus_bag_v1
+experiment_id: fullfit0033
+kind: weak_only_full_data_public_pipeline_diagnostic
+status: preregistered_bound
+parent_experiment: spec0033
+objective: >-
+  Train one seed-2027 final-epoch DINOv2 Base two-window bag model on exactly
+  the 4,349 studies without official labels. This is a fold-unsafe full-data
+  Public-pipeline diagnostic and is never an input to Portfolio0034.
+
+source_contract:
+  path: docs/validation_contract.md
+  cv_version: CV-v2.4
+  activation_git_sha: e4d2d34b950fe243af69f8c2a61ab913b82b2d9d
+  sha256: d3f87397e71ee5824bf3afad2578beccde0804ae17c5884f99e9ca70212a1da6
+  promotion_rule_path: docs/promotion_rule.md
+  promotion_rule_sha256: 2b364bdcb9a8338f8f59fe270b96360b1bb377e393de10d357fae7a49f367fad
+  execution_plan_path: docs/work/0901/portfolio0034_raptor_execution/plan.md
+  execution_plan_sha256: 482a265ce62131f26f95f38a85a22a5ad34778d814c97d2768cfbb5d1570aacc
+  preregistration_git_sha: 6c5aad7634e452e77fb09156874e1af70936b668
+  runner_path: src/run_fullfit0033_meniscus_bag.py
+  runner_sha256: 30a96067364a603e9b0553b5ddcb0a85421719652bc69a20cdb6180abd67f257
+  parent_runner_path: src/run_exp0026.py
+  parent_runner_sha256: 17802c0cd2309c6a423f86af56de2f948e2a28c1dba4e5a43080b9d37a043430
+  derivation_path: src/spec0033_derived.py
+  derivation_sha256: 1e3a26694b6f8fdbd0ba4843d97c1914b99afe80cbf5c72e8e1a96a8e1e16936
+  spec_config_path: configs/spec0033_meniscus_bag_confirm.yaml
+  spec_config_sha256: 04e20846531cd8b4cd4cd00be9e5e0da97454ead36560d39c15c48537fe6f5d2
+  spec_completion_path: runs/spec0033/stage1_training_complete.json
+  spec_completion_sha256: defbafa1161b925748a8cb790d82b071249a2b41f9a991309d5bd7dae0594e83
+  reserve_manifest_path: runs/portfolio0033/reserve_manifest.json
+  reserve_manifest_sha256: 079fba7edb8a9a539bd85ad5f087221d02a1c722853a1a742142a86c2253ded8
+  cache_verifier_path: src/run_exp0019.py
+  cache_verifier_sha256: 524dcf9c030f68a6b3218526223dd89c4690db902e49d041bc2cdf9fde5133bc
+  base_runner_path: src/run_cv_v2.py
+  base_runner_sha256: c987612a4288b6a5e8f420635af9c2a0c1b312a51349ba73434525c5ad4d4a38
+  shared_runner_path: src/run_exp0020.py
+  shared_runner_sha256: 899b414023b9cd3aff256dd1754e1f041d9972f3f1b77581152becbe32a5ea58
+  study_manifest_path: data/derived/manifest_v1/study_manifest_v1.parquet
+  study_manifest_sha256: 7188931c4be213ca85b90090eaf8fd271db021b26bddb40626a4eac709ecc74e
+  uv_lock_path: uv.lock
+  uv_lock_sha256: e7a5cbe3f92789e3a566f1bd34d2f61dfbf71573e32778de497bd00eab1da19f
+
+cohort:
+  all_studies: 4407
+  official_label_studies_excluded: 58
+  weak_studies: 4349
+  gold_connected_extra_exclusion: 0
+  selection: study_manifest.has_any_official_label == false
+  official_label_values_read: false
+
+cache:
+  root: data/derived/cache_336_v1
+  manifest_sha256: e5ba44ad1be2c5410ab3f6d675b29cb89e32c19f3ed91a5e4b5b44b4251b37a0
+  byte_audit_path: runs/exp0019/tasks/cache_byte_audit.json
+  byte_audit_sha256: 1ab271d3540e206766b3e1ece603678bfd4af37763e79e34b72cf1cbe4c22b22
+
+model:
+  encoder: dinov2_base
+  encoder_path: external/dinov2-base
+  encoder_config_sha256: f7ff4cfa73d2f70647dbf6950541ad25d73082d54c2e7e9bded160c7656b2a70
+  encoder_weights_sha256: d73036b56966966d07975d696bde331762f37297e2f095de8cea0040c3aa0841
+  encoder_preprocessor_sha256: 14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828
+  model_image_size: 336
+  backbone_trainability: last_6_blocks_and_terminal_layernorm
+  unfreeze_last_blocks: 6
+  slots: 6
+  input_series: rank1_only
+  pooling: cls_plus_patch_mean
+  inference: overlap10_probability_mean
+  expected_initial_state_sha256: b916459318ae317d6d7873b24444ddbf60e3ceb8174529c58f9e117cea81034b
+  expected_architecture_sha256: 342424c9d4a71dae1c0f64deb452e48f82a6630ce0351cc6a9efa8d46ee211b2
+
+training:
+  teacher:
+    name: report_labels_v2
+    path: external/rsna-knee-baseline-v1/input/rsna-knee-llm-labels/report_labels_v2.csv
+    sha256: 6f704a7bdb2f894cc49445b19ba7c4378c3f548d3449e00361e10044bee40920
+    confidence_suffix: __conf
+    weight_formula: 0.25_plus_0.75_times_v2_confidence
+  seed: 2027
+  epochs: 30
+  checkpoint_epoch: 30
+  logical_batch_studies: 8
+  physical_batch_studies: 4
+  windows_per_study_per_step: 2
+  gradient_accumulation_steps: 2
+  window_pairs: [[0, 5], [1, 6], [2, 7], [3, 8], [4, 9]]
+  pair_schedule: pair_index=(epoch_zero_based)%5
+  pair_epoch_count_over_30_epochs: 6
+  tail_policy: preserve_spec0033_complete_batch_drop
+  pair_augmentation: same_flip_and_intensity_scale_for_both_windows
+  loss: global_confidence_weighted_bce_on_two_window_probability_mean
+  probability_clamp_epsilon: 0.000001
+  optimizer: AdamW
+  lr_backbone: 0.000008
+  lr_head: 0.001
+  weight_decay: 0.02
+  scheduler: OneCycleLR
+  scheduler_pct_start: 0.15
+  early_stopping: false
+  checkpoint_selection: final_epoch_only
+
+public_diagnostic:
+  authorized_local_fit: true
+  fold_safe_oof: false
+  exact_parent: exact_0.936
+  targets: [Medial Meniscus, Lateral Meniscus]
+  parent_rank_weight: 0.90
+  bag_rank_weight: 0.10
+  other_targets_byte_preserved: true
+  submission_count_max: 1
+  public_result_rescue_search: forbidden
+  kaggle_mutation_requires_immediate_explicit_approval: true
+
+runtime:
+  command_preflight: uv run --env-file .env python src/run_fullfit0033_meniscus_bag.py --config configs/fullfit0033_meniscus_bag.yaml --action preflight
+  command_run: uv run --env-file .env python src/run_fullfit0033_meniscus_bag.py --config configs/fullfit0033_meniscus_bag.yaml --action run
+  output_root: runs/fullfit0033
+  device: mps
+  max_concurrent_mps_tasks: 1
+  pytorch_mps_fallback: false
+  existing_output_overwrite: forbidden
+  checkpoint_count: 1
+  promotion: false
+  portfolio0034_input: false
+  submission_created: false
+
+forbidden_inputs:
+  gold_label_values: true
+  gold_metrics: true
+  public_lb: true
+  image_lockbox: true
+  portfolio0034_gate: true

@@ -4,6 +4,8 @@
 
 ## 当前入口
 
+- [社区与论文复核（2026-10-04）](research/community_and_literature_20261004.md)：半月板bag资产审计、缓存兼容性阻碍及下一轮启动门槛，尚未启动新GPU任务。
+- [Outer70执行与评分（2026-10-04）](experiments/outer70_execution_20261004.md)：提交56817443已COMPLETE、Public0.943持平；停止该权重方向，保留父本。
 - [0.943完整审计及提交策略（2026-10-02）](experiments/strong_pipeline_audit_20261002.md)：在线资产及manifest核验、各分支输入、Outer70结果检查器、保护版本和最终选择标准。
 - [无GPU准备与Outer70（2026-10-02）](experiments/no_gpu_preparation_20261002.md)：父本融合审计、单项对照Notebook、CPU验证和额度恢复后的运行顺序。
 - [main整理与合并（2026-10-01）](experiments/repository_cleanup_20261001.md)：0.943状态、标签资产、历史目录和分支合并。

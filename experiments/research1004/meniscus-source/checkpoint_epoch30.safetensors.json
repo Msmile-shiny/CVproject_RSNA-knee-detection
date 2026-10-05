@@ -1,0 +1,12 @@
+{
+  "architecture_sha256": "342424c9d4a71dae1c0f64deb452e48f82a6630ce0351cc6a9efa8d46ee211b2",
+  "bytes": 347965736,
+  "checkpoint": "checkpoint_epoch30.safetensors",
+  "checkpoint_epoch": 30,
+  "checkpoint_sha256": "e1443bb0f518418a31428cd7eb153f15af4c48c7175baf1f9d21c84f1c2a93e7",
+  "initial_state_sha256": "b916459318ae317d6d7873b24444ddbf60e3ceb8174529c58f9e117cea81034b",
+  "model_only": true,
+  "optimizer_saved": false,
+  "schema_version": "fullfit0033_checkpoint_v1",
+  "state_sha256": "9387c328195349695b75ef9ead713c80a619ebc0494af7da01bc6fb961ebc64d"
+}

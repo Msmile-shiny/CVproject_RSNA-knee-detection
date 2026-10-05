@@ -1,6 +1,6 @@
 # Outer70：额度恢复后的一次推理对照
 
-状态：本地构建及CPU测试通过，**尚未上传、运行或评分**。
+终局状态：v1可见推理及输出检查通过；提交56817443 **COMPLETE，Public0.943**。与父本显示精度下持平，停止该权重方向、保留父本56700487，不更改最终提交选择。评分记录见`scoring_receipt.json`。禁止重复push或提交。
 
 父本是提交56700487、Public 0.943的四成员方案。只将最终融合的默认CoAt/Raptor分支权重由0.60提高至0.70；另一分支相应从0.40降至0.30。影响MCL、Medial OA、PF OA、Effusion、Synovitis、Baker's、Contusion。ACL、两类半月板、Lateral OA、Fracture的专用权重保持原值。
 

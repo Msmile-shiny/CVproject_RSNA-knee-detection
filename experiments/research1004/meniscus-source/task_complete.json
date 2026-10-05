@@ -1,0 +1,19 @@
+{
+  "artifact_sha256": {
+    "checkpoint_epoch30.safetensors": "e1443bb0f518418a31428cd7eb153f15af4c48c7175baf1f9d21c84f1c2a93e7",
+    "checkpoint_epoch30.safetensors.json": "42d1e4de3c19b00d891732441e8cd8be155848c1558ba7963361098986c7126c",
+    "history.parquet": "1313313edc7e1c74cc866d3be37f952199c464582183b1a9dd59ae5bb3ef7b6a",
+    "run_contract.json": "107ef5133238dc514eb990bf75e05a0c5d8262873c95158957565bdc7278e11f",
+    "schedule.json": "a80a8ef1d0af3a413116967dd71dc4f5ccaea41dc3e1f8c63d2ec879f64a46c9"
+  },
+  "schema_version": "fullfit0033_task_complete_v1",
+  "status": "complete",
+  "task_identity": {
+    "config_sha256": "142dc28a42d419583bd1355877b17d02154b8df391a71b6361320b2c3c1e9c71",
+    "experiment_id": "fullfit0033",
+    "preflight_sha256": "b67b33ef9b9fcaf85597338f46e538b526e40db99da45120c0ba987685eff9c8",
+    "runner_sha256": "30a96067364a603e9b0553b5ddcb0a85421719652bc69a20cdb6180abd67f257",
+    "seed": 2027,
+    "task": "full_data_seed2027"
+  }
+}

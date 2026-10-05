@@ -1,0 +1,16 @@
+{
+  "submission_ref": 56817443,
+  "kernel": "easoncyy/rsna-sprint-outer70",
+  "kernel_version": 1,
+  "script_version_id": 355097506,
+  "source": "KaggleApi.competition_submissions",
+  "status": "COMPLETE",
+  "public_score": "0.943",
+  "parent_submission_ref": 56700487,
+  "parent_public_score": "0.943",
+  "comparison": "equal_at_displayed_precision",
+  "decision": "stop_weight_direction_keep_parent",
+  "final_selection_changed": false,
+  "private_improvement_verified": false,
+  "heartbeat_trigger_utc": "2026-10-04T14:23:48.768Z"
+}

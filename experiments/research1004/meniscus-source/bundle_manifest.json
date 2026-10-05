@@ -1,0 +1,209 @@
+{
+  "artifacts": {
+    "checkpoint_sidecar": {
+      "bundle_relative_path": "checkpoint_epoch30.safetensors.json",
+      "sha256": "42d1e4de3c19b00d891732441e8cd8be155848c1558ba7963361098986c7126c"
+    },
+    "dinov2_config": {
+      "bundle_relative_path": "dinov2_config.json",
+      "sha256": "f7ff4cfa73d2f70647dbf6950541ad25d73082d54c2e7e9bded160c7656b2a70"
+    },
+    "fullfit_config": {
+      "bundle_relative_path": "fullfit0033_meniscus_bag.yaml",
+      "sha256": "142dc28a42d419583bd1355877b17d02154b8df391a71b6361320b2c3c1e9c71"
+    },
+    "public0033_config": {
+      "bundle_relative_path": "public0033_meniscus10_residual.yaml",
+      "sha256": "460442d3c093b8d393b344b2ccca989621482f650de5d8966599086b6d9e5e11"
+    },
+    "run_contract": {
+      "bundle_relative_path": "run_contract.json",
+      "sha256": "107ef5133238dc514eb990bf75e05a0c5d8262873c95158957565bdc7278e11f"
+    },
+    "task_complete": {
+      "bundle_relative_path": "task_complete.json",
+      "sha256": "ec97ee4064d8b3219b8ba677719d80d31b25968d3737100887a88da7610a9528"
+    }
+  },
+  "batch_studies": 32,
+  "bundle_id": "public0033_meniscus10",
+  "checkpoint": {
+    "architecture_sha256": "342424c9d4a71dae1c0f64deb452e48f82a6630ce0351cc6a9efa8d46ee211b2",
+    "bundle_relative_path": "checkpoint_epoch30.safetensors",
+    "bytes": 347965736,
+    "checkpoint_epoch": 30,
+    "sha256": "e1443bb0f518418a31428cd7eb153f15af4c48c7175baf1f9d21c84f1c2a93e7",
+    "state_sha256": "9387c328195349695b75ef9ead713c80a619ebc0494af7da01bc6fb961ebc64d",
+    "state_tensor_count": 233
+  },
+  "dataset": {
+    "kernel_push_authorized": false,
+    "private": true,
+    "slug": "renta0426/rsna-knee-public0033-meniscus-bag-v1",
+    "submission_created": false,
+    "upload_authorized": false
+  },
+  "experiment_id": "fullfit0033",
+  "files": {
+    "checkpoint_epoch30.safetensors": {
+      "bytes": 347965736,
+      "sha256": "e1443bb0f518418a31428cd7eb153f15af4c48c7175baf1f9d21c84f1c2a93e7"
+    },
+    "checkpoint_epoch30.safetensors.json": {
+      "bytes": 564,
+      "sha256": "42d1e4de3c19b00d891732441e8cd8be155848c1558ba7963361098986c7126c"
+    },
+    "dataset-metadata.json": {
+      "bytes": 201,
+      "sha256": "ce2978438784537cbd3d293162654369601712544d1195c99f7a02a33b6aa949"
+    },
+    "dinov2_config.json": {
+      "bytes": 548,
+      "sha256": "f7ff4cfa73d2f70647dbf6950541ad25d73082d54c2e7e9bded160c7656b2a70"
+    },
+    "fullfit0033_meniscus_bag.yaml": {
+      "bytes": 5854,
+      "sha256": "142dc28a42d419583bd1355877b17d02154b8df391a71b6361320b2c3c1e9c71"
+    },
+    "public0033_meniscus10_residual.yaml": {
+      "bytes": 8131,
+      "sha256": "460442d3c093b8d393b344b2ccca989621482f650de5d8966599086b6d9e5e11"
+    },
+    "public0033_runtime.py": {
+      "bytes": 42887,
+      "sha256": "9541f82a993d7dc2942ca2a5112e110471285f8d80701846079a3dc708761683"
+    },
+    "run_contract.json": {
+      "bytes": 6607,
+      "sha256": "107ef5133238dc514eb990bf75e05a0c5d8262873c95158957565bdc7278e11f"
+    },
+    "task_complete.json": {
+      "bytes": 979,
+      "sha256": "ec97ee4064d8b3219b8ba677719d80d31b25968d3737100887a88da7610a9528"
+    }
+  },
+  "fixed_public_route": {
+    "bag_rank_weight": 0.1,
+    "exact_parent": "exact_0.936",
+    "other_targets_byte_preserved": true,
+    "parent_rank_weight": 0.9,
+    "submission_count_max": 1,
+    "targets": [
+      "Medial Meniscus",
+      "Lateral Meniscus"
+    ]
+  },
+  "forbidden_inputs": {
+    "gold_label_values_read": false,
+    "gold_metrics_read": false,
+    "portfolio0034_input": false,
+    "public_lb_read": false,
+    "reports_read": false
+  },
+  "kaggle_control_plane_compatibility": {
+    "dataset_metadata_declared_sha256": "ce2978438784537cbd3d293162654369601712544d1195c99f7a02a33b6aa949",
+    "dataset_metadata_is_prediction_input": false,
+    "dataset_metadata_mounted_by_kaggle": false,
+    "dataset_ref": "renta0426/rsna-knee-public0033-meniscus-bag-v1",
+    "intended_dataset_version": 2,
+    "only_runtime_change": "permit absent dataset-metadata.json in Kaggle mount",
+    "retry_config_path": "configs/public0033_meniscus10_residual_retry2.yaml",
+    "retry_config_sha256": "18a4776b766e40f98878cc64d188868e511b67f1b0a84cb3a10ac4795aa12875"
+  },
+  "precision": "fp32",
+  "raw_output_targets": [
+    "Medial Meniscus",
+    "Lateral Meniscus"
+  ],
+  "required_gpu_count": 2,
+  "required_gpu_family": "Tesla T4",
+  "runtime": {
+    "bundle_relative_path": "public0033_runtime.py",
+    "entrypoint": "run_cached_inference(cache, mask, studies, output_paths)",
+    "sha256": "9541f82a993d7dc2942ca2a5112e110471285f8d80701846079a3dc708761683"
+  },
+  "schema_version": "public0033_meniscus10_bundle_v1",
+  "source_contract": {
+    "bundle_builder_path": "src/build_public0033_meniscus10_bundle.py",
+    "bundle_builder_sha256": "a006296f40a79f940bf14f991f873163fa31f0d899e618f9914f932fb5a27398",
+    "cache_capture_cell_path": "src/public0033_cache_capture_cell.py",
+    "cache_capture_cell_sha256": "3c43a93051b20f062cf19ca918fc4151f2e4adc42d9420a00bad333e7688c7bc",
+    "cached_inference_cell_path": "src/public0033_cached_inference_cell.py",
+    "cached_inference_cell_sha256": "7788e6f08269583419c72cc9003cdf4aafe19128280a374423c777dc72db97d3",
+    "cv_version": "CV-v2.4",
+    "execution_plan_path": "docs/work/0902/public0033_meniscus10_residual/plan.md",
+    "execution_plan_sha256": "4112e825d2df1a8add6dc9174e915ee6759f33ac66ef44bd594eb10a98717bc7",
+    "fullfit_checkpoint_sidecar_path": "runs/fullfit0033/tasks/full_data_seed2027/checkpoint_epoch30.safetensors.json",
+    "fullfit_checkpoint_sidecar_sha256": "42d1e4de3c19b00d891732441e8cd8be155848c1558ba7963361098986c7126c",
+    "fullfit_config_path": "configs/fullfit0033_meniscus_bag.yaml",
+    "fullfit_config_sha256": "142dc28a42d419583bd1355877b17d02154b8df391a71b6361320b2c3c1e9c71",
+    "fullfit_run_contract_path": "runs/fullfit0033/tasks/full_data_seed2027/run_contract.json",
+    "fullfit_run_contract_sha256": "107ef5133238dc514eb990bf75e05a0c5d8262873c95158957565bdc7278e11f",
+    "fullfit_runner_path": "src/run_fullfit0033_meniscus_bag.py",
+    "fullfit_runner_sha256": "30a96067364a603e9b0553b5ddcb0a85421719652bc69a20cdb6180abd67f257",
+    "fullfit_task_complete_path": "runs/fullfit0033/tasks/full_data_seed2027/task_complete.json",
+    "fullfit_task_complete_sha256": "ec97ee4064d8b3219b8ba677719d80d31b25968d3737100887a88da7610a9528",
+    "infra0021_audit_path": "src/infra0021_runtime_audit.py",
+    "infra0021_audit_sha256": "38984001416f5d64b967e2d3b4bd44ecb2282e5ed804d3616d2560c3c7f061b6",
+    "infra0021_execution_manifest_path": "runs/infra0021/execution_manifest.json",
+    "infra0021_execution_manifest_sha256": "53caa0dea7177518ce8e618a1d5b2422cb53f21b173ee225b49c3bb1adf84874",
+    "model_reference_path": "src/sub0001_model.py",
+    "model_reference_sha256": "3fbd95dfb89b7dfedba98158d25fb1f09153daf15200bd311484a786fc4ae0af",
+    "notebook_builder_path": "src/build_public0033_meniscus10_notebook.py",
+    "notebook_builder_sha256": "8d67a70c69546559696df2da5dd8212b3e3a0bc0c58a926c7ec7c46e346fc6d0",
+    "notebook_validator_path": "src/validate_public0033_meniscus10_notebook.py",
+    "notebook_validator_sha256": "32ee4ef42e0815a157342ceca2cfa56972d5eaba1f94a9c2160b8bd89ff9505d",
+    "parent_notebook_path": "external/head-and-shoulders-knees-and-toes/working/v038__scriptVersionId-344807997/source.ipynb",
+    "parent_notebook_sha256": "af519f52b2473bf7622957c8802da368b5d67cbb899500e8bb944f0b2f2ab0e1",
+    "parent_plan_path": "docs/work/0901/portfolio0034_raptor_execution/plan.md",
+    "parent_plan_sha256": "482a265ce62131f26f95f38a85a22a5ad34778d814c97d2768cfbb5d1570aacc",
+    "path": "docs/validation_contract.md",
+    "preprocess_reference_path": "src/sub0001_preprocess.py",
+    "preprocess_reference_sha256": "f343b4b10123b37b560a3d564b615cbf72936a7755792bb6c2663ee38d973487",
+    "promotion_rule_path": "docs/promotion_rule.md",
+    "promotion_rule_sha256": "2b364bdcb9a8338f8f59fe270b96360b1bb377e393de10d357fae7a49f367fad",
+    "residual_overlay_cell_path": "src/public0033_residual_overlay_cell.py",
+    "residual_overlay_cell_sha256": "a9fc565d6cb23d0e3e6cfb414a82c5cbb581d58618e57c7415a239ae81f0abf0",
+    "runtime_path": "src/public0033_meniscus10_runtime.py",
+    "runtime_sha256": "c0cfb1a2cbfabcc10b255373c77c36fed6fc81377c36e03bb3fa025053edce0b",
+    "sha256": "d3f87397e71ee5824bf3afad2578beccde0804ae17c5884f99e9ca70212a1da6",
+    "uv_lock_path": "uv.lock",
+    "uv_lock_sha256": "e7a5cbe3f92789e3a566f1bd34d2f61dfbf71573e32778de497bd00eab1da19f"
+  },
+  "state_tensor_count": 233,
+  "status": "complete_local_not_uploaded",
+  "target_order": [
+    "ACL",
+    "MCL",
+    "Medial Meniscus",
+    "Lateral Meniscus",
+    "Medial OA",
+    "Lateral OA",
+    "PF OA",
+    "Effusion",
+    "Synovitis",
+    "Baker's",
+    "Contusion",
+    "Fracture"
+  ],
+  "training_provenance": {
+    "fold_safe_oof": false,
+    "portfolio0034_input": false,
+    "promotion": false,
+    "run_contract_runtime_git_sha": "a0f58a1adcca3048b9d1f04ae18aa08863cec113",
+    "seed": 2027,
+    "task": "full_data_seed2027"
+  },
+  "window_starts": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ]
+}

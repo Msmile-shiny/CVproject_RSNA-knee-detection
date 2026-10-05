@@ -1,0 +1,144 @@
+{
+  "cache": {
+    "artifact_sha256": {
+      "cache_manifest.json": "e5ba44ad1be2c5410ab3f6d675b29cb89e32c19f3ed91a5e4b5b44b4251b37a0",
+      "group0.336.uint8.memmap": "631d69bc874c825beb100fff9b9a0397d0733a7f20d291ddbe86612eca0eeef9",
+      "group1.336.uint8.memmap": "1b3a35d8587f421ced7c0053fa1493d9ac124dfb209c47b2cbf80d227558b387",
+      "group2.336.uint8.memmap": "bc40020ed8f84563d55fb7842890176aff1c160d88c467a57773da3f136dd929",
+      "group3.336.uint8.memmap": "feaacc3aa5aa3b0378affbb3fdd7ce2bb1147252c672fca22cac0e8a4698f39b",
+      "row_map.npy": "91c24f1626b9f17ac9bf2f5890aab9f41cb0a1a3bcb7f41ec3107b0f4bbc2903",
+      "selected_slices.parquet": "cc0043775b5b9055be4e569e56986289929f70a5309053a1b6862b01b9c047c5",
+      "slot_layout.parquet": "b93af39edd9527cc5721b99537cf6fa353ace7094e121a950a56d9b814f510d7",
+      "studies.csv": "7eef23599530ae410eb7a435d79c66951f5ae31ee97d0dcaff251e67e71869fb"
+    },
+    "byte_audit_path": "runs/exp0019/tasks/cache_byte_audit.json",
+    "byte_audit_sha256": "1ab271d3540e206766b3e1ece603678bfd4af37763e79e34b72cf1cbe4c22b22",
+    "manifest_sha256": "e5ba44ad1be2c5410ab3f6d675b29cb89e32c19f3ed91a5e4b5b44b4251b37a0",
+    "root": "data/derived/cache_336_v1"
+  },
+  "checkpoint": {
+    "architecture_sha256": "342424c9d4a71dae1c0f64deb452e48f82a6630ce0351cc6a9efa8d46ee211b2",
+    "bytes": 347965736,
+    "checkpoint": "checkpoint_epoch30.safetensors",
+    "checkpoint_epoch": 30,
+    "checkpoint_sha256": "e1443bb0f518418a31428cd7eb153f15af4c48c7175baf1f9d21c84f1c2a93e7",
+    "initial_state_sha256": "b916459318ae317d6d7873b24444ddbf60e3ceb8174529c58f9e117cea81034b",
+    "model_only": true,
+    "optimizer_saved": false,
+    "schema_version": "fullfit0033_checkpoint_v1",
+    "state_sha256": "9387c328195349695b75ef9ead713c80a619ebc0494af7da01bc6fb961ebc64d"
+  },
+  "cohort": {
+    "all_studies": 4407,
+    "official_label_studies_excluded": 58,
+    "official_label_values_read": false,
+    "weak_studies": 4349,
+    "weak_uid_set_sha256": "e675c1cfb8e88b3ec00af4fcba77bfb010e324e3a3473b04089da651af630a94"
+  },
+  "config_path": "configs/fullfit0033_meniscus_bag.yaml",
+  "config_sha256": "142dc28a42d419583bd1355877b17d02154b8df391a71b6361320b2c3c1e9c71",
+  "experiment_id": "fullfit0033",
+  "fold_safe_oof": false,
+  "gold_label_values_read": false,
+  "gold_metrics_read": false,
+  "model": {
+    "backbone_trainability": "last_6_blocks_and_terminal_layernorm",
+    "encoder": "dinov2_base",
+    "encoder_config_sha256": "f7ff4cfa73d2f70647dbf6950541ad25d73082d54c2e7e9bded160c7656b2a70",
+    "encoder_path": "external/dinov2-base",
+    "encoder_preprocessor_sha256": "14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828",
+    "encoder_weights_sha256": "d73036b56966966d07975d696bde331762f37297e2f095de8cea0040c3aa0841",
+    "expected_architecture_sha256": "342424c9d4a71dae1c0f64deb452e48f82a6630ce0351cc6a9efa8d46ee211b2",
+    "expected_initial_state_sha256": "b916459318ae317d6d7873b24444ddbf60e3ceb8174529c58f9e117cea81034b",
+    "inference": "overlap10_probability_mean",
+    "input_series": "rank1_only",
+    "model_image_size": 336,
+    "pooling": "cls_plus_patch_mean",
+    "slots": 6,
+    "unfreeze_last_blocks": 6
+  },
+  "optimizer_steps_per_epoch": 543,
+  "portfolio0034_input": false,
+  "preflight_path": "runs/fullfit0033/preflight.json",
+  "preflight_sha256": "b67b33ef9b9fcaf85597338f46e538b526e40db99da45120c0ba987685eff9c8",
+  "promotion": false,
+  "public_lb_read": false,
+  "runner_sha256": "30a96067364a603e9b0553b5ddcb0a85421719652bc69a20cdb6180abd67f257",
+  "runtime_git_sha": "a0f58a1adcca3048b9d1f04ae18aa08863cec113",
+  "runtime_seconds": 31434.541776416823,
+  "schedule_sha256": "3013f253d72d96b35a2438266c9c4da38a71cc9a4f47ee642661d46dfc6ffe4f",
+  "schema_version": "fullfit0033_run_contract_v1",
+  "seed": 2027,
+  "source_sha256": {
+    "base_runner": "c987612a4288b6a5e8f420635af9c2a0c1b312a51349ba73434525c5ad4d4a38",
+    "cache_verifier": "524dcf9c030f68a6b3218526223dd89c4690db902e49d041bc2cdf9fde5133bc",
+    "config": "142dc28a42d419583bd1355877b17d02154b8df391a71b6361320b2c3c1e9c71",
+    "contract": "d3f87397e71ee5824bf3afad2578beccde0804ae17c5884f99e9ca70212a1da6",
+    "derivation": "1e3a26694b6f8fdbd0ba4843d97c1914b99afe80cbf5c72e8e1a96a8e1e16936",
+    "execution_plan": "482a265ce62131f26f95f38a85a22a5ad34778d814c97d2768cfbb5d1570aacc",
+    "parent_runner": "17802c0cd2309c6a423f86af56de2f948e2a28c1dba4e5a43080b9d37a043430",
+    "promotion_rule": "2b364bdcb9a8338f8f59fe270b96360b1bb377e393de10d357fae7a49f367fad",
+    "reserve_manifest": "079fba7edb8a9a539bd85ad5f087221d02a1c722853a1a742142a86c2253ded8",
+    "runner": "30a96067364a603e9b0553b5ddcb0a85421719652bc69a20cdb6180abd67f257",
+    "shared_runner": "899b414023b9cd3aff256dd1754e1f041d9972f3f1b77581152becbe32a5ea58",
+    "spec_completion": "defbafa1161b925748a8cb790d82b071249a2b41f9a991309d5bd7dae0594e83",
+    "spec_config": "04e20846531cd8b4cd4cd00be9e5e0da97454ead36560d39c15c48537fe6f5d2",
+    "study_manifest": "7188931c4be213ca85b90090eaf8fd271db021b26bddb40626a4eac709ecc74e",
+    "uv_lock": "e7a5cbe3f92789e3a566f1bd34d2f61dfbf71573e32778de497bd00eab1da19f"
+  },
+  "status": "complete",
+  "submission_created": false,
+  "task": "full_data_seed2027",
+  "training": {
+    "checkpoint_epoch": 30,
+    "checkpoint_selection": "final_epoch_only",
+    "early_stopping": false,
+    "epochs": 30,
+    "gradient_accumulation_steps": 2,
+    "logical_batch_studies": 8,
+    "loss": "global_confidence_weighted_bce_on_two_window_probability_mean",
+    "lr_backbone": 8e-06,
+    "lr_head": 0.001,
+    "optimizer": "AdamW",
+    "pair_augmentation": "same_flip_and_intensity_scale_for_both_windows",
+    "pair_epoch_count_over_30_epochs": 6,
+    "pair_schedule": "pair_index=(epoch_zero_based)%5",
+    "physical_batch_studies": 4,
+    "probability_clamp_epsilon": 1e-06,
+    "scheduler": "OneCycleLR",
+    "scheduler_pct_start": 0.15,
+    "seed": 2027,
+    "tail_policy": "preserve_spec0033_complete_batch_drop",
+    "teacher": {
+      "confidence_suffix": "__conf",
+      "name": "report_labels_v2",
+      "path": "external/rsna-knee-baseline-v1/input/rsna-knee-llm-labels/report_labels_v2.csv",
+      "sha256": "6f704a7bdb2f894cc49445b19ba7c4378c3f548d3449e00361e10044bee40920",
+      "weight_formula": "0.25_plus_0.75_times_v2_confidence"
+    },
+    "weight_decay": 0.02,
+    "window_pairs": [
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        4,
+        9
+      ]
+    ],
+    "windows_per_study_per_step": 2
+  }
+}
