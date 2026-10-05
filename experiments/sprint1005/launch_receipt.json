@@ -1,0 +1,13 @@
+{
+  "kernel": "easoncyy/rsna-sprint-meniscus10",
+  "notebook_sha256": "cebc9ad99f6f9ee6ddc4e7339564d92b71db569df3eba4bd2f58a750bc418895",
+  "utc": "2026-10-05T16:06:34.072009+00:00",
+  "accelerator": "NvidiaTeslaT4",
+  "repair": "Initialize CUDA allocator before memory statistics; prediction recipe unchanged",
+  "response": {
+    "ref": "/code/easoncyy/rsna-sprint-meniscus10",
+    "url": "https://www.kaggle.com/code/easoncyy/rsna-sprint-meniscus10",
+    "versionNumber": 2,
+    "kernelId": 137197263
+  }
+}

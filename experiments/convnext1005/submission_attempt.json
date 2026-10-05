@@ -1,0 +1,12 @@
+{
+  "kernel": "easoncyy/rsna-sprint-three-fold-convnext-30",
+  "version": 1,
+  "check": {
+    "status": "VISIBLE_OUTPUT_CHECK_PASS",
+    "kind": "cnx3",
+    "studies": 3,
+    "elapsed_seconds": 622.2221264,
+    "hidden_runtime_verified": false,
+    "score_verified": false
+  }
+}

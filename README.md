@@ -12,7 +12,7 @@
 | 标签及来源 | [标签说明](data/README.md)：v5和DeepSeek/GPT融合标签已纳入版本控制 |
 | 实验记录 | [冲榜报告](docs/experiments/leaderboard_sprint_20260930.md) |
 | 最新对照 | [Outer70执行记录](docs/experiments/outer70_execution_20261004.md)：提交56817443已COMPLETE，Public **0.943**，显示精度下持平；停止该权重方向、保留父本 |
-| 正在推进 | [半月板增量计划](docs/plans/meniscus_increment_20261005.md)：已推送独立CPU工程检查v2（修复v1元数据错误），不训练、不评分、不使用GPU；通过后才进入专项融合测试 |
+| 正在推进 | [双候选执行记录](docs/experiments/sprint1005_execution.md)：三折ConvNeXt30%已COMPLETE并提交56856316隐藏评分；半月板10%修复版v2运行中，尚无新分数 |
 | 仓库整理 | [main合并与整理记录](docs/experiments/repository_cleanup_20261001.md) |
 | 历史材料 | [history](history/README.md)、[文档索引](docs/README.md) |
 

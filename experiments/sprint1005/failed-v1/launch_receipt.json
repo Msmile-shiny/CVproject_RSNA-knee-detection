@@ -1,0 +1,12 @@
+{
+  "kernel": "easoncyy/rsna-sprint-meniscus10",
+  "notebook_sha256": "6f46d32bb302624ae3ae448b93c852df7f0d7c47845d506e405c3c7dc68bab61",
+  "utc": "2026-10-05T15:40:43.368882+00:00",
+  "accelerator": "NvidiaTeslaT4",
+  "response": {
+    "ref": "/code/easoncyy/rsna-sprint-meniscus10",
+    "url": "https://www.kaggle.com/code/easoncyy/rsna-sprint-meniscus10",
+    "versionNumber": 1,
+    "kernelId": 137197263
+  }
+}

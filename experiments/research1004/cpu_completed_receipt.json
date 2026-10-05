@@ -1,0 +1,61 @@
+{
+  "status": "CPU_GATE_PASS",
+  "gpu_used": false,
+  "source_sha256": "dde80d527146a98db4ad549d7e02cd58001086ff7d854b9bd4077e1db412aa21",
+  "studies": [
+    "1.2.826.0.1.3680043.8.498.10047035057544427318018579121635276191",
+    "1.2.826.0.1.3680043.8.498.10062861783145312629332250977456991776",
+    "1.2.826.0.1.3680043.8.498.10067514707072572280263481548497591402"
+  ],
+  "shape": [
+    3,
+    6,
+    12,
+    336,
+    336
+  ],
+  "slots_present": [
+    3.0,
+    4.0,
+    5.0
+  ],
+  "cache_sha256": "61e4fa75e04b78867726ae8ab559e43c7d8a7a0dae158e669c3878dbc94bb4cf",
+  "pixel_config": {
+    "band": [
+      0.2,
+      0.8
+    ],
+    "crop_mm": 130.0,
+    "group": 3,
+    "img": 336,
+    "rules": {
+      "decode_fill": "nearest",
+      "lat": "centre",
+      "order": "normal",
+      "slot_fallback": false
+    },
+    "slices": 12,
+    "slots": [
+      "SAG_FLUID_FS",
+      "COR_FLUID_FS",
+      "AX_FLUID_FS",
+      "SAG_FLUID_NOFS",
+      "COR_T1",
+      "SAG_T1"
+    ]
+  },
+  "elapsed_seconds": 352.10733556747437,
+  "performance_verified": false,
+  "model_preflight": {
+    "status": "passed",
+    "strict_load": true,
+    "state_tensor_count": 233,
+    "checkpoint_sha256": "e1443bb0f518418a31428cd7eb153f15af4c48c7175baf1f9d21c84f1c2a93e7",
+    "prediction_shape": [
+      1,
+      12
+    ],
+    "prediction_min": 0.02944505587220192,
+    "prediction_max": 0.9596675038337708
+  }
+}

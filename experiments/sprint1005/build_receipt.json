@@ -1,0 +1,17 @@
+{
+  "status": "BUILT_NOT_RUN",
+  "parent_sha256": "d0165cf3d144b6be4e05ece77f80b233c27393cdbae67cb06c0d03b96f178505",
+  "notebook_sha256": "cebc9ad99f6f9ee6ddc4e7339564d92b71db569df3eba4bd2f58a750bc418895",
+  "specialist_script_sha256": "4c63fded36c3126aea2b6e72b028451b6ffa513128d3ce2642b18d14570c3ab2",
+  "overlay_sha256": "e6147f1b650f7e87816884dafd5efa3ee053aacd16dbe7c2cd26523fe3549bb5",
+  "author_source_sha256": "231eb5bb82bfb401dc9a828b51a647862a2760a8fbdd3c5e28ad7e5948e96454",
+  "changed_labels": [
+    "Medial Meniscus",
+    "Lateral Meniscus"
+  ],
+  "specialist_weight": 0.1,
+  "new_dependencies": [
+    "renta0426/rsna-knee-public0033-meniscus-bag-v1"
+  ],
+  "full_batch_gpu_memory_verified": false
+}

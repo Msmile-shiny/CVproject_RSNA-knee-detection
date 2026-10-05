@@ -4,6 +4,8 @@
 
 ## 当前入口
 
+- [双候选冲榜执行（2026-10-05）](experiments/sprint1005_execution.md)：CPU权重检查通过，两个独立完整候选已启动，完成后自动核验并各提交一次。
+- [公开三折ConvNeXt与替代路径审计](research/alternate_candidates_20261005.md)：公开0.944作者报告的依赖和输入，two-target student暂缓。
 - [半月板增量执行计划（2026-10-05）](plans/meniscus_increment_20261005.md)：找回原作者公开入口，已启动CPU输入/权重门槛检查，保护0.943父本。
 - [社区与论文复核（2026-10-04）](research/community_and_literature_20261004.md)：半月板bag资产审计、缓存兼容性阻碍及下一轮启动门槛，尚未启动新GPU任务。
 - [Outer70执行与评分（2026-10-04）](experiments/outer70_execution_20261004.md)：提交56817443已COMPLETE、Public0.943持平；停止该权重方向，保留父本。

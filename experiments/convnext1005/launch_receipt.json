@@ -1,0 +1,12 @@
+{
+  "kernel": "easoncyy/rsna-sprint-cnx3fold30",
+  "notebook_sha256": "0ecdf072f088923c1b096ee58fd7de8d517e907618044f133b98dc02cbf2872c",
+  "utc": "2026-10-05T15:44:17.821985+00:00",
+  "accelerator": "NvidiaTeslaT4",
+  "response": {
+    "ref": "/code/easoncyy/rsna-sprint-three-fold-convnext-30",
+    "url": "https://www.kaggle.com/code/easoncyy/rsna-sprint-three-fold-convnext-30",
+    "versionNumber": 1,
+    "kernelId": 137197650
+  }
+}

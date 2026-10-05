@@ -1,5 +1,7 @@
 # 0.943父本之后：半月板增量，2026-10-05
 
+后续更新：CPU v2已COMPLETE/PASS，已进入完整双T4候选v1。最新状态与并行ConvNeXt候选见[执行记录](../experiments/sprint1005_execution.md)，以下保留当时计划。
+
 ## 已执行
 
 - 已把Outer70 0.943持平结论与公开资产审计提交、推送到main：faaee8cdbf6272e97f8abf92828d70872a715faf，远端SHA已核对。

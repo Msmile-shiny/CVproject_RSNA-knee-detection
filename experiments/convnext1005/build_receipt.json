@@ -1,0 +1,20 @@
+{
+  "status": "BUILT_NOT_RUN",
+  "parent_sha256": "d0165cf3d144b6be4e05ece77f80b233c27393cdbae67cb06c0d03b96f178505",
+  "notebook_sha256": "0ecdf072f088923c1b096ee58fd7de8d517e907618044f133b98dc02cbf2872c",
+  "upstream_sha256": "cd97dafc175c63ed2c55c8228b33d8d010b61b916e0990f11298ad84dec66266",
+  "reader_weight": 0.3,
+  "folds": [
+    0,
+    1,
+    2
+  ],
+  "new_dependencies": [
+    "goodpjw2008/rsna-knee-2-5d-convnext-reader"
+  ],
+  "sources": {
+    "preprocess.py": "4491963e4d2156625c9cf79051f4a25c32d2d761f1f07df3117a439ed8029ae2",
+    "knee.py": "147454013b93543e505d8e44ff80bb31de7647275265635296f82dbddf98c1fe",
+    "infer.py": "3ac7e0b103f4f9fddb20c3d9cf97728c95f174091fbad7d7c9e0554744c9df9d"
+  }
+}
