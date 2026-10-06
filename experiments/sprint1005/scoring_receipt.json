@@ -1,0 +1,14 @@
+{
+  "checked_at_utc": "2026-10-06T12:11:03.565Z",
+  "submission": 56866776,
+  "version": 2,
+  "scriptVersionId": 355502633,
+  "api_status": "COMPLETE",
+  "public_score": "0.943",
+  "errorDescription": null,
+  "baseline_submission": 56700487,
+  "baseline_public_score": "0.943",
+  "decision": "STOP_INCREMENT_KEEP_PARENT",
+  "private_improvement_claimed": false,
+  "final_selection_changed": false
+}

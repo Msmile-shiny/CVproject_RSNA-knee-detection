@@ -31,8 +31,6 @@ from knee import LABELS, build_study_table
 from preprocess import MAX_SLICES
 torch.set_num_threads(4)
 torch.cuda.set_device(0)
-allocator_warmup=torch.empty(1,device='cuda:0')
-del allocator_warmup
 torch.cuda.reset_peak_memory_stats(0)
 comp=Path('/kaggle/input/competitions/rsna-knee-abnormality-detection')
 if not comp.is_dir(): comp=Path('/kaggle/input/rsna-knee-abnormality-detection')
@@ -67,13 +65,10 @@ stress_seconds=time.monotonic()-stress_start
 stress_peak=torch.cuda.max_memory_allocated(0)
 del bx,bm,bp,probe
 torch.cuda.empty_cache()
-# Keep loading in-process: no CUDA-after-fork or shared-memory prefetch queue.
-# Batch size, windows, pixels and predictions are unchanged.
-dl=torch.utils.data.DataLoader(ds,batch_size=4,shuffle=False,num_workers=0,pin_memory=True)
-print('CNX3 inference start',len(ids),'studies; loader_workers=0',flush=True)
+dl=torch.utils.data.DataLoader(ds,batch_size=4,shuffle=False,num_workers=4,pin_memory=True)
 out=[];valid=[];inference_start=time.monotonic()
 with torch.inference_mode():
-    for batch_index,(x,mask,pos) in enumerate(dl):
+    for x,mask,pos in dl:
         assert mask.any(1).all(), 'Empty study'
         valid.extend(mask.sum(1).tolist())
         x,mask,pos=x.cuda(non_blocking=True),mask.cuda(),pos.cuda()
@@ -81,8 +76,6 @@ with torch.inference_mode():
             prob=torch.stack([m(x,mask,pos,res=res).float().sigmoid() for m,res in models]).mean(0)
         assert torch.isfinite(prob).all()
         out.append(prob.cpu().numpy())
-        if batch_index%25==0:
-            print('CNX3 progress',len(valid),'/',len(ids),'seconds',time.monotonic()-inference_start,flush=True)
 values=np.concatenate(out)
 assert values.shape==(len(ids),12) and np.isfinite(values).all() and (values>=0).all() and (values<=1).all()
 frame=pd.DataFrame(values,columns=LABELS)
@@ -91,7 +84,7 @@ work=Path('/kaggle/working')
 path=work/'cnx3_raw.csv'
 frame.to_csv(path,index=False)
 receipt=dict(status='COMPLETE',study_count=len(ids),folds=[0,1,2],model_count=3,
-    precision='fp16',batch_studies=4,windows_per_slot=12,slots_present=valid,loader_workers=0,
+    precision='fp16',batch_studies=4,windows_per_slot=12,slots_present=valid,
     checkpoint_hashes={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in ckpts},
     checkpoint_args=config,stress_pass=True,stress_seconds=stress_seconds,stress_peak_gpu_bytes=stress_peak,
     peak_gpu_bytes=torch.cuda.max_memory_allocated(0),elapsed_seconds=time.monotonic()-started,

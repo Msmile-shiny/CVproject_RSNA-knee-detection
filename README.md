@@ -12,7 +12,8 @@
 | 标签及来源 | [标签说明](data/README.md)：v5和DeepSeek/GPT融合标签已纳入版本控制 |
 | 实验记录 | [冲榜报告](docs/experiments/leaderboard_sprint_20260930.md) |
 | 最新对照 | [Outer70执行记录](docs/experiments/outer70_execution_20261004.md)：提交56817443已COMPLETE，Public **0.943**，显示精度下持平；停止该权重方向、保留父本 |
-| 正在推进 | [双候选执行记录](docs/experiments/sprint1005_execution.md)：三折ConvNeXt30%已COMPLETE并提交56856316隐藏评分；半月板10%修复版v2运行中，尚无新分数 |
+| 双候选终局 | [执行记录](docs/experiments/sprint1005_execution.md)：半月板56866776 Public0.943持平，停止该增量；ConvNeXt v2提交56867864隐藏重跑再次报错，无分数，不自动重跑。保留0.943父本，最终选择未变 |
+| 当前排查 | [失败复盘与下一步](docs/experiments/cnx_failure_review_20261006.md)：CPU公开数据扫描v2已启动，核验新增严格解码检查的真实触发条件；不占GPU、不提交预测 |
 | 仓库整理 | [main合并与整理记录](docs/experiments/repository_cleanup_20261001.md) |
 | 历史材料 | [history](history/README.md)、[文档索引](docs/README.md) |
 

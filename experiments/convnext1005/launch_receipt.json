@@ -1,12 +1,13 @@
 {
-  "kernel": "easoncyy/rsna-sprint-cnx3fold30",
-  "notebook_sha256": "0ecdf072f088923c1b096ee58fd7de8d517e907618044f133b98dc02cbf2872c",
-  "utc": "2026-10-05T15:44:17.821985+00:00",
+  "kernel": "easoncyy/rsna-sprint-three-fold-convnext-30",
+  "notebook_sha256": "e069edfc4b96954f3ca9b729afd5f0da7d47a27ff25e8c48d86015dc5729239f",
+  "utc": "2026-10-06T01:47:37.270559+00:00",
   "accelerator": "NvidiaTeslaT4",
+  "repair": "Bounded single-process loader and explicit CUDA allocator initialization; root cause unconfirmed",
   "response": {
     "ref": "/code/easoncyy/rsna-sprint-three-fold-convnext-30",
     "url": "https://www.kaggle.com/code/easoncyy/rsna-sprint-three-fold-convnext-30",
-    "versionNumber": 1,
+    "versionNumber": 2,
     "kernelId": 137197650
   }
 }

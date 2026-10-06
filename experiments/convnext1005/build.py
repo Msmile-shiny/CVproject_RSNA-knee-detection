@@ -80,7 +80,7 @@ _c3_sp.run([_c3_sys.executable,'-u',str(_c3_src/'worker.py')],check=True,timeout
     import nbformat
     nbformat.validate(nbformat.from_dict(nb))
     meta=json.loads((PARENT/'kernel-metadata.json').read_text())
-    meta.update(id='easoncyy/rsna-sprint-cnx3fold30',title='RSNA Sprint Three-fold ConvNeXt 30',code_file='cnx3fold30.ipynb')
+    meta.update(id='easoncyy/rsna-sprint-three-fold-convnext-30',title='RSNA Sprint Three-fold ConvNeXt 30',code_file='cnx3fold30.ipynb')
     meta['dataset_sources'].append(ASSET)
     out=HERE/'cnx3fold30';out.mkdir(exist_ok=True)
     payload=json.dumps(nb,ensure_ascii=False,indent=1).encode('utf-8')

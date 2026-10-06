@@ -1,0 +1,12 @@
+{
+  "kernel": "easoncyy/rsna-cnx-public-data-audit",
+  "gpu": false,
+  "utc": "2026-10-06T12:19:44.318366+00:00",
+  "source_sha256": "15f961fc6b20320e91193063e95803d4b204ab90f0a865ac9fbff503a6e8a021",
+  "response": {
+    "ref": "/code/easoncyy/rsna-cnx-public-data-audit",
+    "url": "https://www.kaggle.com/code/easoncyy/rsna-cnx-public-data-audit",
+    "versionNumber": 1,
+    "kernelId": 137322902
+  }
+}

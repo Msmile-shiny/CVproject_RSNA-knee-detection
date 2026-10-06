@@ -1,0 +1,13 @@
+{
+  "kernel": "easoncyy/rsna-cnx-public-data-audit",
+  "gpu": false,
+  "utc": "2026-10-06T12:27:40.746238+00:00",
+  "source_sha256": "e40224852365aed955302af2a99cecc7b2e119b6cdba0c2bb362dad1374cd435",
+  "response": {
+    "ref": "/code/easoncyy/rsna-cnx-public-data-audit",
+    "url": "https://www.kaggle.com/code/easoncyy/rsna-cnx-public-data-audit",
+    "versionNumber": 2,
+    "kernelId": 137322902
+  },
+  "repair": "Python kernelspec; prior save SSL failure reconciled remote v1 ERROR"
+}

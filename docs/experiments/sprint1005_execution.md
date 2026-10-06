@@ -52,4 +52,33 @@ RUNNING时命令只查询，不提交。COMPLETE后核对启动version与源码�
 
 ## 下一决策
 
+### 2026-10-06 20:11 北京时间：两个候选终局
+
+- 半月板v2提交56866776，scriptVersionId355502633：API COMPLETE，Public **0.943**，无errorDescription。与父本56700487显示精度下持平，停止该固定10%增量，保留父本；不能将持平当作Private改善。
+- ConvNeXt v2提交56867864，scriptVersionId355605911：API COMPLETE但errorDescription为隐藏重跑unhandled error，Public缺失。仍是失败，不是0分。取消多进程预取及CUDA初始化修复没有解决隐藏失败；此前不能确认根因的判断保留，不再自动追加重跑。
+- 两个终局回执分别保存scoring_v2_receipt.json和scoring_receipt.json。没有新最佳成绩，最终选择未改变，不启动新GPU、训练或权重扫描。本次跟进automation-2停用。
+
+### 2026-10-06 10:27 北京时间跟进
+
+ConvNeXt v2可见COMPLETE，版本与远端源码核对、完整覆盖、三fold、满批显存、融合重算等门禁全部PASS。总耗时276.353483504秒，reader51.101626715秒，推理12.520523549秒，满批7.962192423秒、峰值4,167,718,400 bytes。原始reader预测SHA与v1完全相同：1606432b738e10e2ed05223ca67ecb3dd6e92195469f9fbb5cd6aa80ca17f55f，说明可见输出未因执行方式改变。速度差异不能全归因于修复或外推隐藏耗时。
+
+已仅提交v2一次：56867864，确切kernel version2；隐藏结果尚未返回，不能称隐藏异常已解决。半月板56866776亦无分数/错误结果。下一步仅跟进两提交，不重复推送/提交，不新增GPU任务，保留父本及最终选择。
+
+### 用户要求再审计后的执行方式修复v2
+
+用户明确授权再次审核、修复后重新执行。ConvNeXt v1只有3例/一个batch，满批GPU压力测试没有覆盖多进程连续预取的CPU/shared-memory路径；原worker在CUDA模型加载后启动4个loader worker，每个完整uint8 batch为4×6×12×3×384×384=127,401,984 bytes，默认8个预取batch约1.02GB张量，另有解码、进程及锁页内存。此为可验证的资源风险，**不是已确认隐藏失败根因**。
+
+v2仅改为num_workers=0、显式CUDA allocator初始化及批次进度打印；保留batch4、FP16、12windows、三fold、原始像素、全部异常检查、固定30%融合和父本源码。取消预取可能降低吞吐，原2小时reader及8.5小时总时限仍保留，实际性能须复测。
+
+本地d2l环境的多批次顺序测试和配置测试2项PASS，原门禁测试3项PASS，Notebook格式/语法构建通过，三个模型/像素源码SHA均未改变。v1源及回执归档failed-v1；v2实际kernelId137197650、versionNumber2、源SHA e069edfc4b96954f3ca9b729afd5f0da7d47a27ff25e8c48d86015dc5729239f，以launch_receipt记录为准。已启动，未经运行核验不得评分；不再自动追加修复重跑。
+
+依据OpenAI Docs的[定时任务说明](https://learn.chatgpt.com/docs/automations?surface=app)，已更新同线程跟进到ConvNeXt v2和半月板提交56866776；v1失败不重复通知。
+
+### 2026-10-06 09:27 北京时间跟进
+
+- 半月板v2可见运行COMPLETE，完整门禁通过，1266.873852秒。已仅提交一次：56866776，scriptVersionId355502633；尚无评分结果。
+- 三折ConvNeXt提交56856316的API状态为COMPLETE，但errorDescription明确为隐藏重跑unhandled error，Public为空。这是失败终局，不是有效评分完成，更不能记为0或准确率下降。
+- API仅提供通用错误，没有隐藏堆栈；当前不能确认OOM、解码或其他根因。可见3例通过不证明隐藏规模通过。不自动重推、重交或弱化门禁。
+- 保留父本56700487 Public0.943和最终选择不变；自动化继续仅跟进半月板评分，两个终局后停用。
+
 先获得两份实分。若三折模型提高，可用其公开训练源码作为后续持续优化基线，先检查每类错误和训练/推理一致性；当前不追加多折训练。若两条都持平/下降，就停止这两个增量并重新选择有独立证据的路径，不以换权重名延长试验。

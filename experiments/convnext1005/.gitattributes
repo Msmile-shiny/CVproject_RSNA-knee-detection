@@ -1,1 +1,2 @@
 upstream/*.ipynb -text
+**/*.ipynb -text whitespace=cr-at-eol

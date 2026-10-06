@@ -1,8 +1,8 @@
 {
   "status": "VISIBLE_OUTPUT_CHECK_PASS",
-  "kind": "cnx3",
+  "kind": "meniscus",
   "studies": 3,
-  "elapsed_seconds": 276.35348350399994,
+  "elapsed_seconds": 1266.873852213,
   "hidden_runtime_verified": false,
   "score_verified": false
 }

@@ -1,5 +1,13 @@
 # 固定三折ConvNeXt增量
 
+2026-10-06 20:11终局：v2提交56867864再次隐藏重跑失败，无分数，停止自动重跑；scoring_v2_receipt.json为最新状态，下文为历史运行记录。
+
+2026-10-06 10:27最新状态：v2可见COMPLETE且门禁通过，已提交56867864隐藏评分。总耗时276.353秒，reader原始输出SHA与v1一致；隐藏通过及分数仍未验证。当前submission_receipt对应v2，禁止重复提交。
+
+用户要求再次审计后，执行方式修复v2已启动：取消多进程预取，显式初始化CUDA，增加进度日志；模型/输入/融合/严格检查不变。v1归档failed-v1，当前launch_receipt对应v2；原失败根因仍未确认，尚不能称隐藏错误已修复。
+
+2026-10-06最新状态：提交56856316隐藏重跑报错，Public为空；下文可见COMPLETE不是评分通过。不自动重跑，详见scoring_receipt.json。
+
 公开模型与代码作者：[goodpjw2008](https://www.kaggle.com/code/goodpjw2008/rsna-knee-stack-2-5d-convnext-mil-lb-0-944)，[权重Dataset](https://www.kaggle.com/datasets/goodpjw2008/rsna-knee-2-5d-convnext-reader)，Dataset API许可Apache2.0。保留原始Notebook快照，构建器提取其中的三份推理源码。作者报告0.944尚不等于我方复现成绩。
 
 构建器保持0.943父本所有代码不变。reader先在独立进程运行，固定全12类30%排名融合，三个公开fold都必须完成；原文的silent fallback改为停止并记录错误。checkpoint使用weights_only=True和strict load，DICOM解码失败报错，满批4病例/6槽位显存检查。
