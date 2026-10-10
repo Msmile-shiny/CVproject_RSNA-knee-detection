@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "kernel": "easoncyy/rsna-knee-lb-0-95",
+  "version": 1,
+  "source_sha256": "16ce7c78f860b6d07331c8d39c6a65414cde200462a64c984b04bd8efc167289",
+  "hashes": {
+    "submission.csv": "381253ef942b8f7da0488b13f9e6aabed6a9b660ae40e68b17533a9eba14b37b",
+    "_sota_0949.csv": "faa20e95a1779658237252388407eaf6d835679dd43e4dae5bca18d95496bede",
+    "_own.csv": "b76d419ef51716589104899d4e2ef82f11fa272215c7c0a744d690f880cccbeb"
+  },
+  "note": "Original user recipe, including order-dependent peer graph; not adopted into protected baseline",
+  "decode_coverage_verified": false
+}

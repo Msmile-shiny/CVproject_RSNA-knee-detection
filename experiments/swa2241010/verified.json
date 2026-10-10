@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "kernel": "easoncyy/rsna-swa224-fixed15",
+  "version": 1,
+  "receipt": {
+    "status": "COMPLETE",
+    "parent_submission": 57012367,
+    "weight224": 0.15,
+    "study_count": 3,
+    "elapsed_seconds": 94.57446784000001,
+    "decode_coverage_verified": false,
+    "source224_sha256": "baab9ea40a7e6a10fb69ef09c6efa122b283aeb084129ef879c8077793c24562",
+    "hashes": {
+      "submission.csv": "381253ef942b8f7da0488b13f9e6aabed6a9b660ae40e68b17533a9eba14b37b",
+      "parent950.csv": "381253ef942b8f7da0488b13f9e6aabed6a9b660ae40e68b17533a9eba14b37b",
+      "independent224.csv": "c12958fba2378e477d477908b57b87ee9b9fed690ea128d75498b2f18efee799",
+      "_sota_0949.csv": "faa20e95a1779658237252388407eaf6d835679dd43e4dae5bca18d95496bede",
+      "_own.csv": "b76d419ef51716589104899d4e2ef82f11fa272215c7c0a744d690f880cccbeb"
+    }
+  }
+}

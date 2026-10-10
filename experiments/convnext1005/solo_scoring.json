@@ -1,0 +1,15 @@
+{
+  "checked_at_utc": "2026-10-07T10:41:51.609Z",
+  "submission": 56905796,
+  "scriptVersionId": 356007143,
+  "version": 1,
+  "api_status": "COMPLETE",
+  "outcome": "HIDDEN_RERUN_ERROR",
+  "public_score": null,
+  "errorDescription": "Your notebook hit an unhandled error while rerunning your code. Note that the hidden dataset can be larger/smaller/different than the public dataset",
+  "parent_used": false,
+  "hidden_root_cause_confirmed": false,
+  "automatic_retry": false,
+  "protected_submission": 56700487,
+  "final_selection_changed": false
+}

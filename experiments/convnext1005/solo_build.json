@@ -1,0 +1,11 @@
+{
+  "source_sha256": "156ebb2efd98c0ea7a58c98bbc5aae8de08a7207a080460b36c9ec84662de621",
+  "sources": {
+    "preprocess.py": "4491963e4d2156625c9cf79051f4a25c32d2d761f1f07df3117a439ed8029ae2",
+    "knee.py": "147454013b93543e505d8e44ff80bb31de7647275265635296f82dbddf98c1fe",
+    "infer.py": "3ac7e0b103f4f9fddb20c3d9cf97728c95f174091fbad7d7c9e0554744c9df9d",
+    "worker.py": "55d41c60cb54882618b406af0f0f4535ab385be7139bf0e67c21fcaee4ddc37d"
+  },
+  "parent_used": false,
+  "budget_seconds": 7200
+}

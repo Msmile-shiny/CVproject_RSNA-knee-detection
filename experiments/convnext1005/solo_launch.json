@@ -1,0 +1,11 @@
+{
+  "kernel": "easoncyy/rsna-cnx-threefold-solo",
+  "source_sha256": "156ebb2efd98c0ea7a58c98bbc5aae8de08a7207a080460b36c9ec84662de621",
+  "utc": "2026-10-07T08:37:13.864782+00:00",
+  "response": {
+    "ref": "/code/easoncyy/rsna-cnx-threefold-solo",
+    "url": "https://www.kaggle.com/code/easoncyy/rsna-cnx-threefold-solo",
+    "versionNumber": 1,
+    "kernelId": 137458326
+  }
+}

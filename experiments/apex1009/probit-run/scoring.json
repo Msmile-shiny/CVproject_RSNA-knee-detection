@@ -1,0 +1,14 @@
+{
+  "submission": 57012629,
+  "scriptVersionId": 356787130,
+  "version": 1,
+  "checked_at_utc": "2026-10-09T23:12:48.031Z",
+  "outcome": "SCORED_NO_DISPLAYED_GAIN",
+  "api_status": "COMPLETE",
+  "public_score": 0.949,
+  "error_field_present": false,
+  "public_delta_vs_0949": 0.0,
+  "decode_coverage_verified": false,
+  "final_selection_changed": false,
+  "note": "Valid terminal score; errorDescription absent. Same displayed score as baseline56994783. No demonstrated gain from probit alone; user multifactor 0.950 cannot be attributed to probit."
+}

@@ -1,0 +1,17 @@
+{
+  "build": {
+    "status": "BUILT_NOT_RUN",
+    "source_sha256": "e32c4cfa5890ff98cf04e8586201d82ecf6c972d217d839c27770d89dac6e62e",
+    "parent_sha256": "16ce7c78f860b6d07331c8d39c6a65414cde200462a64c984b04bd8efc167289",
+    "source224_sha256": "baab9ea40a7e6a10fb69ef09c6efa122b283aeb084129ef879c8077793c24562",
+    "original224_sha256": "e85d994fa93caf1bbc2df04f396649207a69d2463924c41fa3b05ba8801cd38c",
+    "weight224": 0.15,
+    "parent_code_unchanged": true
+  },
+  "response": {
+    "ref": "/code/easoncyy/rsna-swa224-fixed15",
+    "url": "https://www.kaggle.com/code/easoncyy/rsna-swa224-fixed15",
+    "versionNumber": 1,
+    "kernelId": 137942154
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "kernel": "easoncyy/rsna-knee-lb-0-95",
+  "version": 1,
+  "response": {
+    "ref": 57012367,
+    "totalBytes": 0,
+    "date": "2026-10-09T14:47:27.230Z",
+    "description": "",
+    "fileName": "submission.csv",
+    "submittedBy": "easoncyy",
+    "submittedByRef": "easoncyy",
+    "teamName": "SharpLook Bones",
+    "url": "/code/easoncyy/rsna-knee-lb-0-95?scriptVersionId=356785385"
+  },
+  "reconciled_existing": true
+}

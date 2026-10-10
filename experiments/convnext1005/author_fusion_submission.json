@@ -1,0 +1,14 @@
+{
+  "verification": {
+    "status": "PASS",
+    "kernel": "easoncyy/rsna-author-reader-fixed-30",
+    "version": 1,
+    "study_count": 3,
+    "elapsed_seconds": 274.275324118,
+    "score_verified": false,
+    "decode_coverage_verified": false
+  },
+  "response": {
+    "ref": 56947372
+  }
+}

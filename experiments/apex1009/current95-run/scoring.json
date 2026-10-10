@@ -1,0 +1,15 @@
+{
+  "submission": 57012367,
+  "scriptVersionId": 356785385,
+  "version": 1,
+  "checked_at_utc": "2026-10-09T15:57:41.069Z",
+  "api_status": "COMPLETE",
+  "public_score": 0.950,
+  "errorDescription": null,
+  "error_field_present": false,
+  "outcome": "SCORED_IMPROVED_CANDIDATE",
+  "public_delta_vs_0949": 0.001,
+  "attribution": "Multiple changes; cannot attribute gain to probit alone",
+  "decode_coverage_verified": false,
+  "final_selection_changed": false
+}

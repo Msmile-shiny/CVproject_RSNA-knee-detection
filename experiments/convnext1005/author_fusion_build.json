@@ -1,0 +1,9 @@
+{
+  "status": "BUILT_NOT_RUN",
+  "source_sha256": "8cf7eed1335237c33adb9e2d8dc2db9a9f857b2d74ef81258854ccc1edb1d026",
+  "parent_sha256": "d0165cf3d144b6be4e05ece77f80b233c27393cdbae67cb06c0d03b96f178505",
+  "reader_sha256": "197ae4b12d4b44ec56329225d1975919eca3cf59a0231e3a33c02c6723307871",
+  "original_code_sequences_preserved": true,
+  "reader_weight": 0.3,
+  "decode_coverage_verified": false
+}

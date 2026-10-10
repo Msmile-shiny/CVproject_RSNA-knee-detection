@@ -1,0 +1,13 @@
+{
+  "kernel": "easoncyy/rsna-cnx-threefold-solo",
+  "version": 1,
+  "verified": {
+    "status": "PASS",
+    "studies": 3,
+    "elapsed_seconds": 52.13382566300001,
+    "score_verified": false
+  },
+  "response": {
+    "ref": 56905796
+  }
+}

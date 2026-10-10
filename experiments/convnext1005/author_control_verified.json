@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "study_count": 3,
+  "model_count": 3,
+  "author_sources_unchanged": true,
+  "decode_coverage_verified": false,
+  "missing_series_policy": "unaltered upstream",
+  "score_verified": false
+}

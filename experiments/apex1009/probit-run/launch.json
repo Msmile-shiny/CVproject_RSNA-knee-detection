@@ -1,0 +1,20 @@
+{
+  "build": {
+    "status": "BUILT_NOT_RUN",
+    "upstream_version": 3,
+    "upstream_sha256": "01ae9cb3e43d649c01d92f2e8b3f22f2bb164185ab1a4b5515a8a5ec028a0597",
+    "source_sha256": "7142040e1feeca228a58a7025b9261f2fd3bd21b81992b70d34a84886d7c683b",
+    "reader_sha256": "751d723189845e52163fdf7b9068c2ad88d6999ed1c1e13e69f6c564d2c19ee6",
+    "prediction_recipe_changed": false,
+    "decode_coverage_verified": false,
+    "parent_submission": 56994783,
+    "changed_prediction_cells": 1,
+    "requires_new_formula_verifier": true
+  },
+  "response": {
+    "ref": "/code/easoncyy/rsna-apex-probit-only",
+    "url": "https://www.kaggle.com/code/easoncyy/rsna-apex-probit-only",
+    "versionNumber": 1,
+    "kernelId": 137889553
+  }
+}

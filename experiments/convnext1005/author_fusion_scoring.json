@@ -1,0 +1,17 @@
+{
+  "submission": 56947372,
+  "scriptVersionId": 356315744,
+  "version": 1,
+  "outcome": "SCORED_NO_DISPLAYED_GAIN",
+  "api_status": "COMPLETE",
+  "public_score": 0.943,
+  "errorDescription": null,
+  "note": "Terminal response contains COMPLETE and publicScore 0.943; errorDescription absent. Same displayed score as protected parent; stop this direction.",
+  "checked_at_utc": "2026-10-08T23:10:54.633Z",
+  "error_field_present": false,
+  "direction_stopped": true,
+  "submitted_at_utc": "2026-10-08T09:40:25.313Z",
+  "visible_elapsed_seconds": 274.275324118,
+  "protected_submission": 56700487,
+  "final_selection_changed": false
+}

@@ -1,0 +1,16 @@
+{
+  "checked_at_utc": "2026-10-07T13:47:49.170Z",
+  "submission": 56910183,
+  "scriptVersionId": 356058563,
+  "version": 1,
+  "api_status": "COMPLETE",
+  "outcome": "SCORED",
+  "public_score": 0.929,
+  "errorDescription": null,
+  "error_field_present_in_list_response": false,
+  "parent_used": false,
+  "decode_coverage_verified": false,
+  "hidden_root_cause_confirmed": false,
+  "protected_submission": 56700487,
+  "final_selection_changed": false
+}

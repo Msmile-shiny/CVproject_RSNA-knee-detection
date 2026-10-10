@@ -1,0 +1,18 @@
+{
+  "submission": 56994783,
+  "scriptVersionId": 356635120,
+  "version": 1,
+  "outcome": "SCORED_IMPROVED_CANDIDATE",
+  "api_status": "COMPLETE",
+  "public_score": 0.949,
+  "errorDescription": null,
+  "note": "Terminal API response COMPLETE with publicScore 0.949; errorDescription absent. Candidate only, final selection unchanged.",
+  "checked_at_utc": "2026-10-09T09:38:46.283Z",
+  "error_field_present": false,
+  "public_delta_vs_parent": 0.006,
+  "submitted_at_utc": "2026-10-09T06:02:45.583Z",
+  "visible_elapsed_seconds": 90.54047039900001,
+  "decode_coverage_verified": false,
+  "protected_submission": 56700487,
+  "final_selection_changed": false
+}

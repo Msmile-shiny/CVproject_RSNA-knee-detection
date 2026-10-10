@@ -1,0 +1,17 @@
+{
+  "build": {
+    "status": "BUILT_NOT_RUN",
+    "upstream_version": 3,
+    "upstream_sha256": "01ae9cb3e43d649c01d92f2e8b3f22f2bb164185ab1a4b5515a8a5ec028a0597",
+    "source_sha256": "9edf8c4e10db650ceef971f9235cb5713889446d93771d33bd292429eb9c9cbb",
+    "reader_sha256": "751d723189845e52163fdf7b9068c2ad88d6999ed1c1e13e69f6c564d2c19ee6",
+    "prediction_recipe_changed": false,
+    "decode_coverage_verified": false
+  },
+  "response": {
+    "ref": "/code/easoncyy/rsna-apex-paired-reader",
+    "url": "https://www.kaggle.com/code/easoncyy/rsna-apex-paired-reader",
+    "versionNumber": 1,
+    "kernelId": 137808657
+  }
+}

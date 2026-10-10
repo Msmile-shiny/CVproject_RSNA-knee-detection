@@ -1,0 +1,33 @@
+{
+  "status": "COMPLETE",
+  "scope": "public train and visible test only",
+  "gpu": false,
+  "preprocessing_sha256": "4491963e4d2156625c9cf79051f4a25c32d2d761f1f07df3117a439ed8029ae2",
+  "inventory": {
+    "test": {
+      "studies": 3,
+      "series": 15,
+      "selected_series": 13,
+      "inventory_errors": [],
+      "empty_studies": []
+    },
+    "train": {
+      "studies": 4407,
+      "series": 24371,
+      "selected_series": 21334,
+      "inventory_errors": [],
+      "empty_studies": []
+    }
+  },
+  "total_selected": 21347,
+  "processed": 21347,
+  "failed_series": 0,
+  "failures_by_type": {},
+  "examples": [],
+  "complete": true,
+  "hidden_root_cause_confirmed": false,
+  "elapsed_seconds": 9516.476637552,
+  "kernel": "easoncyy/rsna-cnx-public-data-audit",
+  "version": 2,
+  "remote_source_verified": true
+}
