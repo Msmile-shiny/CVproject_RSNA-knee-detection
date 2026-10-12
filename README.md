@@ -4,7 +4,13 @@
 
 ## 当前入口
 
-2026-10-10：[独立224固定15%融合](docs/experiments/swa224_20261010.md)可见运行94.574秒、两级融合核验PASS，已提交 **57034764**。保留0.950父本，等待隐藏评分，不重复提交，不改变最终选择。
+2026-10-12：[社区Compact完整融合](docs/experiments/community_compact_20261012.md)已启动：easoncyy/rsna-compact-public-ensemble v1，新增Helios四折compact及解剖定位/方向检查，运行公开固定50/50完整配方。作者相关旧配方报告0.954，本方新版本尚未评分；保留0.950最佳。停止继续扩展旧视角/比例小实验。
+
+2026-10-12：[关闭疾病关联修正](docs/experiments/nopeer_20261012.md)候选（easoncyy/rsna-parent950-nopeer v1）可见COMPLETE，70.12秒，完整核验PASS，已提交 **57097443**，等待隐藏评分；保持0.950图像管线、成员及融合权重，单独去掉2%跨病变排序修正。
+
+2026-10-12：[8视角Reader对照](docs/experiments/reader8_20261010.md)提交 **57087361**（357096578）已COMPLETE Public **0.949**，低于0.950父本，停止此方向。显存探针v2在离线依赖安装失败，尚无GPU收益证据，不继续重跑已被淘汰路线。
+
+2026-10-10：[独立224固定15%融合](docs/experiments/swa224_20261010.md)提交 **57034764** 已COMPLETE，Public **0.950**，显示精度下持平；停止这一固定224方向，保留0.950父本，最终选择未变。
 
 后续[双候选终局](docs/experiments/apex_next_20261009.md)：用户版57012367 Public **0.950**；单因素probit提交57012629已COMPLETE Public **0.949**，与其父本持平，停止该方向。不能将用户版提升归因probit。本次跟进结束，最终选择未变。
 

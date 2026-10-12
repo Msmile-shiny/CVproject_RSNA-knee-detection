@@ -1,0 +1,30 @@
+{
+  "id": 138104007,
+  "ref": "bliverrigpdoge/velci-kcd25-20",
+  "title": "velci kcd25 20",
+  "author": "Mikkel Ch\u00e1vez Petersen",
+  "slug": "velci-kcd25-20",
+  "lastRunTime": "2026-10-09T06:04:52.689Z",
+  "language": "python",
+  "kernelType": "notebook",
+  "isPrivate": false,
+  "enableGpu": true,
+  "enableInternet": false,
+  "categoryIds": [
+    "gpu"
+  ],
+  "datasetDataSources": [
+    "",
+    "heliosli/rsna-knee-compact-v1",
+    "nartaa/rsna-knee-publication-swa-weights-20261007",
+    "heliosli/rsna-orthofoundation-fold0-epoch7-20261004"
+  ],
+  "competitionDataSources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "totalVotes": 50,
+  "enableTpu": false,
+  "currentVersionNumber": 1,
+  "dockerImage": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+  "machineShape": "NvidiaTeslaT4"
+}

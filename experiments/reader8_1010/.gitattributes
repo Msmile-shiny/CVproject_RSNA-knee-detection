@@ -1,0 +1,2 @@
+**/*.ipynb -text whitespace=cr-at-eol
+stream_infer.py -text whitespace=-blank-at-eol

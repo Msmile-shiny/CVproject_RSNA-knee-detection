@@ -1,0 +1,12 @@
+{
+  "kernel": "easoncyy/rsna-parent950-nopeer",
+  "source_sha256": "914eb23eda5787e19e0f7a48e5d6111e52e0c9aae33537a5044db4205165a980",
+  "reader_sha256": "667568b4e06f0c54937ad1e4d7059ffeff44e68592d59d10580e13ec337a5fa5",
+  "parent_sha256": "16ce7c78f860b6d07331c8d39c6a65414cde200462a64c984b04bd8efc167289",
+  "changed_parent_cells": [
+    9
+  ],
+  "image_pipeline_unchanged": true,
+  "use_peers": false,
+  "submission_message": "0.950 parent single-factor ablation: disable hand-specified disease peer graph; all image predictions and class fusion weights unchanged"
+}

@@ -1,0 +1,9 @@
+{
+  "ref": 57087361,
+  "status": "COMPLETE",
+  "publicScore": "0.949",
+  "url": "/code/easoncyy/rsna-parent950-reader8?scriptVersionId=357096578",
+  "parent_submission": 57012367,
+  "parent_public_score": "0.950",
+  "decision": "Stop reader8 direction; preserve parent950; do not rerun memory probe"
+}

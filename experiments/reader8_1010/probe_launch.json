@@ -1,0 +1,13 @@
+{
+  "build": {
+    "source_sha256": "864c9a9a15d4cca8b048acd1b23e1890d882f341ddb1750aea695b45ada789c0",
+    "original_sha256": "751d723189845e52163fdf7b9068c2ad88d6999ed1c1e13e69f6c564d2c19ee6",
+    "stream_sha256": "9ef2c1eaed7a4899b051d0a472ee1df467215a62ae8a4131feb241972a86223c"
+  },
+  "response": {
+    "ref": "/code/easoncyy/rsna-reader8-stream-probe",
+    "url": "https://www.kaggle.com/code/easoncyy/rsna-reader8-stream-probe",
+    "versionNumber": 2,
+    "kernelId": 138237623
+  }
+}

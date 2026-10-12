@@ -1,0 +1,9 @@
+{
+  "source_sha256": "535f1ca3f32956367f2ceb3200721107f694d2159145f8bb98aa5a25b478728e",
+  "reader_sha256": "751d723189845e52163fdf7b9068c2ad88d6999ed1c1e13e69f6c564d2c19ee6",
+  "parent_sha256": "16ce7c78f860b6d07331c8d39c6a65414cde200462a64c984b04bd8efc167289",
+  "changed_parent_cells": [
+    8
+  ],
+  "fusion_unchanged": true
+}
