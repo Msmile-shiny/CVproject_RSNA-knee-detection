@@ -1,2 +1,2 @@
 **/*.ipynb -text whitespace=cr-at-eol
-assets/** -text
+assets/** -text whitespace=cr-at-eol
