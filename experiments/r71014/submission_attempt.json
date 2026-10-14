@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "kernel": "easoncyy/rsna-r7-full-three-model",
+  "version": 1,
+  "receipt": {
+    "status": "PASS",
+    "complete_three_members": true,
+    "elapsed_seconds": 642.5121626990001,
+    "rows": 3,
+    "weights": [
+      0.325,
+      0.175,
+      0.5
+    ],
+    "decode_coverage_verified": false,
+    "hashes": {
+      "submission.csv": "56172847949eec2070bd4842f43c3b8f8aeee5ce69460cb3cda0d231c69be26d",
+      "raptor_raw.csv": "850effe3b4c745f2e12c252b3c6d8e0f4bb1a12ef12cefabb85014956b6042fd",
+      "raptor_sub.csv": "faa20e95a1779658237252388407eaf6d835679dd43e4dae5bca18d95496bede",
+      "raptor224_sub.csv": "c12958fba2378e477d477908b57b87ee9b9fed690ea128d75498b2f18efee799",
+      "raptor224_raw.csv": "0b9ebbb30630d1582a37938b6c691b57088c3eb0b6084d80bab2562793b9d87b",
+      "ours_sub.csv": "fa4d89746bef047af6b14866c3272d9818aa2af433dfe33c4fe4ed0593ac5ab3",
+      "blend_receipt.json": "d7df9c1e94627bf63467d1e957b09dbbe787951a7385f48dbd4f4dc5bbb786df",
+      "submission_receipt.json": "7effeadc49722b0cb277dc682d2293c4a8b4a2bb539de5d08a7cd0c23a111683"
+    }
+  }
+}

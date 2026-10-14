@@ -12,7 +12,7 @@
     "gpu"
   ],
   "dataset_sources": [
-    "heliosli/rsna-knee-compact-r6cnxfsss",
+    "heliosli/rsna-knee-compact-v1/13",
     "nartaa/rsna-knee-publication-swa-weights-20261007",
     "heliosli/rsna-orthofoundation-fold0-epoch7-20261004"
   ],

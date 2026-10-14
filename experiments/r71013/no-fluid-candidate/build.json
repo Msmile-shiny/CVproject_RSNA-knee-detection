@@ -1,0 +1,7 @@
+{
+  "status": "BUILT_NOT_RUN",
+  "source_sha256": "6260c3cc58e15ecea94535dbb28e912a918db5a60b5e4fe68faf2c2398b47a17",
+  "parent_sha256": "3aa159ab50bc7f8828a291fc297e3af2ab68985d331f052779ba1539179c7c3f",
+  "hypothesis": "Remove author-overridden Effusion correction; retain learned R7 and Baker correction",
+  "requires": "Baseline completion and output audit before considering launch"
+}

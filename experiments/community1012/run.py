@@ -11,11 +11,15 @@ def build():
     folder=HERE/'upstream/heliosli';path=next(folder.glob('*.ipynb'));raw=path.read_bytes()
     provenance=json.loads((folder/'provenance.json').read_text());assert sha(raw)==provenance['source_hashes'][path.name]
     parent=json.loads(raw);nb=copy.deepcopy(parent)
+    old_slug='rsna-knee-compact-r6cnxfsss';new_slug='rsna-knee-compact-v1'
+    for cell in nb['cells']:
+        if cell['cell_type']=='code':cell['source']=''.join(cell['source']).replace(old_slug,new_slug)
     manifest=(HERE/'assets/manifest.json').read_bytes()
+    assert manifest==(HERE/'assets/compact-v1-v13/manifest.json').read_bytes()
     guard='''import hashlib as _pub_hash, time as _pub_time
 from pathlib import Path as _PubPath
 _pub_started=_pub_time.monotonic()
-_pub_manifests=list(_PubPath('/kaggle/input').glob('**/rsna-knee-compact-r6cnxfsss/manifest.json'))
+_pub_manifests=list(_PubPath('/kaggle/input').glob('**/rsna-knee-compact-v1/manifest.json'))
 assert len(_pub_manifests)==1, _pub_manifests
 assert _pub_hash.sha256(_pub_manifests[0].read_bytes()).hexdigest()==__SHA__, 'Compact manifest version drift'
 '''.replace('__SHA__',repr(sha(manifest)))
@@ -45,7 +49,7 @@ print('PUBLIC_COMPACT_VERIFIED',_pub_receipt)
             ast.parse(TransformerManager().transform_cell(''.join(c['source'])))
     nb['nbformat_minor']=5;nbformat.validate(nbformat.from_dict(nb))
     codes=lambda n:[''.join(c['source']) for c in n if c['cell_type']=='code']
-    assert codes(nb['cells'][1:-1])==codes(parent['cells'])
+    assert codes(nb['cells'][1:-1])==[s.replace(old_slug,new_slug) for s in codes(parent['cells'])]
     # Validate embedded Python without executing downloaded source locally.
     tree=ast.parse(''.join(parent['cells'][5]['source']))
     sources=next(ast.literal_eval(n.value) for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='SOURCES' for t in n.targets))
@@ -54,8 +58,10 @@ print('PUBLIC_COMPACT_VERIFIED',_pub_receipt)
     payload=json.dumps(nb,ensure_ascii=False,indent=1).encode();(out/'compact.ipynb').write_bytes(payload)
     meta=json.loads((folder/'kernel-metadata.json').read_text());meta.pop('id_no',None)
     meta.update(id='easoncyy/rsna-compact-public-ensemble',title='RSNA Compact Public Ensemble',code_file='compact.ipynb',is_private=True)
+    meta['dataset_sources']=['heliosli/rsna-knee-compact-v1/13' if s=='heliosli/'+old_slug else s for s in meta['dataset_sources']]
     (out/'kernel-metadata.json').write_text(json.dumps(meta,indent=2))
     result=dict(source_sha256=sha(payload),upstream_sha256=sha(raw),upstream_version=2,manifest_sha256=sha(manifest),image_and_blend_code_unchanged=True,max_failed_fraction=.03,embedded_files=len(sources))
+    result.update(asset_path_only_changed=True,asset_source='heliosli/rsna-knee-compact-v1/13')
     (HERE/'build.json').write_text(json.dumps(result,indent=2));print(result)
 
 def verify(out,receipt):
@@ -86,15 +92,45 @@ def online(action,submit):
     from kagglesdk.kernels.types.kernels_api_service import ApiGetKernelRequest
     built=json.loads((HERE/'build.json').read_text());raw=(HERE/'candidate/compact.ipynb').read_bytes();assert sha(raw)==built['source_sha256']
     prepare_dns();a=KaggleApi();a.authenticate();kernel='easoncyy/rsna-compact-public-ensemble'
-    if action=='launch':
-        assert not (HERE/'launch_attempt.json').exists()
-        assert not any(k.ref==kernel for k in a.kernels_list(mine=True,search='rsna-compact-public-ensemble',page_size=100))
+    if action in ['launch','repair-launch','asset-repair-launch']:
+        if action=='launch':
+            assert not (HERE/'launch_attempt.json').exists()
+            assert not any(k.ref==kernel for k in a.kernels_list(mine=True,search='rsna-compact-public-ensemble',page_size=100))
+        elif action=='asset-repair-launch':
+            previous=json.loads((HERE/'launch.json').read_text())
+            assert previous['response']['versionNumber']==2
+            error=json.loads((HERE/'submission_error_v2.json').read_text())
+            assert error['http_status']==400 and 'non-versioned datasets' in error['body']
+            assert not any(kernel+'?' in s.to_dict().get('url','') for s in a.competition_submissions('rsna-knee-abnormality-detection'))
+            assert built['asset_path_only_changed'] and built['manifest_sha256']==previous['build']['manifest_sha256']
+            archive=HERE/'v2';assert archive.exists() and (archive/'compact.ipynb').exists()
+            assert sha((archive/'compact.ipynb').read_bytes())==previous['build']['source_sha256']
+            old=json.loads((archive/'compact.ipynb').read_bytes());new=json.loads(raw)
+            codes=lambda n:[''.join(c['source']) for c in n['cells'] if c['cell_type']=='code']
+            assert codes(new)==[s.replace('rsna-knee-compact-r6cnxfsss','rsna-knee-compact-v1') for s in codes(old)]
+            assert not (HERE/'asset_repair_launch_attempt.json').exists()
+            (HERE/'asset_repair_launch_attempt.json').write_text(json.dumps(built,indent=2))
+        else:
+            previous=json.loads((HERE/'launch.json').read_text())
+            assert previous['response']['versionNumber']==1
+            error=json.loads((HERE/'submission_error.json').read_text())
+            assert error['http_status']==400 and 'non-versioned datasets' in error['body']
+            assert not any(kernel+'?' in s.to_dict().get('url','') for s in a.competition_submissions('rsna-knee-abnormality-detection'))
+            archive=HERE/'v1';assert not archive.exists();archive.mkdir()
+            for name in ['launch.json','launch_attempt.json','verified.json','submission_attempt.json','submission_error.json','diagnostic_retry.json']:
+                (archive/name).write_bytes((HERE/name).read_bytes())
+            meta=json.loads((HERE/'candidate/kernel-metadata.json').read_text())
+            assert 'heliosli/rsna-knee-compact-r6cnxfsss/2' in meta['dataset_sources']
+            assert built['source_sha256']==previous['build']['source_sha256'], 'Repair must not alter predictions'
         (HERE/'launch_attempt.json').write_text(json.dumps(built,indent=2))
         response=a.kernels_push(str(HERE/'candidate'),acc='NvidiaTeslaT4').to_dict()
+        assert not response.get('invalidDatasetSources'),response
         (HERE/'launch.json').write_text(json.dumps(dict(build=built,response=response),indent=2));print(response);return
     launch=json.loads((HERE/'launch.json').read_text());kernel=launch['response']['ref'].removeprefix('/code/');version=launch['response']['versionNumber']
     status=a.kernels_status(kernel).to_dict();print(status,flush=True)
-    if status['status'] not in ['COMPLETE','ERROR']:return
+    if status.get('status') not in ['COMPLETE','ERROR']:
+        if not status.get('status'):print('Status not yet available; do not infer completion or resubmit')
+        return
     out=ROOT/'results'/f'compact_public_v{version}';out.mkdir(parents=True,exist_ok=True)
     a.kernels_output(kernel,path=str(out),file_pattern=r'^(.*receipt\.json|coverage\.json|submission\.csv|raptor_raw\.csv|raptor_sub\.csv|ours_sub\.csv|worker.*\.txt)$',page_size=100)
     assert status['status']=='COMPLETE',f'Inspect logs {out}; no automatic restart'
@@ -112,13 +148,22 @@ def online(action,submit):
     (HERE/'verified.json').write_text(json.dumps(verified,indent=2));print(verified)
     if submit:
         if (HERE/'submission.json').exists():print('Already submitted');return
-        assert not (HERE/'submission_attempt.json').exists(),'Reconcile previous attempt'
+        attempt=HERE/f'submission_attempt_v{version}.json'
+        assert not attempt.exists(),'Reconcile previous attempt'
+        if (HERE/'submission_attempt.json').exists():
+            assert json.loads((HERE/'submission_attempt.json').read_text())['version']!=version,'Reconcile previous attempt'
         assert not any(kernel+'?' in s.to_dict().get('url','') for s in a.competition_submissions('rsna-knee-abnormality-detection'))
-        (HERE/'submission_attempt.json').write_text(json.dumps(verified,indent=2))
-        response=a.competition_submit_code(file_name='submission.csv',message='Public Helios compact four-fold ensemble plus Raptor; archived source, pinned manifest, coverage and rank formula verified',competition='rsna-knee-abnormality-detection',kernel=kernel,kernel_version=version).to_dict()
+        attempt.write_text(json.dumps(verified,indent=2))
+        try:
+            response=a.competition_submit_code(file_name='submission.csv',message='Public Helios compact four-fold ensemble plus Raptor; archived source, pinned manifest, coverage and rank formula verified',competition='rsna-knee-abnormality-detection',kernel=kernel,kernel_version=version).to_dict()
+        except Exception as exc:
+            response=getattr(exc,'response',None)
+            error=dict(status='REJECTED_OR_UNKNOWN',exception=type(exc).__name__,http_status=getattr(response,'status_code',None),body=getattr(response,'text',str(exc)))
+            (HERE/f'submission_error_v{version}.json').write_text(json.dumps(error,indent=2))
+            raise
         (HERE/'submission.json').write_text(json.dumps(dict(kernel=kernel,version=version,response=response),indent=2));print(response)
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('action',choices=['build','launch','collect']);p.add_argument('--submit',action='store_true');args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('action',choices=['build','launch','repair-launch','asset-repair-launch','collect']);p.add_argument('--submit',action='store_true');args=p.parse_args()
     if args.action=='build':build()
     else:online(args.action,args.submit)

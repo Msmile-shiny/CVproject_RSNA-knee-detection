@@ -1,0 +1,12 @@
+{
+  "submission_ref": 57147149,
+  "kernel": "easoncyy/rsna-r7-no-fluid-control",
+  "version": 1,
+  "state": "SCORED",
+  "api_status": "COMPLETE",
+  "scriptVersionId": 357997977,
+  "publicScore": 0.956,
+  "errorDescription": null,
+  "checked_date_local": "2026-10-14",
+  "note": "Official API confirmed 0.956, tied with baseline at displayed precision. Stop no-fluid direction; do not infer identical hidden predictions."
+}

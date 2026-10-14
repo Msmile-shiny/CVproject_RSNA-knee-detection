@@ -1,0 +1,20 @@
+{
+  "build": {
+    "upstream": "jenillangaliya/rsna-knee-0-956-raptor-convnext-r7-ensemble",
+    "upstream_version": 1,
+    "upstream_sha256": "37d377b57968897a0ae129fada434e03e8c3d261e405e8eaa9d25d14db1d9a1e",
+    "source_sha256": "3aa159ab50bc7f8828a291fc297e3af2ab68985d331f052779ba1539179c7c3f",
+    "manifest_sha256": "c4bb0f7399ada9a020e0c15cae6252033cf0c4335e999961793a176063074ec6",
+    "bundle_id": "8c7b666e27dc0e8f",
+    "inference_unchanged": true,
+    "embedded_files": 7,
+    "protected_submission": 57131878,
+    "protected_score": 0.954
+  },
+  "response": {
+    "ref": "/code/easoncyy/rsna-r7-public-reproduction",
+    "url": "https://www.kaggle.com/code/easoncyy/rsna-r7-public-reproduction",
+    "versionNumber": 1,
+    "kernelId": 138485270
+  }
+}

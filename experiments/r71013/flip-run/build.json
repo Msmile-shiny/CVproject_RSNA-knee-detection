@@ -1,0 +1,14 @@
+{
+  "upstream": "jenillangaliya/rsna-knee-0-956-raptor-convnext-r7-ensemble",
+  "upstream_version": 1,
+  "upstream_sha256": "37d377b57968897a0ae129fada434e03e8c3d261e405e8eaa9d25d14db1d9a1e",
+  "source_sha256": "90d9aa18fa906b29a28368905fae801d5f17bf4c7b4fe234fd5e1e69dd18a372",
+  "manifest_sha256": "c4bb0f7399ada9a020e0c15cae6252033cf0c4335e999961793a176063074ec6",
+  "bundle_id": "8c7b666e27dc0e8f",
+  "inference_unchanged": false,
+  "embedded_files": 7,
+  "protected_submission": 57144024,
+  "protected_score": 0.956,
+  "parent_sha256": "3aa159ab50bc7f8828a291fc297e3af2ab68985d331f052779ba1539179c7c3f",
+  "hypothesis": "Training-consistent mirror, class permutation, MCL plain; no weight or calibration changes"
+}

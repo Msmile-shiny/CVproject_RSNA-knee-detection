@@ -1,0 +1,12 @@
+{
+  "submission_ref": 57185504,
+  "kernel": "easoncyy/rsna-r7-training-mirror",
+  "version": 1,
+  "state": "SCORED",
+  "api_status": "COMPLETE",
+  "scriptVersionId": 358219734,
+  "publicScore": 0.956,
+  "errorDescription": null,
+  "checked_date_local": "2026-10-15",
+  "note": "Official API confirmed 0.956, tied at displayed precision. Stop mirror direction; protect original R7."
+}

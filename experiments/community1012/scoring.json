@@ -1,0 +1,28 @@
+{
+  "submission_ref": 57131878,
+  "kernel": "easoncyy/rsna-compact-public-ensemble",
+  "version": 3,
+  "scriptVersionId": 357879252,
+  "checked_at": "2026-10-13T11:19:11.933588+00:00",
+  "state": "SCORED",
+  "api_status": "COMPLETE",
+  "publicScore": 0.954,
+  "errorDescription": null,
+  "raw": {
+    "ref": 57131878,
+    "totalBytes": 247093,
+    "date": "2026-10-13T05:32:09.090Z",
+    "description": "Public Helios compact four-fold ensemble plus Raptor; archived source, pinned manifest, coverage and rank formula verified",
+    "fileName": "submission.csv",
+    "publicScore": "0.954",
+    "status": "COMPLETE",
+    "submittedBy": "easoncyy",
+    "submittedByRef": "easoncyy",
+    "teamName": "SharpLook Bones",
+    "url": "/code/easoncyy/rsna-compact-public-ensemble?scriptVersionId=357879252"
+  },
+  "protected_fallback": 57012367,
+  "fallback_score": 0.95,
+  "delta_vs_fallback": 0.004,
+  "final_selection_changed": false
+}

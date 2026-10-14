@@ -1,0 +1,13 @@
+{
+  "upstream": "RSNA R7 Full Three Model",
+  "upstream_ref": "varshithakolupuri/rsna-knee-one-unused-checkpoint-lifts-the-0-956",
+  "upstream_sha256": "6406e92300011e48f0534ce74a91f5b7a0629b3771168ab7275f5584f884f36d",
+  "source_sha256": "0e94319268bea48ef04959735b9d6377f2bc3c5bb40a16e7201b43f6b364a7bd",
+  "protected_submission": 57144024,
+  "weights": [
+    0.325,
+    0.175,
+    0.5
+  ],
+  "changes": "224 raw export and strict complete-member checks; prediction formula unchanged"
+}

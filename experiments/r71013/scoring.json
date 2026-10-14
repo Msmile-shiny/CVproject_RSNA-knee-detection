@@ -1,0 +1,13 @@
+{
+  "submission_ref": 57144024,
+  "kernel": "easoncyy/rsna-r7-public-reproduction",
+  "version": 1,
+  "scriptVersionId": 357976215,
+  "submission_date": "2026-10-13T12:44:31.470Z",
+  "state": "SCORED",
+  "api_status": "COMPLETE",
+  "publicScore": 0.956,
+  "errorDescription": null,
+  "checked_date_local": "2026-10-14",
+  "note": "Official submissions API confirmed COMPLETE and 0.956; no errorDescription returned. Final selection unchanged."
+}

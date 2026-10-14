@@ -1,0 +1,5 @@
+{
+  "status": "REJECTED",
+  "http_status": 400,
+  "body": "{\"error\":{\"code\":400,\"message\":\"Submission not allowed:  Your Notebook uses non-versioned datasets [/datasets/heliosli/rsna-knee-compact-r6cnxfsss] (see Dataset Settings).\",\"status\":\"FAILED_PRECONDITION\"}}"
+}

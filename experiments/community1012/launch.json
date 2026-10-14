@@ -1,17 +1,19 @@
 {
   "build": {
-    "source_sha256": "e91ace0c7f492f7a06cc6cdbacc538e8bf84c93c96ad00075c4bfbfda714bcae",
+    "source_sha256": "1352ca5a192c2615053e8a35e1e06c940a65d7d3bcd7a72c15214c144f5a1845",
     "upstream_sha256": "63e92116ee31020bc1b076e0dabe2742b3e48c647b8e999475df43913d84f658",
     "upstream_version": 2,
     "manifest_sha256": "1c1211e64b73f1f6433ade804816572db1a2aa5422ed9c57365184bc6a9517e6",
     "image_and_blend_code_unchanged": true,
     "max_failed_fraction": 0.03,
-    "embedded_files": 7
+    "embedded_files": 7,
+    "asset_path_only_changed": true,
+    "asset_source": "heliosli/rsna-knee-compact-v1/13"
   },
   "response": {
     "ref": "/code/easoncyy/rsna-compact-public-ensemble",
     "url": "https://www.kaggle.com/code/easoncyy/rsna-compact-public-ensemble",
-    "versionNumber": 1,
+    "versionNumber": 3,
     "kernelId": 138276850
   }
 }

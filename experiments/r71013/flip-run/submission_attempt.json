@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "kernel": "easoncyy/rsna-r7-training-mirror",
+  "status": "PASS",
+  "receipt": {
+    "status": "PASS",
+    "source_ref": "jenillangaliya/rsna-knee-0-956-raptor-convnext-r7-ensemble",
+    "manifest_sha256": "c4bb0f7399ada9a020e0c15cae6252033cf0c4335e999961793a176063074ec6",
+    "bundle_id": "8c7b666e27dc0e8f",
+    "elapsed_seconds": 839.7122536150001,
+    "study_count": 3,
+    "blend": {
+      "weights": {
+        "raptor": 0.5,
+        "ours": 0.5,
+        "raptor_per_class": {
+          "Medial OA": 0.5,
+          "Lateral OA": 0.5,
+          "PF OA": 0.5
+        }
+      },
+      "rows": 3,
+      "raptor_failed": 0,
+      "ours_failed": 0,
+      "raptor_seconds": 48.7,
+      "total_seconds": 420.1,
+      "spearman_raptor_raw_vs_sub": {
+        "ACL": 1.0,
+        "MCL": 1.0,
+        "Medial Meniscus": 1.0,
+        "Lateral Meniscus": 1.0,
+        "Medial OA": 1.0,
+        "Lateral OA": 1.0,
+        "PF OA": 1.0,
+        "Effusion": 1.0,
+        "Synovitis": 1.0,
+        "Baker's": 1.0,
+        "Contusion": 1.0,
+        "Fracture": 1.0
+      },
+      "spearman_raptor_vs_ours": {
+        "ACL": -0.5,
+        "MCL": 1.0,
+        "Medial Meniscus": 1.0,
+        "Lateral Meniscus": 0.5,
+        "Medial OA": -0.5,
+        "Lateral OA": 0.5,
+        "PF OA": 1.0,
+        "Effusion": 0.5,
+        "Synovitis": 1.0,
+        "Baker's": 1.0,
+        "Contusion": 1.0,
+        "Fracture": 1.0
+      },
+      "mode": "blend",
+      "both_failed": 0,
+      "rank_basis": "each model over its own non-failed rows"
+    },
+    "decode_coverage_verified": false,
+    "hashes": {
+      "submission.csv": "507a8c77e4d83e9937705ee0f086775208e4bad85e2fd6ba2de33243d7002d33",
+      "raptor_raw.csv": "e5457615ea312f20d6aec029f272f267440483c78d9d5674dfd8f2775ffb2347",
+      "raptor_sub.csv": "faa20e95a1779658237252388407eaf6d835679dd43e4dae5bca18d95496bede",
+      "ours_sub.csv": "5bd11894c2d1b53f8e3b8921249c017027cf916b4147fbdeeddd215ca141f409",
+      "coverage.json": "3c17b783e5944502c56ea2e6e0de582b2e4339d4b3d5aeabf423b005b8bf81f3",
+      "blend_receipt.json": "515bf8af4086dce97b80b1614e72d42ce2672062ea9156a63da7f09e42b49ff4",
+      "submission_receipt.json": "f0c68186bdb747f401b10b48c02e36e2fae3d378c30b51e85140c169b3fc15d5"
+    }
+  }
+}
