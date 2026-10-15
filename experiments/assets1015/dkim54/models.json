@@ -1,0 +1,225 @@
+{
+ "models": [
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "v296_f0.pt",
+   "fold": 0,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v296",
+   "chan_mode": "adjacent"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "v296_f1.pt",
+   "fold": 1,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v296",
+   "chan_mode": "adjacent"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "v296_f2.pt",
+   "fold": 2,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v296",
+   "chan_mode": "adjacent"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "v296_f3.pt",
+   "fold": 3,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v296",
+   "chan_mode": "adjacent"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "v296_f4.pt",
+   "fold": 4,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v296",
+   "chan_mode": "adjacent"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "v296r3_f0.pt",
+   "fold": 0,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v296",
+   "chan_mode": "adjacent"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "v296r3_f1.pt",
+   "fold": 1,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v296",
+   "chan_mode": "adjacent"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "v296r3_f2.pt",
+   "fold": 2,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v296",
+   "chan_mode": "adjacent"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "v296r3_f3.pt",
+   "fold": 3,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v296",
+   "chan_mode": "adjacent"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "v296r3_f4.pt",
+   "fold": 4,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v296",
+   "chan_mode": "adjacent"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "nat2_f0.pt",
+   "fold": 0,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v2nat",
+   "chan_mode": "native"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "nat2_f1.pt",
+   "fold": 1,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v2nat",
+   "chan_mode": "native"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "nat2_f2.pt",
+   "fold": 2,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v2nat",
+   "chan_mode": "native"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "nat2_f3.pt",
+   "fold": 3,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v2nat",
+   "chan_mode": "native"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "nat2_f4.pt",
+   "fold": 4,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v2nat",
+   "chan_mode": "native"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "nat2r3_f0.pt",
+   "fold": 0,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v2nat",
+   "chan_mode": "native"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "nat2r3_f1.pt",
+   "fold": 1,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v2nat",
+   "chan_mode": "native"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "nat2r3_f2.pt",
+   "fold": 2,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v2nat",
+   "chan_mode": "native"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "nat2r3_f3.pt",
+   "fold": 3,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v2nat",
+   "chan_mode": "native"
+  },
+  {
+   "backbone": "convnext_small",
+   "img": 384,
+   "weights": "nat2r3_f4.pt",
+   "fold": 4,
+   "tta": true,
+   "weight": 1.0,
+   "pool": "attn",
+   "layout": "v2nat",
+   "chan_mode": "native"
+  }
+ ],
+ "note": "v11c: groups ['v296', 'v296r3', 'nat2', 'nat2r3']; built 2026-10-14"
+}

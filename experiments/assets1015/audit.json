@@ -1,0 +1,226 @@
+{
+  "assets": [
+    {
+      "ref": "nartaa/rsna-knee-s6fall-weights",
+      "listing": {
+        "datasetFiles": [
+          {
+            "name": "E_prior_s42_fall.DONE.json",
+            "creationDate": "2026-10-14T19:08:48.730Z",
+            "totalBytes": 584
+          },
+          {
+            "name": "E_prior_s42_fall.pt",
+            "creationDate": "2026-10-14T19:08:51.917Z",
+            "totalBytes": 200185003
+          },
+          {
+            "name": "E_prior_s42_fall.run_config.json",
+            "creationDate": "2026-10-14T19:08:48.705Z",
+            "totalBytes": 2858
+          },
+          {
+            "name": "README.md",
+            "creationDate": "2026-10-14T19:08:48.696Z",
+            "totalBytes": 1753
+          },
+          {
+            "name": "checkpoint-manifest.json",
+            "creationDate": "2026-10-14T19:08:48.705Z",
+            "totalBytes": 1128
+          },
+          {
+            "name": "code_manifest.json",
+            "creationDate": "2026-10-14T19:08:48.681Z",
+            "totalBytes": 52962
+          },
+          {
+            "name": "s6_extras.bin",
+            "creationDate": "2026-10-14T19:08:48.696Z",
+            "totalBytes": 256011
+          }
+        ]
+      },
+      "local_sha256": {
+        "checkpoint-manifest.json": "ed3c6d8d2e69ae08c4a97eab3c860a9ec20c5c69484e35de6a3119d396d731cd",
+        "E_prior_s42_fall.run_config.json": "36e49cf0c8db97e7f995482933911f018c32fca8c5933b4d64399c128c19c886",
+        "README.md": "e7e747f31ea8e885d641ee79917d680876795bf1845c95a2c5772928a62d1fe1"
+      }
+    },
+    {
+      "ref": "dkim54/rsna-knee-models-v11c",
+      "listing": {
+        "datasetFiles": [
+          {
+            "name": "code/dataset.py",
+            "creationDate": "2026-10-15T14:38:56.266Z",
+            "totalBytes": 26197
+          },
+          {
+            "name": "code/infer_lib.py",
+            "creationDate": "2026-10-15T14:38:56.231Z",
+            "totalBytes": 10280
+          },
+          {
+            "name": "code/model.py",
+            "creationDate": "2026-10-15T14:38:56.246Z",
+            "totalBytes": 24416
+          },
+          {
+            "name": "models.json",
+            "creationDate": "2026-10-15T14:38:55.840Z",
+            "totalBytes": 4108
+          },
+          {
+            "name": "nat2_f0.pt",
+            "creationDate": "2026-10-15T14:38:57.752Z",
+            "totalBytes": 100243609
+          },
+          {
+            "name": "nat2_f1.pt",
+            "creationDate": "2026-10-15T14:38:58.420Z",
+            "totalBytes": 100243609
+          },
+          {
+            "name": "nat2_f2.pt",
+            "creationDate": "2026-10-15T14:38:57.629Z",
+            "totalBytes": 100243609
+          },
+          {
+            "name": "nat2_f3.pt",
+            "creationDate": "2026-10-15T14:38:57.657Z",
+            "totalBytes": 100243609
+          },
+          {
+            "name": "nat2_f4.pt",
+            "creationDate": "2026-10-15T14:38:58.144Z",
+            "totalBytes": 100243609
+          },
+          {
+            "name": "nat2r3_f0.pt",
+            "creationDate": "2026-10-15T14:38:58.211Z",
+            "totalBytes": 100244811
+          },
+          {
+            "name": "nat2r3_f1.pt",
+            "creationDate": "2026-10-15T14:38:57.494Z",
+            "totalBytes": 100244811
+          },
+          {
+            "name": "nat2r3_f2.pt",
+            "creationDate": "2026-10-15T14:38:57.990Z",
+            "totalBytes": 100244811
+          },
+          {
+            "name": "nat2r3_f3.pt",
+            "creationDate": "2026-10-15T14:38:58.037Z",
+            "totalBytes": 100244811
+          },
+          {
+            "name": "nat2r3_f4.pt",
+            "creationDate": "2026-10-15T14:38:57.221Z",
+            "totalBytes": 100244811
+          },
+          {
+            "name": "v296_f0.pt",
+            "creationDate": "2026-10-15T14:38:57.891Z",
+            "totalBytes": 100243609
+          },
+          {
+            "name": "v296_f1.pt",
+            "creationDate": "2026-10-15T14:38:57.460Z",
+            "totalBytes": 100243609
+          },
+          {
+            "name": "v296_f2.pt",
+            "creationDate": "2026-10-15T14:38:58.722Z",
+            "totalBytes": 100243609
+          },
+          {
+            "name": "v296_f3.pt",
+            "creationDate": "2026-10-15T14:38:57.589Z",
+            "totalBytes": 100243609
+          },
+          {
+            "name": "v296_f4.pt",
+            "creationDate": "2026-10-15T14:38:58.157Z",
+            "totalBytes": 100243609
+          },
+          {
+            "name": "v296r3_f0.pt",
+            "creationDate": "2026-10-15T14:38:57.707Z",
+            "totalBytes": 100244811
+          },
+          {
+            "name": "v296r3_f1.pt",
+            "creationDate": "2026-10-15T14:38:57.551Z",
+            "totalBytes": 100244811
+          },
+          {
+            "name": "v296r3_f2.pt",
+            "creationDate": "2026-10-15T14:38:57.753Z",
+            "totalBytes": 100244811
+          },
+          {
+            "name": "v296r3_f3.pt",
+            "creationDate": "2026-10-15T14:38:57.388Z",
+            "totalBytes": 100244811
+          },
+          {
+            "name": "v296r3_f4.pt",
+            "creationDate": "2026-10-15T14:38:58.385Z",
+            "totalBytes": 100244811
+          },
+          {
+            "name": "wheels/pylibjpeg-2.1.0-py3-none-any.whl",
+            "creationDate": "2026-10-15T14:38:56.279Z",
+            "totalBytes": 25472
+          },
+          {
+            "name": "wheels/pylibjpeg_libjpeg-2.4.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+            "creationDate": "2026-10-15T14:38:56.439Z",
+            "totalBytes": 3384298
+          },
+          {
+            "name": "wheels/pylibjpeg_libjpeg-2.4.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+            "creationDate": "2026-10-15T14:38:56.387Z",
+            "totalBytes": 3395407
+          },
+          {
+            "name": "wheels/pylibjpeg_libjpeg-2.4.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+            "creationDate": "2026-10-15T14:38:56.360Z",
+            "totalBytes": 3409132
+          },
+          {
+            "name": "wheels/pylibjpeg_openjpeg-2.6.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+            "creationDate": "2026-10-15T14:38:56.403Z",
+            "totalBytes": 1965951
+          },
+          {
+            "name": "wheels/pylibjpeg_openjpeg-2.6.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+            "creationDate": "2026-10-15T14:38:56.292Z",
+            "totalBytes": 1986047
+          },
+          {
+            "name": "wheels/pylibjpeg_openjpeg-2.6.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+            "creationDate": "2026-10-15T14:38:56.427Z",
+            "totalBytes": 1997697
+          },
+          {
+            "name": "wheels/timm-1.0.30-py3-none-any.whl",
+            "creationDate": "2026-10-15T14:38:56.354Z",
+            "totalBytes": 2668917
+          }
+        ]
+      },
+      "local_sha256": {
+        "dataset.py": "e0a71d2bb7a37ad0f60146b2bb8a8c9e373cb2b7bc7237d75a5fee14e0f2cfd1",
+        "infer_lib.py": "6f261059cfc306cafb412579bf0130458fc00d156b0f932fc9edf49bfee9afa1",
+        "model.py": "94e4421a500a2742f5380bbd2d5d66ce748ffc90aab24d107fa91b33f3e6ed8a",
+        "models.json": "94418e7d0af45194efcaea421b313e608a09a27c6df961c89e0d1b6e25e668d9"
+      }
+    }
+  ],
+  "dkim_kernels": [],
+  "gpu_started": false
+}

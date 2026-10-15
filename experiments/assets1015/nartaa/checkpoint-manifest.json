@@ -1,0 +1,18 @@
+{
+  "file": "E_prior_s42_fall.pt",
+  "sha256": "0c7297d58f061ab4e5d7c55046f51fa3e8934928046f0647a0c7854e98371c12",
+  "public_lb": 0.950,
+  "scored_notebook": "https://www.kaggle.com/code/nartaa/rsna-knee-s6fall-solo",
+  "architecture": "Heliosli S6 compact_train.Net: convnext_small.fb_in22k_ft_in1k, per-finding spatial attention + window-attention MIL",
+  "init": "timm convnext_small.fb_in22k_ft_in1k",
+  "train_studies": 4263,
+  "gold58_in_training": false,
+  "labels": "report-derived soft labels, JEV blend, prior fill (arm E_prior), weight-normalised BCE",
+  "views": "v4: full FOV + 100 mm knee-centred locals placed by SKM-TEA anatomy V-Net anchors",
+  "size": 320, "crop": 288, "slices": 3, "phys_mm": 3.5, "train_windows": 64,
+  "epochs": 16, "batch": 2, "optimizer": "AdamW", "lr_encoder": 0.0001, "lr_head": 0.001, "weight_decay": 0.05,
+  "schedule": "5% linear warm-up then cosine to 0 over 34,096 steps", "precision": "bf16 autocast, gradient checkpointing, clip 5",
+  "seed": 42, "ema": 0.0,
+  "inference": "Heliosli compact_infer.py (sha256 34f433fe...) unchanged, --amp fp16 on T4",
+  "oai_data_used": false
+}
