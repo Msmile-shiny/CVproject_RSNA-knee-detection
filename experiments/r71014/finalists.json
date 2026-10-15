@@ -1,0 +1,118 @@
+{
+  "checked_at": "2026-10-15T15:12:34.861379+00:00",
+  "candidates": [
+    {
+      "name": "r7_original",
+      "submission_ref": 57144024,
+      "scriptVersionId": 357976215,
+      "kernel": "easoncyy/rsna-r7-public-reproduction",
+      "source_sha256": "3aa159ab50bc7f8828a291fc297e3af2ab68985d331f052779ba1539179c7c3f",
+      "state": "SCORED",
+      "publicScore": 0.956,
+      "raw": {
+        "ref": 57144024,
+        "totalBytes": 246984,
+        "date": "2026-10-13T12:44:31.470Z",
+        "description": "R7 public reproduction: unchanged inference, pinned manifest, four folds and stackers; fixed 50/50 rank blend",
+        "fileName": "submission.csv",
+        "publicScore": "0.956",
+        "status": "COMPLETE",
+        "submittedBy": "easoncyy",
+        "submittedByRef": "easoncyy",
+        "teamName": "SharpLook Bones",
+        "url": "/code/easoncyy/rsna-r7-public-reproduction?scriptVersionId=357976215"
+      }
+    },
+    {
+      "name": "r7_no_fluid",
+      "submission_ref": 57147149,
+      "scriptVersionId": 357997977,
+      "kernel": "easoncyy/rsna-r7-no-fluid-control",
+      "source_sha256": "6260c3cc58e15ecea94535dbb28e912a918db5a60b5e4fe68faf2c2398b47a17",
+      "state": "SCORED",
+      "publicScore": 0.956,
+      "raw": {
+        "ref": 57147149,
+        "totalBytes": 246997,
+        "date": "2026-10-13T14:46:42.150Z",
+        "description": "R7 no-fluid control: only Effusion volume correction disabled; non-Effusion visible outputs checked; fixed 50/50 blend",
+        "fileName": "submission.csv",
+        "publicScore": "0.956",
+        "status": "COMPLETE",
+        "submittedBy": "easoncyy",
+        "submittedByRef": "easoncyy",
+        "teamName": "SharpLook Bones",
+        "url": "/code/easoncyy/rsna-r7-no-fluid-control?scriptVersionId=357997977"
+      }
+    },
+    {
+      "name": "r7_mirror",
+      "submission_ref": 57185504,
+      "scriptVersionId": 358219734,
+      "kernel": "easoncyy/rsna-r7-training-mirror",
+      "source_sha256": "90d9aa18fa906b29a28368905fae801d5f17bf4c7b4fe234fd5e1e69dd18a372",
+      "state": "SCORED",
+      "publicScore": 0.956,
+      "raw": {
+        "ref": 57185504,
+        "totalBytes": 247130,
+        "date": "2026-10-14T14:28:52.013Z",
+        "description": "R7 training mirror: original four folds and stackers; MCL plain, reindexed mirror logits; fixed 50/50 blend",
+        "fileName": "submission.csv",
+        "publicScore": "0.956",
+        "status": "COMPLETE",
+        "submittedBy": "easoncyy",
+        "submittedByRef": "easoncyy",
+        "teamName": "SharpLook Bones",
+        "url": "/code/easoncyy/rsna-r7-training-mirror?scriptVersionId=358219734"
+      }
+    },
+    {
+      "name": "r7_threeway",
+      "submission_ref": 57197910,
+      "scriptVersionId": 358368480,
+      "kernel": "easoncyy/rsna-r7-full-three-model",
+      "source_sha256": "0e94319268bea48ef04959735b9d6377f2bc3c5bb40a16e7201b43f6b364a7bd",
+      "state": "SCORED",
+      "publicScore": 0.956,
+      "raw": {
+        "ref": 57197910,
+        "totalBytes": 247270,
+        "date": "2026-10-14T23:39:18.670Z",
+        "description": "Complete R7 three-model reproduction: 384 .325, 224 .175, R7 .5; no missing members; independently verified",
+        "fileName": "submission.csv",
+        "publicScore": "0.956",
+        "status": "COMPLETE",
+        "submittedBy": "easoncyy",
+        "submittedByRef": "easoncyy",
+        "teamName": "SharpLook Bones",
+        "url": "/code/easoncyy/rsna-r7-full-three-model?scriptVersionId=358368480"
+      }
+    },
+    {
+      "name": "r6_fallback",
+      "submission_ref": 57131878,
+      "scriptVersionId": 357879252,
+      "kernel": "easoncyy/rsna-compact-public-ensemble",
+      "source_sha256": "1352ca5a192c2615053e8a35e1e06c940a65d7d3bcd7a72c15214c144f5a1845",
+      "state": "SCORED",
+      "publicScore": 0.954,
+      "raw": {
+        "ref": 57131878,
+        "totalBytes": 247093,
+        "date": "2026-10-13T05:32:09.090Z",
+        "description": "Public Helios compact four-fold ensemble plus Raptor; archived source, pinned manifest, coverage and rank formula verified",
+        "fileName": "submission.csv",
+        "publicScore": "0.954",
+        "status": "COMPLETE",
+        "submittedBy": "easoncyy",
+        "submittedByRef": "easoncyy",
+        "teamName": "SharpLook Bones",
+        "url": "/code/easoncyy/rsna-compact-public-ensemble?scriptVersionId=357879252"
+      }
+    }
+  ],
+  "protected_original": 57144024,
+  "final_selection_changed": false,
+  "note": "Displayed scores cannot establish exact ties or Private performance. No automatic final selection."
+}
