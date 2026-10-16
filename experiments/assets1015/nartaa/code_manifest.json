@@ -1,0 +1,1200 @@
+{
+ "members": {
+  "heliosli/compact_infer.py": {
+   "sha256": "34f433fe72b732543813165c3397ec80cef01b0d49b25b7b22668714f0b0ef4a",
+   "bytes": 29244
+  },
+  "heliosli/compact_train.py": {
+   "sha256": "14767c7a8f0daa986477511fe9a83aefe032a208ae978fabf15a5f896992ac80",
+   "bytes": 80713
+  },
+  "heliosli/knee_anchor_bank_v2.py": {
+   "sha256": "e564807a129dfcd3c984348917436ee6083066a4d685340587ebd1d3ea14f309",
+   "bytes": 14529
+  },
+  "heliosli/probe_infer.py": {
+   "sha256": "a6cc31448019c84be5868d0a2ff1d99719b23b0f86110efc03efff3ce6bd6980",
+   "bytes": 16584
+  },
+  "heliosli/px_cache.py": {
+   "sha256": "b13e38a7ad3bd496f8027e02209653e224b0926db4f0853eeb0d076a2d6e2632",
+   "bytes": 20263
+  },
+  "heliosli/side_common.py": {
+   "sha256": "bbcc5d027834e6a6fd48c4a8cf228e25661b7522c792587c840fe4d7cd5c0566",
+   "bytes": 1571
+  },
+  "cloud_code/training/__init__.py": {
+   "sha256": "f7cebdc73ea1c77f2873b99a084450dee178c38ab0e8b2daaa7dfea7144aba29",
+   "bytes": 51
+  },
+  "cloud_code/training/adopt_throughput.py": {
+   "sha256": "5deec8e6770b30cf7322f5ed730db25f73c66343c0b4fd5a3a99f40734710b50",
+   "bytes": 3019
+  },
+  "cloud_code/training/advancement_probe.py": {
+   "sha256": "7375f73f4590d8b8d309769fe02a5df82791decd01a660fff847887d5eda0c48",
+   "bytes": 4903
+  },
+  "cloud_code/training/aggregation_candidates.py": {
+   "sha256": "5f6c79640d38b139bcf73e2d38885451b9ce7c8b3b34c056a10382b64b719262",
+   "bytes": 2037
+  },
+  "cloud_code/training/anatomy.py": {
+   "sha256": "fb471164a703c03d23fbd4e82ada9d4580c56e69c27578d6ce9db9e35ef6dd13",
+   "bytes": 24016
+  },
+  "cloud_code/training/anatomy_cache.py": {
+   "sha256": "2a8060dbb0cbed39849d490719a1dbe41fba515cfef671554d9eea79dea9e9d7",
+   "bytes": 3737
+  },
+  "cloud_code/training/anatomy_contract.py": {
+   "sha256": "e84b197df66eb1c7589e4a655bd6feef25a644ac64b2ebf0698178452699c5f9",
+   "bytes": 3460
+  },
+  "cloud_code/training/anatomy_mainline_probe.py": {
+   "sha256": "e51884608501c2eca1d09a914a9a7fc3defc689d87a542636c359b24d661a38d",
+   "bytes": 5886
+  },
+  "cloud_code/training/anatomy_parallel.py": {
+   "sha256": "3f7e3ddfd3017a27f6d4a83b5ce8f331387371a5491f479807539ef399a93e0d",
+   "bytes": 10494
+  },
+  "cloud_code/training/anatomy_quality.py": {
+   "sha256": "b52f91d6f517bbac930935239ada774b02b21a0240b17e09c17492ab6ed0b552",
+   "bytes": 8772
+  },
+  "cloud_code/training/anatomy_runtime.py": {
+   "sha256": "d12609a3a47270f8292b8b4276e0379c482a44afdbe2f91b2b924399b753716e",
+   "bytes": 10264
+  },
+  "cloud_code/training/archive_cache.py": {
+   "sha256": "ce6509236b7c5976d02b8fb354b33c84ae82049d2e685b4504e5b0531a9c74f9",
+   "bytes": 9350
+  },
+  "cloud_code/training/audit_anatomy_consumers.py": {
+   "sha256": "bb8a9ca3b1a7594d89edb4ca1b9d00c1ca9e5f02dea3bddb5821f53f5916dee4",
+   "bytes": 6641
+  },
+  "cloud_code/training/audit_label_quality.py": {
+   "sha256": "292bd50d7d5fa4360c68564c45fadda24fc557bd59b102457c70948a24f3d0e3",
+   "bytes": 16067
+  },
+  "cloud_code/training/audit_patient_identity.py": {
+   "sha256": "bfc478af7a2c131baab57510b89f6c612d9cde4f6093840995bca1e17369929e",
+   "bytes": 17586
+  },
+  "cloud_code/training/audit_report_recovery.py": {
+   "sha256": "1f744bd681721ae44f7a3ec3c23806b6f2a1752f3032184c502240a720b6d48c",
+   "bytes": 9413
+  },
+  "cloud_code/training/audit_semantic_consumption.py": {
+   "sha256": "fff2270de6452a64815dc3803bed66347777f45c99e02774ac50f8ff7eecaa3f",
+   "bytes": 7336
+  },
+  "cloud_code/training/clinical_contrast_audit.py": {
+   "sha256": "fe6ce26fba09ce8cbf1202e8ee4abc5d80521b90bd1bfb2b875e1a9de6125728",
+   "bytes": 8420
+  },
+  "cloud_code/training/clinical_factors.py": {
+   "sha256": "7d57c23a7c9a3459597b622aab93ece4399dbf22d9aa5a73f0ecd6aa48bb5fac",
+   "bytes": 8619
+  },
+  "cloud_code/training/common.py": {
+   "sha256": "8283fa1f8e7ef8cfacbba52df1715636be3c9ad688e39912814e7d5bcf57105f",
+   "bytes": 2004
+  },
+  "cloud_code/training/construction_probe.py": {
+   "sha256": "f8b3bc7559c707866ff741d9f3eee88be1c61f25c981136d886194d9c6c5aa45",
+   "bytes": 6977
+  },
+  "cloud_code/training/coronal_views.py": {
+   "sha256": "841f216d2682ae2c0f8afd82fc902b9fa74924d7145b952069dea8b0bbd03c40",
+   "bytes": 2788
+  },
+  "cloud_code/training/criteria.py": {
+   "sha256": "b023484f2f57490eda153e4fbc468a8a9f6cf3acfafd22a4d686e8b07f27a1e2",
+   "bytes": 52616
+  },
+  "cloud_code/training/criterion_trace.py": {
+   "sha256": "b8c72e9341aa5b10d543c1e6bd60226b9f1d4705de9436bdef01515d89d34e72",
+   "bytes": 2459
+  },
+  "cloud_code/training/data/ligament_atlas.json": {
+   "sha256": "bb9879ee443465c8a64b087a6f8fb92bd0ce9d9cdab90e8838686c9d2432a71f",
+   "bytes": 2698
+  },
+  "cloud_code/training/data.py": {
+   "sha256": "c5c89d783e24592581fd09bc8aabf80ec4d659d4a8d949b710a047b740b74ee0",
+   "bytes": 18362
+  },
+  "cloud_code/training/detail_view.py": {
+   "sha256": "12c673ee77498b288cd324671acef0e49bf6aa22f1f44e81552263a5a7df3fef",
+   "bytes": 947
+  },
+  "cloud_code/training/dicom_geometry.py": {
+   "sha256": "12aa501f9704aef15b7a3bbd560951acb6d95b89b7de0141d6cf89fc3f051ab1",
+   "bytes": 43287
+  },
+  "cloud_code/training/direct_network.py": {
+   "sha256": "19826a56538ff42ceb504f7743e4d626a506e41a58ae5023ac66e9c03eca9c2a",
+   "bytes": 8226
+  },
+  "cloud_code/training/distill.py": {
+   "sha256": "1ca0f7c13b877df0eac8a7ef395ec5f6c02bdecfd248a74f2a2acd0e7a7c7d8b",
+   "bytes": 16561
+  },
+  "cloud_code/training/download_data.py": {
+   "sha256": "f20b60242b996b6e622c5c4571aeb7bac86adfce1b651e53d6d03ab96936ecc8",
+   "bytes": 25976
+  },
+  "cloud_code/training/engine.py": {
+   "sha256": "cb3e3eb8b18a1dfa79812dca85c7f4c963d8edd4189901a8f8de2afa21c2f343",
+   "bytes": 56916
+  },
+  "cloud_code/training/ensemble.py": {
+   "sha256": "a48a81aa90d901818314383e3a4d6dfae76995c53328f232c601ea7c20a936db",
+   "bytes": 9611
+  },
+  "cloud_code/training/evaluate_report_repair_pilot.py": {
+   "sha256": "ffa7e3d47de22fa4e14ae56c08a8128fa1befcace94a6beeadcad3fadc3ec12a",
+   "bytes": 9423
+  },
+  "cloud_code/training/exact_duplicates.py": {
+   "sha256": "51b38db21ce9c5fe2b6278a835983414756b61ac6af81aba380b44b41b075897",
+   "bytes": 9587
+  },
+  "cloud_code/training/execution_runtime.py": {
+   "sha256": "4d20fafaf56c7eab6e3aa8d53900435c3b9df736e0c9ef5531f16f0a202c61bb",
+   "bytes": 4817
+  },
+  "cloud_code/training/experiment.py": {
+   "sha256": "31103b2f011a548f0ce237dff9e2d816c5564a2b92ddc279aa6dbfa912af9ccb",
+   "bytes": 6281
+  },
+  "cloud_code/training/export.py": {
+   "sha256": "abb4de3a0356e9675a0e60509ed9fb46b0da0be7d7aa0aec908f28b9b6cbbd28",
+   "bytes": 1971
+  },
+  "cloud_code/training/external_capability.py": {
+   "sha256": "ae78b8728e00f14a45c9dac08e15ba9ef95307b985ba467a9095b20bd21225bc",
+   "bytes": 12033
+  },
+  "cloud_code/training/external_mcl.py": {
+   "sha256": "47e8cc1a851a7d5e62141da77ee4e14bbb993d4107d46c8e09e53717e2561587",
+   "bytes": 13877
+  },
+  "cloud_code/training/external_mcl_probe.py": {
+   "sha256": "f18b3d50a7d171d0ccdafdd2620a517a54205b5fc180f32eba3fba528271ab8c",
+   "bytes": 4336
+  },
+  "cloud_code/training/external_roi_diagnostic.py": {
+   "sha256": "0af7a85a820c5f5f3d4f27886f6fad560b17de8f04f7a86c77d8bded75914cfd",
+   "bytes": 3847
+  },
+  "cloud_code/training/fastmri_download.py": {
+   "sha256": "96dbf08b90f2f9aab221f939649ce7d6c3da5965389f71953fa5994f8d109512",
+   "bytes": 9943
+  },
+  "cloud_code/training/fastmri_extract.py": {
+   "sha256": "583efe3224e762765b1aaa62dc180d662624c5f2f518e7d2d2850150da2faaf4",
+   "bytes": 19896
+  },
+  "cloud_code/training/fastmri_mcl_bilateral_diagnostic.py": {
+   "sha256": "13f59f40324a8e787004abfc7790687f1bf0ca85ac05b0bb57d0696fdb513a35",
+   "bytes": 10405
+  },
+  "cloud_code/training/fastmri_mcl_diagnostic.py": {
+   "sha256": "cc73730f5573e1cca53899b61e7aaa281fea79e7a58a9d9cec986b8e995412ae",
+   "bytes": 12694
+  },
+  "cloud_code/training/fastmri_reference.py": {
+   "sha256": "c7a752db3824ca8890efc386f6c7381058651fd32b0e26a5859407cc3db83a94",
+   "bytes": 12000
+  },
+  "cloud_code/training/feature_audit.py": {
+   "sha256": "781b72926f30454d385619617983ad5852c320c5fec4248947c2961f452e8d60",
+   "bytes": 3038
+  },
+  "cloud_code/training/feature_bank.py": {
+   "sha256": "c32155f6f0a2028ede4fdfb06af3b56ff838609a4253583a034be820aa7c915d",
+   "bytes": 9260
+  },
+  "cloud_code/training/fetch_anatomy.py": {
+   "sha256": "80d39a1b5131bb19d7cd2df814ae2e652da1db22fadca4f933c49c6af60bc23b",
+   "bytes": 2759
+  },
+  "cloud_code/training/fetch_pretrained.py": {
+   "sha256": "8d4986fe04e4cfc8fbfe932625b0fb33809efbbae60e73758c580b8a0e7ebc64",
+   "bytes": 2699
+  },
+  "cloud_code/training/final_condition_review.py": {
+   "sha256": "2fc7463539a7bd894eed665527d04ff1c26d50e470e51852ea0acd1683b85624",
+   "bytes": 7759
+  },
+  "cloud_code/training/final_data_audit.py": {
+   "sha256": "a12665fd558c346cc41b408f5ad5b5787fdc55620d765dd946c664d8f3d1dfa0",
+   "bytes": 4464
+  },
+  "cloud_code/training/fivefold_delivery.py": {
+   "sha256": "c6ceb3734e389b5a81abfa88b484465bae11ac443cef9c9f0d43b963ff0480b8",
+   "bytes": 9207
+  },
+  "cloud_code/training/four_gpu/__init__.py": {
+   "sha256": "58f5ffdf9db88f9b1c9194501136f191b7f93952712a98bbca68fabbfe4d5e8a",
+   "bytes": 93
+  },
+  "cloud_code/training/four_gpu/acceptance.py": {
+   "sha256": "cfc7cf6cbce1a48bf1d6a23c832f3eec482c4cb52d22bab676ba6c6a58499aa8",
+   "bytes": 11569
+  },
+  "cloud_code/training/four_gpu/activation_policy.py": {
+   "sha256": "516ce1a4481a28a8e546b7d293dd9b3725d6e9982489aa2d3c70eefe8e9a48a6",
+   "bytes": 5543
+  },
+  "cloud_code/training/four_gpu/calibrate_pro6000.py": {
+   "sha256": "cc534457cecea9067d0641d2167ec89bea9d234e1e1bb3072e3aa9ca1e17808c",
+   "bytes": 13697
+  },
+  "cloud_code/training/four_gpu/chunk_acceptance.py": {
+   "sha256": "f51e751865b176d4af8d707cd4abead88c6f827eb5bcf25e1f5d6d2755adb880",
+   "bytes": 3270
+  },
+  "cloud_code/training/four_gpu/chunk_probe.py": {
+   "sha256": "ca98a87d0f37404f2a785515680b06d3063ba824c791109a646901ad6c5a3420",
+   "bytes": 5731
+  },
+  "cloud_code/training/four_gpu/code_update.py": {
+   "sha256": "4e5cebe35f5a383f23b8fa5c813c19ff3e577523d938519e438d7058f4ebec20",
+   "bytes": 5832
+  },
+  "cloud_code/training/four_gpu/core.py": {
+   "sha256": "1af57fd3f1f52f2fb8e70c75eb0b730f3138f62e82eea1b457fab020c6f3f842",
+   "bytes": 4263
+  },
+  "cloud_code/training/four_gpu/cuda_prefetch.py": {
+   "sha256": "1c937074489fd141b84eb294a8f839077b780c93b4b8d50750d07afea9d2bc7a",
+   "bytes": 3021
+  },
+  "cloud_code/training/four_gpu/delivery.py": {
+   "sha256": "3bf2db32b75a2fde782e975211f90ad142743e384900f1181e628ffe515074d3",
+   "bytes": 2956
+  },
+  "cloud_code/training/four_gpu/evidence_cache.py": {
+   "sha256": "da9ac94c37a04fbae26d281286dddef7e1fdf16fdb63e8a0efd0c1c204b6a80a",
+   "bytes": 5965
+  },
+  "cloud_code/training/four_gpu/input_identity.py": {
+   "sha256": "38425a2a51666b01a3326a50f2fd6c1c2fd0c380f4191e12bcb16e96e53f40b2",
+   "bytes": 684
+  },
+  "cloud_code/training/four_gpu/launch.py": {
+   "sha256": "9fe02e481b22876d0c4602ffec4e0f54660fb5971d1e16e00b1aa36e5d8cdd12",
+   "bytes": 3450
+  },
+  "cloud_code/training/four_gpu/launch_pro6000.py": {
+   "sha256": "809d85582edb17525067f83edeae3ac769648630d8e8cecdd6ba6fa2595ee631",
+   "bytes": 4789
+  },
+  "cloud_code/training/four_gpu/linux_cpu_check.py": {
+   "sha256": "a5789a38ee0a97c85cc5664b9e61cc069cad7d326db9c9d6f15eef518081d1a9",
+   "bytes": 1756
+  },
+  "cloud_code/training/four_gpu/load_plan.py": {
+   "sha256": "b70f8d6dfc704dd4a47f0f2455359d3c79992e1c551ca24f5946ec2a0d4ca2c6",
+   "bytes": 2577
+  },
+  "cloud_code/training/geometry_bank.py": {
+   "sha256": "804df5fa4a0705592b1d3cf2d20dae79b48d46ea5cc5e86c2a31cc7fa1b9c648",
+   "bytes": 8136
+  },
+  "cloud_code/training/geometry_runtime.py": {
+   "sha256": "3b5e9da70ea4012e778f57f0bd7d58c526aa10a886ea523df7abe622b5184a16",
+   "bytes": 2585
+  },
+  "cloud_code/training/input_provenance.py": {
+   "sha256": "b3a22500c7f976f6ee040239ada5cacecf2326861cb49af1c7d8cfdeeb55fcda",
+   "bytes": 8161
+  },
+  "cloud_code/training/intensity_mapping.py": {
+   "sha256": "19be2d8cbd6f8971c1288d7512a8cca41d143470c2ba6e9b9096fde035fa9d41",
+   "bytes": 2869
+  },
+  "cloud_code/training/ligament_atlas.py": {
+   "sha256": "2fa2a39433748ebfafd4c5658b73f37a1e243e49189f4695761ecc75a3ae9707",
+   "bytes": 5601
+  },
+  "cloud_code/training/native_cache.py": {
+   "sha256": "c53ce8985406b3b918d9e821d43518479e89d9f946daebd817f378e3949718b9",
+   "bytes": 9028
+  },
+  "cloud_code/training/native_data.py": {
+   "sha256": "f59afe205c8e193369fa3ccd22edcce8df3b293205fc48ddb1dd45169ee43b36",
+   "bytes": 24408
+  },
+  "cloud_code/training/series_registration_rigid.py": {
+   "sha256": "8182ab2beb4cc6afaedc421c3b0ff7a7b934d14b52285cca2ebe1f9b02eb464c",
+   "bytes": 17228
+  },
+  "cloud_code/training/supervision.py": {
+   "sha256": "866bf4a7cb9aeeb3f23130df70611fddcdffc6e7443b6343bc65c846e3f8d17f",
+   "bytes": 7204
+  },
+  "cloud_code/training/vendor_runtime/monai060/.lock": {
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "bytes": 0
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/__init__.py": {
+   "sha256": "75ad9863ffb185e880939a283d9096b80c61e9b3e7a3082e12f01d53298713a7",
+   "bytes": 2005
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/_extensions/__init__.py": {
+   "sha256": "7e7445c49f6e17edd75884a2f66cc83da768a9d2f9985fe07916856e7811ff16",
+   "bytes": 614
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/_extensions/gmm/gmm.cpp": {
+   "sha256": "67c485fb69ba4f680559814a71bedaef56d8a322949d7ff1a1e66cb18fe71052",
+   "bytes": 3119
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/_extensions/gmm/gmm.h": {
+   "sha256": "e1b3adeb50f69bc7485c8f3cf57aa9d2a982a0565f2044d2b7471e6c14cdc38d",
+   "bytes": 1677
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/_extensions/gmm/gmm_cpu.cpp": {
+   "sha256": "f2a01ac5cb22e1578f86c4900981bcc452d668afe73a682f8dce25c852d880e7",
+   "bytes": 1084
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/_extensions/gmm/gmm_cuda.cu": {
+   "sha256": "5e26a2c67c8c4b4fbb99a8a193f789a2c8b0e1c3958c56fc4c9df224281302d1",
+   "bytes": 17582
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/_extensions/gmm/gmm_cuda_linalg.cuh": {
+   "sha256": "598801d9a3021435196d86893c4325a9c3fecdba7b9fae5278d31a8b851dc22d",
+   "bytes": 4133
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/_extensions/loader.py": {
+   "sha256": "0af3e7c1cfcdf2c96e5fcff937624abe46dad2dffd408eaa9ff5245b265ed629",
+   "bytes": 3606
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/_version.py": {
+   "sha256": "04320e2e272625cec1529f3d49044c47aad7f11cef41cc17c9a887965b8d44b7",
+   "bytes": 497
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/apps/__init__.py": {
+   "sha256": "ade0e360c7ecf3fa3969749a17489cf608614bb95dd3e9f5a853232dc1c844f5",
+   "bytes": 825
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/apps/datasets.py": {
+   "sha256": "b73f05453a58692f9aa69f6faba129b905a2ed6b1c276961756b76ebbe33dac5",
+   "bytes": 16904
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/apps/deepgrow/__init__.py": {
+   "sha256": "8a5a8a436973226a6f3a10e88b910ccfd374c13496f4d82d9fccc48aa0a109a0",
+   "bytes": 581
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/apps/deepgrow/dataset.py": {
+   "sha256": "ddf80f73af830ed7365070ab6fcc6efe342a6e7f5c14243221caabec112fdc20",
+   "bytes": 10161
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/apps/deepgrow/interaction.py": {
+   "sha256": "5ce548bd33c4b19ea2cd11f2eea9ccd44e51e0efafbaac2ac88863b39b54e400",
+   "bytes": 3584
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/apps/deepgrow/transforms.py": {
+   "sha256": "9222dcc8b03baa7aaf9850225a4bfd6e79854313fdcc6ad61d8f4d89d4c99cb1",
+   "bytes": 40931
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/apps/mmars/__init__.py": {
+   "sha256": "035551a061de285c361dc6bb3e967959abd69479e595d859cb3ac3f4d854bb0d",
+   "bytes": 698
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/apps/mmars/mmars.py": {
+   "sha256": "8f85cb937fb984b4f3fa6d8a74bbfb7ef1275fe2a92494428ce1ac0470a60746",
+   "bytes": 11843
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/apps/mmars/model_desc.py": {
+   "sha256": "58be6095c18a137207d258d2c0dca6e4582601933a02ee3d9358d08edb8e5047",
+   "bytes": 8510
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/apps/pathology/__init__.py": {
+   "sha256": "39ac0f6f596e673a391587e3d8103d37caa00a47162896e48e04ac98ba63aaf3",
+   "bytes": 831
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/apps/pathology/datasets.py": {
+   "sha256": "fee2ddd0effbefa40393a64285beb19295980f079a7191b6fbf8fc7bd83750b6",
+   "bytes": 13723
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/apps/pathology/handlers.py": {
+   "sha256": "6340eec235e7d9610d0687b22509b6d0c241690ec27c34a9e2fc21b56b4502f2",
+   "bytes": 4390
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/apps/pathology/metrics.py": {
+   "sha256": "a12a3db21159d083ece7c7b72c89d89b4fa8fc7e483d21c1ecefda4c28150c57",
+   "bytes": 7253
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/apps/pathology/utils.py": {
+   "sha256": "d3901ff1790736eb12342215e09139316f97fc9ca9da36f198cc277f013023cf",
+   "bytes": 2934
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/apps/utils.py": {
+   "sha256": "6a0f84a2d0d2d34d80c836874fec501ee5ba41082a83e20e578c637006e7b6eb",
+   "bytes": 11183
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/config/__init__.py": {
+   "sha256": "3180168d226e1a00cade49a234ef3fa218aed5f83fff4807136bbde3b19ffc8e",
+   "bytes": 869
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/config/deviceconfig.py": {
+   "sha256": "5be45768185ea761ee159e62b6928993e323f3acd8d02bff51b2a3a8e8325504",
+   "bytes": 9756
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/config/type_definitions.py": {
+   "sha256": "a0c2bd310b0f086fc83e4def507fba5464a4c5066bf72d518edebffc358a85fd",
+   "bytes": 2986
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/__init__.py": {
+   "sha256": "70a36aa57940966f43ab09d080bfa91353e07fa036336c48c703ea61386edca3",
+   "bytes": 2265
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/csv_saver.py": {
+   "sha256": "95dfa7090eced618488fb3ce4a7353c9b282a1fcb620005eef4f2ad2f7c141f5",
+   "bytes": 4624
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/dataloader.py": {
+   "sha256": "74a3c67d360c356bfc32229b40f495ff8bf3ca3a590c56b46821a8633c45c6ba",
+   "bytes": 3558
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/dataset.py": {
+   "sha256": "79469ca06e07c448ca6cb6a58d568e842ca7a7e06ee20772d455ae4d181f8611",
+   "bytes": 51739
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/decathlon_datalist.py": {
+   "sha256": "6a501aff864a4642e7f915c262ab5e625ec749df47cfa19ccc0ae1e3265951ce",
+   "bytes": 5786
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/grid_dataset.py": {
+   "sha256": "da5080b9c4604e545a00ca07247ff9ed438d1729d64dc485e774e219857b001e",
+   "bytes": 9858
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/image_dataset.py": {
+   "sha256": "693fda0d93050f7655d46d10d4b10abae20c37eca2ee350207e86ba4ddbf6f86",
+   "bytes": 6641
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/image_reader.py": {
+   "sha256": "b8299f1c3eb61f27d96172606fae21effe102fc6ec211d0ce428d9dc531eeda0",
+   "bytes": 32309
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/iterable_dataset.py": {
+   "sha256": "59b472a18115c0730833322c6067ccbc1cf7799a35c47e9d51596959112eb3d3",
+   "bytes": 6432
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/nifti_saver.py": {
+   "sha256": "0a949f00f5083c25d4195e3d9cf750aa11e6b3ed455527328a0fed2d5393da3c",
+   "bytes": 9144
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/nifti_writer.py": {
+   "sha256": "290d7ad0529037f0f63ab2e283bdafd333997c073b09bd16c115fd62c4d82451",
+   "bytes": 8473
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/png_saver.py": {
+   "sha256": "a14ff78358654333c3d061ad1ecc56d76b2fa653171f852ca68c71106783f65f",
+   "bytes": 6280
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/png_writer.py": {
+   "sha256": "30767c125cc87a569213bc11cd989599e5c74c553d23ba8ffbfc0e6f056422d9",
+   "bytes": 3746
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/samplers.py": {
+   "sha256": "a6b41b5b9ead3859b477edec60365fbfba67a0736ee0c35960ba06913efd3c08",
+   "bytes": 5111
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/synthetic.py": {
+   "sha256": "24d384ae6a9b644513e4343473a88976a853d124f0879876931df599948a1156",
+   "bytes": 5918
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/test_time_augmentation.py": {
+   "sha256": "f747c57a347db7f0af8ce6b15b2af24ff22a11bd7c2e77465cd63e0ef6f9a428",
+   "bytes": 9872
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/thread_buffer.py": {
+   "sha256": "fa93b9279f7b58fc019a1127fffa779a93a27e880a25ee4b871e163aacc830a9",
+   "bytes": 3753
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/data/utils.py": {
+   "sha256": "cad687e3a970ea232e3d2d2727bb9aca32b625aa9294d155b1bc1949c4fc4507",
+   "bytes": 45188
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/engines/__init__.py": {
+   "sha256": "d48d2d85a753ff98328e50e8ec5cea28bbfc16b5edac14031b1c5e62c35fc3c1",
+   "bytes": 1016
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/engines/evaluator.py": {
+   "sha256": "814b21b6ac713575156761aa77aee9027e9ea69624373a6d4392c449de1d9179",
+   "bytes": 20419
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/engines/multi_gpu_supervised_trainer.py": {
+   "sha256": "e731a7bcebd3753117e01c87185970059af09ec4586a1ecc4d1d04f24e7e9a16",
+   "bytes": 6152
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/engines/trainer.py": {
+   "sha256": "ebd12742e715e151d7414b03ba74d5b38ff7a080673a849ed1d57b866cf458e2",
+   "bytes": 17550
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/engines/utils.py": {
+   "sha256": "85d417abb2dfcf85656576dedffd2be1a59cc0d8bff4b45a54101f82d836826b",
+   "bytes": 6355
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/engines/workflow.py": {
+   "sha256": "7576f0bfe967817797988c096eb8e629f04fa3bb0780b31ca0ccaf80bad52e25",
+   "bytes": 12799
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/__init__.py": {
+   "sha256": "328f381525389bce4b576720fbc40ce4747c399fa39253ce310e3ea5fff52c94",
+   "bytes": 1956
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/checkpoint_loader.py": {
+   "sha256": "0229f6d30994f2d90c078de7b5a34d2f7c48fc5c980ea5f9b31e4006196c02b3",
+   "bytes": 6775
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/checkpoint_saver.py": {
+   "sha256": "4abbfb3c1a7a6b13d63d3c5e06d685e18f4b91603d9cf27d1a0ec5aad3cdb039",
+   "bytes": 14921
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/classification_saver.py": {
+   "sha256": "3ee026ee8b445c2b70578c542f69a8134a6be111395a7aefba169eee7d2ab580",
+   "bytes": 6472
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/confusion_matrix.py": {
+   "sha256": "c5729792dcac77eec8bc212229d688839c652db870acedfd9fbdfa9d9256ac6a",
+   "bytes": 3205
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/earlystop_handler.py": {
+   "sha256": "1cd03d2754567c87dd9d3088762817e65243f545759126680ea8a801e5cac915",
+   "bytes": 4296
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/garbage_collector.py": {
+   "sha256": "c9672c8a32900acf22f68a7dc345ac9160d56ffc2fdda44b889fe4a5e20be5dd",
+   "bytes": 3274
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/hausdorff_distance.py": {
+   "sha256": "1c4c280578c8a36c45fdb1067ae2cae5d5e9df7c4e07644bf6ff845012773210",
+   "bytes": 3090
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/ignite_metric.py": {
+   "sha256": "be1d3510f0700c123403e7ab04607db2100fe02e6f7b318dc1fb0f01099bd2f6",
+   "bytes": 5201
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/lr_schedule_handler.py": {
+   "sha256": "d686d02e10b60ba848b71f79325fd46ebc7b32201668b31db748f1a63eef9748",
+   "bytes": 3511
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/mean_dice.py": {
+   "sha256": "770ff1a708709774818b4858554264f180b1340a0b7374e8dca3deeeae9ea557",
+   "bytes": 2333
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/metric_logger.py": {
+   "sha256": "234f6eedd6067cac9a16420ee3c497421819fcdb222285e8dc6f73b5548fdb76",
+   "bytes": 5062
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/metrics_saver.py": {
+   "sha256": "e67e1629f7a5890352cca1a0b8e775ed3d0836ab8a7263c76d73f38aa0e0f99b",
+   "bytes": 7900
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/parameter_scheduler.py": {
+   "sha256": "9629ca89a6c725d3f6c7f66a7231cd13c821453f46f3a9f9a6d1cf1f92b3904d",
+   "bytes": 7055
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/postprocessing.py": {
+   "sha256": "119f1358cd248322efdf027fe0eabba9b5f9a5fbc035ddfb7fccad01daea5dc4",
+   "bytes": 2414
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/regression_metrics.py": {
+   "sha256": "c7c59ce71a95f22c6522803a3c7a8286bc4db1ee6339bda1e83d12a8fccc0c68",
+   "bytes": 5308
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/roc_auc.py": {
+   "sha256": "250e14033917d9a7fb43ba7e06a63a27bf42f171a5bf5ad46b2f77e6d42a1475",
+   "bytes": 2723
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/segmentation_saver.py": {
+   "sha256": "725c6ed8346fe9987ee20be5e11360aa880434597b3f3cb66b6bee79928c386a",
+   "bytes": 8146
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/smartcache_handler.py": {
+   "sha256": "0c23199142ca1be0ab4e73d8adedca9be1e0618c056b21d8e76dd323ab737752",
+   "bytes": 3023
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/stats_handler.py": {
+   "sha256": "fe8214277a573bab62a52dc416dfdf450c340fe3c7d509173b1747e894524c27",
+   "bytes": 10226
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/surface_distance.py": {
+   "sha256": "65a3a0bf25e6c393dc2b1f6248b9265c11f673c595a3316bc25526afe019f74e",
+   "bytes": 2810
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/tensorboard_handlers.py": {
+   "sha256": "20ee81cb3e5ad66815f497b0ab33c96d03051168c456ea53199c2de44879863c",
+   "bytes": 17138
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/transform_inverter.py": {
+   "sha256": "d85701f95e53c8c9ede7debe1da3c1b262afe5793a4a2227b55f71062fca06fb",
+   "bytes": 8261
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/utils.py": {
+   "sha256": "32db24ffff658c5f4ced492c779f14adcee274692df2fed0f9f61a40370f49e6",
+   "bytes": 11846
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/handlers/validation_handler.py": {
+   "sha256": "47851c46d8c9e8b70531efede7792aaa88c09a997fa091bb7f71f3a2db35e9b5",
+   "bytes": 3246
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/inferers/__init__.py": {
+   "sha256": "cdd5464327f6a6c79683864a41fb89cdc0cbbc86b711d02372a214e3604c13e9",
+   "bytes": 709
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/inferers/inferer.py": {
+   "sha256": "3926b5a47137cddfb159e54b9f84298c5010e94fd4ea79a21132a7b42c808370",
+   "bytes": 9332
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/inferers/utils.py": {
+   "sha256": "8ecd4c3e4b3fd1af453df74ab5c613aacab80c01505b75bb81f694b5f59b8166",
+   "bytes": 8693
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/losses/__init__.py": {
+   "sha256": "5e763db0f4a7519824faebd0900610da0a194163d375de044b10f42d6806642b",
+   "bytes": 1119
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/losses/deform.py": {
+   "sha256": "8faae089d297c8507c9c0ce48c3cfbe03fe2225dc9a4067624b7c8b032e47fbb",
+   "bytes": 4024
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/losses/dice.py": {
+   "sha256": "ee0578105b6d4eea2043aa077d43daedfb68e1f49dff232e245795391a3bf85e",
+   "bytes": 37690
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/losses/focal_loss.py": {
+   "sha256": "7b41385dec04c64dbc3093c0b3f645e7b87a3163a221ca38cf4489586b45abd3",
+   "bytes": 7220
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/losses/image_dissimilarity.py": {
+   "sha256": "e3596298bf8de127e4b4ea73257a3c281769c229f17569133e93b298b80673d7",
+   "bytes": 10830
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/losses/multi_scale.py": {
+   "sha256": "b0e0621edf318eec1643c9b5257e3b45f92cc4cd493b0d8d41fe17fbd2e784f4",
+   "bytes": 3781
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/losses/spatial_mask.py": {
+   "sha256": "7bc88e34ba9c682a2181cce3f999af5d7b6e53418e672dfc820afb22f28d5bb6",
+   "bytes": 2900
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/losses/tversky.py": {
+   "sha256": "44689b302d4ded175ba6e1b6aa562906b2e9574a9e4ef71a52d3e72c4389affa",
+   "bytes": 6639
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/metrics/__init__.py": {
+   "sha256": "1fdb895e2dbda65cde7ebed9badaa6c186ae931371a01d9ea1409ccde33f0389",
+   "bytes": 1327
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/metrics/confusion_matrix.py": {
+   "sha256": "b019685db568aea0bce2967aa4b887c8ce9986968a01c2daf4beedb8d197af4f",
+   "bytes": 14437
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/metrics/froc.py": {
+   "sha256": "ecd67b4ce1dc45759872c548290255b4503011ccb93168894a81e7938ebd308c",
+   "bytes": 6039
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/metrics/hausdorff_distance.py": {
+   "sha256": "077b04cd1d8008c1d07a1f61dfb28fccc9c6c89047f449eb1de6ccf7a9f888cf",
+   "bytes": 8394
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/metrics/meandice.py": {
+   "sha256": "e2c936821ed290f9ea49e8fbaf118c2b7866068d628c9388a20230c75bdd2c03",
+   "bytes": 6136
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/metrics/metric.py": {
+   "sha256": "5dc40a1a42baefb7f79d0835bbc4a10c51405102d46aa4024a2535d0604f708e",
+   "bytes": 9212
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/metrics/regression.py": {
+   "sha256": "b3b008bf83ef646649aed5324150ea37b3d0df37ba3b9093f9b4a7954c91957d",
+   "bytes": 9758
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/metrics/rocauc.py": {
+   "sha256": "9832012fd8dc8202f9890291147bae0b84ff155704b6b84730c4cd0cc4b3a89c",
+   "bytes": 6949
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/metrics/surface_distance.py": {
+   "sha256": "303e2f27d4ac4712c76cd5a32b081a6fef07782ba3e985f60bd757996c4a3a3b",
+   "bytes": 7608
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/metrics/utils.py": {
+   "sha256": "c90e5a2a4bdd36f70fbbc02909afb97a4fa51c19aa7abf2f2763499dcd6c0dad",
+   "bytes": 8671
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/__init__.py": {
+   "sha256": "ccf3b2fd73e38026d202816bf1a181e98b9462e892569e3ea6ec68943fabc66f",
+   "bytes": 812
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/__init__.py": {
+   "sha256": "2d80cf5b1dc63f04029787b1377c3b63deafb0ffc09ed9e72375c8e12b0bdf10",
+   "bytes": 1735
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/acti_norm.py": {
+   "sha256": "5388eb2ab3f2382ebd7477233a7e8d1151d232ecd1f65579c6a97dd3b1bd8611",
+   "bytes": 4331
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/activation.py": {
+   "sha256": "3d0e380ede3e890ee388e623ec26b8cf543cb8008a86173da8da6be419612854",
+   "bytes": 3707
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/aspp.py": {
+   "sha256": "15adc1082b7372385fb2aeb92df2845acedb17158caa665f4bd0287badb56a29",
+   "bytes": 4022
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/convolutions.py": {
+   "sha256": "d8dc501c142648f14ee17f7cbcfb1d0c846a5ef491a89f1c16fcf466b8b1f64b",
+   "bytes": 11695
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/crf.py": {
+   "sha256": "2989c26e1b3bef18958f17e7e0ec4cf024889c7e8e07e6869ef063b59bb17516",
+   "bytes": 4964
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/downsample.py": {
+   "sha256": "5db7f1f7f254daa68b24ef2971052475686ed49893a55a7be2801570570447ee",
+   "bytes": 2432
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/dynunet_block.py": {
+   "sha256": "1e99f0eb7841fec0bf1579fe9b93399303b2a57e8f878e40ef21fb5d42eeb8ad",
+   "bytes": 9652
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/dynunet_block_v1.py": {
+   "sha256": "96472edd5dba0f75a4a358fab413c0aea16615efa1d496e19da9170aafa885f5",
+   "bytes": 5004
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/fcn.py": {
+   "sha256": "d6ac0768a52d24461c5a1efa81db51fba888c3b29fe316e0cdae11796d7580ab",
+   "bytes": 9325
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/localnet_block.py": {
+   "sha256": "c57b05dab88c0b16355796e0584d8af59e0861566efe5a19506895c4bd576e6e",
+   "bytes": 11573
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/mlp.py": {
+   "sha256": "668c573f1de030d4e15f2749ee5f2706ada8d05148fd9a6e522b19404d20252c",
+   "bytes": 1706
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/patchembedding.py": {
+   "sha256": "0e2cc60ad1e24d0ef502ca78863cc995a764c48683f6886c1d97afad9e92401f",
+   "bytes": 5151
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/regunet_block.py": {
+   "sha256": "8031fc2f08129e4150883e68253aefb5a9ac05f532ec6568487e93f2df46306b",
+   "bytes": 8748
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/segresnet_block.py": {
+   "sha256": "ceb60462c524bfed5e157bd624d93ddb369621be18f7625b77497af45d0ca92a",
+   "bytes": 3230
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/selfattention.py": {
+   "sha256": "e992dbf587d0b2957eb7e47ebd633135d00ad5b6b28f735264a0243801245fd1",
+   "bytes": 2477
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/squeeze_and_excitation.py": {
+   "sha256": "f4f494841572b80dea6339f592019ec4657babebccddef36f049bef0bb784a6c",
+   "bytes": 12910
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/transformerblock.py": {
+   "sha256": "1c42e65db93435ed648a6bbf81bb6b641ca4a9f5a7cb59202ec05157cb7c9e2a",
+   "bytes": 1963
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/unetr_block.py": {
+   "sha256": "c63cbf381adc9c7f37e57e91310cdce2361de741057dfd31008949d3b5fdf903",
+   "bytes": 9200
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/upsample.py": {
+   "sha256": "2c81346d3d66fd97f6b585e6a70638675630d572ce38fcd87319dc1963499ee2",
+   "bytes": 11271
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/blocks/warp.py": {
+   "sha256": "65e44767ed8eaf44939b9a38b87033215ffb6934fdfbe61ef1f3d133bf78316b",
+   "bytes": 6372
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/layers/__init__.py": {
+   "sha256": "d3727cf61950c34dcb066ea6cfb08d39044143720d3472c723381318c65c4921",
+   "bytes": 1234
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/layers/convutils.py": {
+   "sha256": "1f3e5e90c304b53a35053afc4caca5087e07b9da8fe4c2602af5c1d3204e20ef",
+   "bytes": 8408
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/layers/factories.py": {
+   "sha256": "b6196b589de8ce9705daf761a4f0aebdad95f72c9d98c98faa8ac3d5627b9260",
+   "bytes": 11119
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/layers/filtering.py": {
+   "sha256": "88651dc771f10419e1f65494b1d424aeccff859625931768c9598b224b6d7662",
+   "bytes": 3774
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/layers/gmm.py": {
+   "sha256": "a38f1049fd56cfcfc6ef9b88b22de9537d199becd9d554086d680940fa265acf",
+   "bytes": 3296
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/layers/simplelayers.py": {
+   "sha256": "fae4da705f88b96f9b9a7ef2788c5efa9fa0410626a0f5e3118a9d6581ca6333",
+   "bytes": 17655
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/layers/spatial_transforms.py": {
+   "sha256": "c2f5b0cdd5fa6ed051bf48580678bd64d06d2c0e9bb50a3289ea2b71929bf4bc",
+   "bytes": 23892
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/layers/utils.py": {
+   "sha256": "fda41fd88933ad003f47e5a8310ef806b2d7ea0782db6f949e081be7ccc2a4b1",
+   "bytes": 4112
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/__init__.py": {
+   "sha256": "e050dc6ee2afc42d014acdbd568a3eaedd7a42726f380d181f431a6fb2acc368",
+   "bytes": 2364
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/ahnet.py": {
+   "sha256": "de912197b948e7937968f7fed2b775b9c75024b727837e7bbfe2f04594182162",
+   "bytes": 22027
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/autoencoder.py": {
+   "sha256": "9f96d591f785bc54e1ffab22068bdc6797b1a592a1bb66a5675446f55051fea7",
+   "bytes": 7549
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/basic_unet.py": {
+   "sha256": "30f90f5a167a1c9dc537f652f536a2c7cf2bd70fadc7d8b667d5649cd359f4a4",
+   "bytes": 8717
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/classifier.py": {
+   "sha256": "2a39c154e28c7a936ed40c9cc0efb673afab50962a373f56a0ab0f4af94c714b",
+   "bytes": 6504
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/densenet.py": {
+   "sha256": "88b36f49d06d937fbb424ddab503c7376885399ca02516d13a44c276391b1a8d",
+   "bytes": 12822
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/dynunet.py": {
+   "sha256": "f6e1c47b5b532de2c064df29e68e4f215d4dd9d001a5dbbd180ef4a0a32802bb",
+   "bytes": 14032
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/dynunet_v1.py": {
+   "sha256": "e1ee347e9e7891de6574768c4a58d1c8f03570d64514491ed85eb440ffa1a0e1",
+   "bytes": 6524
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/efficientnet.py": {
+   "sha256": "8a312cf8cbdc3b1b7fdca00ffd8bdef7923bcd812bd74354894c34b81d3c9b20",
+   "bytes": 35062
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/fullyconnectednet.py": {
+   "sha256": "f139e3a09259d5f02380b73025b7e21873d674d0bbb4fe19aa9ee0df3b921416",
+   "bytes": 5395
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/generator.py": {
+   "sha256": "ad3b29e459299653b123bdb823d33e35f6646c9083eb8465dd3aceed1baa256b",
+   "bytes": 6336
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/highresnet.py": {
+   "sha256": "4351fac4f5ff74b1f8778d82bcda31d82b17e168a96a93ae90d963e033f364ce",
+   "bytes": 8109
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/netadapter.py": {
+   "sha256": "d2d1ba4d6127e8920db124042b738fd3f4711eaff657d222e724e35b9d4566d4",
+   "bytes": 4193
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/regressor.py": {
+   "sha256": "6c64c847d9f346eec05377ce90c759bb13cb578e00dac5748964a5f074bb66c6",
+   "bytes": 6131
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/regunet.py": {
+   "sha256": "63e5e5ae631b0f1f5df9bbe66f47cc05eb6297dc9bc68f26bb45f996e050941b",
+   "bytes": 16850
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/resnet.py": {
+   "sha256": "d8244999688756de8baf1fa75772bd398ce687dffc0d854012278085f956b703",
+   "bytes": 15511
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/segresnet.py": {
+   "sha256": "a4befed0acac0c6ae8caaa06908745a02a713de5d4c6c5f6b8ac366ca031e56f",
+   "bytes": 13994
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/senet.py": {
+   "sha256": "a3f9ceda2b2d7a65f6daa51ad522e3cf9f5a7fa882c201011f8c9b8a4e7b1828",
+   "bytes": 18592
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/torchvision_fc.py": {
+   "sha256": "024f78fbc2d9e641e049c4e40ad7b8755811f3af0e3607a900885764ebef5bd4",
+   "bytes": 4590
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/unet.py": {
+   "sha256": "2c2352cbbf2a5b73eb3e93ca1a4a8d73f414d8aab386fbc4941f8f0dd857afa3",
+   "bytes": 7119
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/unetr.py": {
+   "sha256": "b16f64be5d99c36562fd4f335bde880a76ad360e31abe3310a0fd710d37263ff",
+   "bytes": 6989
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/varautoencoder.py": {
+   "sha256": "0db0ef247a403f53c7115d60039313bdfe156d5b55ba4415bdc9bcd539935518",
+   "bytes": 3795
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/vit.py": {
+   "sha256": "bfcb306d2d1a65a1544c1ba4ad4afcd81118b90afb74a1db775486f0e8084e2b",
+   "bytes": 3281
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/nets/vnet.py": {
+   "sha256": "4f012eda0c32f6585b65a35334d1dc73e3ab9c80b93178032652b0bf2905c168",
+   "bytes": 9458
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/networks/utils.py": {
+   "sha256": "19f7ec1c5528152064b1587766c742e5748c904a502894044049d8e35a3c57e5",
+   "bytes": 16178
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/optimizers/__init__.py": {
+   "sha256": "1b613b3951f883ce99ebe9fc3583d148debf1dacc7189bf4c62e62abf3de598a",
+   "bytes": 696
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/optimizers/lr_finder.py": {
+   "sha256": "661656dc409dd991e52f779c313530db61e18ffcf65f34ed596f57e1ee7ca409",
+   "bytes": 21351
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/optimizers/lr_scheduler.py": {
+   "sha256": "d7cca7ce7e51b5f8562592d75f5af5bc7212d1921e55a4891764f8ed5028c289",
+   "bytes": 1995
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/optimizers/novograd.py": {
+   "sha256": "ff54d7fdc3fd4937b7a275e2bcbe79ccb37bfb1788b5e74d97af2b7318a448e9",
+   "bytes": 5702
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/optimizers/utils.py": {
+   "sha256": "8abeddc87fcd0b7476f8e8e7df6f9d1824d131950029f37af9c59cf8c9b86af9",
+   "bytes": 4096
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/py.typed": {
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "bytes": 0
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/__init__.py": {
+   "sha256": "cee450cf26ad55d8288e5a4e4cf6d0fc54de433eb6fd37059a8bd285683335d8",
+   "bytes": 10240
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/adaptors.py": {
+   "sha256": "fc0843023270fa486408500ac911b5c345d8def774964b19a1b4430a0a0ef512",
+   "bytes": 8921
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/compose.py": {
+   "sha256": "d1189f38861708dbd83614ea01e4668e0b75eae30d915f46e326d4f25b2a3447",
+   "bytes": 7253
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/croppad/__init__.py": {
+   "sha256": "8a5a8a436973226a6f3a10e88b910ccfd374c13496f4d82d9fccc48aa0a109a0",
+   "bytes": 581
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/croppad/array.py": {
+   "sha256": "9353a38d645ef7005cfa0455014204959f27707fffe55cf02746d574fcb49b6d",
+   "bytes": 43515
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/croppad/batch.py": {
+   "sha256": "e490830ce921ec5cc2e9c2c0d1ec70bb9985b50f69474e0d7f52b53806c10559",
+   "bytes": 5626
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/croppad/dictionary.py": {
+   "sha256": "c8db17c3a08759014bd687aa0dae0a091a4cdbcbcd95b60cc2eaa652076dd4fc",
+   "bytes": 63592
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/intensity/__init__.py": {
+   "sha256": "8a5a8a436973226a6f3a10e88b910ccfd374c13496f4d82d9fccc48aa0a109a0",
+   "bytes": 581
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/intensity/array.py": {
+   "sha256": "923a64dead03a9a134818b2cbd4de492e3f9d16687e7fc33e85a0d1ea82af85a",
+   "bytes": 65320
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/intensity/dictionary.py": {
+   "sha256": "a4bfc0c42b5f9528533e577c8cee78e03391ac19684182c603857ad86ef7e321",
+   "bytes": 55274
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/inverse.py": {
+   "sha256": "b9b9659d2ddc95fa4a0e3fd3b6012c3e983804f85d0221a09700baa265152644",
+   "bytes": 5786
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/inverse_batch_transform.py": {
+   "sha256": "d5cdfd9651b28db2aeacee15a01d35518494154c5f42c2b0ab10ddece467dfab",
+   "bytes": 4854
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/io/__init__.py": {
+   "sha256": "8a5a8a436973226a6f3a10e88b910ccfd374c13496f4d82d9fccc48aa0a109a0",
+   "bytes": 581
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/io/array.py": {
+   "sha256": "1dbd03f687c398598fa3a1ca945f3f6ece969a23cb1ae1808e862478a8046942",
+   "bytes": 12944
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/io/dictionary.py": {
+   "sha256": "bd19c31d87ee9cd1efe07320a99b3fcfb8f3a8337f3af824c9458f29aa4ffaf5",
+   "bytes": 12899
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/post/__init__.py": {
+   "sha256": "8a5a8a436973226a6f3a10e88b910ccfd374c13496f4d82d9fccc48aa0a109a0",
+   "bytes": 581
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/post/array.py": {
+   "sha256": "d3a8b5a6e3b60264d013cbcfd17292743e8b88560406140152c69cff0805a89f",
+   "bytes": 22470
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/post/dictionary.py": {
+   "sha256": "2186967a3f327ae4aefa136f3636f7c09a283c89c5591892bc359308a54e4e21",
+   "bytes": 30012
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/spatial/__init__.py": {
+   "sha256": "8a5a8a436973226a6f3a10e88b910ccfd374c13496f4d82d9fccc48aa0a109a0",
+   "bytes": 581
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/spatial/array.py": {
+   "sha256": "97139a707a2573645d0dfdbe6ab6b43d11d0b8d71da4afbaa4a389cef4a526c2",
+   "bytes": 86930
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/spatial/dictionary.py": {
+   "sha256": "5e3e8022b87918e0522afec19d89960fec7c63a614fd431243579c08f0c4dfd4",
+   "bytes": 83526
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/transform.py": {
+   "sha256": "c67c42e61c0fbfdfb69568a857eb9bf2b63e27c06f0f6b504e836ddd9a9f7610",
+   "bytes": 14919
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/utility/__init__.py": {
+   "sha256": "8a5a8a436973226a6f3a10e88b910ccfd374c13496f4d82d9fccc48aa0a109a0",
+   "bytes": 581
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/utility/array.py": {
+   "sha256": "29c57e42feaa853e7f2fe13d13676b28353dfa2d726d0b61d98dc61b92e0c750",
+   "bytes": 32743
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/utility/dictionary.py": {
+   "sha256": "31767befc29fcab5ae08f8b2493236fb4f7d64465afea9704f3f43f83a876fa0",
+   "bytes": 46979
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/transforms/utils.py": {
+   "sha256": "c322384a0e1d89bfb36c3f0ff1f685b7348896150302717b3645dfceb4d7c9c6",
+   "bytes": 36147
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/utils/__init__.py": {
+   "sha256": "a921e13d4cb7310ad27e002168a81ea63ae9bfe225230b6e5bcff8ebbd454500",
+   "bytes": 2165
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/utils/aliases.py": {
+   "sha256": "f67560d5c309a90faa362ce1b3f454a06c2831d79818586868453177ed730de3",
+   "bytes": 4085
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/utils/decorators.py": {
+   "sha256": "a99617e96b6ad35e52bd339f8731b49e7780559ebbd4879c4a4f01293188f1ca",
+   "bytes": 3013
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/utils/deprecated.py": {
+   "sha256": "9169660cb368fcb8a129e7df7a6c8836f0fcbf58810291097bb557e49b695a47",
+   "bytes": 7386
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/utils/dist.py": {
+   "sha256": "712b0f2092ee5d125c5addec5a4733711cb3a803dc868ecfe03786841770ead7",
+   "bytes": 6581
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/utils/enums.py": {
+   "sha256": "b85ba9c556ef074de482a6d1e1b15f980addd96c7c341b6c3c72a9708226c375",
+   "bytes": 5907
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/utils/jupyter_utils.py": {
+   "sha256": "a201047f0c206d83000d1785729147d8dcc353d25b1f97b360e806e16aa048a9",
+   "bytes": 14055
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/utils/misc.py": {
+   "sha256": "e2b245d3d5a8a4b35117a0a736560bfc7215e85672513c2f25e17606ab1d8a0f",
+   "bytes": 12523
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/utils/module.py": {
+   "sha256": "2c3a109990cb102d55e7464a27dd12ce916fbdc822d01057c8be41d35ea4d33d",
+   "bytes": 10688
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/utils/profiling.py": {
+   "sha256": "7a35204c7330e33db6da84c842777d76691c726b2b13b1b5a54484b7dbba7b8b",
+   "bytes": 3414
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/utils/state_cacher.py": {
+   "sha256": "5b159ca17c9bd1ad1aa91b2aa06912e1cc0d79ad3f288e9e11eedea101c2ec83",
+   "bytes": 4076
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/visualize/__init__.py": {
+   "sha256": "59ef6b46c7cd5dbe56e6f3a500fd249ec3215405589410f1fc7993f25cac3722",
+   "bytes": 920
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/visualize/class_activation_maps.py": {
+   "sha256": "2209b7c5a2c6b44c9e86ba6f78940a5d82e932fad41dbacb2361bdeddfd2184e",
+   "bytes": 15226
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/visualize/img2tensorboard.py": {
+   "sha256": "8b3467803396254ce007ec6544536e92f651a60c036564dc831d72dda0bfced0",
+   "bytes": 8499
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/visualize/occlusion_sensitivity.py": {
+   "sha256": "c2daac0a096d06c9849886045e4e02bc601b94c28ab4786c4447f297b980d70e",
+   "bytes": 14598
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai/visualize/visualizer.py": {
+   "sha256": "a1a0a92470828064b986feef5cb83fd6db1c400092036e0d1b782a4275a08776",
+   "bytes": 1320
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai-0.6.0.dist-info/INSTALLER": {
+   "sha256": "e6184ce10e266134fdcfa401e8f1a95005bcd4f18d16b62b757323e2833fe9a9",
+   "bytes": 2
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai-0.6.0.dist-info/LICENSE": {
+   "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+   "bytes": 11357
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai-0.6.0.dist-info/METADATA": {
+   "sha256": "2575f6a1d9ae3fa64315b2fec17a0cc9853fa9f8c3bee534cb5db4c6087aa217",
+   "bytes": 5999
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai-0.6.0.dist-info/RECORD": {
+   "sha256": "ed0630dda2922718b3479f3e66ebcf7e4aa780513b4ff99b9697618e71899348",
+   "bytes": 18020
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai-0.6.0.dist-info/REQUESTED": {
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "bytes": 0
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai-0.6.0.dist-info/WHEEL": {
+   "sha256": "e951e8811c078b7769d59fb04583a15f5566b963c0ade54c06d8cb7a0b662f55",
+   "bytes": 112
+  },
+  "cloud_code/training/vendor_runtime/monai060/monai-0.6.0.dist-info/top_level.txt": {
+   "sha256": "51a3704732c639176eb38d48a78e3ab376c17d588b91d903b170e8df82763f8e",
+   "bytes": 6
+  }
+ },
+ "from_this_dataset": [
+  "cloud_code/training/vendor_runtime/monai060/.lock",
+  "cloud_code/training/vendor_runtime/monai060/monai-0.6.0.dist-info/INSTALLER",
+  "cloud_code/training/vendor_runtime/monai060/monai-0.6.0.dist-info/LICENSE",
+  "cloud_code/training/vendor_runtime/monai060/monai-0.6.0.dist-info/METADATA",
+  "cloud_code/training/vendor_runtime/monai060/monai-0.6.0.dist-info/RECORD",
+  "cloud_code/training/vendor_runtime/monai060/monai-0.6.0.dist-info/REQUESTED",
+  "cloud_code/training/vendor_runtime/monai060/monai-0.6.0.dist-info/WHEEL",
+  "cloud_code/training/vendor_runtime/monai060/monai-0.6.0.dist-info/top_level.txt",
+  "cloud_code/training/vendor_runtime/monai060/monai/_extensions/gmm/gmm.cpp",
+  "cloud_code/training/vendor_runtime/monai060/monai/_extensions/gmm/gmm.h",
+  "cloud_code/training/vendor_runtime/monai060/monai/_extensions/gmm/gmm_cpu.cpp",
+  "cloud_code/training/vendor_runtime/monai060/monai/_extensions/gmm/gmm_cuda.cu",
+  "cloud_code/training/vendor_runtime/monai060/monai/_extensions/gmm/gmm_cuda_linalg.cuh",
+  "cloud_code/training/vendor_runtime/monai060/monai/py.typed",
+  "cloud_code/training/vendor_runtime/monai060/monai/utils/module.py",
+  "heliosli/compact_infer.py",
+  "heliosli/compact_train.py",
+  "heliosli/knee_anchor_bank_v2.py",
+  "heliosli/probe_infer.py",
+  "heliosli/px_cache.py",
+  "heliosli/side_common.py"
+ ],
+ "note": "sha256/bytes of every code file the scored run used; files listed in from_this_dataset are in s6_extras.bin (Heliosli's public-notebook code, Apache-2.0, and MONAI 0.6.0 files missing from or differing in his dataset, Apache-2.0); the rest are read from heliosli/rsna-orthofoundation-fold0-epoch7-20261004"
+}

@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-10-16T05:54:25.925929+00:00",
+  "state": "AWAITING",
+  "public_score": null,
+  "protected_submission": 57144024,
+  "protected_public": 0.956,
+  "raw": {
+    "ref": 57257123,
+    "totalBytes": 0,
+    "date": "2026-10-16T05:53:45.740Z",
+    "description": "Verified R7 + new S6 all-data: rank weights .50 Raptor .40 R7 .10 S6; complete members",
+    "fileName": "submission.csv",
+    "submittedBy": "easoncyy",
+    "submittedByRef": "easoncyy",
+    "teamName": "SharpLook Bones",
+    "url": "/code/easoncyy/rsna-r7-s6-all-data?scriptVersionId=358727913"
+  },
+  "final_selection_changed": false
+}

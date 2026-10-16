@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "kernel": "easoncyy/rsna-r7-s6-all-data",
+  "version": 1,
+  "receipt": {
+    "status": "PASS",
+    "weights": [
+      0.5,
+      0.4,
+      0.1
+    ],
+    "rows": 3,
+    "elapsed_seconds": 881.6055159609999,
+    "decode_coverage_verified": false,
+    "source_sha256": "2f2d50d8add7c8d2166577cdc16e511def9fa53620d431e25188be06da0aaa24",
+    "hashes": {
+      "submission.csv": "40c2c3996d9ff1c94b81cf417f672497afe7b8d0d3e36ed8036b868227d65c7f",
+      "parent956.csv": "1199c2d767b5a53219d777b6041593cc392f56eff09228bda88d68c90d5f3cc8",
+      "raptor_raw.csv": "1488a22f133cc1466ff7e3ff4117f1706d867dd5e978700f3736746a1966b125",
+      "ours_sub.csv": "fa4d89746bef047af6b14866c3272d9818aa2af433dfe33c4fe4ed0593ac5ab3",
+      "s6_member/s6_raw.csv": "32b9c7e4676eb86c21d59ced91025f169c5185c8330a959ec25fc3b85928e9ec",
+      "s6_member/s6_receipt.json": "a186399b1b9640f4c731b9f2d6750d083c27aa05702b1eb831c3aff1344ed135"
+    }
+  },
+  "visible_only": true
+}

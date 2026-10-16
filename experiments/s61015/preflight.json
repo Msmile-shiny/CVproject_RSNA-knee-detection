@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "payload_members": 21,
+  "parent_cells_unchanged": true,
+  "duplicate_raptor_call": false,
+  "ranking_tests": "PASS",
+  "gpu_tested": false
+}

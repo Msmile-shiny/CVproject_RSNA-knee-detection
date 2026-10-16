@@ -1,0 +1,21 @@
+{
+  "build": {
+    "parent_submission": 57144024,
+    "parent_sha256": "3aa159ab50bc7f8828a291fc297e3af2ab68985d331f052779ba1539179c7c3f",
+    "source_sha256": "2eefba6cea2450d8a3d693dcc8b4197f1d821d933d6919412c8fade22aa67fe7",
+    "author_sha256": "2f2d50d8add7c8d2166577cdc16e511def9fa53620d431e25188be06da0aaa24",
+    "adapter_sha256": "c9d604ff046f9a3ac6f57f0d1950f01cab666394ca22b8606831d7a41e434a48",
+    "weights": [
+      0.5,
+      0.4,
+      0.1
+    ],
+    "status": "BUILT_NOT_RUN"
+  },
+  "response": {
+    "ref": "/code/easoncyy/rsna-r7-s6-all-data",
+    "url": "https://www.kaggle.com/code/easoncyy/rsna-r7-s6-all-data",
+    "versionNumber": 1,
+    "kernelId": 138878127
+  }
+}
