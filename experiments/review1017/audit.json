@@ -1,0 +1,925 @@
+{
+  "checked_at": "2026-10-17T14:10:52.720971+00:00",
+  "submissions": [
+    {
+      "ref": 57261794,
+      "totalBytes": 247151,
+      "date": "2026-10-16T08:31:43.120Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.958",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/blend-mine-in-private-lb-luck-to-all-upvoters?scriptVersionId=358905936"
+    },
+    {
+      "ref": 57257123,
+      "totalBytes": 379767,
+      "date": "2026-10-16T05:53:45.740Z",
+      "description": "Verified R7 + new S6 all-data: rank weights .50 Raptor .40 R7 .10 S6; complete members",
+      "fileName": "submission.csv",
+      "publicScore": "0.957",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-r7-s6-all-data?scriptVersionId=358727913"
+    },
+    {
+      "ref": 57197910,
+      "totalBytes": 247270,
+      "date": "2026-10-14T23:39:18.670Z",
+      "description": "Complete R7 three-model reproduction: 384 .325, 224 .175, R7 .5; no missing members; independently verified",
+      "fileName": "submission.csv",
+      "publicScore": "0.956",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-r7-full-three-model?scriptVersionId=358368480"
+    },
+    {
+      "ref": 57185504,
+      "totalBytes": 247130,
+      "date": "2026-10-14T14:28:52.013Z",
+      "description": "R7 training mirror: original four folds and stackers; MCL plain, reindexed mirror logits; fixed 50/50 blend",
+      "fileName": "submission.csv",
+      "publicScore": "0.956",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-r7-training-mirror?scriptVersionId=358219734"
+    },
+    {
+      "ref": 57147149,
+      "totalBytes": 246997,
+      "date": "2026-10-13T14:46:42.150Z",
+      "description": "R7 no-fluid control: only Effusion volume correction disabled; non-Effusion visible outputs checked; fixed 50/50 blend",
+      "fileName": "submission.csv",
+      "publicScore": "0.956",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-r7-no-fluid-control?scriptVersionId=357997977"
+    },
+    {
+      "ref": 57144024,
+      "totalBytes": 246984,
+      "date": "2026-10-13T12:44:31.470Z",
+      "description": "R7 public reproduction: unchanged inference, pinned manifest, four folds and stackers; fixed 50/50 rank blend",
+      "fileName": "submission.csv",
+      "publicScore": "0.956",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-r7-public-reproduction?scriptVersionId=357976215"
+    },
+    {
+      "ref": 57131878,
+      "totalBytes": 247093,
+      "date": "2026-10-13T05:32:09.090Z",
+      "description": "Public Helios compact four-fold ensemble plus Raptor; archived source, pinned manifest, coverage and rank formula verified",
+      "fileName": "submission.csv",
+      "publicScore": "0.954",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-compact-public-ensemble?scriptVersionId=357879252"
+    },
+    {
+      "ref": 57097443,
+      "totalBytes": 379739,
+      "date": "2026-10-12T06:01:07.297Z",
+      "description": "0.950 parent single-factor ablation: disable hand-specified disease peer graph; all image predictions and class fusion weights unchanged",
+      "fileName": "submission.csv",
+      "publicScore": "0.950",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-parent950-nopeer?scriptVersionId=357557780"
+    },
+    {
+      "ref": 57087361,
+      "totalBytes": 379723,
+      "date": "2026-10-11T23:06:16.530Z",
+      "description": "0.950 parent with scored Apex 8-view reader; fusion and slot routing unchanged",
+      "fileName": "submission.csv",
+      "publicScore": "0.949",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-parent950-reader8?scriptVersionId=357096578"
+    },
+    {
+      "ref": 57034764,
+      "totalBytes": 379723,
+      "date": "2026-10-10T07:15:11.317Z",
+      "description": "0.950 parent plus independent 224 checkpoint fixed15%; exact source and two-stage formula verified",
+      "fileName": "submission.csv",
+      "publicScore": "0.950",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-swa224-fixed15?scriptVersionId=356891025"
+    },
+    {
+      "ref": 57012629,
+      "totalBytes": 379739,
+      "date": "2026-10-09T14:56:34.747Z",
+      "description": "Apex probit: scored image path, fixed routing; full fusion and variant formula verified",
+      "fileName": "submission.csv",
+      "publicScore": "0.949",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-apex-probit-only?scriptVersionId=356787130"
+    },
+    {
+      "ref": 57012367,
+      "totalBytes": 379740,
+      "date": "2026-10-09T14:47:27.230Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.950",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-knee-lb-0-95?scriptVersionId=356785385"
+    },
+    {
+      "ref": 56995280,
+      "totalBytes": 379739,
+      "date": "2026-10-09T06:14:40.530Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.949",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-knee-apex-grandmaster-stack-v5?scriptVersionId=356634329"
+    },
+    {
+      "ref": 56994783,
+      "totalBytes": 379739,
+      "date": "2026-10-09T06:02:45.583Z",
+      "description": "Apex source v3: single-decode paired views; original prediction recipe; full fusion and hashes verified",
+      "fileName": "submission.csv",
+      "publicScore": "0.949",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-apex-paired-reader?scriptVersionId=356635120"
+    },
+    {
+      "ref": 56959532,
+      "totalBytes": 379739,
+      "date": "2026-10-08T15:07:50.547Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.948",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-knee-v2-vs-apex-comparative-study?scriptVersionId=356446480"
+    },
+    {
+      "ref": 56947372,
+      "totalBytes": 373868,
+      "date": "2026-10-08T09:40:25.313Z",
+      "description": "Fixed 30% scored author reader + unchanged 0.943 parent; exact sources and rank blend verified",
+      "fileName": "submission.csv",
+      "publicScore": "0.943",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-author-reader-fixed-30?scriptVersionId=356315744"
+    },
+    {
+      "ref": 56910183,
+      "totalBytes": 249722,
+      "date": "2026-10-07T12:06:14.420Z",
+      "description": "Author v5 execution control, RUN_STACK=False; unchanged author inference; three hashes verified",
+      "fileName": "submission.csv",
+      "publicScore": "0.929",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-cnx-author-control?scriptVersionId=356058563"
+    },
+    {
+      "ref": 56905796,
+      "totalBytes": 0,
+      "date": "2026-10-07T08:39:43.780Z",
+      "description": "Standalone public ConvNeXt threefold reader; no parent blend; strict complete inference",
+      "errorDescription": "Your notebook hit an unhandled error while rerunning your code. Note that the hidden dataset can be larger/smaller/different than the public dataset",
+      "fileName": "submission.csv",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-cnx-threefold-solo?scriptVersionId=356007143"
+    },
+    {
+      "ref": 56867864,
+      "totalBytes": 0,
+      "date": "2026-10-06T02:27:14.590Z",
+      "description": "Sprint1005 cnx3: fixed public reader addition to verified 0.943 parent; full coverage and source gates passed",
+      "errorDescription": "Your notebook hit an unhandled error while rerunning your code. Note that the hidden dataset can be larger/smaller/different than the public dataset",
+      "fileName": "submission.csv",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-sprint-three-fold-convnext-30?scriptVersionId=355605911"
+    },
+    {
+      "ref": 56866776,
+      "totalBytes": 373863,
+      "date": "2026-10-06T01:26:32.073Z",
+      "description": "Sprint1005 meniscus: fixed public reader addition to verified 0.943 parent; full coverage and source gates passed",
+      "fileName": "submission.csv",
+      "publicScore": "0.943",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-sprint-meniscus10?scriptVersionId=355502633"
+    },
+    {
+      "ref": 56856316,
+      "totalBytes": 0,
+      "date": "2026-10-05T16:01:01.123Z",
+      "description": "Sprint1005 cnx3: fixed public reader addition to verified 0.943 parent; full coverage and source gates passed",
+      "errorDescription": "Your notebook hit an unhandled error while rerunning your code. Note that the hidden dataset can be larger/smaller/different than the public dataset",
+      "fileName": "submission.csv",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-sprint-three-fold-convnext-30?scriptVersionId=355497226"
+    },
+    {
+      "ref": 56817443,
+      "totalBytes": 373841,
+      "date": "2026-10-04T07:24:24.677Z",
+      "description": "Outer70: change seven default outer weights 0.60 to 0.70; five overrides unchanged; exact 0.943 fourway parent",
+      "fileName": "submission.csv",
+      "publicScore": "0.943",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-sprint-outer70?scriptVersionId=355097506"
+    },
+    {
+      "ref": 56706632,
+      "totalBytes": 373869,
+      "date": "2026-09-30T11:57:17.773Z",
+      "description": "Four-reader public base + fixed 10% public ConvNeXt DINOv3 M448 fold0; no per-class tuning",
+      "fileName": "submission.csv",
+      "publicScore": "0.943",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-sprint-cnx10?scriptVersionId=354075844"
+    },
+    {
+      "ref": 56700487,
+      "totalBytes": 373880,
+      "date": "2026-09-30T07:14:59.487Z",
+      "description": "Public four-reader upgrade: exact upstream inference, 4/4 CoAt, no degraded visible branches; upstream claim 0.943 not 0.946",
+      "fileName": "submission.csv",
+      "publicScore": "0.943",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-sprint-public-fourway?scriptVersionId=354073226"
+    },
+    {
+      "ref": 56514045,
+      "totalBytes": 373866,
+      "date": "2026-09-24T06:33:12.603Z",
+      "description": "Anchor942 Fracture-only RadImageNet ablation; parent 56454576=0.942; original hidden fallbacks retained",
+      "fileName": "submission.csv",
+      "publicScore": "0.942",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-anchor942-fracture-ablation?scriptVersionId=352324950"
+    },
+    {
+      "ref": 56454576,
+      "totalBytes": 373864,
+      "date": "2026-09-22T05:43:59.200Z",
+      "description": "Anchor942 hidden-robust: exact public recipe fallbacks preserved; nonfatal degradation receipt",
+      "fileName": "submission.csv",
+      "publicScore": "0.942",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-anchor942-hidden-robust?scriptVersionId=351760673"
+    },
+    {
+      "ref": 56446116,
+      "totalBytes": 0,
+      "date": "2026-09-22T00:02:01.350Z",
+      "description": "Audited public Anchor942 Speedy recipe; both CoAt children required; zero fallback",
+      "errorDescription": "Your notebook hit an unhandled error while rerunning your code. Note that the hidden dataset can be larger/smaller/different than the public dataset",
+      "fileName": "submission.csv",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-anchor942-audited?scriptVersionId=351708820"
+    },
+    {
+      "ref": 56333692,
+      "totalBytes": 379794,
+      "date": "2026-09-18T15:24:12.173Z",
+      "description": "Native64 density ablation: native384-v8 44 to 64 slices; all other recipe settings fixed",
+      "fileName": "submission.csv",
+      "publicScore": "0.940",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-anchor941-native64?scriptVersionId=350859133"
+    },
+    {
+      "ref": 56297810,
+      "totalBytes": 379753,
+      "date": "2026-09-17T06:54:56.627Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.941",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-anchor941-audited?scriptVersionId=350430997"
+    },
+    {
+      "ref": 56290048,
+      "totalBytes": 379747,
+      "date": "2026-09-17T00:33:31.197Z",
+      "description": "Anchor941 audited Fast v5 probe22; all branches verified; no fallback",
+      "fileName": "submission.csv",
+      "publicScore": "0.941",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-anchor941-audited?scriptVersionId=350430997"
+    },
+    {
+      "ref": 56110280,
+      "totalBytes": 382093,
+      "date": "2026-09-09T01:02:42.150Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.808",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-v5s4a2?scriptVersionId=348270181"
+    },
+    {
+      "ref": 56100762,
+      "totalBytes": 383063,
+      "date": "2026-09-08T14:51:59.543Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.880",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-v5s3d?scriptVersionId=348192436"
+    },
+    {
+      "ref": 56079788,
+      "totalBytes": 385347,
+      "date": "2026-09-07T15:26:30.437Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.807",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-v5s3c?scriptVersionId=347931052"
+    },
+    {
+      "ref": 56063588,
+      "totalBytes": 382832,
+      "date": "2026-09-06T22:06:38.610Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.877",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-v5s3b?scriptVersionId=347717559"
+    },
+    {
+      "ref": 56057818,
+      "totalBytes": 380716,
+      "date": "2026-09-06T14:49:33.603Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.937",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-knee-abnormality-detectionv1?scriptVersionId=347718768"
+    },
+    {
+      "ref": 56046423,
+      "totalBytes": 385312,
+      "date": "2026-09-06T04:14:58.097Z",
+      "description": "130mm -> 140mm",
+      "fileName": "submission.csv",
+      "publicScore": "0.818",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-v5s3a?scriptVersionId=347504710"
+    },
+    {
+      "ref": 56030022,
+      "totalBytes": 379730,
+      "date": "2026-09-05T09:53:50.963Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.899",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-knee-0937-meniscus-resid-repro?scriptVersionId=347445699"
+    },
+    {
+      "ref": 56025577,
+      "totalBytes": 379738,
+      "date": "2026-09-05T05:28:48.550Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.936",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-fork-anhad-v2-copied?scriptVersionId=347355633"
+    },
+    {
+      "ref": 55618178,
+      "totalBytes": 379763,
+      "date": "2026-08-19T07:46:54.893Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.920",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-knee-super-ensemble-public?scriptVersionId=343277719"
+    },
+    {
+      "ref": 55575695,
+      "totalBytes": 380010,
+      "date": "2026-08-17T09:46:23.477Z",
+      "description": "Copying from public notebooks",
+      "fileName": "submission.csv",
+      "publicScore": "0.914",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/rsna-knee-fork-v47-ours?scriptVersionId=342958838"
+    },
+    {
+      "ref": 55570582,
+      "totalBytes": 380197,
+      "date": "2026-08-17T04:33:46.557Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.877",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/dinov6-lateral-swap?scriptVersionId=342903658"
+    },
+    {
+      "ref": 55550136,
+      "totalBytes": 385930,
+      "date": "2026-08-16T10:17:13.223Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.831",
+      "status": "COMPLETE",
+      "submittedBy": "charlottemorandi",
+      "submittedByRef": "charlottemorandi",
+      "teamName": "SharpLook Bones",
+      "url": "/code/charlottemorandi/dinov2-v5fixed?scriptVersionId=342660102"
+    },
+    {
+      "ref": 55510608,
+      "totalBytes": 380249,
+      "date": "2026-08-14T17:18:50.100Z",
+      "description": "Using 3 members",
+      "fileName": "submission.csv",
+      "publicScore": "0.886",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/dinov5-fusion-inf?scriptVersionId=342405816"
+    },
+    {
+      "ref": 55502918,
+      "totalBytes": 382972,
+      "date": "2026-08-14T10:00:31.983Z",
+      "description": "Using multi-seeds",
+      "fileName": "submission.csv",
+      "publicScore": "0.879",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/dinov5?scriptVersionId=342310472"
+    },
+    {
+      "ref": 55501047,
+      "totalBytes": 385428,
+      "date": "2026-08-14T08:03:17.440Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.760",
+      "status": "COMPLETE",
+      "submittedBy": "charlottemorandi",
+      "submittedByRef": "charlottemorandi",
+      "teamName": "SharpLook Bones",
+      "url": "/code/charlottemorandi/dinov2-v5?scriptVersionId=342285936"
+    },
+    {
+      "ref": 55494044,
+      "totalBytes": 383079,
+      "date": "2026-08-14T00:28:34.583Z",
+      "description": "Using OOF teacher",
+      "fileName": "submission.csv",
+      "publicScore": "0.881",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/dinov5?scriptVersionId=342174785"
+    },
+    {
+      "ref": 55492749,
+      "totalBytes": 379730,
+      "date": "2026-08-13T23:22:42.143Z",
+      "description": "",
+      "fileName": "submission.csv",
+      "publicScore": "0.899",
+      "status": "COMPLETE",
+      "submittedBy": "charlottemorandi",
+      "submittedByRef": "charlottemorandi",
+      "teamName": "SharpLook Bones",
+      "url": "/code/charlottemorandi/dino-pretrained-pro?scriptVersionId=342241358"
+    },
+    {
+      "ref": 55472096,
+      "totalBytes": 379730,
+      "date": "2026-08-13T02:30:37.753Z",
+      "description": "Using public pretrained weights.",
+      "fileName": "submission.csv",
+      "publicScore": "0.899",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/dino-pretrained?scriptVersionId=342048790"
+    },
+    {
+      "ref": 55426034,
+      "totalBytes": 388113,
+      "date": "2026-08-11T07:00:22.083Z",
+      "description": "DINOv2 ViT-S/14 multi-view with 6 clinical MRI slots. Physical crop (160mm), spatial slice ordering via ImagePositionPatient, laterality normalization (right\u2192left knee). Diagnostic-specific 7-window TTA pooling (max for focal lesions, top2 for ACL/MCL, mean for diffuse). EMA (0.999), Focal Loss (alpha=0.25, gamma=2.0). Trained on ~4400 pseudo-labeled studies, validated on 58 gold studies (macro AUC 0.833). Inference only, no internet required.",
+      "fileName": "submission.csv",
+      "publicScore": "0.835",
+      "status": "COMPLETE",
+      "submittedBy": "easoncyy",
+      "submittedByRef": "easoncyy",
+      "teamName": "SharpLook Bones",
+      "url": "/code/easoncyy/dinov4-inf?scriptVersionId=341631254"
+    }
+  ],
+  "competition": {
+    "competitions": [
+      {
+        "id": 154281,
+        "ref": "https://www.kaggle.com/competitions/rsna-knee-abnormality-detection",
+        "title": "RSNA Knee Abnormality Detection",
+        "url": "https://www.kaggle.com/competitions/rsna-knee-abnormality-detection",
+        "description": "Create a model that can detect knee abnormalities based on multimodal imaging data",
+        "organizationName": "Radiological Society of North America",
+        "category": "Research",
+        "reward": "77,000 Usd",
+        "tags": [
+          {
+            "ref": "medicine",
+            "name": "medicine",
+            "description": "Medicine is the science and practice of the diagnosis, treatment, and prevention of disease. We recommend you take two datasets and analyze them in the morning. If that doesn't work, analyze one dataset every four hours.",
+            "fullPath": "subject > health and fitness > health > medicine",
+            "competitionCount": 28,
+            "datasetCount": 1680,
+            "scriptCount": 1826,
+            "totalCount": 3534
+          },
+          {
+            "ref": "computer vision",
+            "name": "computer vision",
+            "description": "Teaching a machine to interpret real-world images and videos. Applications include detecting objects, capturing motion, and restoring images.",
+            "fullPath": "technique > computer vision",
+            "competitionCount": 156,
+            "datasetCount": 7940,
+            "scriptCount": 6581,
+            "totalCount": 14677
+          },
+          {
+            "ref": "image",
+            "name": "image",
+            "description": "",
+            "fullPath": "data type > image",
+            "competitionCount": 716,
+            "datasetCount": 63440,
+            "scriptCount": 7140,
+            "totalCount": 71296
+          },
+          {
+            "ref": "text",
+            "name": "text",
+            "description": "",
+            "fullPath": "data type > text",
+            "competitionCount": 198,
+            "datasetCount": 11480,
+            "scriptCount": 5122,
+            "totalCount": 16800
+          },
+          {
+            "ref": "image classification",
+            "name": "image classification",
+            "description": "",
+            "fullPath": "task > image-classification",
+            "competitionCount": 86,
+            "datasetCount": 3095,
+            "scriptCount": 2370,
+            "totalCount": 5551
+          },
+          {
+            "ref": "roc auc score",
+            "name": "roc auc score",
+            "description": "Compute Area Under the Receiver Operating Characteristic Curve (ROC AUC)     from prediction scores. See https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html",
+            "fullPath": ""
+          }
+        ],
+        "deadline": "2026-10-22T23:59:00.000Z",
+        "teamCount": 6138,
+        "userHasEntered": true,
+        "userRank": 821,
+        "mergerDeadline": "2026-10-15T23:59:00.000Z",
+        "newEntrantDeadline": "2026-10-15T23:59:00.000Z",
+        "enabledDate": "2026-08-05T15:51:31.833Z",
+        "maxDailySubmissions": 5,
+        "maxTeamSize": 5,
+        "evaluationMetric": "Roc Auc Score",
+        "awardsPoints": true,
+        "isKernelsSubmissionsOnly": true,
+        "hostName": "Radiological Society of North America",
+        "dateCreated": "2026-07-13T23:48:20.713Z"
+      }
+    ]
+  },
+  "latest": [
+    {
+      "ref": "toghrulaliyev/rsna-knee-aze-team-dd6d24",
+      "title": "RSNA KNEE AZE TEAM dd6d24",
+      "author": "Toghrul Aliyev",
+      "lastRunTime": "2026-10-17T13:03:09.810Z"
+    },
+    {
+      "ref": "lavinwins/top-1-gold",
+      "title": "Top 1% Gold \ud83c\udfc5\u2b50",
+      "author": "Lavin Wins",
+      "lastRunTime": "2026-10-17T12:58:31.097Z",
+      "totalVotes": 36
+    },
+    {
+      "ref": "kaiwalyaatulraut/rsna-knee-competition-solution",
+      "title": "RSNA Knee Competition Solution",
+      "author": "KAIWALYA RAUT",
+      "lastRunTime": "2026-10-17T12:38:27.173Z",
+      "totalVotes": 13
+    },
+    {
+      "ref": "shardulsalodkar/rana-knee-abnormality-v4",
+      "title": "RANA Knee Abnormality V4",
+      "author": "Shardul Salodkar",
+      "lastRunTime": "2026-10-17T11:38:25.697Z"
+    },
+    {
+      "ref": "kiyoshiohno/rsna-knee-template",
+      "title": "RSNA Knee Template",
+      "author": "kiyoc",
+      "lastRunTime": "2026-10-17T10:36:57.137Z",
+      "totalVotes": 41
+    },
+    {
+      "ref": "javeriaakmal/rsna-knee-02-eda",
+      "title": "rsna-knee-02-eda",
+      "author": "Javeria Akmal",
+      "lastRunTime": "2026-10-17T08:37:42.370Z"
+    },
+    {
+      "ref": "shardulsalodkar/rana-knee-abnormality-v2",
+      "title": "RANA Knee Abnormality V2",
+      "author": "Shardul Salodkar",
+      "lastRunTime": "2026-10-17T05:20:53.467Z"
+    },
+    {
+      "ref": "goodpjw2008/rsna-knee-does-s6-help-next-to-r6-lb-0-957",
+      "title": "RSNA Knee | Does S6 help next to R6? | LB 0.957",
+      "author": "goodpjw2008",
+      "lastRunTime": "2026-10-17T05:16:19.630Z",
+      "totalVotes": 8
+    },
+    {
+      "ref": "heliosli/this-is-best-public-dataset-new-version-0-9586",
+      "title": "This is best public dataset new version =0.9586\u2b50\u2b50\u2b50",
+      "author": "Heliosli",
+      "lastRunTime": "2026-10-17T04:21:38.607Z",
+      "totalVotes": 129
+    },
+    {
+      "ref": "lavinwins/rsna-gold-medal",
+      "title": "RSNA Gold Medal\u2b50\u2b50 ",
+      "author": "Lavin Wins",
+      "lastRunTime": "2026-10-17T01:28:32.713Z",
+      "totalVotes": 87
+    },
+    {
+      "ref": "ryanholbrook/rsna-knee-abnormalities-efficiency-lb",
+      "title": "RSNA Knee Abnormalities - Efficiency LB",
+      "author": "Ryan Holbrook",
+      "lastRunTime": "2026-10-16T21:22:14.427Z",
+      "totalVotes": 596
+    },
+    {
+      "ref": "shivsatyam/generating-cache-for-vast-ai",
+      "title": "Generating Cache for Vast.ai",
+      "author": "Shivansh",
+      "lastRunTime": "2026-10-16T21:08:48.577Z"
+    },
+    {
+      "ref": "shardulsalodkar/rana-knee-abnormality-v3",
+      "title": "RANA Knee Abnormality V3",
+      "author": "Shardul Salodkar",
+      "lastRunTime": "2026-10-16T16:06:47.187Z"
+    },
+    {
+      "ref": "abdelrahmanekhaldi/rsna-2-5d-cnn",
+      "title": "RSNA - 2.5D CNN",
+      "author": "Abdelrahmane Khaldi",
+      "lastRunTime": "2026-10-16T14:12:55.447Z"
+    },
+    {
+      "ref": "farhanabidtech786/rsna-knee",
+      "title": "RSNA Knee",
+      "author": "Farhan Abid",
+      "lastRunTime": "2026-10-16T14:04:18.103Z",
+      "totalVotes": 35
+    },
+    {
+      "ref": "shogomiyawaki/rsna-knee-b008-tpu-probe",
+      "title": "RSNA Knee b008 TPU probe",
+      "author": "Nebou Rocket",
+      "lastRunTime": "2026-10-16T13:00:43.690Z"
+    },
+    {
+      "ref": "goodpjw2008/rsna-knee-coatnet-r6-2-5d-mil-lb-0-958",
+      "title": "RSNA Knee | CoAtNet + R6 + 2.5D MIL | LB 0.958",
+      "author": "goodpjw2008",
+      "lastRunTime": "2026-10-16T12:48:04.130Z",
+      "totalVotes": 301
+    },
+    {
+      "ref": "leoprovorov/rsna-knee-0-957-explained-why-the-open-ensembl",
+      "title": "\ud83e\uddb5 RSNA Knee 0.957 Explained: Why the Open Ensembl",
+      "author": "AlekseiProvorov",
+      "lastRunTime": "2026-10-16T12:21:13.397Z",
+      "totalVotes": 16
+    },
+    {
+      "ref": "nusrat04/rsna-knee-bk1-fork",
+      "title": "rsna knee bk1 fork",
+      "author": "nusrat_04",
+      "lastRunTime": "2026-10-16T06:48:15.017Z"
+    },
+    {
+      "ref": "masumhuq/rsna-knee-v8-58-study-weights",
+      "title": "RSNA Knee v8 - 58-study weights",
+      "author": "Masum Huq",
+      "lastRunTime": "2026-10-15T23:00:03.200Z"
+    },
+    {
+      "ref": "masumhuq/rsna-knee-v7-fixed-fusion",
+      "title": "RSNA Knee v7 Fixed Fusion",
+      "author": "Masum Huq",
+      "lastRunTime": "2026-10-15T22:58:08.963Z"
+    },
+    {
+      "ref": "ka1205/rsna-phase1-asset-identity-20261016",
+      "title": "rsna phase1 asset identity 20261016",
+      "author": "Kartik Arora",
+      "lastRunTime": "2026-10-15T22:52:27.753Z"
+    },
+    {
+      "ref": "ka1205/rsna-versia-7-phase1-repro-20261016",
+      "title": "rsna versia 7 phase1 repro 20261016",
+      "author": "Kartik Arora",
+      "lastRunTime": "2026-10-15T22:48:48.220Z",
+      "totalVotes": 2
+    },
+    {
+      "ref": "prvsiyan/the-bee-s-knees-final-rsna-push",
+      "title": "The bee's knees - final RSNA push",
+      "author": "prvsiyan",
+      "lastRunTime": "2026-10-15T20:44:50.293Z",
+      "totalVotes": 108
+    },
+    {
+      "ref": "ltcsmokeboi/rsna-knee-gp958e",
+      "title": "Rsna knee gp958e",
+      "author": "You WeiLin",
+      "lastRunTime": "2026-10-15T20:29:15.787Z"
+    },
+    {
+      "ref": "marinostsl/notebook7260fc5481",
+      "title": "notebook7260fc5481",
+      "author": "Marinos tsl",
+      "lastRunTime": "2026-10-15T19:50:18.483Z"
+    },
+    {
+      "ref": "kritikabenjwal/rsna-knee-mirror-tta",
+      "title": "rsna-knee-mirror-tta",
+      "author": "Kritika Benjwal",
+      "lastRunTime": "2026-10-15T19:14:51.987Z"
+    },
+    {
+      "ref": "raihanjs/rsna-knee-fork-s6fall-solo",
+      "title": "Rsna Knee Fork S6fall Solo",
+      "author": "Raihan\ud83c\udde7\ud83c\udde9",
+      "lastRunTime": "2026-10-15T18:02:00.860Z",
+      "totalVotes": 5
+    },
+    {
+      "ref": "sanketnandkumarpatil/kaggle-rsna-knee",
+      "title": "Kaggle-rsna-knee",
+      "author": "Sanket Nandkumar Patil",
+      "lastRunTime": "2026-10-15T17:35:44.127Z",
+      "totalVotes": 58
+    },
+    {
+      "ref": "heliosli/blend-mine-in-private-lb-luck-to-all-upvoters",
+      "title": "Blend mine in\u2014private LB luck to all upvoters \ud83c\udf40",
+      "author": "Heliosli",
+      "lastRunTime": "2026-10-15T17:03:42.467Z",
+      "totalVotes": 170
+    }
+  ]
+}

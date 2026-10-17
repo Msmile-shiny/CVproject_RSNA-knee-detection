@@ -1,0 +1,20 @@
+{
+  "build": {
+    "status": "BUILT_NOT_RUN",
+    "upstream_sha256": "cb0e1eac33a00f96b7d1bcc0e9914f7eb045af2bc9cd01bc290b2213e7f17ddd",
+    "source_sha256": "9e8cb8b25ad3dad13b2d56ed9cf320176f231669fb5be88f9fd572d154d62d44",
+    "protected_submission": 57261794,
+    "protected_score": 0.958,
+    "changes": [
+      "Pin actual R6 w1 assets; upstream mutable dataset may contain R7",
+      "Require reader and all base members; no fallback accepted",
+      "Audit fixed formula; remove unused kernel-output dependency"
+    ]
+  },
+  "response": {
+    "ref": "/code/easoncyy/rsna-r6-published-v2-strict",
+    "url": "https://www.kaggle.com/code/easoncyy/rsna-r6-published-v2-strict",
+    "versionNumber": 1,
+    "kernelId": 139244048
+  }
+}
